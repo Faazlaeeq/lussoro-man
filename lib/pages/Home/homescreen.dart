@@ -9,7 +9,9 @@ import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/home/homescreenmodel.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
+import 'package:single_ecommerce/theme/sizes.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -63,7 +65,7 @@ class _HomescreenState extends State<Homescreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     username = (prefs.getString(UD_user_name) ?? "");
     userid = (prefs.getString(UD_user_id) ?? "");
-    is_login =prefs.getString(UD_user_is_login_required);
+    is_login = prefs.getString(UD_user_is_login_required);
     profileimage = (prefs.getString(UD_user_profileimage) ?? "");
     session_id = (prefs.getString(UD_user_session_id) ?? "");
     print("user" + userid);
@@ -146,7 +148,7 @@ class _HomescreenState extends State<Homescreen> {
     try {
       var map;
       loader.showLoading();
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": session_id,
           "item_id": itemid,
@@ -162,7 +164,7 @@ class _HomescreenState extends State<Homescreen> {
           "addons_price": "",
           "addons_total_price": numberFormat.format(double.parse("0")),
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
           "item_id": itemid,
@@ -181,7 +183,7 @@ class _HomescreenState extends State<Homescreen> {
       }
 
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
       addtocartdata = addtocartmodel.fromJson(response.data);
       if (addtocartdata!.status == 1) {
         loader.hideLoading();
@@ -323,6 +325,8 @@ class _HomescreenState extends State<Homescreen> {
                         Container(
                             margin: EdgeInsets.only(
                                 top: 1.h, left: 4.w, right: 4.w, bottom: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: padding3),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
@@ -366,11 +370,11 @@ class _HomescreenState extends State<Homescreen> {
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount:
-                                homedata!.banners!.topbanners!.length,
+                                    homedata!.banners!.topbanners!.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: EdgeInsets.only(
-                                      left: 2.w,
+                                      left: 5.w,
                                       right: 2.w,
                                     ),
                                     // height: 20.h,
@@ -378,37 +382,33 @@ class _HomescreenState extends State<Homescreen> {
                                     child: GestureDetector(
                                       onTap: () {
                                         if (homedata!.banners!
-                                            .topbanners![index].type ==
+                                                .topbanners![index].type ==
                                             "2") {
                                           print(homedata!.banners!
                                               .topbanners![index].itemId);
                                           Get.to(() => Product(int.parse(
-                                              homedata!
-                                                  .banners!
-                                                  .topbanners![index]
-                                                  .itemId.toString())
-                                          )
-                                          );
+                                              homedata!.banners!
+                                                  .topbanners![index].itemId
+                                                  .toString())));
                                         } else if (homedata!.banners!
-                                            .topbanners![index].type ==
+                                                .topbanners![index].type ==
                                             "1") {
                                           Get.to(() => categories_items(
-                                            homedata!.banners!
-                                                .topbanners![index].catId,
-                                            homedata!
-                                                .banners!
-                                                .topbanners![index]
-                                                .categoryInfo!
-                                                .categoryName,
-                                          ));
+                                                homedata!.banners!
+                                                    .topbanners![index].catId,
+                                                homedata!
+                                                    .banners!
+                                                    .topbanners![index]
+                                                    .categoryInfo!
+                                                    .categoryName,
+                                              ));
                                         }
                                       },
                                       child: ClipRRect(
-                                        borderRadius:
-                                        BorderRadius.circular(7),
+                                        borderRadius: BorderRadius.circular(7),
                                         child: Image.network(
-                                          homedata!.banners!
-                                              .topbanners![index].image
+                                          homedata!
+                                              .banners!.topbanners![index].image
                                               .toString(),
                                           fit: BoxFit.fill,
                                         ),
@@ -431,9 +431,12 @@ class _HomescreenState extends State<Homescreen> {
                               ),
                               Text(
                                 'Categories'.tr,
-                                style: TextStyle(
-                                    fontFamily: "Poppins_bold",
-                                    fontSize: 15.sp),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .copyWith(
+                                      fontSize: 15.sp,
+                                    ),
                               ),
                               Spacer(),
                               IconButton(
@@ -458,7 +461,9 @@ class _HomescreenState extends State<Homescreen> {
                               // left: 2.w,
                               right: 2.w,
                             ),
-                            height: 14.5.h,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: padding3),
+                            height: 170,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: homedata!.categories!.length,
@@ -467,7 +472,7 @@ class _HomescreenState extends State<Homescreen> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Get.to(
-                                          () => categories_items(
+                                      () => categories_items(
                                         homedata!.categories![index].id,
                                         homedata!
                                             .categories![index].categoryName
@@ -475,42 +480,70 @@ class _HomescreenState extends State<Homescreen> {
                                       ),
                                     );
                                   },
-                                  child: SizedBox(
-                                    width: 22.5.w,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          margin:
-                                          EdgeInsets.only(bottom: 1.h),
-                                          height: 10.5.h,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                            BorderRadius.circular(50),
-                                            child: Image.network(
-                                              homedata!
-                                                  .categories![index].image
-                                                  .toString(),
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            homedata!.categories![index]
-                                                .categoryName
+                                  child: Container(
+                                    height: 170,
+                                    width: width(context) * 0.4,
+                                    alignment: Alignment.bottomCenter,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                            homedata!.categories![index].image
                                                 .toString(),
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontFamily: "Poppins_medium",
-                                              fontSize: 9.5.sp,
-                                            ),
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                        )),
+                                    child: Container(
+                                        height: 30,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: MyColors.accentColor),
+                                        child: Column(children: [
+                                          Text(
+                                            homedata!.categories![index]
+                                                .categoryName,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall,
+                                          ),
+                                        ])),
                                   ),
+                                  // child: SizedBox(
+                                  //   width: 22.5.w,
+                                  //   child: Column(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.spaceBetween,
+                                  //     children: [
+                                  //       Container(
+                                  //         margin: EdgeInsets.only(bottom: 1.h),
+                                  //         height: 10.5.h,
+                                  //         child: ClipRRect(
+                                  //           borderRadius:
+                                  //               BorderRadius.circular(50),
+                                  //           child: Image.network(
+                                  //             homedata!.categories![index].image
+                                  //                 .toString(),
+                                  //             fit: BoxFit.fill,
+                                  //           ),
+                                  //         ),
+                                  //       ),
+                                  //       Expanded(
+                                  //         child: Text(
+                                  //           homedata!
+                                  //               .categories![index].categoryName
+                                  //               .toString(),
+                                  //           overflow: TextOverflow.ellipsis,
+                                  //           style: TextStyle(
+                                  //             fontFamily: "Poppins_medium",
+                                  //             fontSize: 9.5.sp,
+                                  //           ),
+                                  //         ),
+                                  //       )
+                                  //     ],
+                                  //   ),
+                                  // ),
                                 ),
                               ),
                             ),
@@ -562,534 +595,515 @@ class _HomescreenState extends State<Homescreen> {
                               ),
                               scrollDirection: Axis.horizontal,
                               itemCount: homedata!.trendingitems!.length,
-                              itemBuilder: (context, index) =>
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Product(
-                                                homedata!
-                                                    .trendingitems![index].id)),
-                                      );
-                                    },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(7),
-                                            border: Border.all(
-                                                width: 0.8.sp,
-                                                color: Colors.grey)),
-                                        margin: EdgeInsets.only(
-                                          top: 1.h,
-                                          left: 3.5.w,
-                                        ),
-                                        height: 32.h,
-                                        width: 45.w,
-                                        child: Column(children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                height: 20.h,
-                                                width: 46.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(
-                                                      5,
-                                                    ),
-                                                    topRight: Radius.circular(
-                                                      5,
-                                                    ),
-                                                  ),
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Product(homedata!
+                                            .trendingitems![index].id)),
+                                  );
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                            width: 0.8.sp, color: Colors.grey)),
+                                    margin: EdgeInsets.only(
+                                      top: 1.h,
+                                      left: 3.5.w,
+                                    ),
+                                    height: 32.h,
+                                    width: 45.w,
+                                    child: Column(children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 20.h,
+                                            width: 46.w,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(
+                                                  5,
                                                 ),
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                  const BorderRadius.only(
-                                                    topLeft: Radius.circular(
-                                                      5,
-                                                    ),
-                                                    topRight: Radius.circular(
-                                                      5,
-                                                    ),
-                                                  ),
-                                                  child: Image.network(
-                                                    homedata!
-                                                        .trendingitems![index]
-                                                        .imageUrl
-                                                        .toString(),
-                                                    fit: BoxFit.contain,
-                                                  ),
+                                                topRight: Radius.circular(
+                                                  5,
                                                 ),
                                               ),
-                                              if (homedata!.trendingitems![index]
+                                            ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topLeft: Radius.circular(
+                                                  5,
+                                                ),
+                                                topRight: Radius.circular(
+                                                  5,
+                                                ),
+                                              ),
+                                              child: Image.network(
+                                                homedata!.trendingitems![index]
+                                                    .imageUrl
+                                                    .toString(),
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          ),
+                                          if (homedata!.trendingitems![index]
                                                   .hasVariation ==
-                                                  "0") ...[
-                                                if (homedata!
-                                                    .trendingitems![index]
-                                                    .availableQty ==
+                                              "0") ...[
+                                            if (homedata!.trendingitems![index]
+                                                        .availableQty ==
                                                     "" ||
-                                                    int.parse(homedata!
+                                                int.parse(homedata!
                                                         .trendingitems![index]
                                                         .availableQty
                                                         .toString()) <=
-                                                        0) ...[
-                                                  Positioned(
-                                                    child: Container(
-                                                      alignment: Alignment.center,
-                                                      height: 20.h,
-                                                      width: 46.w,
-                                                      color: Colors.black38,
-                                                      child: Text(
-                                                        'Out_of_Stock'
-                                                            .tr,
-                                                        style: TextStyle(
-                                                          fontSize: 15.sp,
-                                                          color: Colors.white,
-                                                          fontFamily:
+                                                    0) ...[
+                                              Positioned(
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  height: 20.h,
+                                                  width: 46.w,
+                                                  color: Colors.black38,
+                                                  child: Text(
+                                                    'Out_of_Stock'.tr,
+                                                    style: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors.white,
+                                                      fontFamily:
                                                           'poppins_semibold',
-                                                        ),
-                                                      ),
                                                     ),
                                                   ),
-                                                ]
-                                              ],
-                                              if(is_login == "1") ...[
-                                                Positioned(
-                                                  top: 5.0,
-                                                  right: 5.0,
-                                                  child: GestureDetector(
-                                                    onTap: () {
-                                                      if (userid == "") {
-                                                        Navigator.of(context)
-                                                            .pushAndRemoveUntil(
+                                                ),
+                                              ),
+                                            ]
+                                          ],
+                                          if (is_login == "1") ...[
+                                            Positioned(
+                                              top: 5.0,
+                                              right: 5.0,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  if (userid == "") {
+                                                    Navigator.of(context)
+                                                        .pushAndRemoveUntil(
                                                             MaterialPageRoute(
                                                                 builder: (c) =>
                                                                     Login()),
-                                                                (r) => false);
-                                                      } else if (homedata!
+                                                            (r) => false);
+                                                  } else if (homedata!
                                                           .trendingitems![index]
                                                           .isFavorite ==
-                                                          "0") {
-                                                        managefavarite(
-                                                            homedata!
-                                                                .trendingitems![
-                                                            index]
-                                                                .id,
-                                                            "favorite",
-                                                            index,
-                                                            "trending");
-                                                      } else if (homedata!
+                                                      "0") {
+                                                    managefavarite(
+                                                        homedata!
+                                                            .trendingitems![
+                                                                index]
+                                                            .id,
+                                                        "favorite",
+                                                        index,
+                                                        "trending");
+                                                  } else if (homedata!
                                                           .trendingitems![index]
                                                           .isFavorite ==
-                                                          "1") {
-                                                        managefavarite(
-                                                            homedata!
-                                                                .trendingitems![
-                                                            index]
-                                                                .id,
-                                                            "unfavorite",
-                                                            index,
-                                                            "trending");
-                                                      }
-                                                    },
-                                                    child: Container(
-                                                      height: 6.h,
-                                                      width: 12.w,
-                                                      decoration: BoxDecoration(
-                                                        // shape: BoxShape.values,
-                                                        borderRadius:
+                                                      "1") {
+                                                    managefavarite(
+                                                        homedata!
+                                                            .trendingitems![
+                                                                index]
+                                                            .id,
+                                                        "unfavorite",
+                                                        index,
+                                                        "trending");
+                                                  }
+                                                },
+                                                child: Container(
+                                                  height: 6.h,
+                                                  width: 12.w,
+                                                  decoration: BoxDecoration(
+                                                    // shape: BoxShape.values,
+                                                    borderRadius:
                                                         BorderRadius.circular(
                                                             12),
-                                                        color: Colors.black26,
-                                                      ),
-                                                      child: Center(
-                                                        child: homedata!
-                                                            .trendingitems![
-                                                        index]
-                                                            .isFavorite ==
+                                                    color: Colors.black26,
+                                                  ),
+                                                  child: Center(
+                                                    child: homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .isFavorite ==
                                                             "0"
-                                                            ? SvgPicture.asset(
-                                                          'Assets/Icons/Favorite.svg',
-                                                          color: Colors.white,
-                                                        )
-                                                            : SvgPicture.asset(
-                                                          'Assets/Icons/Favoritedark.svg',
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
+                                                        ? SvgPicture.asset(
+                                                            'Assets/Icons/Favorite.svg',
+                                                            color: Colors.white,
+                                                          )
+                                                        : SvgPicture.asset(
+                                                            'Assets/Icons/Favoritedark.svg',
+                                                            color: Colors.white,
+                                                          ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ]
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.9.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  homedata!
+                                                      .trendingitems![index]
+                                                      .categoryInfo!
+                                                      .categoryName
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 8.sp,
+                                                    fontFamily: 'Poppins',
+                                                    color: color.green,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.5.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    homedata!
+                                                        .trendingitems![index]
+                                                        .itemName
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 10.sp,
+                                                      fontFamily:
+                                                          'Poppins_semibold',
                                                     ),
                                                   ),
                                                 ),
-                                              ]
-
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                          Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.9.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      homedata!
-                                                          .trendingitems![index]
-                                                          .categoryInfo!
-                                                          .categoryName
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 8.sp,
-                                                        fontFamily: 'Poppins',
-                                                        color: color.green,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.5.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        homedata!
-                                                            .trendingitems![index]
-                                                            .itemName
-                                                            .toString(),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 10.sp,
-                                                          fontFamily:
-                                                          'Poppins_semibold',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 2.w,
-                                                    right: 2.w,
-                                                    top: 1.h),
-                                                child: Row(
-                                                  mainAxisAlignment:
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 2.w,
+                                                right: 2.w,
+                                                top: 1.h),
+                                            child: Row(
+                                              mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
-                                                  children: [
-                                                    if (homedata!
-                                                        .trendingitems![
-                                                    index]
+                                              children: [
+                                                if (homedata!
+                                                        .trendingitems![index]
                                                         .hasVariation ==
-                                                        "1") ...[
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                        width: 18.w,
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}$currency",
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
+                                                    "1") ...[
+                                                  SizedBox(
+                                                    height: 3.h,
+                                                    width: 18.w,
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}$currency",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
                                                             'Poppins_bold',
-                                                          ),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                        ),
                                                       ),
-                                                    ] else ...[
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                        width: 18.w,
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}$currency",
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                    ),
+                                                  ),
+                                                ] else ...[
+                                                  SizedBox(
+                                                    height: 3.h,
+                                                    width: 18.w,
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}$currency",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
                                                             'Poppins_bold',
-                                                          ),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                        ),
                                                       ),
-                                                    ],
-                                                    //////
-                                                    if (homedata!
-                                                        .trendingitems![
-                                                    index]
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                    ),
+                                                  ),
+                                                ],
+                                                //////
+                                                if (homedata!
+                                                        .trendingitems![index]
                                                         .isCart ==
-                                                        "0") ...[
-                                                      GestureDetector(
-                                                        onTap: () async {
-                                                          if (homedata!
-                                                              .trendingitems![
-                                                          index]
-                                                              .hasVariation ==
-                                                              "1" ||
-                                                              homedata!
+                                                    "0") ...[
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      if (homedata!
                                                                   .trendingitems![
-                                                              index]
-                                                                  .addons!
-                                                                  .isNotEmpty) {
-                                                            cart = await Get.to(
-                                                                    () => showvariation(
-                                                                    homedata!
-                                                                        .trendingitems![
-                                                                    index]));
-                                                            if (cart == 1) {
-                                                              setState(() {
-                                                                homedata!
+                                                                      index]
+                                                                  .hasVariation ==
+                                                              "1" ||
+                                                          homedata!
+                                                              .trendingitems![
+                                                                  index]
+                                                              .addons!
+                                                              .isNotEmpty) {
+                                                        cart = await Get.to(() =>
+                                                            showvariation(homedata!
                                                                     .trendingitems![
-                                                                index]
-                                                                    .isCart = "1";
-                                                                homedata!
+                                                                index]));
+                                                        if (cart == 1) {
+                                                          setState(() {
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .isCart = "1";
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .itemQty = int.parse(homedata!
                                                                     .trendingitems![
-                                                                index]
-                                                                    .itemQty = int.parse(homedata!
-                                                                    .trendingitems![
-                                                                index]
+                                                                        index]
                                                                     .itemQty!
                                                                     .toString()) +
-                                                                    1;
-                                                              });
-                                                            }
-                                                          }
-                                                          else {
-                                                            // if (userid == "") {
-                                                            //   Navigator.of(
-                                                            //           context)
-                                                            //       .pushAndRemoveUntil(
-                                                            //           MaterialPageRoute(
-                                                            //               builder: (c) =>
-                                                            //                   Login()),
-                                                            //           (r) =>
-                                                            //               false);
-                                                            // } else {
-                                                            addtocart(
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .id,
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .itemName,
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .imageName,
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .itemType,
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .tax,
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .price);
-                                                            //   }
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
+                                                                1;
+                                                          });
+                                                        }
+                                                      } else {
+                                                        // if (userid == "") {
+                                                        //   Navigator.of(
+                                                        //           context)
+                                                        //       .pushAndRemoveUntil(
+                                                        //           MaterialPageRoute(
+                                                        //               builder: (c) =>
+                                                        //                   Login()),
+                                                        //           (r) =>
+                                                        //               false);
+                                                        // } else {
+                                                        addtocart(
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .id,
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .itemName,
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .imageName,
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .itemType,
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .tax,
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .price);
+                                                        //   }
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                    4),
-                                                                border: Border.all(
-                                                                    color: Colors
-                                                                        .grey)),
-                                                            height: 3.5.h,
-                                                            width: 17.w,
-                                                            child: Center(
-                                                              child: Text(
-                                                                'ADD'
-                                                                    .tr,
-                                                                style: TextStyle(
-                                                                    fontFamily:
+                                                                        4),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .grey)),
+                                                        height: 3.5.h,
+                                                        width: 17.w,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'ADD'.tr,
+                                                            style: TextStyle(
+                                                                fontFamily:
                                                                     'Poppins_medium',
-                                                                    fontSize:
+                                                                fontSize:
                                                                     9.5.sp,
-                                                                    color: color
-                                                                        .green),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                    ]
-                                                    else if (homedata!
-                                                        .trendingitems![
-                                                    index]
+                                                                color: color
+                                                                    .green),
+                                                          ),
+                                                        )),
+                                                  ),
+                                                ] else if (homedata!
+                                                        .trendingitems![index]
                                                         .isCart ==
-                                                        "1") ...[
-                                                      Container(
-                                                        height: 3.6.h,
-                                                        width: 22.w,
-                                                        decoration:
-                                                        BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                              Colors.grey),
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(5),
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisAlignment:
+                                                    "1") ...[
+                                                  Container(
+                                                    height: 3.6.h,
+                                                    width: 22.w,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.grey),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceAround,
-                                                          children: [
-                                                            GestureDetector(
-                                                                onTap: () {
-                                                                  loader
-                                                                      .showErroDialog(
-                                                                    description:
+                                                      children: [
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              loader
+                                                                  .showErroDialog(
+                                                                description:
                                                                     'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
                                                                         .tr,
-                                                                  );
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.remove,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                            Container(
-                                                              decoration:
+                                                              );
+                                                            },
+                                                            child: Icon(
+                                                              Icons.remove,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                        Container(
+                                                          decoration:
                                                               BoxDecoration(
-                                                                borderRadius:
+                                                            borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                    3),
-                                                              ),
-                                                              child: Text(
-                                                                homedata!
-                                                                    .trendingitems![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString(),
-                                                                style: TextStyle(
-                                                                    fontSize:
+                                                                        3),
+                                                          ),
+                                                          child: Text(
+                                                            homedata!
+                                                                .trendingitems![
+                                                                    index]
+                                                                .itemQty!
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontSize:
                                                                     10.sp),
-                                                              ),
-                                                            ),
-                                                            InkWell(
-                                                                onTap:
-                                                                    () async {
-                                                                  if (homedata!
-                                                                      .trendingitems![
-                                                                  index]
-                                                                      .hasVariation ==
+                                                          ),
+                                                        ),
+                                                        InkWell(
+                                                            onTap: () async {
+                                                              if (homedata!
+                                                                          .trendingitems![
+                                                                              index]
+                                                                          .hasVariation ==
                                                                       "1" ||
-                                                                      homedata!
-                                                                          .trendingitems![index]
+                                                                  homedata!
+                                                                          .trendingitems![
+                                                                              index]
                                                                           .addons!
                                                                           .length >
-                                                                          0) {
-                                                                    cart = await Navigator.of(
+                                                                      0) {
+                                                                cart = await Navigator.of(
                                                                         context)
-                                                                        .push(
+                                                                    .push(
                                                                         MaterialPageRoute(
-                                                                          builder: (context) =>
-                                                                              showvariation(
-                                                                                  homedata!.trendingitems![index]),
-                                                                        ));
+                                                                  builder: (context) =>
+                                                                      showvariation(
+                                                                          homedata!
+                                                                              .trendingitems![index]),
+                                                                ));
 
-                                                                    if (cart ==
-                                                                        1) {
-                                                                      setState(
-                                                                              () {
-                                                                            homedata!
-                                                                                .trendingitems![
+                                                                if (cart == 1) {
+                                                                  setState(() {
+                                                                    homedata!
+                                                                        .trendingitems![
                                                                             index]
-                                                                                .itemQty = int.parse(
-                                                                                homedata!.trendingitems![index].itemQty) +
-                                                                                1;
-                                                                          });
-                                                                    }
-                                                                  } else {
-                                                                    addtocart(
-                                                                        homedata!
-                                                                            .trendingitems![
-                                                                        index]
-                                                                            .id,
-                                                                        homedata!
-                                                                            .trendingitems![
-                                                                        index]
-                                                                            .itemName,
-                                                                        homedata!
-                                                                            .trendingitems![
-                                                                        index]
-                                                                            .imageName,
-                                                                        homedata!
-                                                                            .trendingitems![
-                                                                        index]
-                                                                            .itemType,
-                                                                        homedata!
-                                                                            .trendingitems![
-                                                                        index]
-                                                                            .tax,
-                                                                        homedata!
+                                                                        .itemQty = int.parse(homedata!
                                                                             .trendingitems![index]
-                                                                            .price);
-                                                                  }
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.add,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 0.2.h,
-                                              )
-                                            ],
+                                                                            .itemQty) +
+                                                                        1;
+                                                                  });
+                                                                }
+                                                              } else {
+                                                                addtocart(
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .id,
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .itemName,
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .imageName,
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .itemType,
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .tax,
+                                                                    homedata!
+                                                                        .trendingitems![
+                                                                            index]
+                                                                        .price);
+                                                              }
+                                                            },
+                                                            child: Icon(
+                                                              Icons.add,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 0.2.h,
                                           )
-                                        ])),
-                                  ),
+                                        ],
+                                      )
+                                    ])),
+                              ),
                             ),
                           ),
                         ],
-                        if (homedata!
-                            .banners!.bannersection1!.isNotEmpty) ...[
+                        if (homedata!.banners!.bannersection1!.isNotEmpty) ...[
                           Container(
                             margin: EdgeInsets.only(top: 2.h),
                             height: 13.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount:
-                              homedata!.banners!.bannersection1!.length,
+                                  homedata!.banners!.bannersection1!.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
                                     if (homedata!.banners!
-                                        .bannersection1![index].type ==
+                                            .bannersection1![index].type ==
                                         "2") {
                                       print(homedata!.banners!
                                           .bannersection1![index].itemId);
@@ -1098,17 +1112,17 @@ class _HomescreenState extends State<Homescreen> {
                                           .bannersection1![index]
                                           .itemId)));
                                     } else if (homedata!.banners!
-                                        .bannersection1![index].type ==
+                                            .bannersection1![index].type ==
                                         "1") {
                                       Get.to(() => categories_items(
-                                        homedata!.banners!
-                                            .bannersection1![index].catId,
-                                        homedata!
-                                            .banners!
-                                            .bannersection1![index]
-                                            .categoryInfo!
-                                            .categoryName,
-                                      ));
+                                            homedata!.banners!
+                                                .bannersection1![index].catId,
+                                            homedata!
+                                                .banners!
+                                                .bannersection1![index]
+                                                .categoryInfo!
+                                                .categoryName,
+                                          ));
                                     }
                                   },
                                   child: Container(
@@ -1118,8 +1132,7 @@ class _HomescreenState extends State<Homescreen> {
                                       ),
                                       width: 100.w,
                                       child: ClipRRect(
-                                        borderRadius:
-                                        BorderRadius.circular(7),
+                                        borderRadius: BorderRadius.circular(7),
                                         child: Image.network(
                                           homedata!.banners!
                                               .bannersection1![index].image
@@ -1176,530 +1189,508 @@ class _HomescreenState extends State<Homescreen> {
                               ),
                               scrollDirection: Axis.horizontal,
                               itemCount: homedata!.todayspecial!.length,
-                              itemBuilder: (context, index) =>
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Product(
-                                                homedata!
-                                                    .todayspecial![index].id)),
-                                      );
-                                    },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(7),
-                                            border: Border.all(
-                                                width: 0.8.sp,
-                                                color: Colors.grey)),
-                                        margin: EdgeInsets.only(
-                                          top: 1.h,
-                                          left: 3.5.w,
-                                        ),
-                                        height: 32.h,
-                                        width: 45.w,
-                                        child: Column(children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                height: 20.h,
-                                                width: 46.w,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    const BorderRadius.only(
-                                                        topLeft:
-                                                        Radius.circular(
-                                                            5),
-                                                        topRight:
-                                                        Radius.circular(
-                                                            5))),
-                                                child: ClipRRect(
-                                                  borderRadius:
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Product(
+                                            homedata!.todayspecial![index].id)),
+                                  );
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                            width: 0.8.sp, color: Colors.grey)),
+                                    margin: EdgeInsets.only(
+                                      top: 1.h,
+                                      left: 3.5.w,
+                                    ),
+                                    height: 32.h,
+                                    width: 45.w,
+                                    child: Column(children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 20.h,
+                                            width: 46.w,
+                                            decoration: BoxDecoration(
+                                                borderRadius: const BorderRadius
+                                                    .only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5))),
+                                            child: ClipRRect(
+                                              borderRadius:
                                                   const BorderRadius.only(
                                                       topLeft:
-                                                      Radius.circular(5),
+                                                          Radius.circular(5),
                                                       topRight:
-                                                      Radius.circular(5)),
-                                                  child: Image.network(
-                                                    homedata!.todayspecial![index]
-                                                        .imageUrl
-                                                        .toString(),
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ),
+                                                          Radius.circular(5)),
+                                              child: Image.network(
+                                                homedata!.todayspecial![index]
+                                                    .imageUrl
+                                                    .toString(),
+                                                fit: BoxFit.contain,
                                               ),
-                                              if (homedata!.todayspecial![index]
+                                            ),
+                                          ),
+                                          if (homedata!.todayspecial![index]
                                                   .hasVariation ==
-                                                  "0") ...[
-                                                if (homedata!.todayspecial![index]
-                                                    .availableQty ==
+                                              "0") ...[
+                                            if (homedata!.todayspecial![index]
+                                                        .availableQty ==
                                                     "" ||
-                                                    int.parse(homedata!
+                                                int.parse(homedata!
                                                         .todayspecial![index]
                                                         .availableQty
                                                         .toString()) <=
-                                                        0) ...[
-                                                  Positioned(
-                                                    child: Container(
-                                                      alignment: Alignment.center,
-                                                      height: 20.h,
-                                                      width: 46.w,
-                                                      color: Colors.black38,
-                                                      child: Text(
-                                                        'Out_of_Stock'
-                                                            .tr,
-                                                        style: TextStyle(
-                                                          fontSize: 15.sp,
-                                                          color: Colors.white,
-                                                          fontFamily:
+                                                    0) ...[
+                                              Positioned(
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  height: 20.h,
+                                                  width: 46.w,
+                                                  color: Colors.black38,
+                                                  child: Text(
+                                                    'Out_of_Stock'.tr,
+                                                    style: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors.white,
+                                                      fontFamily:
                                                           'poppins_semibold',
-                                                        ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ],
+                                          if (is_login == "1") ...[
+                                            Positioned(
+                                                top: 5.0,
+                                                right: 5.0,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    if (userid == "") {
+                                                      Navigator.of(context)
+                                                          .pushAndRemoveUntil(
+                                                              MaterialPageRoute(
+                                                                  builder: (c) =>
+                                                                      Login()),
+                                                              (r) => false);
+                                                    } else if (homedata!
+                                                            .todayspecial![
+                                                                index]
+                                                            .isFavorite ==
+                                                        "0") {
+                                                      managefavarite(
+                                                          homedata!
+                                                              .todayspecial![
+                                                                  index]
+                                                              .id,
+                                                          "favorite",
+                                                          index,
+                                                          "todayspecial");
+                                                    } else if (homedata!
+                                                            .todayspecial![
+                                                                index]
+                                                            .isFavorite ==
+                                                        "1") {
+                                                      managefavarite(
+                                                          homedata!
+                                                              .todayspecial![
+                                                                  index]
+                                                              .id,
+                                                          "unfavorite",
+                                                          index,
+                                                          "todayspecial");
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                      height: 6.h,
+                                                      width: 12.w,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        color: Colors.black26,
                                                       ),
+                                                      child: Center(
+                                                        child: homedata!
+                                                                    .todayspecial![
+                                                                        index]
+                                                                    .isFavorite ==
+                                                                "0"
+                                                            ? SvgPicture.asset(
+                                                                'Assets/Icons/Favorite.svg',
+                                                                color: Colors
+                                                                    .white,
+                                                              )
+                                                            : SvgPicture.asset(
+                                                                'Assets/Icons/Favoritedark.svg',
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                      )),
+                                                )),
+                                          ]
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.9.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Text(
+                                                  homedata!
+                                                      .todayspecial![index]
+                                                      .categoryInfo!
+                                                      .categoryName
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 8.sp,
+                                                    fontFamily: 'Poppins',
+                                                    color: color.green,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.5.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    homedata!
+                                                        .todayspecial![index]
+                                                        .itemName
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 10.sp,
+                                                      fontFamily:
+                                                          'Poppins_semibold',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 2.w,
+                                                right: 2.w,
+                                                top: 1.h),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                if (homedata!
+                                                        .todayspecial![index]
+                                                        .hasVariation ==
+                                                    "1") ...[
+                                                  SizedBox(
+                                                    height: 3.h,
+                                                    width: 18.w,
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}$currency",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
+                                                            'Poppins_bold',
+                                                      ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                    ),
+                                                  ),
+                                                ] else ...[
+                                                  SizedBox(
+                                                    height: 3.h,
+                                                    width: 18.w,
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}$currency",
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
+                                                            'Poppins_bold',
+                                                      ),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                    ),
+                                                  ),
+                                                ],
+                                                if (homedata!
+                                                        .todayspecial![index]
+                                                        .isCart ==
+                                                    "0") ...[
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      if (homedata!
+                                                                  .todayspecial![
+                                                                      index]
+                                                                  .hasVariation ==
+                                                              "1" ||
+                                                          homedata!
+                                                              .todayspecial![
+                                                                  index]
+                                                              .addons!
+                                                              .isNotEmpty) {
+                                                        cart = await Get.to(() =>
+                                                            showvariation(homedata!
+                                                                    .todayspecial![
+                                                                index]));
+                                                        if (cart == 1) {
+                                                          setState(() {
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .isCart = "1";
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .itemQty = int.parse(homedata!
+                                                                    .todayspecial![
+                                                                        index]
+                                                                    .itemQty!
+                                                                    .toString()) +
+                                                                1;
+                                                          });
+                                                        }
+                                                      } else {
+                                                        // if (userid == "") {
+                                                        //   Navigator.of(
+                                                        //           context)
+                                                        //       .pushAndRemoveUntil(
+                                                        //           MaterialPageRoute(
+                                                        //               builder: (c) =>
+                                                        //                   Login()),
+                                                        //           (r) =>
+                                                        //               false);
+                                                        // } else {
+                                                        addtocart(
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .id,
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .itemName,
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .imageName,
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .itemType,
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .tax,
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .price);
+                                                        // }
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .grey)),
+                                                        height: 3.5.h,
+                                                        width: 17.w,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'ADD'.tr,
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize:
+                                                                    9.5.sp,
+                                                                color: color
+                                                                    .green),
+                                                          ),
+                                                        )),
+                                                  ),
+                                                ] else if (homedata!
+                                                        .todayspecial![index]
+                                                        .isCart ==
+                                                    "1") ...[
+                                                  Container(
+                                                    height: 3.6.h,
+                                                    width: 22.w,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.grey),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              loader
+                                                                  .showErroDialog(
+                                                                description:
+                                                                    'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
+                                                                        .tr,
+                                                              );
+                                                            },
+                                                            child: Icon(
+                                                              Icons.remove,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        3),
+                                                          ),
+                                                          child: Text(
+                                                            homedata!
+                                                                .todayspecial![
+                                                                    index]
+                                                                .itemQty!
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    10.sp),
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                            onTap: () async {
+                                                              if (homedata!
+                                                                          .todayspecial![
+                                                                              index]
+                                                                          .hasVariation ==
+                                                                      "1" ||
+                                                                  homedata!
+                                                                          .todayspecial![
+                                                                              index]
+                                                                          .addons!
+                                                                          .length >
+                                                                      0) {
+                                                                cart = await Get.to(() =>
+                                                                    showvariation(
+                                                                        homedata!
+                                                                            .todayspecial![index]));
+                                                                if (cart == 1) {
+                                                                  setState(() {
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .itemQty = int.parse(homedata!
+                                                                            .todayspecial![index]
+                                                                            .itemQty!
+                                                                            .toString()) +
+                                                                        1;
+                                                                  });
+                                                                }
+                                                              } else {
+                                                                addtocart(
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .id,
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .itemName,
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .imageName,
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .itemType,
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .tax,
+                                                                    homedata!
+                                                                        .todayspecial![
+                                                                            index]
+                                                                        .price);
+                                                                // addtocart(
+                                                                //     index,
+                                                                //     "trending");
+                                                              }
+                                                            },
+                                                            child: Icon(
+                                                              Icons.add,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],
                                               ],
-                                              if(is_login == "1") ...[
-                                                Positioned(
-                                                    top: 5.0,
-                                                    right: 5.0,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        if (userid == "") {
-                                                          Navigator.of(context)
-                                                              .pushAndRemoveUntil(
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (c) =>
-                                                                      Login()),
-                                                                  (r) => false);
-                                                        } else if (homedata!
-                                                            .todayspecial![
-                                                        index]
-                                                            .isFavorite ==
-                                                            "0") {
-                                                          managefavarite(
-                                                              homedata!
-                                                                  .todayspecial![
-                                                              index]
-                                                                  .id,
-                                                              "favorite",
-                                                              index,
-                                                              "todayspecial");
-                                                        } else if (homedata!
-                                                            .todayspecial![
-                                                        index]
-                                                            .isFavorite ==
-                                                            "1") {
-                                                          managefavarite(
-                                                              homedata!
-                                                                  .todayspecial![
-                                                              index]
-                                                                  .id,
-                                                              "unfavorite",
-                                                              index,
-                                                              "todayspecial");
-                                                        }
-                                                      },
-                                                      child: Container(
-                                                          height: 6.h,
-                                                          width: 12.w,
-                                                          decoration:
-                                                          BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                12),
-                                                            color:
-                                                            Colors.black26,
-                                                          ),
-                                                          child: Center(
-                                                            child: homedata!
-                                                                .todayspecial![
-                                                            index]
-                                                                .isFavorite ==
-                                                                "0"
-                                                                ? SvgPicture
-                                                                .asset(
-                                                              'Assets/Icons/Favorite.svg',
-                                                              color: Colors
-                                                                  .white,
-                                                            )
-                                                                : SvgPicture
-                                                                .asset(
-                                                              'Assets/Icons/Favoritedark.svg',
-                                                              color: Colors
-                                                                  .white,
-                                                            ),
-                                                          )),
-                                                    )),
-                                              ]
-                                            ],
+                                            ),
                                           ),
-                                          Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.9.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      homedata!
-                                                          .todayspecial![index]
-                                                          .categoryInfo!
-                                                          .categoryName
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                        fontSize: 8.sp,
-                                                        fontFamily: 'Poppins',
-                                                        color: color.green,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.5.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        homedata!
-                                                            .todayspecial![index]
-                                                            .itemName
-                                                            .toString(),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 10.sp,
-                                                          fontFamily:
-                                                          'Poppins_semibold',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 2.w,
-                                                    right: 2.w,
-                                                    top: 1.h),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  children: [
-                                                    if (homedata!
-                                                        .todayspecial![
-                                                    index]
-                                                        .hasVariation ==
-                                                        "1") ...[
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                        width: 18.w,
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}$currency",
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
-                                                            'Poppins_bold',
-                                                          ),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                        ),
-                                                      ),
-                                                    ] else ...[
-                                                      SizedBox(
-                                                        height: 3.h,
-                                                        width: 18.w,
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}$currency",
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
-                                                            'Poppins_bold',
-                                                          ),
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                    if (homedata!
-                                                        .todayspecial![
-                                                    index]
-                                                        .isCart ==
-                                                        "0") ...[
-                                                      GestureDetector(
-                                                        onTap: () async {
-                                                          if (homedata!
-                                                              .todayspecial![
-                                                          index]
-                                                              .hasVariation ==
-                                                              "1" ||
-                                                              homedata!
-                                                                  .todayspecial![
-                                                              index]
-                                                                  .addons!
-                                                                  .isNotEmpty) {
-                                                            cart = await Get.to(
-                                                                    () => showvariation(
-                                                                    homedata!
-                                                                        .todayspecial![
-                                                                    index]));
-                                                            if (cart == 1) {
-                                                              setState(() {
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .isCart = "1";
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .itemQty = int.parse(homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString()) +
-                                                                    1;
-                                                              });
-                                                            }
-                                                          } else {
-                                                            // if (userid == "") {
-                                                            //   Navigator.of(
-                                                            //           context)
-                                                            //       .pushAndRemoveUntil(
-                                                            //           MaterialPageRoute(
-                                                            //               builder: (c) =>
-                                                            //                   Login()),
-                                                            //           (r) =>
-                                                            //               false);
-                                                            // } else {
-                                                            addtocart(
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .id,
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .itemName,
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .imageName,
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .itemType,
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .tax,
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .price);
-                                                            // }
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    4),
-                                                                border: Border.all(
-                                                                    color: Colors
-                                                                        .grey)),
-                                                            height: 3.5.h,
-                                                            width: 17.w,
-                                                            child: Center(
-                                                              child: Text(
-                                                                'ADD'
-                                                                    .tr,
-                                                                style: TextStyle(
-                                                                    fontFamily:
-                                                                    'Poppins',
-                                                                    fontSize:
-                                                                    9.5.sp,
-                                                                    color: color
-                                                                        .green),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                    ] else if (homedata!
-                                                        .todayspecial![
-                                                    index]
-                                                        .isCart ==
-                                                        "1") ...[
-                                                      Container(
-                                                        height: 3.6.h,
-                                                        width: 22.w,
-                                                        decoration:
-                                                        BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                              Colors.grey),
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(5),
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                          children: [
-                                                            GestureDetector(
-                                                                onTap: () {
-                                                                  loader
-                                                                      .showErroDialog(
-                                                                    description:
-                                                                    'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
-                                                                        .tr,
-                                                                  );
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.remove,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                            Container(
-                                                              decoration:
-                                                              BoxDecoration(
-                                                                borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                    3),
-                                                              ),
-                                                              child: Text(
-                                                                homedata!
-                                                                    .todayspecial![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString(),
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                    10.sp),
-                                                              ),
-                                                            ),
-                                                            GestureDetector(
-                                                                onTap:
-                                                                    () async {
-                                                                  if (homedata!
-                                                                      .todayspecial![
-                                                                  index]
-                                                                      .hasVariation ==
-                                                                      "1" ||
-                                                                      homedata!
-                                                                          .todayspecial![index]
-                                                                          .addons!
-                                                                          .length >
-                                                                          0) {
-                                                                    cart = await Get.to(() =>
-                                                                        showvariation(
-                                                                            homedata!.todayspecial![index]));
-                                                                    if (cart ==
-                                                                        1) {
-                                                                      setState(
-                                                                              () {
-                                                                            homedata!
-                                                                                .todayspecial![
-                                                                            index]
-                                                                                .itemQty = int.parse(
-                                                                                homedata!.todayspecial![index].itemQty!.toString()) +
-                                                                                1;
-                                                                          });
-                                                                    }
-                                                                  } else {
-                                                                    addtocart(
-                                                                        homedata!
-                                                                            .todayspecial![
-                                                                        index]
-                                                                            .id,
-                                                                        homedata!
-                                                                            .todayspecial![
-                                                                        index]
-                                                                            .itemName,
-                                                                        homedata!
-                                                                            .todayspecial![
-                                                                        index]
-                                                                            .imageName,
-                                                                        homedata!
-                                                                            .todayspecial![
-                                                                        index]
-                                                                            .itemType,
-                                                                        homedata!
-                                                                            .todayspecial![
-                                                                        index]
-                                                                            .tax,
-                                                                        homedata!
-                                                                            .todayspecial![index]
-                                                                            .price);
-                                                                    // addtocart(
-                                                                    //     index,
-                                                                    //     "trending");
-                                                                  }
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.add,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 0.2.h,
-                                              )
-                                            ],
+                                          SizedBox(
+                                            height: 0.2.h,
                                           )
-                                        ])),
-                                  ),
+                                        ],
+                                      )
+                                    ])),
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 2.5.h,
                           ),
                         ],
-                        if (homedata!
-                            .banners!.bannersection2!.isNotEmpty) ...[
+                        if (homedata!.banners!.bannersection2!.isNotEmpty) ...[
                           SizedBox(
                             height: 25.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount:
-                              homedata!.banners!.bannersection2!.length,
+                                  homedata!.banners!.bannersection2!.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
                                     if (homedata!.banners!
-                                        .bannersection2![index].type ==
+                                            .bannersection2![index].type ==
                                         "2") {
                                       print(homedata!.banners!
                                           .bannersection2![index].itemId);
@@ -1708,17 +1699,17 @@ class _HomescreenState extends State<Homescreen> {
                                           .bannersection2![index]
                                           .itemId)));
                                     } else if (homedata!.banners!
-                                        .bannersection2![index].type ==
+                                            .bannersection2![index].type ==
                                         "1") {
                                       Get.to(() => categories_items(
-                                        homedata!.banners!
-                                            .bannersection2![index].catId,
-                                        homedata!
-                                            .banners!
-                                            .bannersection2![index]
-                                            .categoryInfo!
-                                            .categoryName,
-                                      ));
+                                            homedata!.banners!
+                                                .bannersection2![index].catId,
+                                            homedata!
+                                                .banners!
+                                                .bannersection2![index]
+                                                .categoryInfo!
+                                                .categoryName,
+                                          ));
                                     }
                                   },
                                   child: Container(
@@ -1729,8 +1720,7 @@ class _HomescreenState extends State<Homescreen> {
                                       width: 60.w,
                                       height: 60.w,
                                       child: ClipRRect(
-                                        borderRadius:
-                                        BorderRadius.circular(7),
+                                        borderRadius: BorderRadius.circular(7),
                                         child: Image.network(
                                           homedata!.banners!
                                               .bannersection2![index].image
@@ -1765,9 +1755,9 @@ class _HomescreenState extends State<Homescreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Trendingfood(
-                                          "3",
-                                          'Recommended'.tr,
-                                        )),
+                                              "3",
+                                              'Recommended'.tr,
+                                            )),
                                   );
                                 },
                                 icon: Icon(
@@ -1785,535 +1775,515 @@ class _HomescreenState extends State<Homescreen> {
                               ),
                               scrollDirection: Axis.horizontal,
                               itemCount: homedata!.recommendeditems!.length,
-                              itemBuilder: (context, index) =>
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Product(
-                                                homedata!.recommendeditems![index]
-                                                    .id)),
-                                      );
-                                    },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(7),
-                                            border: Border.all(
-                                                width: 0.8.sp,
-                                                color: Colors.grey)),
-                                        margin: EdgeInsets.only(
-                                          top: 1.h,
-                                          left: 3.5.w,
-                                        ),
-                                        height: 32.h,
-                                        width: 45.w,
-                                        child: Column(children: [
-                                          Stack(
-                                            children: [
-                                              Container(
-                                                height: 20.h,
-                                                width: 46.w,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    const BorderRadius.only(
-                                                        topLeft:
-                                                        Radius.circular(
-                                                            5),
-                                                        topRight:
-                                                        Radius.circular(
-                                                            5))),
-                                                child: ClipRRect(
-                                                  borderRadius:
+                              itemBuilder: (context, index) => GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Product(homedata!
+                                            .recommendeditems![index].id)),
+                                  );
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                            width: 0.8.sp, color: Colors.grey)),
+                                    margin: EdgeInsets.only(
+                                      top: 1.h,
+                                      left: 3.5.w,
+                                    ),
+                                    height: 32.h,
+                                    width: 45.w,
+                                    child: Column(children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 20.h,
+                                            width: 46.w,
+                                            decoration: BoxDecoration(
+                                                borderRadius: const BorderRadius
+                                                    .only(
+                                                    topLeft: Radius.circular(5),
+                                                    topRight:
+                                                        Radius.circular(5))),
+                                            child: ClipRRect(
+                                              borderRadius:
                                                   const BorderRadius.only(
                                                       topLeft:
-                                                      Radius.circular(5),
+                                                          Radius.circular(5),
                                                       topRight:
-                                                      Radius.circular(5)),
-                                                  child: Image.network(
-                                                    homedata!
-                                                        .recommendeditems![index]
-                                                        .imageUrl
-                                                        .toString(),
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                                ),
+                                                          Radius.circular(5)),
+                                              child: Image.network(
+                                                homedata!
+                                                    .recommendeditems![index]
+                                                    .imageUrl
+                                                    .toString(),
+                                                fit: BoxFit.contain,
                                               ),
-                                              if (homedata!
-                                                  .recommendeditems![index]
+                                            ),
+                                          ),
+                                          if (homedata!.recommendeditems![index]
                                                   .hasVariation ==
-                                                  "0") ...[
-                                                if (homedata!
-                                                    .recommendeditems![
-                                                index]
-                                                    .availableQty ==
-                                                    "" ||
-                                                    int.parse(homedata!
+                                              "0") ...[
+                                            if (homedata!
                                                         .recommendeditems![
-                                                    index]
+                                                            index]
+                                                        .availableQty ==
+                                                    "" ||
+                                                int.parse(homedata!
+                                                        .recommendeditems![
+                                                            index]
                                                         .availableQty
                                                         .toString()) <=
-                                                        0) ...[
-                                                  Positioned(
-                                                    child: Container(
-                                                      alignment: Alignment.center,
-                                                      height: 20.h,
-                                                      width: 46.w,
-                                                      color: Colors.black38,
-                                                      child: Text(
-                                                        'Out_of_Stock'
-                                                            .tr,
-                                                        style: TextStyle(
-                                                          fontSize: 15.sp,
-                                                          color: Colors.white,
-                                                          fontFamily:
+                                                    0) ...[
+                                              Positioned(
+                                                child: Container(
+                                                  alignment: Alignment.center,
+                                                  height: 20.h,
+                                                  width: 46.w,
+                                                  color: Colors.black38,
+                                                  child: Text(
+                                                    'Out_of_Stock'.tr,
+                                                    style: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors.white,
+                                                      fontFamily:
                                                           'poppins_semibold',
-                                                        ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ]
+                                          ],
+                                          if (is_login == "1") ...[
+                                            Positioned(
+                                                top: 5.0,
+                                                right: 5.0,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    if (userid == "") {
+                                                      Navigator.of(context)
+                                                          .pushAndRemoveUntil(
+                                                              MaterialPageRoute(
+                                                                  builder: (c) =>
+                                                                      Login()),
+                                                              (r) => false);
+                                                    } else if (homedata!
+                                                            .recommendeditems![
+                                                                index]
+                                                            .isFavorite ==
+                                                        "0") {
+                                                      managefavarite(
+                                                          homedata!
+                                                              .recommendeditems![
+                                                                  index]
+                                                              .id,
+                                                          "favorite",
+                                                          index,
+                                                          "todayspecial");
+                                                    } else if (homedata!
+                                                            .recommendeditems![
+                                                                index]
+                                                            .isFavorite ==
+                                                        "1") {
+                                                      managefavarite(
+                                                          homedata!
+                                                              .recommendeditems![
+                                                                  index]
+                                                              .id,
+                                                          "unfavorite",
+                                                          index,
+                                                          "recommendeditems");
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                      height: 6.h,
+                                                      width: 12.w,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        color: Colors.black26,
+                                                      ),
+                                                      child: Center(
+                                                        child: homedata!
+                                                                    .recommendeditems![
+                                                                        index]
+                                                                    .isFavorite ==
+                                                                "0"
+                                                            ? SvgPicture.asset(
+                                                                'Assets/Icons/Favorite.svg',
+                                                                color: Colors
+                                                                    .white,
+                                                              )
+                                                            : SvgPicture.asset(
+                                                                'Assets/Icons/Favoritedark.svg',
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                      )),
+                                                )),
+                                          ]
+                                        ],
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.9.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    homedata!
+                                                        .recommendeditems![
+                                                            index]
+                                                        .categoryInfo!
+                                                        .categoryName
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 8.sp,
+                                                      fontFamily: 'Poppins',
+                                                      color: color.green,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 2.w,
+                                              right: 2.w,
+                                              top: 0.5.h,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    homedata!
+                                                        .recommendeditems![
+                                                            index]
+                                                        .itemName
+                                                        .toString(),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: TextStyle(
+                                                      fontSize: 10.sp,
+                                                      fontFamily:
+                                                          'Poppins_semibold',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 2.w,
+                                                right: 2.w,
+                                                top: 1.h),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                if (homedata!
+                                                        .recommendeditems![
+                                                            index]
+                                                        .hasVariation ==
+                                                    "1") ...[
+                                                  Expanded(
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}$currency",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
+                                                            'Poppins_bold',
                                                       ),
                                                     ),
                                                   ),
-                                                ]
-                                              ],
-                                              if(is_login == "1") ...[
-                                                Positioned(
-                                                    top: 5.0,
-                                                    right: 5.0,
-                                                    child: GestureDetector(
-                                                      onTap: () {
-                                                        if (userid == "") {
-                                                          Navigator.of(context)
-                                                              .pushAndRemoveUntil(
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (c) =>
-                                                                      Login()),
-                                                                  (r) => false);
-                                                        } else if (homedata!
-                                                            .recommendeditems![
-                                                        index]
-                                                            .isFavorite ==
-                                                            "0") {
-                                                          managefavarite(
-                                                              homedata!
-                                                                  .recommendeditems![
-                                                              index]
-                                                                  .id,
-                                                              "favorite",
-                                                              index,
-                                                              "todayspecial");
-                                                        } else if (homedata!
-                                                            .recommendeditems![
-                                                        index]
-                                                            .isFavorite ==
-                                                            "1") {
-                                                          managefavarite(
-                                                              homedata!
-                                                                  .recommendeditems![
-                                                              index]
-                                                                  .id,
-                                                              "unfavorite",
-                                                              index,
-                                                              "recommendeditems");
-                                                        }
-                                                      },
-                                                      child: Container(
-                                                          height: 6.h,
-                                                          width: 12.w,
-                                                          decoration:
-                                                          BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                12),
-                                                            color:
-                                                            Colors.black26,
-                                                          ),
-                                                          child: Center(
-                                                            child: homedata!
-                                                                .recommendeditems![
+                                                ] else ...[
+                                                  Expanded(
+                                                    child: Text(
+                                                      currency_position == "1"
+                                                          ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}"
+                                                          : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}$currency",
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        fontSize: 10.sp,
+                                                        fontFamily:
+                                                            'Poppins_bold',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                                if (homedata!
+                                                        .recommendeditems![
                                                             index]
-                                                                .isFavorite ==
-                                                                "0"
-                                                                ? SvgPicture
-                                                                .asset(
-                                                              'Assets/Icons/Favorite.svg',
-                                                              color: Colors
-                                                                  .white,
-                                                            )
-                                                                : SvgPicture
-                                                                .asset(
-                                                              'Assets/Icons/Favoritedark.svg',
-                                                              color: Colors
-                                                                  .white,
-                                                            ),
-                                                          )),
-                                                    )),
-                                              ]
-                                            ],
-                                          ),
-                                          Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.9.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        homedata!
-                                                            .recommendeditems![
-                                                        index]
-                                                            .categoryInfo!
-                                                            .categoryName
-                                                            .toString(),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 8.sp,
-                                                          fontFamily: 'Poppins',
-                                                          color: color.green,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: 2.w,
-                                                  right: 2.w,
-                                                  top: 0.5.h,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        homedata!
-                                                            .recommendeditems![
-                                                        index]
-                                                            .itemName
-                                                            .toString(),
-                                                        overflow:
-                                                        TextOverflow.ellipsis,
-                                                        style: TextStyle(
-                                                          fontSize: 10.sp,
-                                                          fontFamily:
-                                                          'Poppins_semibold',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 2.w,
-                                                    right: 2.w,
-                                                    top: 1.h),
-                                                child:Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                                  children: [
-                                                    if (homedata!
-                                                        .recommendeditems![
-                                                    index]
-                                                        .hasVariation ==
-                                                        "1") ...[
-                                                      Expanded(
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}$currency",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
-                                                            'Poppins_bold',
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ] else ...[
-                                                      Expanded(
-                                                        child: Text(
-                                                          currency_position ==
-                                                              "1"
-                                                              ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}"
-                                                              : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}$currency",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          maxLines: 1,
-                                                          style: TextStyle(
-                                                            fontSize: 10.sp,
-                                                            fontFamily:
-                                                            'Poppins_bold',
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                    if (homedata!
-                                                        .recommendeditems![
-                                                    index]
                                                         .isCart ==
-                                                        "0") ...[
-                                                      GestureDetector(
-                                                        onTap: () async {
-                                                          if (homedata!
-                                                              .recommendeditems![
-                                                          index]
-                                                              .hasVariation ==
-                                                              "1" ||
-                                                              homedata!
+                                                    "0") ...[
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      if (homedata!
                                                                   .recommendeditems![
-                                                              index]
-                                                                  .addons!
-                                                                  .isNotEmpty) {
-                                                            cart = await Get.to(
-                                                                    () => showvariation(
-                                                                    homedata!
-                                                                        .recommendeditems![
-                                                                    index]));
-                                                            if (cart == 1) {
-                                                              setState(() {
-                                                                homedata!
+                                                                      index]
+                                                                  .hasVariation ==
+                                                              "1" ||
+                                                          homedata!
+                                                              .recommendeditems![
+                                                                  index]
+                                                              .addons!
+                                                              .isNotEmpty) {
+                                                        cart = await Get.to(() =>
+                                                            showvariation(homedata!
                                                                     .recommendeditems![
-                                                                index]
-                                                                    .isCart = "1";
-                                                                homedata!
+                                                                index]));
+                                                        if (cart == 1) {
+                                                          setState(() {
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .isCart = "1";
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .itemQty = int.parse(homedata!
                                                                     .recommendeditems![
-                                                                index]
-                                                                    .itemQty = int.parse(homedata!
-                                                                    .recommendeditems![
-                                                                index]
+                                                                        index]
                                                                     .itemQty!
                                                                     .toString()) +
-                                                                    1;
-                                                              });
-                                                            }
-                                                          } else {
-                                                            // if (userid == "") {
-                                                            //   Navigator.of(
-                                                            //           context)
-                                                            //       .pushAndRemoveUntil(
-                                                            //           MaterialPageRoute(
-                                                            //               builder: (c) =>
-                                                            //                   Login()),
-                                                            //           (r) =>
-                                                            //               false);
-                                                            // } else {
-                                                            addtocart(
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .id,
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .itemName,
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .imageName,
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .itemType,
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .tax,
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .price);
-                                                          }
-                                                          // }
-                                                        },
-                                                        child: Container(
-                                                            decoration: BoxDecoration(
-                                                                borderRadius:
+                                                                1;
+                                                          });
+                                                        }
+                                                      } else {
+                                                        // if (userid == "") {
+                                                        //   Navigator.of(
+                                                        //           context)
+                                                        //       .pushAndRemoveUntil(
+                                                        //           MaterialPageRoute(
+                                                        //               builder: (c) =>
+                                                        //                   Login()),
+                                                        //           (r) =>
+                                                        //               false);
+                                                        // } else {
+                                                        addtocart(
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .id,
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .itemName,
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .imageName,
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .itemType,
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .tax,
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .price);
+                                                      }
+                                                      // }
+                                                    },
+                                                    child: Container(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                    4),
-                                                                border: Border.all(
-                                                                    color: Colors
-                                                                        .grey)),
-                                                            height: 3.5.h,
-                                                            width: 17.w,
-                                                            child: Center(
-                                                              child: Text(
-                                                                'ADD'
-                                                                    .tr,
-                                                                style: TextStyle(
-                                                                    fontFamily:
+                                                                        4),
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .grey)),
+                                                        height: 3.5.h,
+                                                        width: 17.w,
+                                                        child: Center(
+                                                          child: Text(
+                                                            'ADD'.tr,
+                                                            style: TextStyle(
+                                                                fontFamily:
                                                                     'Poppins',
-                                                                    fontSize:
+                                                                fontSize:
                                                                     9.5.sp,
-                                                                    color: color
-                                                                        .green),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                    ] else if (homedata!
+                                                                color: color
+                                                                    .green),
+                                                          ),
+                                                        )),
+                                                  ),
+                                                ] else if (homedata!
                                                         .recommendeditems![
-                                                    index]
+                                                            index]
                                                         .isCart ==
-                                                        "1") ...[
-                                                      Container(
-                                                        height: 3.6.h,
-                                                        width: 22.w,
-                                                        decoration:
-                                                        BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                              Colors.grey),
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(5),
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisAlignment:
+                                                    "1") ...[
+                                                  Container(
+                                                    height: 3.6.h,
+                                                    width: 22.w,
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.grey),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceAround,
-                                                          children: [
-                                                            GestureDetector(
-                                                                onTap: () {
-                                                                  loader
-                                                                      .showErroDialog(
-                                                                    description:
+                                                      children: [
+                                                        GestureDetector(
+                                                            onTap: () {
+                                                              loader
+                                                                  .showErroDialog(
+                                                                description:
                                                                     'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
                                                                         .tr,
-                                                                  );
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.remove,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                            Container(
-                                                              decoration:
+                                                              );
+                                                            },
+                                                            child: Icon(
+                                                              Icons.remove,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                        Container(
+                                                          decoration:
                                                               BoxDecoration(
-                                                                borderRadius:
+                                                            borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                    3),
-                                                              ),
-                                                              child: Text(
-                                                                homedata!
-                                                                    .recommendeditems![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString(),
-                                                                style: TextStyle(
-                                                                    fontSize:
+                                                                        3),
+                                                          ),
+                                                          child: Text(
+                                                            homedata!
+                                                                .recommendeditems![
+                                                                    index]
+                                                                .itemQty!
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontSize:
                                                                     10.sp),
-                                                              ),
-                                                            ),
-                                                            GestureDetector(
-                                                                onTap:
-                                                                    () async {
-                                                                  if (homedata!
-                                                                      .recommendeditems![
-                                                                  index]
-                                                                      .hasVariation ==
+                                                          ),
+                                                        ),
+                                                        GestureDetector(
+                                                            onTap: () async {
+                                                              if (homedata!
+                                                                          .recommendeditems![
+                                                                              index]
+                                                                          .hasVariation ==
                                                                       "1" ||
-                                                                      homedata!
-                                                                          .recommendeditems![index]
+                                                                  homedata!
+                                                                          .recommendeditems![
+                                                                              index]
                                                                           .addons!
                                                                           .length >
-                                                                          0) {
-                                                                    cart = await Get.to(() =>
-                                                                        showvariation(
-                                                                            homedata!.recommendeditems![index]));
-                                                                    if (cart ==
-                                                                        1) {
-                                                                      setState(
-                                                                              () {
-                                                                            homedata!
-                                                                                .recommendeditems![
+                                                                      0) {
+                                                                cart = await Get.to(() =>
+                                                                    showvariation(
+                                                                        homedata!
+                                                                            .recommendeditems![index]));
+                                                                if (cart == 1) {
+                                                                  setState(() {
+                                                                    homedata!
+                                                                        .recommendeditems![
                                                                             index]
-                                                                                .itemQty = int.parse(
-                                                                                homedata!.recommendeditems![index].itemQty!.toString()) +
-                                                                                1;
-                                                                          });
-                                                                    }
-                                                                  } else {
-                                                                    addtocart(
-                                                                        homedata!
-                                                                            .recommendeditems![
-                                                                        index]
-                                                                            .id,
-                                                                        homedata!
-                                                                            .recommendeditems![
-                                                                        index]
-                                                                            .itemName,
-                                                                        homedata!
-                                                                            .recommendeditems![
-                                                                        index]
-                                                                            .imageName,
-                                                                        homedata!
-                                                                            .recommendeditems![
-                                                                        index]
-                                                                            .itemType,
-                                                                        homedata!
-                                                                            .recommendeditems![
-                                                                        index]
-                                                                            .tax,
-                                                                        homedata!
+                                                                        .itemQty = int.parse(homedata!
                                                                             .recommendeditems![index]
-                                                                            .price);
-                                                                  }
-                                                                },
-                                                                child: Icon(
-                                                                  Icons.add,
-                                                                  color: color
-                                                                      .green,
-                                                                  size: 16,
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 0.2.h,
-                                              )
-                                            ],
+                                                                            .itemQty!
+                                                                            .toString()) +
+                                                                        1;
+                                                                  });
+                                                                }
+                                                              } else {
+                                                                addtocart(
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .id,
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .itemName,
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .imageName,
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .itemType,
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .tax,
+                                                                    homedata!
+                                                                        .recommendeditems![
+                                                                            index]
+                                                                        .price);
+                                                              }
+                                                            },
+                                                            child: Icon(
+                                                              Icons.add,
+                                                              color:
+                                                                  color.green,
+                                                              size: 16,
+                                                            )),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 0.2.h,
                                           )
-                                        ])),
-                                  ),
+                                        ],
+                                      )
+                                    ])),
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 2.5.h,
                           ),
                         ],
-                        if (homedata!
-                            .banners!.bannersection3!.isNotEmpty) ...[
+                        if (homedata!.banners!.bannersection3!.isNotEmpty) ...[
                           Container(
                             margin: EdgeInsets.only(bottom: 2.h),
                             height: 13.h,
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount:
-                              homedata!.banners!.bannersection3!.length,
+                                  homedata!.banners!.bannersection3!.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
                                   onTap: () {
                                     if (homedata!.banners!
-                                        .bannersection3![index].type ==
+                                            .bannersection3![index].type ==
                                         "2") {
                                       print(homedata!.banners!
                                           .bannersection3![index].itemId);
@@ -2322,17 +2292,17 @@ class _HomescreenState extends State<Homescreen> {
                                           .bannersection3![index]
                                           .itemId)));
                                     } else if (homedata!.banners!
-                                        .bannersection3![index].type ==
+                                            .bannersection3![index].type ==
                                         "1") {
                                       Get.to(() => categories_items(
-                                        homedata!.banners!
-                                            .bannersection3![index].catId,
-                                        homedata!
-                                            .banners!
-                                            .bannersection3![index]
-                                            .categoryInfo!
-                                            .categoryName,
-                                      ));
+                                            homedata!.banners!
+                                                .bannersection3![index].catId,
+                                            homedata!
+                                                .banners!
+                                                .bannersection3![index]
+                                                .categoryInfo!
+                                                .categoryName,
+                                          ));
                                     }
                                   },
                                   child: Container(
@@ -2342,8 +2312,7 @@ class _HomescreenState extends State<Homescreen> {
                                       ),
                                       width: 100.w,
                                       child: ClipRRect(
-                                        borderRadius:
-                                        BorderRadius.circular(7),
+                                        borderRadius: BorderRadius.circular(7),
                                         child: Image.network(
                                           homedata!.banners!
                                               .bannersection3![index].image
@@ -2360,8 +2329,7 @@ class _HomescreenState extends State<Homescreen> {
                           Row(
                             children: [
                               Padding(
-                                padding:
-                                EdgeInsets.only(top: 2.5.h, left: 4.w),
+                                padding: EdgeInsets.only(top: 2.5.h, left: 4.w),
                               ),
                               Text(
                                 'Testimonials'.tr,
@@ -2394,7 +2362,7 @@ class _HomescreenState extends State<Homescreen> {
                                   itemBuilder: (context, index, realIndex) {
                                     return Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       children: [
                                         CircleAvatar(
                                           backgroundColor: Colors.white,
@@ -2407,8 +2375,7 @@ class _HomescreenState extends State<Homescreen> {
                                           height: 0.8.h,
                                         ),
                                         Text(
-                                            homedata!
-                                                .testimonials![index].name
+                                            homedata!.testimonials![index].name
                                                 .toString(),
                                             style: TextStyle(
                                                 color: Colors.white,
@@ -2417,8 +2384,8 @@ class _HomescreenState extends State<Homescreen> {
                                         SizedBox(
                                           height: 1.5.h,
                                         ),
-                                        if (homedata!.testimonials![index]
-                                            .ratting ==
+                                        if (homedata!
+                                                .testimonials![index].ratting ==
                                             "1") ...[
                                           SizedBox(
                                             child: Image.asset(
@@ -2428,8 +2395,7 @@ class _HomescreenState extends State<Homescreen> {
                                             ),
                                           )
                                         ] else if (homedata!
-                                            .testimonials![index]
-                                            .ratting ==
+                                                .testimonials![index].ratting ==
                                             "2") ...[
                                           Image.asset(
                                             "Assets/Image/ratting2.png",
@@ -2437,8 +2403,7 @@ class _HomescreenState extends State<Homescreen> {
                                             width: 25.w,
                                           )
                                         ] else if (homedata!
-                                            .testimonials![index]
-                                            .ratting ==
+                                                .testimonials![index].ratting ==
                                             "3") ...[
                                           Image.asset(
                                             "Assets/Image/ratting3.png",
@@ -2446,8 +2411,7 @@ class _HomescreenState extends State<Homescreen> {
                                             width: 25.w,
                                           )
                                         ] else if (homedata!
-                                            .testimonials![index]
-                                            .ratting ==
+                                                .testimonials![index].ratting ==
                                             "4") ...[
                                           Image.asset(
                                             "Assets/Image/ratting4.png",
@@ -2455,8 +2419,7 @@ class _HomescreenState extends State<Homescreen> {
                                             width: 25.w,
                                           )
                                         ] else if (homedata!
-                                            .testimonials![index]
-                                            .ratting ==
+                                                .testimonials![index].ratting ==
                                             "5") ...[
                                           Image.asset(
                                             "Assets/Image/ratting5.png",
@@ -2478,8 +2441,7 @@ class _HomescreenState extends State<Homescreen> {
                                           height: 1.5.h,
                                         ),
                                         Text(
-                                          homedata!
-                                              .testimonials![index].comment
+                                          homedata!.testimonials![index].comment
                                               .toString(),
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,

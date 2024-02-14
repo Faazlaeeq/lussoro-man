@@ -12,9 +12,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/pages/splash_screen.dart';
-import 'package:single_ecommerce/theme/mythemes.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/mythemes.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
+import 'package:single_ecommerce/theme/my_theme.dart';
 import 'package:single_ecommerce/translation/codegen_loader.g.dart';
 import 'package:single_ecommerce/translation/stringtranslation.dart';
 import 'package:sizer/sizer.dart';
@@ -40,8 +41,10 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  ByteData data = await PlatformAssetBundle().load('Assets/CA/lets-encrypt-r3.pem');
-  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  ByteData data =
+      await PlatformAssetBundle().load('Assets/CA/lets-encrypt-r3.pem');
+  SecurityContext.defaultContext
+      .setTrustedCertificatesBytes(data.buffer.asUint8List());
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -76,16 +79,15 @@ Future<void> main() async {
             builder: (context, orientation, deviceType) {
               return Phoenix(
                   child: GetMaterialApp(
-                    scrollBehavior: MyBehavior(),
-                    fallbackLocale: const Locale('en', 'US'),
-                    translations: Apptranslation(),
-                    locale: const Locale('en', 'US'),
-                    debugShowCheckedModeBanner: false,
-                    theme: thememodel.isdark
-                        ? MyThemes.DarkTheme
-                        : MyThemes.LightTheme,
-                    home: splash_screen(),
-                  ));
+                scrollBehavior: MyBehavior(),
+                fallbackLocale: const Locale('en', 'US'),
+                translations: Apptranslation(),
+                locale: const Locale('en', 'US'),
+                debugShowCheckedModeBanner: false,
+                theme:
+                    thememodel.isdark ? MyThemes.DarkTheme : myTheme(context),
+                home: splash_screen(),
+              ));
             },
           );
         },

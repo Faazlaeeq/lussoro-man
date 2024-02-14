@@ -10,7 +10,7 @@ import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/home/searchmodel.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -59,13 +59,13 @@ class _TrendingfoodState extends State<Trendingfood> {
     try {
       var map;
       loader.showLoading();
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
           "filter": filter,
           "search": widget.type,
         };
-      }else {
+      } else {
         map = {
           "user_id": userid,
           "filter": filter,
@@ -94,7 +94,7 @@ class _TrendingfoodState extends State<Trendingfood> {
       loader.showLoading();
       isfirstcome = true;
       var map;
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
           "item_id": itemid,
@@ -110,7 +110,7 @@ class _TrendingfoodState extends State<Trendingfood> {
           "addons_price": "",
           "addons_total_price": numberFormat.format(double.parse("0")),
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
           "item_id": itemid,
@@ -128,9 +128,9 @@ class _TrendingfoodState extends State<Trendingfood> {
         };
       }
 
-     print(map);
+      print(map);
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
       print(response);
       addtocartdata = addtocartmodel.fromJson(response.data);
       if (addtocartdata!.status == 1) {
@@ -141,7 +141,8 @@ class _TrendingfoodState extends State<Trendingfood> {
         count.cartcountnumber(int.parse(prefs.getString(APPcart_count)!));
         setState(() {});
       }
-    } catch (e) {rethrow;
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -417,7 +418,7 @@ class _TrendingfoodState extends State<Trendingfood> {
                                         ),
                                       ],
                                     ],
-                                    if(is_login == "1") ...[
+                                    if (is_login == "1") ...[
                                       Positioned(
                                           top: 5.0,
                                           right: 5.0,
@@ -426,20 +427,20 @@ class _TrendingfoodState extends State<Trendingfood> {
                                               if (userid == "") {
                                                 Navigator.of(context)
                                                     .pushAndRemoveUntil(
-                                                    MaterialPageRoute(
-                                                        builder: (c) =>
-                                                            Login()),
+                                                        MaterialPageRoute(
+                                                            builder: (c) =>
+                                                                Login()),
                                                         (r) => false);
-                                              } else if (itemdata!
-                                                  .data![index].isFavorite ==
+                                              } else if (itemdata!.data![index]
+                                                      .isFavorite ==
                                                   "0") {
                                                 managefavarite(
                                                   itemdata!.data![index].id,
                                                   "favorite",
                                                   index,
                                                 );
-                                              } else if (itemdata!
-                                                  .data![index].isFavorite ==
+                                              } else if (itemdata!.data![index]
+                                                      .isFavorite ==
                                                   "1") {
                                                 managefavarite(
                                                   itemdata!.data![index].id,
@@ -450,34 +451,34 @@ class _TrendingfoodState extends State<Trendingfood> {
                                             },
                                             child: Container(
                                                 height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
+                                                        .size
+                                                        .height /
                                                     17,
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
+                                                        .size
+                                                        .width /
                                                     8,
                                                 padding: EdgeInsets.all(
                                                     MediaQuery.of(context)
-                                                        .size
-                                                        .height /
+                                                            .size
+                                                            .height /
                                                         80),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(12),
+                                                      BorderRadius.circular(12),
                                                   color: Colors.black26,
                                                 ),
                                                 child: itemdata!.data![index]
-                                                    .isFavorite ==
-                                                    "0"
+                                                            .isFavorite ==
+                                                        "0"
                                                     ? SvgPicture.asset(
-                                                  'Assets/Icons/Favorite.svg',
-                                                  color: Colors.white,
-                                                )
+                                                        'Assets/Icons/Favorite.svg',
+                                                        color: Colors.white,
+                                                      )
                                                     : SvgPicture.asset(
-                                                  'Assets/Icons/Favoritedark.svg',
-                                                  color: Colors.white,
-                                                )),
+                                                        'Assets/Icons/Favoritedark.svg',
+                                                        color: Colors.white,
+                                                      )),
                                           )),
                                     ]
                                   ],
@@ -533,7 +534,7 @@ class _TrendingfoodState extends State<Trendingfood> {
                                   ],
                                 ),
                                 const Spacer(),
-                                Padding (
+                                Padding(
                                   padding: EdgeInsets.only(
                                       left: MediaQuery.of(context).size.width /
                                           50,
@@ -541,7 +542,7 @@ class _TrendingfoodState extends State<Trendingfood> {
                                           50),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       if (itemdata!.data![index].hasVariation ==
                                           "1") ...[
@@ -572,8 +573,8 @@ class _TrendingfoodState extends State<Trendingfood> {
                                         InkWell(
                                           onTap: () async {
                                             if (itemdata!.data![index]
-                                                .hasVariation ==
-                                                "1" ||
+                                                        .hasVariation ==
+                                                    "1" ||
                                                 itemdata!.data![index].addons!
                                                     .isNotEmpty) {
                                               cart = await Get.to(() =>
@@ -585,9 +586,9 @@ class _TrendingfoodState extends State<Trendingfood> {
                                                       .isCart = "1";
                                                   itemdata!.data![index]
                                                       .itemQty = int.parse(
-                                                      itemdata!.data![index]
-                                                          .itemQty!
-                                                          .toString()) +
+                                                          itemdata!.data![index]
+                                                              .itemQty!
+                                                              .toString()) +
                                                       1;
                                                 });
                                               }
@@ -609,15 +610,14 @@ class _TrendingfoodState extends State<Trendingfood> {
                                                   itemdata!
                                                       .data![index].itemType,
                                                   itemdata!.data![index].tax,
-                                                  itemdata!
-                                                      .data![index].price);
+                                                  itemdata!.data![index].price);
                                             }
                                             // }
                                           },
                                           child: Container(
                                               decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(4),
+                                                      BorderRadius.circular(4),
                                                   border: Border.all(
                                                       color: Colors.grey)),
                                               height: 3.5.h,
@@ -633,20 +633,20 @@ class _TrendingfoodState extends State<Trendingfood> {
                                               )),
                                         ),
                                       ] else if (itemdata!
-                                          .data![index].isCart ==
+                                              .data![index].isCart ==
                                           "1") ...[
                                         Container(
                                           height: 3.6.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
                                             border:
-                                            Border.all(color: Colors.grey),
+                                                Border.all(color: Colors.grey),
                                             borderRadius:
-                                            BorderRadius.circular(5),
+                                                BorderRadius.circular(5),
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               InkWell(
                                                   onTap: () {
@@ -663,7 +663,7 @@ class _TrendingfoodState extends State<Trendingfood> {
                                               Container(
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(3),
+                                                      BorderRadius.circular(3),
                                                 ),
                                                 child: Text(
                                                   itemdata!
@@ -676,28 +676,28 @@ class _TrendingfoodState extends State<Trendingfood> {
                                               InkWell(
                                                   onTap: () async {
                                                     if (itemdata!.data![index]
-                                                        .hasVariation ==
-                                                        "1" ||
+                                                                .hasVariation ==
+                                                            "1" ||
                                                         itemdata!
-                                                            .data![index]
-                                                            .addons!
-                                                            .length >
+                                                                .data![index]
+                                                                .addons!
+                                                                .length >
                                                             0) {
                                                       cart = await Get.to(() =>
                                                           showvariation(
                                                               itemdata!.data![
-                                                              index]));
+                                                                  index]));
                                                       if (cart == 1) {
                                                         setState(
-                                                              () {
+                                                          () {
                                                             itemdata!
-                                                                .data![index]
-                                                                .itemQty =
+                                                                    .data![index]
+                                                                    .itemQty =
                                                                 int.parse(itemdata!
-                                                                    .data![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString()) +
+                                                                        .data![
+                                                                            index]
+                                                                        .itemQty!
+                                                                        .toString()) +
                                                                     1;
                                                           },
                                                         );

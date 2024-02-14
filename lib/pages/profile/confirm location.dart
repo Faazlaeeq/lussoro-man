@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:get/get.dart';
-import '../../theme/thememodel.dart';
+import '../../theme-old/thememodel.dart';
 import 'addaddress.dart';
 
 class Confirm_location extends StatefulWidget {
@@ -67,6 +67,7 @@ class _Confirm_locationState extends State<Confirm_location> {
       addresstype = int.parse(widget.addresstype.toString());
     }
   }
+
   get() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     userid = prefs.getString(UD_user_id);
@@ -258,7 +259,7 @@ class _Confirm_locationState extends State<Confirm_location> {
                 child: Center(
                     child: Text(
                   LocaleKeys
-                          .A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily
+                      .A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily
                       .tr,
                   style: TextStyle(fontFamily: 'Poppins', fontSize: 8.8.sp),
                 )),
@@ -479,9 +480,10 @@ class _Confirm_locationState extends State<Confirm_location> {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () async {
-                    SharedPreferences pref = await SharedPreferences.getInstance();
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
                     pref.setString(Addresstype, addresstype.toString());
-                    if(userid == null || userid == ""){
+                    if (userid == null || userid == "") {
                       pref.setString(latitude, widget.latitude.toString());
                       pref.setString(longitude, widget.longitude.toString());
                       pref.setString(confirmAddress, Address.text.toString());
@@ -491,7 +493,7 @@ class _Confirm_locationState extends State<Confirm_location> {
                       pref.getString(Delivery_charge);
                       print("ordertype : ${pref.getString(Ordertype)}");
                       checkdeliveryzoneAPI();
-                    }else{
+                    } else {
                       if (_formkey.currentState!.validate()) {
                         if (addresstype == 0) {
                           loader.showErroDialog(

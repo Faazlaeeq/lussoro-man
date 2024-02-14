@@ -13,7 +13,7 @@ import 'package:single_ecommerce/model/cart/isopenclose.dart';
 import 'package:single_ecommerce/model/settings/changepasswordmodel.dart';
 import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -53,18 +53,18 @@ class _ViewcartState extends State<Viewcart> {
     currency_position = (prefs.getString(APPcurrency_position) ?? " ");
     var map;
     try {
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
         };
       }
       print(map);
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Summary, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Summary, data: map);
 
       var finalist = await response.data;
       cartdata = order_summary_model.fromJson(finalist);
@@ -80,14 +80,14 @@ class _ViewcartState extends State<Viewcart> {
     try {
       loader.showLoading();
       var map;
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid.toString(),
           "cart_id": cartid.toString(),
           "type": type,
           "qty": qty,
         };
-      }else{
+      } else {
         map = {
           "user_id": userid.toString(),
           "cart_id": cartid.toString(),
@@ -139,12 +139,11 @@ class _ViewcartState extends State<Viewcart> {
   isopenAPI() async {
     var map;
     loader.showLoading();
-    if(userid == "" || userid == null){
+    if (userid == "" || userid == null) {
       map = {
         "session_id": sessionid,
       };
-    }
-    else{
+    } else {
       map = {
         "user_id": userid,
       };
@@ -188,8 +187,7 @@ class _ViewcartState extends State<Viewcart> {
                   ),
                 ),
               );
-            }
-            else if (cartdata!.data!.isEmpty) {
+            } else if (cartdata!.data!.isEmpty) {
               return Scaffold(
                 body: Center(
                   child: Text(
@@ -489,63 +487,69 @@ class _ViewcartState extends State<Viewcart> {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      if(userid == "" || userid  == null){
-                        if(is_login == "1"){
-                          showDialog(context: context, builder: (context) {
-                            return  AlertDialog(
-                              title: Text(
-                                'Single_Ecommerce'.tr,
-                                style: TextStyle(
-                                    fontSize: 14.sp, fontFamily: 'Poppins_semibold'),
-                              ),
-                              content: Text(
-                                'Are_you_sure_to_continue_as_a_guest'.tr,
-                                style: TextStyle(fontSize: 12.sp, fontFamily: 'Poppins'),
-                              ),
-                              actions: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                      return Login();
-                                    },));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: color.primarycolor,
-                                  ),
-                                  child: Text(
-                                    'No'.tr,
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins',
+                      if (userid == "" || userid == null) {
+                        if (is_login == "1") {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(
+                                  'Single_Ecommerce'.tr,
+                                  style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontFamily: 'Poppins_semibold'),
+                                ),
+                                content: Text(
+                                  'Are_you_sure_to_continue_as_a_guest'.tr,
+                                  style: TextStyle(
+                                      fontSize: 12.sp, fontFamily: 'Poppins'),
+                                ),
+                                actions: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) {
+                                          return Login();
+                                        },
+                                      ));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: color.primarycolor,
+                                    ),
+                                    child: Text(
+                                      'No'.tr,
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: Colors.white,
+                                        fontFamily: 'Poppins',
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    isopenAPI();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: color.primarycolor,
-                                  ),
-                                  child: Text(
-                                    'Yes'.tr,
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins',
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      isopenAPI();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: color.primarycolor,
+                                    ),
+                                    child: Text(
+                                      'Yes'.tr,
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        color: Colors.white,
+                                        fontFamily: 'Poppins',
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            );
-                          },);
-                        }else{
+                                ],
+                              );
+                            },
+                          );
+                        } else {
                           isopenAPI();
                         }
-                      }
-                      else{
+                      } else {
                         isopenAPI();
                       }
                     },

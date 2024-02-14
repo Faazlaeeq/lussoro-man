@@ -13,7 +13,7 @@ import 'package:single_ecommerce/common%20class/prefs_name.dart';
 import 'package:single_ecommerce/config/api/api.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
-import '../../theme/thememodel.dart';
+import '../../theme-old/thememodel.dart';
 
 class Notificationpage extends StatefulWidget {
   const Notificationpage({Key? key}) : super(key: key);
@@ -120,7 +120,7 @@ class _NotificationpageState extends State<Notificationpage> {
                       if (DefaultApi.environment == "sendbox") {
                         loader.showErroDialog(
                           description: LocaleKeys
-                                  .This_operation_was_not_performed_due_to_demo_mode
+                              .This_operation_was_not_performed_due_to_demo_mode
                               .tr,
                         );
                       } else if (isnotification == "1") {
@@ -179,7 +179,7 @@ class _NotificationpageState extends State<Notificationpage> {
                       if (DefaultApi.environment == "sendbox") {
                         loader.showErroDialog(
                           description: LocaleKeys
-                                  .This_operation_was_not_performed_due_to_demo_mode
+                              .This_operation_was_not_performed_due_to_demo_mode
                               .tr,
                         );
                       } else if (ismail == "1") {
