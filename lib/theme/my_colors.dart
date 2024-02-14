@@ -26,6 +26,7 @@ class MyColors {
   static const Color ratingStarColor = Color.fromRGBO(255, 171, 7, 1);
 
   static const Color shadowColor = Color.fromRGBO(0, 0, 0, 0.15);
+  static const Color shadowColor2 = Color.fromRGBO(0, 0, 0, 0.15);
 
   static const Color subtitleColor2 = Color.fromRGBO(136, 136, 136, 1);
 

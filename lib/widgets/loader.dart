@@ -8,7 +8,7 @@ import 'package:single_ecommerce/translation/locale_keys.g.dart';
 class loader {
   // show error; Dialog
   static void showErroDialog(
-      {String title = 'Single E-commerce',
+      {String title = 'Lussoro Man',
       String? description = 'Something went wrong'}) {
     Get.dialog(
       Dialog(

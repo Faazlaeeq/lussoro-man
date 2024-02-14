@@ -12,6 +12,8 @@ import 'package:single_ecommerce/model/home/homescreenmodel.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/theme/sizes.dart';
+import 'package:single_ecommerce/widgets/Home/new_arrival_card.dart';
+import 'package:single_ecommerce/widgets/common_widgets.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -21,6 +23,7 @@ import 'package:single_ecommerce/pages/favorite/showvariation.dart';
 import 'package:single_ecommerce/pages/Home/Homepage.dart';
 import 'package:single_ecommerce/pages/Home/categoriesinfo.dart';
 import 'package:single_ecommerce/pages/Home/product.dart';
+import 'package:single_ecommerce/widgets/my_appbar_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
@@ -53,6 +56,7 @@ class _HomescreenState extends State<Homescreen> {
   String? profileimage;
   cartcount count = Get.put(cartcount());
   int? cart;
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   homescreenmodel? homedata;
   addtocartmodel? addtocartdata;
@@ -245,8 +249,12 @@ class _HomescreenState extends State<Homescreen> {
     }
   }
 
+  ImageProvider avatar = AssetImage("Assets/images/avatar.png");
   @override
   Widget build(BuildContext context) {
+    if (username != "") {
+      avatar = NetworkImage(profileimage.toString());
+    }
     return Consumer(
       builder: (context, ThemeModel themenofier, child) {
         return SafeArea(
@@ -266,100 +274,133 @@ class _HomescreenState extends State<Homescreen> {
                   return Text("hiiii");
                 }
                 return Scaffold(
-                  appBar: AppBar(
-                    leadingWidth: 40,
-                    automaticallyImplyLeading: false,
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (username == "") ...[
-                              Text(
-                                'Welcome_to'.tr,
-                                style: TextStyle(
-                                    fontFamily: "Poppins", fontSize: 11.sp),
-                              ),
-                              Text(
-                                'ecommerce_User'.tr,
-                                style: TextStyle(
-                                    fontFamily: "Poppins_bold",
-                                    fontSize: 14.sp),
-                              ),
-                            ] else ...[
-                              Text(
-                                'hello'.tr,
-                                style: TextStyle(
-                                    fontFamily: "Poppins", fontSize: 11.sp),
-                              ),
-                              Text(
-                                username,
-                                style: TextStyle(
-                                    fontFamily: "Poppins_bold",
-                                    fontSize: 14.sp),
-                              ),
-                            ]
-                          ],
-                        ),
-                        if (username != "") ...[
-                          SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                    profileimage.toString(),
-                                    fit: BoxFit.cover,
-                                  )))
-                        ]
-                      ],
-                    ),
+                  // appBar: AppBar(
+                  //   leadingWidth: 40,
+                  //   automaticallyImplyLeading: false,
+                  //   title: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           if (username == "") ...[
+                  //             Text(
+                  //               'Welcome_to'.tr,
+                  //               style: TextStyle(
+                  //                   fontFamily: "Poppins", fontSize: 11.sp),
+                  //             ),
+                  //             Text(
+                  //               'ecommerce_User'.tr,
+                  //               style: TextStyle(
+                  //                   fontFamily: "Poppins_bold",
+                  //                   fontSize: 14.sp),
+                  //             ),
+                  //           ] else ...[
+                  //             Text(
+                  //               'hello'.tr,
+                  //               style: TextStyle(
+                  //                   fontFamily: "Poppins", fontSize: 11.sp),
+                  //             ),
+                  //             Text(
+                  //               username,
+                  //               style: TextStyle(
+                  //                   fontFamily: "Poppins_bold",
+                  //                   fontSize: 14.sp),
+                  //             ),
+                  //           ]
+                  //         ],
+                  //       ),
+                  //       if (username != "") ...[
+                  //         SizedBox(
+                  //             height: 50,
+                  //             width: 50,
+                  //             child: ClipRRect(
+                  //                 borderRadius: BorderRadius.circular(50),
+                  //                 child: Image.network(
+                  //                   profileimage.toString(),
+                  //                   fit: BoxFit.cover,
+                  //                 )))
+                  //       ]
+                  //     ],
+                  //   ),
+                  // ),
+                  appBar: MyAppbar(
+                    scaffoldKey: _scaffoldKey,
+                    showTrailingIcon: true,
+                    padding: padding2,
+                    actionIcon: avatar,
                   ),
+                  key: _scaffoldKey,
                   body: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                            margin: EdgeInsets.only(
-                                top: 1.h, left: 4.w, right: 4.w, bottom: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: padding3),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    color: Colors.grey, width: 0.8.sp)),
-                            height: 6.h,
-                            child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const Search()),
-                                  );
-                                },
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 3.w,
-                                    ),
-                                    Icon(
-                                      Icons.search,
-                                      size: 18.sp,
-                                    ),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Text(
-                                      'Search_Here'.tr,
-                                      style: TextStyle(
-                                          fontSize: 11.sp,
-                                          fontFamily: "Poppins"),
-                                    )
-                                  ],
-                                ))),
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: padding4),
+                          child: Text(
+                            'Welcome_to'.tr,
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: padding4,
+                          ),
+                          child: Text("Our Lussore Man",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                      color: MyColors.subtitleColor,
+                                      fontWeight: FontWeight.bold)),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.symmetric(horizontal: padding3),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search()),
+                              );
+                            },
+
+                            child: CommonWidgets.searchBarWithIconButton(
+                              context: context,
+                              onPressed: () => {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Search()),
+                                )
+                              },
+                            ),
+                            // child: Row(
+                            //   children: [
+                            //     SizedBox(
+                            //       width: 3.w,
+                            //     ),
+                            //     Icon(
+                            //       Icons.search,
+                            //       size: 18.sp,
+                            //     ),
+                            //     SizedBox(
+                            //       width: 2.w,
+                            //     ),
+                            //     Text(
+                            //       'Search_Here'.tr,
+                            //       style: TextStyle(
+                            //           fontSize: 11.sp,
+                            //           fontFamily: "Poppins"),
+                            //     )
+                            //   ],
+                            // )
+                          ),
+                        ),
                         if (homedata!.banners!.topbanners!.isNotEmpty) ...[
                           SizedBox(
                             height: 2.h,
@@ -586,6 +627,40 @@ class _HomescreenState extends State<Homescreen> {
                                 ),
                               )
                             ],
+                          ),
+                          SizedBox(
+                            height: height(context) * .7,
+                            child: ListView.builder(
+                              padding: EdgeInsets.only(
+                                right: 3.w,
+                              ),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: homedata!.trendingitems!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                    onTap: () {
+                                      // Navigator.of(context).pushNamed(
+                                      //     // RoutesManager.productDisplay,
+                                      //     // arguments: widget.productCardItems[index],
+                                      //     );
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: productCard(
+                                        context,
+                                        homedata!.trendingitems![index].imageUrl
+                                            .toString(),
+                                        homedata!.trendingitems![index].itemName
+                                            .toString(),
+                                        homedata!.trendingitems![index]
+                                            .categoryInfo!.categoryName
+                                            .toString(),
+                                        homedata!.trendingitems![index].price
+                                            .toString(),
+                                      ),
+                                    ));
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: 33.h,

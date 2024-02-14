@@ -74,7 +74,7 @@ class _splash_screenState extends State<splash_screen> {
           Center(
             child: Image.asset(
               "Assets/images/splash-bg-img.png",
-              fit: BoxFit.fill,
+              fit: BoxFit.fitHeight,
             ),
           ),
         ],

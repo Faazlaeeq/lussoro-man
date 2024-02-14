@@ -6,8 +6,8 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppbar({
     super.key,
     required this.scaffoldKey,
-    this.leadingIcon = 'assets/icons/drawer-icon.png',
-    this.actionIcon = "assets/images/avatar.png",
+    this.leadingIcon = 'Assets/Icons/drawer-icon.png',
+    this.actionIcon = const AssetImage("Assets/images/avatar.png"),
     this.actionBgColor = MyColors.accentColorDark,
     this.padding = padding1,
     this.onpressed,
@@ -18,7 +18,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
 
   final GlobalKey<ScaffoldState> scaffoldKey;
   final String leadingIcon;
-  final String actionIcon;
+  final ImageProvider<Object> actionIcon;
   final Color actionBgColor;
   final double padding;
   final Widget? positionedWidget;
@@ -60,7 +60,8 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
                         backgroundColor: actionBgColor,
                         child: Padding(
                           padding: EdgeInsets.all(padding),
-                          child: Image.asset(actionIcon,
+                          child: Image(
+                              image: actionIcon,
                               alignment: Alignment.bottomCenter,
                               fit: BoxFit.cover),
                         )),

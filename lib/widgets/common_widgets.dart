@@ -212,8 +212,9 @@ class CommonWidgets {
 
   static Widget searchBarWithIconButton({
     String text = "Search",
-    String imageUrl = "assets/icons/search.png",
+    String imageUrl = "Assets/Icons/search.png",
     required BuildContext context,
+    VoidCallback? onPressed,
   }) {
     return SizedBox(
       width: double.maxFinite,
@@ -259,9 +260,7 @@ class CommonWidgets {
             ),
           ),
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RoutesManager.filter);
-            },
+            onPressed: onPressed,
             icon: Container(
               height: 50,
               width: 50,
@@ -269,13 +268,12 @@ class CommonWidgets {
                 borderRadius: BorderRadius.circular(50),
                 color: MyColors.primaryColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(padding3),
-                child: Image.asset(
-                  "assets/icons/scanner.png",
-                  alignment: Alignment.center,
-                  height: 16,
-                  width: 18,
+              child: const Padding(
+                padding: EdgeInsets.all(padding3),
+                child: ImageIcon(
+                  AssetImage("Assets/Icons/search.png"),
+                  size: 18,
+                  color: MyColors.secondaryColor,
                 ),
               ),
             ),

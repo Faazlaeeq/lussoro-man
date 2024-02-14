@@ -118,6 +118,7 @@ flutter:
     - Assets/
     - Assets/Icons/
     - Assets/Image/
+    - Assets/images/
     - Assets/product/
     - Assets/translation/
     - Assets/svgicon/

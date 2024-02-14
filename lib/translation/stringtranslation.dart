@@ -1,21 +1,22 @@
-
 import 'package:get/get.dart';
-
 
 class Apptranslation extends Translations {
   @override
-  Map<String, Map<String, String>> get keys =>  {
+  Map<String, Map<String, String>> get keys => {
         'en_US': {
           "hello": "Hello",
           "english": "english",
           "arabic": "arabic",
-          "Welcome_to": "Welcome to",
+          "Welcome_to": "Welcome,",
           "Ok": "Ok",
-          "Sorry_for_the_inconvenience_but_we_are_performing_some_maintenanceatthemomentWewillbebackonlineshortly": "Sorry for the inconvenience but we are performing some maintenance at the moment. We will be back online shortly!",
-          "Are_you_sure_to_exit_from_this_app": "Are you sure to exit from this app",
+          "Sorry_for_the_inconvenience_but_we_are_performing_some_maintenanceatthemomentWewillbebackonlineshortly":
+              "Sorry for the inconvenience but we are performing some maintenance at the moment. We will be back online shortly!",
+          "Are_you_sure_to_exit_from_this_app":
+              "Are you sure to exit from this app",
           "comment1": "MARK: Login Screen",
-          "This_operation_was_not_performed_due_to_demo_mode": "This operation was not performed due to demo mode",
-          "Single_Ecommerce": "Single E-commerce",
+          "This_operation_was_not_performed_due_to_demo_mode":
+              "This operation was not performed due to demo mode",
+          "Single_Ecommerce": "Lussoro Man",
           "APP_packagename": "com.singleecommerce_user.user",
           "Login": "Login",
           "Signin_to_your_account": "Sign in to your account",
@@ -26,10 +27,12 @@ class Apptranslation extends Translations {
           "Dont_have_an_account": "Don't have an account",
           "Signup": "Signup",
           "Skip_continue": "Skip & Continue",
-          "Please_enter_valid_email_address": "Please enter valid email address",
+          "Please_enter_valid_email_address":
+              "Please enter valid email address",
           "Please_enter_all_details": "Please enter all details",
           "comment2": "MARK: Register Screen",
-          "Create_an_account_so_you_can_order_your_favourite_product_faster": "Create an Account so you can order your favorite food even faster",
+          "Create_an_account_so_you_can_order_your_favourite_product_faster":
+              "Create an Account so you can order your favorite food even faster",
           "Full_name": "Full Name",
           "Mobile": "Mobile",
           "Referral_code_Optional": "Referral code (Optional)",
@@ -40,11 +43,13 @@ class Apptranslation extends Translations {
           "TeamsConditions": "Teams and Conditions",
           "comment4": "MARK: Forgot Password Screen",
           "Forgot_Password_": "Forgot Password",
-          "Enter_your_registered_email_address_below_We_will_send_new_password_in_your_email": "Enter your registered email address below. We will send new password in your email.",
+          "Enter_your_registered_email_address_below_We_will_send_new_password_in_your_email":
+              "Enter your registered email address below. We will send new password in your email.",
           "Submit": "Submit",
           "comment5": "MARK: email Verify Screen",
           "OTP_Verification": "OTP Verification",
-          "Check_your_email_for_OTP_Enter_OTP_below_and_proceed_further": "Check your email for OTP. Enter OTP below and proceed further.",
+          "Check_your_email_for_OTP_Enter_OTP_below_and_proceed_further":
+              "Check your email for OTP. Enter OTP below and proceed further.",
           "Enter_OTP_here": "Enter OTP here",
           "Verify_Proceed": "Verify & Proceed",
           "Dont_receive_an_OTP": "Don't receive an OTP?",
@@ -59,7 +64,8 @@ class Apptranslation extends Translations {
           "Recommended": "Recommended",
           "Testimonials": "Testimonials",
           "ADD": "ADD",
-          "The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item": "The item has multtiple customizations added. Go to cart to remove item",
+          "The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item":
+              "The item has multtiple customizations added. Go to cart to remove item",
           "GO_TO_CART": "GO TO CART",
           "CANCEL": "CANCEL",
           "Out_of_Stock": "Out of Stock",
@@ -91,8 +97,10 @@ class Apptranslation extends Translations {
           "Takeaway": "TAKE AWAY",
           "Cancel": "Cancel",
           "Please_select_option": "Please select option",
-          "Youve_reached_the_maximum_units_allowedfor_the_purchase_of_this_item": "You've reached the maximum units allowed for the purchase of this item",
-          "Restaurant_is_closed_Try_after_some_time": "Restaurant is closed. Try after some time",
+          "Youve_reached_the_maximum_units_allowedfor_the_purchase_of_this_item":
+              "You've reached the maximum units allowed for the purchase of this item",
+          "Restaurant_is_closed_Try_after_some_time":
+              "Restaurant is closed. Try after some time",
           "comment12": "order summary Screen",
           "Order_Summary": "Order Summary",
           "Product_Summary": "Product Summary",
@@ -115,17 +123,20 @@ class Apptranslation extends Translations {
           "Special_instructions": "Special instructions",
           "Write_order_instructions": "Write order instructions",
           "Process_to_pay": "Process To Pay",
-          "You_are_not_eligeble_for_this_offer": "You are not eligeble for this offer",
+          "You_are_not_eligeble_for_this_offer":
+              "You are not eligeble for this offer",
           "Order_amount_must_be_between": "Order amount must be between",
           "TO": "to",
           "comment13": "Payment Options Screen",
           "Payment_Option": "Payment Option",
           "Place_Order": "Place order",
           "Please_select_payment_option": "Please select payment option",
-          "You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option": "You don't have sufficient wallet amonut. Please select another payment option",
+          "You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option":
+              "You don't have sufficient wallet amonut. Please select another payment option",
           "comment14": "Order Success screen",
           "Success": "Success",
-          "Your_order_has_been_placed_successfully_will_be_process_by_system": "Your order has been successfully placed & will be process by system.",
+          "Your_order_has_been_placed_successfully_will_be_process_by_system":
+              "Your order has been successfully placed & will be process by system.",
           "Check_Order_Details": "Check Order Details",
           "comment15": "My order screen",
           "My_Orders": "My Orders",
@@ -150,7 +161,8 @@ class Apptranslation extends Translations {
           "Order_Details": "Order Details",
           "Cancel_Order": "Cancel Order",
           "Driver_information": "Driver information",
-          "Are_you_sure_to_cancel_this_order_If_yes_then_order_amount_Online_payment_OR_Wallet_payment_will_be_transferred_to_your_wallet": "Are you sure to cancel this order? If yes, then order amount (Online payment OR Wallet payment) will be transferred to your wallet.",
+          "Are_you_sure_to_cancel_this_order_If_yes_then_order_amount_Online_payment_OR_Wallet_payment_will_be_transferred_to_your_wallet":
+              "Are you sure to cancel this order? If yes, then order amount (Online payment OR Wallet payment) will be transferred to your wallet.",
           "comment17": "My Profile Screen",
           "Myprofile": "My Profile",
           "Settings": "Settings",
@@ -172,7 +184,8 @@ class Apptranslation extends Translations {
           "Select_application_layout": "Select Application Layout",
           "LTR": "LTR",
           "RTL": "RTL",
-          "Are_you_sure_to_logout_from_this_app": "Are you sure to logout from this app?",
+          "Are_you_sure_to_logout_from_this_app":
+              "Are you sure to logout from this app?",
           "commment18": "Edit Profile Screen",
           "Edit_Profile": "Edit Profile",
           "Save": "Save",
@@ -184,13 +197,15 @@ class Apptranslation extends Translations {
           "New_password": "New Password",
           "Confirm_password": "Confirm Password",
           "Reset": "Reset",
-          "New_password_Confirm_password_must_be_same": "New password & Confirm password must be same",
+          "New_password_Confirm_password_must_be_same":
+              "New password & Confirm password must be same",
           "comment20": "My Addresses Screen",
           "Home": "Home",
           "Office": "Office",
           "Other": "Other",
           "Add_New_Address": "Add New Address",
-          "Are_you_sure_to_delete_this_address": "Are you sure to delete this address?",
+          "Are_you_sure_to_delete_this_address":
+              "Are you sure to delete this address?",
           "Yes": "Yes",
           "No": "No",
           "comment21": "Add Address Screen",
@@ -201,7 +216,8 @@ class Apptranslation extends Translations {
           "Confirmlocation": "Confirm location",
           "comment22": "Confirm Address Screen",
           "Confirm_Address": "Confirm Address",
-          "A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily": "A detailed address will help our Delivery Parnter reach your doorstep easily",
+          "A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily":
+              "A detailed address will help our Delivery Parnter reach your doorstep easily",
           "Complete_address": "Complete Address",
           "House_flate_Floorno": "House / flat / Floor No.",
           "Apartment_Road_Area_Optional": "Apartment / Road / Area (optional)",
@@ -216,7 +232,8 @@ class Apptranslation extends Translations {
           "Secure_Payments": "Secure Payments",
           "No_Document_Upload_Required": "No Document Upload Required",
           "Total_Balance": "Total Balance",
-          "WALLET_MONEY_Can_only_be_used_for_your_orders": "WALLET MONEY can only be used for your food orders",
+          "WALLET_MONEY_Can_only_be_used_for_your_orders":
+              "WALLET MONEY can only be used for your food orders",
           "ADD_MONEY": "+ ADD MONEY",
           "comment24": "Add Money Screen",
           "Add_Money": "Add Money",
@@ -224,8 +241,10 @@ class Apptranslation extends Translations {
           "Procaddmoney": "PROCEED TO ADD MONEY",
           "Total_Balance_": "Total Balance :",
           "NOTES": "NOTES :",
-          "Wallet_Money_cannot_be_transferred_to_your_bank_account": "-> WALLET Money Cannot Be Transferred to your Bank Account.",
-          "You_can_use_Wallet_Money_only_on_orders": "-> You can use Wallet Money only on Restaurant orders",
+          "Wallet_Money_cannot_be_transferred_to_your_bank_account":
+              "-> WALLET Money Cannot Be Transferred to your Bank Account.",
+          "You_can_use_Wallet_Money_only_on_orders":
+              "-> You can use Wallet Money only on Restaurant orders",
           "Please_enter_amount": "Please enter amount",
           "comment25": "Transaction History Screen",
           "Transaction_History": "Transaction History",
@@ -239,9 +258,11 @@ class Apptranslation extends Translations {
           "Enteryoureview": "Enter your review",
           "commnet27": "Refer & Earn Screen",
           "Share": "SHARE",
-          "Refer_code1": "Share this code with a friend and you both could be eligible for",
+          "Refer_code1":
+              "Share this code with a friend and you both could be eligible for",
           "Refer_code2": "bonus amount under our Referral Program.",
-          "bonus_amount_under_our_referral_program": "bonus amount under our referral program.",
+          "bonus_amount_under_our_referral_program":
+              "bonus amount under our referral program.",
           "Use_this_code": "Use this code",
           "to_register_with": "to register with",
           "get_bonus_amount": "& get bonus amount",
@@ -249,7 +270,8 @@ class Apptranslation extends Translations {
           "Push_Notifications": "Push Notifications",
           "keepthisonnoti": "keep this on to receive notifications from system",
           "Emails": "Emails",
-          "Keep_this_on_to_receive_emails_from_system": "keep this on to receive email from system",
+          "Keep_this_on_to_receive_emails_from_system":
+              "keep this on to receive email from system",
           "comment29": "Help & Contact Us Screen",
           "Contact_Us": "Contact Us",
           "Inquiry_form": "Inquiry Form",
@@ -262,7 +284,8 @@ class Apptranslation extends Translations {
           "Time": "Time",
           "Reservation_Type": "Reservation Type",
           "Special_Request_Optional": "Special Request(Optional)",
-          "Your_booking_request_is_registered_successfully": "Your booking request is registered successfully",
+          "Your_booking_request_is_registered_successfully":
+              "Your booking request is registered successfully",
           "comment31": "Blogs screen",
           "Posted_by": "Posted by :",
           "comment32": "details screen",
@@ -301,23 +324,26 @@ class Apptranslation extends Translations {
           "Faqs": "Faqs",
           "Reservationtype": "Reservation Type",
           "Specialrequest": "Special Request(Optional)",
-          "Are_you_sure_to_continue_as_a_guest": "Are you sure to continue as guest?",
+          "Are_you_sure_to_continue_as_a_guest":
+              "Are you sure to continue as guest?",
           "Please_enter_full_name": "Please enter full name",
           "Please_enter_phone_no": "Please enter phone number",
           "Customer_information": "Customer information"
         },
-
-        'ar_ab':{
+        'ar_ab': {
           "hello": "Hello",
           "english": "english",
           "arabic": "arabic",
-          "Welcome_to": "Welcome to",
-          "Sorry_for_the_inconvenience_but_we_are_performing_some_maintenanceatthemomentWewillbebackonlineshortly": "Sorry for the inconvenience but we are performing some maintenance at the moment. We will be back online shortly!",
+          "Welcome_to": "Welcome,",
+          "Sorry_for_the_inconvenience_but_we_are_performing_some_maintenanceatthemomentWewillbebackonlineshortly":
+              "Sorry for the inconvenience but we are performing some maintenance at the moment. We will be back online shortly!",
           "Ok": "Ok",
-          "Are_you_sure_to_exit_from_this_app": "Are you sure to exit from this app",
+          "Are_you_sure_to_exit_from_this_app":
+              "Are you sure to exit from this app",
           "comment1": "MARK: Login Screen",
-          "This_operation_was_not_performed_due_to_demo_mode": "This operation was not performed due to demo mode",
-          "Single_Ecommerce": "Single E-commerce",
+          "This_operation_was_not_performed_due_to_demo_mode":
+              "This operation was not performed due to demo mode",
+          "Single_Ecommerce": "Lussoro Man",
           "APP_packagename": "com.singleecommerce_user.user",
           "Login": "Login",
           "Signin_to_your_account": "Sign in to your account",
@@ -328,10 +354,12 @@ class Apptranslation extends Translations {
           "Dont_have_an_account": "Don't have an account",
           "Signup": "Signup",
           "Skip_continue": "Skip & Continue",
-          "Please_enter_valid_email_address": "Please enter valid email address",
+          "Please_enter_valid_email_address":
+              "Please enter valid email address",
           "Please_enter_all_details": "Please enter all details",
           "comment2": "MARK: Register Screen",
-          "Create_an_account_so_you_can_order_your_favourite_product_faster": "Create an Account so you can order your favorite food even faster",
+          "Create_an_account_so_you_can_order_your_favourite_product_faster":
+              "Create an Account so you can order your favorite food even faster",
           "Full_name": "Full Name",
           "Mobile": "Mobile",
           "Referral_code_Optional": "Referral code (Optional)",
@@ -342,11 +370,13 @@ class Apptranslation extends Translations {
           "TeamsConditions": "Teams and Conditions",
           "comment4": "MARK: Forgot Password Screen",
           "Forgot_Password_": "Forgot Password",
-          "Enter_your_registered_email_address_below_We_will_send_new_password_in_your_email": "Enter your registered email address below. We will send new password in your email.",
+          "Enter_your_registered_email_address_below_We_will_send_new_password_in_your_email":
+              "Enter your registered email address below. We will send new password in your email.",
           "Submit": "Submit",
           "comment5": "MARK: email Verify Screen",
           "OTP_Verification": "OTP Verification",
-          "Check_your_email_for_OTP_Enter_OTP_below_and_proceed_further": "Check your email for OTP. Enter OTP below and proceed further.",
+          "Check_your_email_for_OTP_Enter_OTP_below_and_proceed_further":
+              "Check your email for OTP. Enter OTP below and proceed further.",
           "Enter_OTP_here": "Enter OTP here",
           "Verify_Proceed": "Verify & Proceed",
           "Dont_receive_an_OTP": "Don't receive an OTP?",
@@ -361,7 +391,8 @@ class Apptranslation extends Translations {
           "Recommended": "Recommended",
           "Testimonials": "Testimonials",
           "ADD": "ADD",
-          "The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item": "The item has multtiple customizations added. Go to cart to remove item",
+          "The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item":
+              "The item has multtiple customizations added. Go to cart to remove item",
           "GO_TO_CART": "GO TO CART",
           "CANCEL": "CANCEL",
           "Out_of_Stock": "Out of Stock",
@@ -393,8 +424,10 @@ class Apptranslation extends Translations {
           "Takeaway": "TAKE AWAY",
           "Cancel": "Cancel",
           "Please_select_option": "Please select option",
-          "Youve_reached_the_maximum_units_allowedfor_the_purchase_of_this_item": "You've reached the maximum units allowed for the purchase of this item",
-          "Restaurant_is_closed_Try_after_some_time": "Restaurant is closed. Try after some time",
+          "Youve_reached_the_maximum_units_allowedfor_the_purchase_of_this_item":
+              "You've reached the maximum units allowed for the purchase of this item",
+          "Restaurant_is_closed_Try_after_some_time":
+              "Restaurant is closed. Try after some time",
           "comment12": "order summary Screen",
           "Order_Summary": "Order Summary",
           "Product_Summary": "Product Summary",
@@ -417,17 +450,20 @@ class Apptranslation extends Translations {
           "Special_instructions": "Special instructions",
           "Write_order_instructions": "Write order instructions",
           "Process_to_pay": "Process To Pay",
-          "You_are_not_eligeble_for_this_offer": "You are not eligeble for this offer",
+          "You_are_not_eligeble_for_this_offer":
+              "You are not eligeble for this offer",
           "Order_amount_must_be_between": "Order amount must be between",
           "TO": "to",
           "comment13": "Payment Options Screen",
           "Payment_Option": "Payment Option",
           "Place_Order": "Place order",
           "Please_select_payment_option": "Please select payment option",
-          "You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option": "You don't have sufficient wallet amonut. Please select another payment option",
+          "You_dont_have_sufficient_wallet_amonut_Please_select_another_payment_option":
+              "You don't have sufficient wallet amonut. Please select another payment option",
           "comment14": "Order Success screen",
           "Success": "Success",
-          "Your_order_has_been_placed_successfully_will_be_process_by_system": "Your order has been successfully placed & will be process by system.",
+          "Your_order_has_been_placed_successfully_will_be_process_by_system":
+              "Your order has been successfully placed & will be process by system.",
           "Check_Order_Details": "Check Order Details",
           "comment15": "My order screen",
           "My_Orders": "My Orders",
@@ -452,7 +488,8 @@ class Apptranslation extends Translations {
           "Order_Details": "Order Details",
           "Cancel_Order": "Cancel Order",
           "Driver_information": "Driver information",
-          "Are_you_sure_to_cancel_this_order_If_yes_then_order_amount_Online_payment_OR_Wallet_payment_will_be_transferred_to_your_wallet": "Are you sure to cancel this order? If yes, then order amount (Online payment OR Wallet payment) will be transferred to your wallet.",
+          "Are_you_sure_to_cancel_this_order_If_yes_then_order_amount_Online_payment_OR_Wallet_payment_will_be_transferred_to_your_wallet":
+              "Are you sure to cancel this order? If yes, then order amount (Online payment OR Wallet payment) will be transferred to your wallet.",
           "comment17": "My Profile Screen",
           "Myprofile": "My Profile",
           "Settings": "Settings",
@@ -474,7 +511,8 @@ class Apptranslation extends Translations {
           "Select_application_layout": "Select Application Layout",
           "LTR": "LTR",
           "RTL": "RTL",
-          "Are_you_sure_to_logout_from_this_app": "Are you sure to logout from this app?",
+          "Are_you_sure_to_logout_from_this_app":
+              "Are you sure to logout from this app?",
           "commment18": "Edit Profile Screen",
           "Edit_Profile": "Edit Profile",
           "Save": "Save",
@@ -486,13 +524,15 @@ class Apptranslation extends Translations {
           "New_password": "New Password",
           "Confirm_password": "Confirm Password",
           "Reset": "Reset",
-          "New_password_Confirm_password_must_be_same": "New password & Confirm password must be same",
+          "New_password_Confirm_password_must_be_same":
+              "New password & Confirm password must be same",
           "comment20": "My Addresses Screen",
           "Home": "Home",
           "Office": "Office",
           "Other": "Other",
           "Add_New_Address": "Add New Address",
-          "Are_you_sure_to_delete_this_address": "Are you sure to delete this address?",
+          "Are_you_sure_to_delete_this_address":
+              "Are you sure to delete this address?",
           "Yes": "Yes",
           "No": "No",
           "comment21": "Add Address Screen",
@@ -503,7 +543,8 @@ class Apptranslation extends Translations {
           "Confirmlocation": "Confirm location",
           "comment22": "Confirm Address Screen",
           "Confirm_Address": "Confirm Address",
-          "A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily": "A detailed address will help our Delivery Parnter reach your doorstep easily",
+          "A_detailed_address_will_help_our_delivery_parnter_reach_your_doorstep_easily":
+              "A detailed address will help our Delivery Parnter reach your doorstep easily",
           "Complete_address": "Complete Address",
           "House_flate_Floorno": "House / flat / Floor No.",
           "Apartment_Road_Area_Optional": "Apartment / Road / Area (optional)",
@@ -518,7 +559,8 @@ class Apptranslation extends Translations {
           "Secure_Payments": "Secure Payments",
           "No_Document_Upload_Required": "No Document Upload Required",
           "Total_Balance": "Total Balance",
-          "WALLET_MONEY_Can_only_be_used_for_your_orders": "WALLET MONEY can only be used for your food orders",
+          "WALLET_MONEY_Can_only_be_used_for_your_orders":
+              "WALLET MONEY can only be used for your food orders",
           "ADD_MONEY": "+ ADD MONEY",
           "comment24": "Add Money Screen",
           "Add_Money": "Add Money",
@@ -526,8 +568,10 @@ class Apptranslation extends Translations {
           "Procaddmoney": "PROCEED TO ADD MONEY",
           "Total_Balance_": "Total Balance :",
           "NOTES": "NOTES :",
-          "Wallet_Money_cannot_be_transferred_to_your_bank_account": "-> WALLET Money Cannot Be Transferred to your Bank Account.",
-          "You_can_use_Wallet_Money_only_on_orders": "-> You can use Wallet Money only on Restaurant orders",
+          "Wallet_Money_cannot_be_transferred_to_your_bank_account":
+              "-> WALLET Money Cannot Be Transferred to your Bank Account.",
+          "You_can_use_Wallet_Money_only_on_orders":
+              "-> You can use Wallet Money only on Restaurant orders",
           "Please_enter_amount": "Please enter amount",
           "comment25": "Transaction History Screen",
           "Transaction_History": "Transaction History",
@@ -541,9 +585,11 @@ class Apptranslation extends Translations {
           "Enteryoureview": "Enter your review",
           "commnet27": "Refer & Earn Screen",
           "Share": "SHARE",
-          "Refer_code1": "Share this code with a friend and you both could be eligible for",
+          "Refer_code1":
+              "Share this code with a friend and you both could be eligible for",
           "Refer_code2": "bonus amount under our Referral Program.",
-          "bonus_amount_under_our_referral_program": "bonus amount under our referral program.",
+          "bonus_amount_under_our_referral_program":
+              "bonus amount under our referral program.",
           "Use_this_code": "Use this code",
           "to_register_with": "to register with",
           "get_bonus_amount": "& get bonus amount",
@@ -551,7 +597,8 @@ class Apptranslation extends Translations {
           "Push_Notifications": "Push Notifications",
           "keepthisonnoti": "keep this on to receive notifications from system",
           "Emails": "Emails",
-          "Keep_this_on_to_receive_emails_from_system": "keep this on to receive email from system",
+          "Keep_this_on_to_receive_emails_from_system":
+              "keep this on to receive email from system",
           "comment29": "Help & Contact Us Screen",
           "Contact_Us": "Contact Us",
           "Inquiry_form": "Inquiry Form",
@@ -564,7 +611,8 @@ class Apptranslation extends Translations {
           "Time": "Time",
           "Reservation_Type": "Reservation Type",
           "Special_Request_Optional": "Special Request(Optional)",
-          "Your_booking_request_is_registered_successfully": "Your booking request is registered successfully",
+          "Your_booking_request_is_registered_successfully":
+              "Your booking request is registered successfully",
           "comment31": "Blogs screen",
           "Posted_by": "Posted by :",
           "comment32": "details screen",
@@ -603,12 +651,11 @@ class Apptranslation extends Translations {
           "Faqs": "Faqs",
           "Reservationtype": "Reservation Type",
           "Specialrequest": "Special Request(Optional)",
-          "Are_you_sure_to_continue_as_a_guest": "Are you sure to continue as guest?",
+          "Are_you_sure_to_continue_as_a_guest":
+              "Are you sure to continue as guest?",
           "Please_enter_full_name": "Please enter full name",
           "Please_enter_phone_no": "Please enter phone number",
           "Customer_information": "Customer information"
         }
-
       };
 }
-
