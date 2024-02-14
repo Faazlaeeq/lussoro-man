@@ -60,7 +60,7 @@ class _ProductState extends State<Product> {
     try {
       loader.showLoading();
       var map;
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
           "item_id": itemid,
@@ -76,7 +76,7 @@ class _ProductState extends State<Product> {
           "addons_price": "",
           "addons_total_price": numberFormat.format(double.parse("0")),
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
           "item_id": itemid,
@@ -96,8 +96,8 @@ class _ProductState extends State<Product> {
       print(map);
 
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
-      print(response);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
+      debugPrint(response.toString());
       addtocartdata = addtocartmodel.fromJson(response.data);
       if (addtocartdata!.status == 1) {
         isproductdetail = true;
@@ -108,7 +108,7 @@ class _ProductState extends State<Product> {
         count.cartcountnumber(int.parse(prefs.getString(APPcart_count)!));
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       rethrow;
     }
   }
@@ -124,12 +124,12 @@ class _ProductState extends State<Product> {
     try {
       var map;
 
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid ?? "",
           "item_id": widget.itemid,
         };
-      }else{
+      } else {
         map = {
           "user_id": userid ?? "",
           "item_id": widget.itemid,
@@ -137,7 +137,7 @@ class _ProductState extends State<Product> {
       }
 
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Itemdetails, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Itemdetails, data: map);
 
       isproductdetail = false;
 
@@ -178,7 +178,7 @@ class _ProductState extends State<Product> {
     try {
       var map;
       loader.showLoading();
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
           "item_id": itemdata!.data!.id,
@@ -190,31 +190,31 @@ class _ProductState extends State<Product> {
           )),
           "item_price": itemdata!.data!.hasVariation == "1"
               ? numberFormat.format(double.parse(itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .productPrice!))
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .productPrice!))
               : numberFormat.format(double.parse(itemdata!.data!.price!)),
           "variation_id": itemdata!.data!.hasVariation == "1"
               ? itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .id
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .id
               : "",
           "variation": itemdata!.data!.hasVariation == "1"
               ? itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .variation
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .variation
               : "",
           "addons_id": arr_addonsid.join(","),
           "addons_name": arr_addonsname.join(","),
           "addons_price": arr_addonsprice.join(","),
           "addons_total_price": numberFormat.format(addonstotalprice),
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
           "item_id": itemdata!.data!.id,
@@ -226,24 +226,24 @@ class _ProductState extends State<Product> {
           )),
           "item_price": itemdata!.data!.hasVariation == "1"
               ? numberFormat.format(double.parse(itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .productPrice!))
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .productPrice!))
               : numberFormat.format(double.parse(itemdata!.data!.price!)),
           "variation_id": itemdata!.data!.hasVariation == "1"
               ? itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .id
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .id
               : "",
           "variation": itemdata!.data!.hasVariation == "1"
               ? itemdata!
-              .data!
-              .variation![
-          int.parse(select._variationselecationindex.toString())]
-              .variation
+                  .data!
+                  .variation![
+                      int.parse(select._variationselecationindex.toString())]
+                  .variation
               : "",
           "addons_id": arr_addonsid.join(","),
           "addons_name": arr_addonsname.join(","),
@@ -252,11 +252,10 @@ class _ProductState extends State<Product> {
         };
       }
 
-
       print(map);
 
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
       print(response);
       var finaldata = addtocartmodel.fromJson(response.data);
       if (finaldata.status == 1) {
@@ -264,7 +263,7 @@ class _ProductState extends State<Product> {
 
         prefs.setString(APPcart_count, finaldata.cartCount.toString());
         count.cartcountnumber.value =
-        (int.parse(prefs.getString(APPcart_count)!));
+            (int.parse(prefs.getString(APPcart_count)!));
 
         setState(() {
           isproductdetail = true;
@@ -763,8 +762,7 @@ class _ProductState extends State<Product> {
                                                   width: 46.w,
                                                   color: Colors.black38,
                                                   child: Text(
-                                                    'Out_of_Stock'
-                                                        .tr,
+                                                    'Out_of_Stock'.tr,
                                                     style: TextStyle(
                                                       fontSize: 15.sp,
                                                       color: Colors.white,
@@ -894,10 +892,12 @@ class _ProductState extends State<Product> {
                                                 top: 1.3.h),
                                             child: Row(
                                               mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                if (itemdata!.relateditems![index]
-                                                    .hasVariation ==
+                                                if (itemdata!
+                                                        .relateditems![index]
+                                                        .hasVariation ==
                                                     "1") ...[
                                                   Text(
                                                     currency_position == "1"
@@ -905,9 +905,10 @@ class _ProductState extends State<Product> {
                                                         : "${numberFormat.format(double.parse(itemdata!.relateditems![index].variation![0].productPrice.toString()))}$currency",
                                                     style: TextStyle(
                                                         fontSize: 13,
-                                                        fontFamily: 'Poppins_bold',
+                                                        fontFamily:
+                                                            'Poppins_bold',
                                                         fontWeight:
-                                                        FontWeight.w600),
+                                                            FontWeight.w600),
                                                   ),
                                                 ] else ...[
                                                   Text(
@@ -916,47 +917,50 @@ class _ProductState extends State<Product> {
                                                         : "${numberFormat.format(double.parse(itemdata!.relateditems![index].price.toString()))}$currency",
                                                     style: TextStyle(
                                                         fontSize: 13,
-                                                        fontFamily: 'Poppins_bold',
+                                                        fontFamily:
+                                                            'Poppins_bold',
                                                         fontWeight:
-                                                        FontWeight.w600),
+                                                            FontWeight.w600),
                                                   ),
                                                 ],
-                                                if (itemdata!.relateditems![index]
-                                                    .isCart ==
+                                                if (itemdata!
+                                                        .relateditems![index]
+                                                        .isCart ==
                                                     "0") ...[
                                                   InkWell(
                                                     onTap: () async {
                                                       if (itemdata!
-                                                          .relateditems![
-                                                      index]
-                                                          .hasVariation ==
-                                                          "1" ||
+                                                                  .relateditems![
+                                                                      index]
+                                                                  .hasVariation ==
+                                                              "1" ||
                                                           itemdata!
-                                                              .relateditems![index]
+                                                              .relateditems![
+                                                                  index]
                                                               .addons!
                                                               .isNotEmpty) {
                                                         cart = await Get.to(() =>
                                                             showvariation(itemdata!
-                                                                .relateditems![
-                                                            index]));
+                                                                    .relateditems![
+                                                                index]));
                                                         if (cart == 1) {
                                                           setState(() {
                                                             itemdata!
                                                                 .relateditems![
-                                                            index]
+                                                                    index]
                                                                 .isCart = "1";
                                                             itemdata!
                                                                 .relateditems![
-                                                            index]
-                                                                .itemQty =
-                                                                int.parse(
+                                                                    index]
+                                                                .itemQty = int
+                                                                    .parse(
                                                                   itemdata!
                                                                       .relateditems![
-                                                                  index]
+                                                                          index]
                                                                       .itemQty!
                                                                       .toString(),
                                                                 ) +
-                                                                    1;
+                                                                1;
                                                           });
                                                         }
                                                       } else {
@@ -968,42 +972,43 @@ class _ProductState extends State<Product> {
                                                         //               Login()),
                                                         //           (r) => false);
                                                         // } else {
-                                                          addtocart(
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .id,
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .itemName,
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .imageName,
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .itemType,
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .tax,
-                                                              itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .price);
-                                                        }
+                                                        addtocart(
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .id,
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .itemName,
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .imageName,
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .itemType,
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .tax,
+                                                            itemdata!
+                                                                .relateditems![
+                                                                    index]
+                                                                .price);
+                                                      }
                                                       // }
                                                     },
                                                     child: Container(
                                                         decoration: BoxDecoration(
                                                             borderRadius:
-                                                            BorderRadius
-                                                                .circular(4),
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        4),
                                                             border: Border.all(
-                                                                color:
-                                                                Colors.grey)),
+                                                                color: Colors
+                                                                    .grey)),
                                                         height: 3.5.h,
                                                         width: 17.w,
                                                         child: Center(
@@ -1011,15 +1016,17 @@ class _ProductState extends State<Product> {
                                                             'ADD'.tr,
                                                             style: TextStyle(
                                                                 fontFamily:
-                                                                'Poppins',
-                                                                fontSize: 9.5.sp,
-                                                                color: color.green),
+                                                                    'Poppins',
+                                                                fontSize:
+                                                                    9.5.sp,
+                                                                color: color
+                                                                    .green),
                                                           ),
                                                         )),
                                                   ),
                                                 ] else if (itemdata!
-                                                    .relateditems![index]
-                                                    .isCart ==
+                                                        .relateditems![index]
+                                                        .isCart ==
                                                     "1") ...[
                                                   Container(
                                                     height: 3.6.h,
@@ -1028,73 +1035,78 @@ class _ProductState extends State<Product> {
                                                       border: Border.all(
                                                           color: Colors.grey),
                                                       borderRadius:
-                                                      BorderRadius.circular(5),
+                                                          BorderRadius.circular(
+                                                              5),
                                                     ),
                                                     child: Row(
                                                       mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
+                                                          MainAxisAlignment
+                                                              .spaceAround,
                                                       children: [
                                                         InkWell(
                                                             onTap: () {
-                                                              loader.showErroDialog(
-                                                                description: LocaleKeys
-                                                                    .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item
-                                                                    .tr,
+                                                              loader
+                                                                  .showErroDialog(
+                                                                description:
+                                                                    LocaleKeys
+                                                                        .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item
+                                                                        .tr,
                                                               );
                                                             },
                                                             child: Icon(
                                                               Icons.remove,
-                                                              color: color.green,
+                                                              color:
+                                                                  color.green,
                                                               size: 16,
                                                             )),
                                                         Container(
-                                                          decoration: BoxDecoration(
+                                                          decoration:
+                                                              BoxDecoration(
                                                             borderRadius:
-                                                            BorderRadius
-                                                                .circular(3),
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        3),
                                                           ),
                                                           child: Text(
                                                             itemdata!
                                                                 .relateditems![
-                                                            index]
+                                                                    index]
                                                                 .itemQty!
                                                                 .toString(),
                                                             style: TextStyle(
-                                                                fontSize: 10.sp),
+                                                                fontSize:
+                                                                    10.sp),
                                                           ),
                                                         ),
                                                         InkWell(
                                                             onTap: () async {
                                                               if (itemdata!
-                                                                  .relateditems![
-                                                              index]
-                                                                  .hasVariation ==
-                                                                  "1" ||
+                                                                          .relateditems![
+                                                                              index]
+                                                                          .hasVariation ==
+                                                                      "1" ||
                                                                   itemdata!
-                                                                      .relateditems![
-                                                                  index]
-                                                                      .addons!
-                                                                      .length >
+                                                                          .relateditems![
+                                                                              index]
+                                                                          .addons!
+                                                                          .length >
                                                                       0) {
-                                                                cart = await Get.to(
-                                                                        () => showvariation(
+                                                                cart = await Get.to(() =>
+                                                                    showvariation(
                                                                         itemdata!
-                                                                            .relateditems![
-                                                                        index]));
+                                                                            .relateditems![index]));
                                                                 if (cart == 1) {
                                                                   setState(() {
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .itemQty = int
-                                                                        .parse(
-                                                                      itemdata!
-                                                                          .relateditems![
-                                                                      index]
-                                                                          .itemQty!
-                                                                          .toString(),
-                                                                    ) +
+                                                                            .parse(
+                                                                          itemdata!
+                                                                              .relateditems![index]
+                                                                              .itemQty!
+                                                                              .toString(),
+                                                                        ) +
                                                                         1;
                                                                   });
                                                                 }
@@ -1102,33 +1114,34 @@ class _ProductState extends State<Product> {
                                                                 addtocart(
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .id,
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .itemName,
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .imageName,
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .itemType,
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .tax,
                                                                     itemdata!
                                                                         .relateditems![
-                                                                    index]
+                                                                            index]
                                                                         .price);
                                                               }
                                                             },
                                                             child: Icon(
                                                               Icons.add,
-                                                              color: color.green,
+                                                              color:
+                                                                  color.green,
                                                               size: 16,
                                                             )),
                                                       ],
@@ -1178,7 +1191,7 @@ class _ProductState extends State<Product> {
                       ),
                     ),
                   ),
-                  if(is_login == "1") ...[
+                  if (is_login == "1") ...[
                     Positioned(
                       right: 3.w,
                       top: 1.h,
@@ -1198,7 +1211,7 @@ class _ProductState extends State<Product> {
                             if (userid == "") {
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(builder: (c) => Login()),
-                                      (r) => false);
+                                  (r) => false);
                             } else if (itemdata!.data!.isFavorite == "0") {
                               removefavarite(
                                   "favorite", widget.itemid.toString());
@@ -1209,18 +1222,17 @@ class _ProductState extends State<Product> {
                           },
                           child: itemdata!.data!.isFavorite == "0"
                               ? SvgPicture.asset(
-                            'Assets/Icons/Favorite.svg',
-                            color: Colors.white,
-                          )
+                                  'Assets/Icons/Favorite.svg',
+                                  color: Colors.white,
+                                )
                               : SvgPicture.asset(
-                            'Assets/Icons/Favoritedark.svg',
-                            color: Colors.white,
-                          ),
+                                  'Assets/Icons/Favoritedark.svg',
+                                  color: Colors.white,
+                                ),
                         ),
                       ),
                     ),
                   ]
-
                 ],
               ),
               bottomSheet: Container(
@@ -1260,19 +1272,19 @@ class _ProductState extends State<Product> {
                               //       MaterialPageRoute(builder: (c) => Login()),
                               //       (r) => false);
                               // } else {
-                                if(is_login == "1") {
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Homepage(2)),
-                                  );
-                                }else{
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Homepage(1)),
-                                  );
-                                }
+                              if (is_login == "1") {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Homepage(2)),
+                                );
+                              } else {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Homepage(1)),
+                                );
+                              }
                               // }
                             },
                           ),
@@ -1312,29 +1324,27 @@ class _ProductState extends State<Product> {
                               //       description: "Product is out of stock",
                               //     );
                               //   } else {
-                                  arr_addonsid.clear();
-                                  arr_addonsname.clear();
-                                  arr_addonsprice.clear();
-                                  for (int i = 0;
-                                      i < itemdata!.data!.addons!.length;
-                                      i++) {
-                                    if (itemdata!.data!.addons![i].isselected ==
-                                        true) {
-                                      arr_addonsid.add(itemdata!
-                                          .data!.addons![i].id
-                                          .toString());
-                                      arr_addonsname.add(itemdata!
-                                          .data!.addons![i].name
-                                          .toString());
-                                      arr_addonsprice.add(numberFormat.format(
-                                          double.parse(itemdata!
-                                              .data!.addons![i].price
-                                              .toString())));
-                                    }
-                                  }
-                                  print("sdfghjkl");
-                                  add_to_cartAPI();
-                                // }
+                              arr_addonsid.clear();
+                              arr_addonsname.clear();
+                              arr_addonsprice.clear();
+                              for (int i = 0;
+                                  i < itemdata!.data!.addons!.length;
+                                  i++) {
+                                if (itemdata!.data!.addons![i].isselected ==
+                                    true) {
+                                  arr_addonsid.add(
+                                      itemdata!.data!.addons![i].id.toString());
+                                  arr_addonsname.add(itemdata!
+                                      .data!.addons![i].name
+                                      .toString());
+                                  arr_addonsprice.add(numberFormat.format(
+                                      double.parse(itemdata!
+                                          .data!.addons![i].price
+                                          .toString())));
+                                }
+                              }
+                              add_to_cartAPI();
+                              // }
                               // }
                             },
                             style: TextButton.styleFrom(

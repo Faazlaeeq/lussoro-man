@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
 import 'package:single_ecommerce/config/api/api.dart';
 import 'package:single_ecommerce/onboarding/onboarding.dart';
@@ -30,7 +29,7 @@ class _splash_screenState extends State<splash_screen> {
   goup() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     initscreen = pref.getInt(init_Screen);
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return initscreen == 0 || initscreen == null
@@ -65,20 +64,10 @@ class _splash_screenState extends State<splash_screen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: color.white,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: Image.asset(
-              "Assets/images/splash-bg-img.png",
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-        ],
-      ),
-    );
+    return Center(
+        child: Image.asset(
+      "Assets/images/splash-bg-img.png",
+      fit: BoxFit.fitHeight,
+    ));
   }
 }

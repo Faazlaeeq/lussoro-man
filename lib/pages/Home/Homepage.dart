@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/main.dart';
 import 'package:single_ecommerce/pages/orders/orderdetails.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
+import 'package:single_ecommerce/widgets/my_bottom_navigationbar.dart';
 import 'package:sizer/sizer.dart';
 import '../../theme-old/thememodel.dart';
 import '../cart/cartpage.dart';
@@ -327,140 +328,139 @@ class _HomepageState extends State<Homepage> {
                 Profilepage()
               ],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              items: <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'Assets/Icons/Home.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                  label: "",
-                  activeIcon: SvgPicture.asset(
-                    'Assets/Icons/Homedark.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                ),
-                if (islogin == "1" && userid != "" && userid != "") ...[
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                      'Assets/Icons/Favorite.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    ),
-                    label: "",
-                    activeIcon: SvgPicture.asset(
-                      'Assets/Icons/Favoritedark.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ],
-                BottomNavigationBarItem(
-                    icon: Obx(
-                      () => count.cartcountnumber.value == 0
-                          ? SvgPicture.asset(
-                              'Assets/Icons/Cart.svg',
-                              height: height.bottombaricon,
-                              color: themenofier.isdark
-                                  ? Colors.white
-                                  : Colors.black,
-                            )
-                          : badges.Badge(
-                              // alignment: Alignment.topCenter,
-                              padding: EdgeInsets.all(5),
-                              toAnimate: false,
-                              elevation: 0,
-                              badgeColor: color.red,
-                              badgeContent: Text(
-                                count.cartcountnumber.value.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              child: SvgPicture.asset(
-                                'Assets/Icons/Cart.svg',
-                                height: height.bottombaricon,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                    ),
-                    label: "",
-                    activeIcon: Obx(
-                      () => count.cartcountnumber.value == 0
-                          ? SvgPicture.asset(
-                              'Assets/Icons/Cartdark.svg',
-                              height: height.bottombaricon,
-                              color: themenofier.isdark
-                                  ? Colors.white
-                                  : Colors.black,
-                            )
-                          : badges.Badge(
-                              padding: const EdgeInsets.all(5),
-                              toAnimate: false,
-                              elevation: 0,
-                              badgeColor: color.red,
-                              badgeContent: Text(
-                                count.cartcountnumber.value.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              child: SvgPicture.asset(
-                                'Assets/Icons/Cartdark.svg',
-                                height: height.bottombaricon,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                            ),
-                    )),
-                if (islogin == "1" && userid != "" && userid != "") ...[
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                      'Assets/Icons/Order.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    ),
-                    label: "",
-                    activeIcon: SvgPicture.asset(
-                      'Assets/Icons/Orderdark.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ],
-                BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    'Assets/Icons/Profile.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                  label: "",
-                  activeIcon: SvgPicture.asset(
-                    'Assets/Icons/Profiledark.svg',
-                    height: height.bottombaricon,
-                    color: themenofier.isdark ? Colors.white : Colors.black,
-                  ),
-                ),
-              ],
-              currentIndex: _selectedindex!,
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: themenofier.isdark ? Colors.black : Colors.white,
-              onTap: onTapped,
-              selectedFontSize: 1,
-              unselectedFontSize: 1,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-            ),
+            bottomNavigationBar: Obx(() => MyBottomNavigationBar(
+                  cartCount: count.cartcountnumber.value,
+                  onPressed: onTapped,
+                )),
           ),
         ),
       );
     });
+  }
+
+  BottomNavigationBar bottomNavigationbar(ThemeModel themenofier) {
+    return BottomNavigationBar(
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            'Assets/Icons/Home.svg',
+            height: height.bottombaricon,
+            color: themenofier.isdark ? Colors.white : Colors.black,
+          ),
+          label: "",
+          activeIcon: SvgPicture.asset(
+            'Assets/Icons/Homedark.svg',
+            height: height.bottombaricon,
+            color: themenofier.isdark ? Colors.white : Colors.black,
+          ),
+        ),
+        if (islogin == "1" && userid != "" && userid != "") ...[
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'Assets/Icons/Favorite.svg',
+              height: height.bottombaricon,
+              color: themenofier.isdark ? Colors.white : Colors.black,
+            ),
+            label: "",
+            activeIcon: SvgPicture.asset(
+              'Assets/Icons/Favoritedark.svg',
+              height: height.bottombaricon,
+              color: themenofier.isdark ? Colors.white : Colors.black,
+            ),
+          ),
+        ],
+        BottomNavigationBarItem(
+            icon: Obx(
+              () => count.cartcountnumber.value == 0
+                  ? SvgPicture.asset(
+                      'Assets/Icons/Cart.svg',
+                      height: height.bottombaricon,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    )
+                  : badges.Badge(
+                      // alignment: Alignment.topCenter,
+                      padding: EdgeInsets.all(5),
+                      toAnimate: false,
+                      elevation: 0,
+                      badgeColor: color.red,
+                      badgeContent: Text(
+                        count.cartcountnumber.value.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                      child: SvgPicture.asset(
+                        'Assets/Icons/Cart.svg',
+                        height: height.bottombaricon,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                    ),
+            ),
+            label: "",
+            activeIcon: Obx(
+              () => count.cartcountnumber.value == 0
+                  ? SvgPicture.asset(
+                      'Assets/Icons/Cartdark.svg',
+                      height: height.bottombaricon,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    )
+                  : badges.Badge(
+                      padding: const EdgeInsets.all(5),
+                      toAnimate: false,
+                      elevation: 0,
+                      badgeColor: color.red,
+                      badgeContent: Text(
+                        count.cartcountnumber.value.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                      child: SvgPicture.asset(
+                        'Assets/Icons/Cartdark.svg',
+                        height: height.bottombaricon,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                    ),
+            )),
+        if (islogin == "1" && userid != "" && userid != "") ...[
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'Assets/Icons/Order.svg',
+              height: height.bottombaricon,
+              color: themenofier.isdark ? Colors.white : Colors.black,
+            ),
+            label: "",
+            activeIcon: SvgPicture.asset(
+              'Assets/Icons/Orderdark.svg',
+              height: height.bottombaricon,
+              color: themenofier.isdark ? Colors.white : Colors.black,
+            ),
+          ),
+        ],
+        BottomNavigationBarItem(
+          icon: SvgPicture.asset(
+            'Assets/Icons/Profile.svg',
+            height: height.bottombaricon,
+            color: themenofier.isdark ? Colors.white : Colors.black,
+          ),
+          label: "",
+          activeIcon: SvgPicture.asset(
+            'Assets/Icons/Profiledark.svg',
+            height: height.bottombaricon,
+            color: themenofier.isdark ? Colors.white : Colors.black,
+          ),
+        ),
+      ],
+      currentIndex: _selectedindex!,
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: themenofier.isdark ? Colors.black : Colors.white,
+      onTap: onTapped,
+      selectedFontSize: 1,
+      unselectedFontSize: 1,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+    );
   }
 }
