@@ -14,7 +14,10 @@ import 'package:single_ecommerce/pages/profile/faqs.dart';
 import 'package:single_ecommerce/pages/profile/wallet.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
+import 'package:single_ecommerce/theme/sizes.dart' as Size;
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
+import 'package:single_ecommerce/widgets/common_widgets.dart';
 import 'aboutus.dart';
 import 'gallary.dart';
 import 'helpcontectus.dart';
@@ -33,7 +36,13 @@ class Profilepage extends StatefulWidget {
   @override
   State<Profilepage> createState() => _ProfilepageState();
 }
+class OptionTileModel{
+  String text;
+  Function fucn;
+  String imgUrl;
 
+  OptionTileModel(this.text, this.fucn, this.imgUrl);
+}
 class _ProfilepageState extends State<Profilepage> {
   String userid = "";
   String islogin = "";
@@ -44,6 +53,8 @@ class _ProfilepageState extends State<Profilepage> {
   String check_addons = "";
   bool? status;
   cartcount _cartcount = Get.put(cartcount());
+
+
 
   @override
   void initState() {
@@ -78,6 +89,183 @@ class _ProfilepageState extends State<Profilepage> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String,List<OptionTileModel>> pageContent= {
+      "ChangePassword":[if (islogin == "1") ...[
+        if (user_logintype == "email" &&
+            check_addons == "email")OptionTileModel('Change_Password'.tr, () {
+          userid == ""
+              ? Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (c) => Login()),
+                  (r) => false)
+              : Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                  const Changepass()));
+        }, "imgUrl"),
+      ]],
+      "MyAddress":[  if (islogin == "1")...[OptionTileModel('My_Addresses'.tr, () {
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Manage_Addresses()));
+      },"")]],"MyWallet":[  if (islogin == "1")...[OptionTileModel('My_Addresses'.tr,() {
+        // print(userdata!.data!.wallet);
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Wallet()));
+      },"")]],"Testinomials":[  if (islogin == "1")...[OptionTileModel('Testimonials'.tr,() {
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+              const Ratingreview()),
+        );
+      },"")]],
+      "ReferEarn":[  if (islogin == "1")...[OptionTileModel('Refer_Earn'.tr,() {
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                const Refer_earn()));
+      },"")]],
+      "Notifications":[  if (islogin == "1")...[OptionTileModel('Notification_Settings'.tr,() {
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                const Notificationpage()));
+      },"")]],
+       "help":[  if (islogin == "1")...[OptionTileModel('Help_Contact_Us'.tr,() {
+         Navigator.push(
+           context,
+           MaterialPageRoute(
+               builder: (context) => Helpcontactus()),
+         );
+       },"")]],
+      "privacy":[OptionTileModel('Privacy_Policy'.tr,() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Privacypolicy()),
+        );
+      },"")],
+      "faqs":[OptionTileModel('Faqs'.tr,() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Faqs()),
+        );
+      },"")],
+      "loginout":[  if (islogin == "1") ...[OptionTileModel( userid == "" ? 'Login'.tr : 'Logout'.tr, () {
+        userid == ""
+            ? Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (c) => Login()),
+                (r) => false)
+            : showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  'ecommerce_User'.tr,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontFamily: 'Poppins_bold',
+                  ),
+                ),
+                content: Text(
+                  LocaleKeys
+                      .Are_you_sure_to_logout_from_this_app
+                      .tr,
+                  style: TextStyle(
+                      fontSize: 12.sp,
+                      fontFamily: 'Poppins'),
+                ),
+                actions: <Widget>[
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                      color.primarycolor,
+                    ),
+                    child: Text(
+                      'Logout'.tr,
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                      await SharedPreferences
+                          .getInstance();
+                      // prefs.clear();
+                      prefs.remove(UD_user_id);
+                      prefs.remove(UD_user_name);
+                      prefs.remove(UD_user_email);
+                      _cartcount
+                          .cartcountnumber.value = 0;
+                      Navigator.of(context)
+                          .pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (c) =>
+                                  Login()),
+                              (r) => false);
+                    },
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                      color.primarycolor,
+                    ),
+                    child: Text(
+                      'Cancel'.tr,
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            });
+      },
+          ""//conditional Image
+      )]],
+
+    };
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return SafeArea(
           child: Scaffold(
@@ -87,162 +275,8 @@ class _ProfilepageState extends State<Profilepage> {
           Container(
             child: Column(
               children: [
-                Container(
-                  height: 23.h,
-                  width: MediaQuery.of(context).size.width,
-                  color: themenofier.isdark ? Colors.white : color.black,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: 4.w, right: 4.w, top: 5.w),
-                            child: Text(
-                              'Myprofile'.tr,
-                              style: TextStyle(
-                                  color: themenofier.isdark
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontSize: 15.sp,
-                                  fontFamily: 'Poppins_semibold'),
-                            ),
-                          ),
-                          Spacer(),
-                          if (islogin == "1") ...[
-                            Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: themenofier.isdark
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                height: 5.h,
-                                width: 5.h,
-                                margin: EdgeInsets.only(top: 3.5.h),
-                                child: InkWell(
-                                    onTap: () {
-                                      userid == ""
-                                          ? Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                                  MaterialPageRoute(
-                                                      builder: (c) => Login()),
-                                                  (r) => false)
-                                          : Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Editprofile()))
-                                              .then((value) {
-                                              getprefs_data();
-                                            });
-                                    },
-                                    child: Center(
-                                      child: SvgPicture.asset(
-                                        'Assets/svgicon/Edit.svg',
-                                        color: themenofier.isdark
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ))),
-                          ],
-                          Padding(padding: EdgeInsets.only(right: 4.8.w)),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          if (userid != "") ...[
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              height: 10.5.h,
-                              width: 10.5.h,
-                              margin: EdgeInsets.only(
-                                left: 4.w,
-                                right: 4.w,
-                                top: 1.3.h,
-                              ),
-                              child: ClipOval(
-                                child: FadeInImage(
-                                  fit: BoxFit.cover,
-                                  placeholder: AssetImage(
-                                    'Assets/Image/defaultuserprofile.png',
-                                  ),
-                                  image: NetworkImage(
-                                    userprofile.toString(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (userid == "") ...[
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 4.w,
-                                    right: 4.w,
-                                    top: 3.h,
-                                  ),
-                                  child: Text(
-                                    'ecommerce_User'.tr,
-                                    style: TextStyle(
-                                        color: themenofier.isdark
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontSize: 11.sp,
-                                        fontFamily: 'Poppins_semibold'),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 4.w,
-                                    right: 4.w,
-                                  ),
-                                  child: Text(
-                                    'Welcome_you'.tr,
-                                    style: TextStyle(
-                                        color: themenofier.isdark
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                              ] else ...[
-                                Container(
-                                  child: Text(
-                                    username,
-                                    style: TextStyle(
-                                        color: themenofier.isdark
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontSize: 11.sp,
-                                        fontFamily: 'Poppins_semibold'),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    useremail,
-                                    style: TextStyle(
-                                        color: themenofier.isdark
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                              ],
-                              // if (userid == "") ...[] else ...[]
-                            ],
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                //Header
+                profileHeader(context, themenofier),
                 Padding(
                   padding: EdgeInsets.only(
                     left: 3.5.w,
@@ -1048,6 +1082,119 @@ class _ProfilepageState extends State<Profilepage> {
         ],
       ))));
     });
+  }
+
+  Container profileHeader(BuildContext context, ThemeModel themenofier) {
+    return Container(
+                height: 23.h,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : color.black,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: 4.w, right: 4.w, top: 5.w),
+                          child: Text(
+                            'Myprofile'.tr,
+                            style: TextStyle(
+                                color: themenofier.isdark
+                                    ? Colors.black
+                                    : Colors.white,
+                                fontSize: 15.sp,
+                                fontFamily: 'Poppins_semibold'),
+                          ),
+                        ),
+                        Spacer(),
+                        if (islogin == "1") ...[
+                          Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: themenofier.isdark
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                              height: 5.h,
+                              width: 5.h,
+                              margin: EdgeInsets.only(top: 3.5.h),
+                              child: InkWell(
+                                  onTap: () {
+                                    userid == ""
+                                        ? Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (c) => Login()),
+                                                (r) => false)
+                                        : Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        Editprofile()))
+                                            .then((value) {
+                                            getprefs_data();
+                                          });
+                                  },
+                                  child: Center(
+                                    child: SvgPicture.asset(
+                                      'Assets/svgicon/Edit.svg',
+
+                                    ),
+                                  ))),
+                        ],
+                        Padding(padding: EdgeInsets.only(right: 4.8.w)),
+                      ],
+                    ),
+                    if (username == "")
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Size.padding2),
+                        child: CommonWidgets.customListTile(
+                            context: context,
+                            name: 'Guest',
+                            nameTheme: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontSize: 18),
+                            imageUrl: AssetImage(
+                                'Assets/Image/defaultuserprofile.png'),
+                            subtitle: "guest@gmail.com",
+                            verticalPadding: Size.padding2,
+                            horizontalPadding: Size.padding2,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            subtitleStyle: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: 12,
+                                    color: MyColors.subtitleColor)),
+                      )
+                    else
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Size.padding2),
+                        child: CommonWidgets.customListTile(
+                            context: context,
+                            name: username,
+                            nameTheme: Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .copyWith(fontSize: 18),
+                            imageUrl: NetworkImage(userprofile.toString()),
+                            subtitle: useremail,
+                            verticalPadding: Size.padding2,
+                            horizontalPadding: Size.padding2,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            subtitleStyle: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    fontSize: 12,
+                                    color: MyColors.subtitleColor)),
+                      ),
+                  ],
+                ),
+              );
   }
 
   _showbottomsheet() {
