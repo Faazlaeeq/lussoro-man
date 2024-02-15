@@ -658,16 +658,16 @@ class _HomescreenState extends State<Homescreen> {
                                         homedata!.trendingitems![index].price
                                             .toString(),
                                       ),
-                                    ));
+                                    )
+                                  );
                               },
                             ),
                           ),
                           SizedBox(
                             height: 33.h,
                             child: ListView.builder(
-                              padding: EdgeInsets.only(
-                                right: 3.w,
-                              ),
+                              padding: EdgeInsets.all(8)
+                              ,
                               scrollDirection: Axis.horizontal,
                               itemCount: homedata!.trendingitems!.length,
                               itemBuilder: (context, index) => GestureDetector(
