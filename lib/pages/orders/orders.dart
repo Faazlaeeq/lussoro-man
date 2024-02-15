@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
-import '../../theme/thememodel.dart';
+import '../../theme-old/thememodel.dart';
 import 'orderdetails.dart';
 
 class Orderhistory extends StatefulWidget {
@@ -297,8 +297,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                                         padding: EdgeInsets.all(7),
                                         height: 4.5.h,
                                         child: Center(
-                                          child: Text(
-                                              'On_the_way'.tr,
+                                          child: Text('On_the_way'.tr,
                                               style: TextStyle(
                                                   fontSize: 9.5.sp,
                                                   fontFamily: 'Poppins',
@@ -316,9 +315,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                                         padding: EdgeInsets.all(7),
                                         height: 4.5.h,
                                         child: Center(
-                                          child: Text(
-                                              'Waiting_for_pickup'
-                                                  .tr,
+                                          child: Text('Waiting_for_pickup'.tr,
                                               style: TextStyle(
                                                   fontSize: 9.5.sp,
                                                   fontFamily: 'Poppins',

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/settings/deleteaddressmodel.dart';
 import 'package:single_ecommerce/model/settings/getaddressmodel.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/height.dart';
@@ -270,14 +270,13 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                                                           title: Text('Alert'),
                                                           content: Text(
                                                             LocaleKeys
-                                                                    .Are_you_sure_to_delete_this_address
+                                                                .Are_you_sure_to_delete_this_address
                                                                 .tr,
                                                           ),
                                                           actions: <Widget>[
                                                             TextButton(
                                                               child: Text(
-                                                                'Yes'
-                                                                    .tr,
+                                                                'Yes'.tr,
                                                               ),
                                                               onPressed: () {
                                                                 Navigator.of(
@@ -294,8 +293,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                                                             ),
                                                             TextButton(
                                                               child: Text(
-                                                               'Cancel'
-                                                                    .tr,
+                                                                'Cancel'.tr,
                                                               ),
                                                               onPressed: () {
                                                                 Navigator.of(
@@ -396,11 +394,11 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                   // if (Engstring.locationpermission == false) {
                   //   location_permission().parmission();
                   // } else {
-                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Add_address()),
-                    ).then((value) => setState(() {}));
-                    setState(() {});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Add_address()),
+                  ).then((value) => setState(() {}));
+                  setState(() {});
                   // }
                 },
                 style: TextButton.styleFrom(

@@ -10,7 +10,7 @@ import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
 import 'package:single_ecommerce/common class/color.dart';
 
-import '../../theme/thememodel.dart';
+import '../../theme-old/thememodel.dart';
 import 'addmoney.dart';
 import 'transactionhistory.dart';
 
@@ -270,8 +270,7 @@ class _WalletState extends State<Wallet> {
                         right: 2.5.w,
                       ),
                       child: Text(
-                        'WALLET_MONEY_Can_only_be_used_for_your_orders'
-                            .tr,
+                        'WALLET_MONEY_Can_only_be_used_for_your_orders'.tr,
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 7.sp,

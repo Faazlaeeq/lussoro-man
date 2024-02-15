@@ -10,7 +10,7 @@ import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/home/categories_itemmodel.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -74,7 +74,7 @@ class categories_itemsState extends State<categories_items> {
     try {
       loader.showLoading();
       var map;
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": sessionid,
           "item_id": itemid,
@@ -90,7 +90,7 @@ class categories_itemsState extends State<categories_items> {
           "addons_price": "",
           "addons_total_price": numberFormat.format(double.parse("0")),
         };
-      }else{
+      } else {
         map = {
           "user_id": userid,
           "item_id": itemid,
@@ -109,7 +109,7 @@ class categories_itemsState extends State<categories_items> {
       }
       print(map);
       var response =
-      await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
+          await Dio().post(DefaultApi.appUrl + PostAPI.Addtocart, data: map);
       print(response);
       addtocartdata = addtocartmodel.fromJson(response.data);
       if (addtocartdata!.status == 1) {
@@ -322,8 +322,7 @@ class categories_itemsState extends State<categories_items> {
                                                       2.2,
                                                   color: Colors.black38,
                                                   child: Text(
-                                                    'Out_of_Stock'
-                                                        .tr,
+                                                    'Out_of_Stock'.tr,
                                                     style: TextStyle(
                                                       fontSize: 15.sp,
                                                       color: Colors.white,
@@ -335,85 +334,87 @@ class categories_itemsState extends State<categories_items> {
                                               ),
                                             ]
                                           ],
-                                        if(is_login == "1") ...[
-                                          Positioned(
-                                              top: 5.0,
-                                              right: 5.0,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  if (userid == "") {
-                                                    Navigator.of(context)
-                                                        .pushAndRemoveUntil(
-                                                        MaterialPageRoute(
-                                                            builder: (c) =>
-                                                                Login()),
-                                                            (r) => false);
-                                                  } else if (categoriesdata!
-                                                      .items![_index]
-                                                      .subcategoryItems![
-                                                  index]
-                                                      .isFavorite ==
-                                                      "0") {
-                                                    managefavarite(
-                                                        categoriesdata!
+                                          if (is_login == "1") ...[
+                                            Positioned(
+                                                top: 5.0,
+                                                right: 5.0,
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    if (userid == "") {
+                                                      Navigator.of(context)
+                                                          .pushAndRemoveUntil(
+                                                              MaterialPageRoute(
+                                                                  builder: (c) =>
+                                                                      Login()),
+                                                              (r) => false);
+                                                    } else if (categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
-                                                            .id,
-                                                        "favorite",
-                                                        index,
-                                                        _index);
-                                                  } else {
-                                                    managefavarite(
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                        index]
-                                                            .id,
-                                                        "unfavorite",
-                                                        index,
-                                                        _index);
-                                                  }
-                                                },
-                                                child: Container(
-                                                    height:
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                        17,
-                                                    width:
-                                                    MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                        8,
-                                                    padding: EdgeInsets.all(
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                            80),
-                                                    decoration: BoxDecoration(
-                                                      // shape: BoxShape.values,
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          12),
-                                                      color: Colors.black26,
-                                                    ),
-                                                    child: categoriesdata!
-                                                        .items![_index]
-                                                        .subcategoryItems![
-                                                    index]
-                                                        .isFavorite ==
-                                                        "0"
-                                                        ? SvgPicture.asset(
-                                                      'Assets/Icons/Favorite.svg',
-                                                      color: Colors.white,
-                                                    )
-                                                        : SvgPicture.asset(
-                                                      'Assets/Icons/Favoritedark.svg',
-                                                      color: Colors.white,
-                                                    )),
-                                              )),
-                                        ],
+                                                                index]
+                                                            .isFavorite ==
+                                                        "0") {
+                                                      managefavarite(
+                                                          categoriesdata!
+                                                              .items![_index]
+                                                              .subcategoryItems![
+                                                                  index]
+                                                              .id,
+                                                          "favorite",
+                                                          index,
+                                                          _index);
+                                                    } else {
+                                                      managefavarite(
+                                                          categoriesdata!
+                                                              .items![_index]
+                                                              .subcategoryItems![
+                                                                  index]
+                                                              .id,
+                                                          "unfavorite",
+                                                          index,
+                                                          _index);
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              17,
+                                                      width: MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                          8,
+                                                      padding: EdgeInsets.all(
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              80),
+                                                      decoration: BoxDecoration(
+                                                        // shape: BoxShape.values,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12),
+                                                        color: Colors.black26,
+                                                      ),
+                                                      child: categoriesdata!
+                                                                  .items![
+                                                                      _index]
+                                                                  .subcategoryItems![
+                                                                      index]
+                                                                  .isFavorite ==
+                                                              "0"
+                                                          ? SvgPicture.asset(
+                                                              'Assets/Icons/Favorite.svg',
+                                                              color:
+                                                                  Colors.white,
+                                                            )
+                                                          : SvgPicture.asset(
+                                                              'Assets/Icons/Favoritedark.svg',
+                                                              color:
+                                                                  Colors.white,
+                                                            )),
+                                                )),
+                                          ],
                                         ],
                                       ),
                                       Padding(
@@ -477,21 +478,21 @@ class categories_itemsState extends State<categories_items> {
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left: MediaQuery.of(context)
-                                                .size
-                                                .width /
+                                                    .size
+                                                    .width /
                                                 50,
                                             right: MediaQuery.of(context)
-                                                .size
-                                                .width /
+                                                    .size
+                                                    .width /
                                                 50),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             if (categoriesdata!
-                                                .items![_index]
-                                                .subcategoryItems![index]
-                                                .hasVariation ==
+                                                    .items![_index]
+                                                    .subcategoryItems![index]
+                                                    .hasVariation ==
                                                 "1") ...[
                                               Expanded(
                                                 child: Text(
@@ -499,7 +500,7 @@ class categories_itemsState extends State<categories_items> {
                                                       ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}"
                                                       : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}$currency",
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   style: TextStyle(
                                                     fontSize: 10.sp,
@@ -514,7 +515,7 @@ class categories_itemsState extends State<categories_items> {
                                                       ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}"
                                                       : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}$currency",
                                                   overflow:
-                                                  TextOverflow.ellipsis,
+                                                      TextOverflow.ellipsis,
                                                   maxLines: 1,
                                                   style: TextStyle(
                                                     fontSize: 10.sp,
@@ -526,48 +527,48 @@ class categories_itemsState extends State<categories_items> {
                                             //
 
                                             if (categoriesdata!
-                                                .items![_index]
-                                                .subcategoryItems![index]
-                                                .isCart ==
+                                                    .items![_index]
+                                                    .subcategoryItems![index]
+                                                    .isCart ==
                                                 "0") ...[
                                               InkWell(
                                                 onTap: () async {
                                                   if (categoriesdata!
-                                                      .items![_index]
-                                                      .subcategoryItems![
-                                                  index]
-                                                      .hasVariation ==
-                                                      "1" ||
+                                                              .items![_index]
+                                                              .subcategoryItems![
+                                                                  index]
+                                                              .hasVariation ==
+                                                          "1" ||
                                                       categoriesdata!
                                                           .items![_index]
                                                           .subcategoryItems![
-                                                      index]
+                                                              index]
                                                           .addons!
                                                           .isNotEmpty) {
                                                     cart = await Get.to(() =>
                                                         showvariation(categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                        index]));
+                                                                .items![_index]
+                                                                .subcategoryItems![
+                                                            index]));
                                                     if (cart == 1) {
                                                       setState(() {
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .isCart = "1";
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .itemQty = int.parse(
-                                                            categoriesdata!
-                                                                .items![
-                                                            _index]
-                                                                .subcategoryItems![
-                                                            index]
-                                                                .itemQty!
-                                                                .toString()) +
+                                                                categoriesdata!
+                                                                    .items![
+                                                                        _index]
+                                                                    .subcategoryItems![
+                                                                        index]
+                                                                    .itemQty!
+                                                                    .toString()) +
                                                             1;
                                                       });
                                                     }
@@ -584,32 +585,32 @@ class categories_itemsState extends State<categories_items> {
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .id,
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .itemName,
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .imageName,
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .itemType,
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .tax,
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .price);
                                                     // }
                                                   }
@@ -617,11 +618,11 @@ class categories_itemsState extends State<categories_items> {
                                                 child: Container(
                                                     decoration: BoxDecoration(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(4),
+                                                            BorderRadius
+                                                                .circular(4),
                                                         border: Border.all(
                                                             color:
-                                                            Colors.grey)),
+                                                                Colors.grey)),
                                                     height: 3.5.h,
                                                     width: 17.w,
                                                     child: Center(
@@ -629,16 +630,16 @@ class categories_itemsState extends State<categories_items> {
                                                         'ADD'.tr,
                                                         style: TextStyle(
                                                             fontFamily:
-                                                            'Poppins',
+                                                                'Poppins',
                                                             fontSize: 9.5.sp,
                                                             color: color.green),
                                                       ),
                                                     )),
                                               ),
                                             ] else if (categoriesdata!
-                                                .items![_index]
-                                                .subcategoryItems![index]
-                                                .isCart ==
+                                                    .items![_index]
+                                                    .subcategoryItems![index]
+                                                    .isCart ==
                                                 "1") ...[
                                               Container(
                                                 height: 3.6.h,
@@ -647,19 +648,19 @@ class categories_itemsState extends State<categories_items> {
                                                   border: Border.all(
                                                       color: Colors.grey),
                                                   borderRadius:
-                                                  BorderRadius.circular(5),
+                                                      BorderRadius.circular(5),
                                                 ),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceAround,
+                                                      MainAxisAlignment
+                                                          .spaceAround,
                                                   children: [
                                                     InkWell(
                                                         onTap: () {
                                                           loader.showErroDialog(
                                                               description:
-                                                              LocaleKeys
-                                                                  .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item);
+                                                                  LocaleKeys
+                                                                      .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item);
                                                         },
                                                         child: Icon(
                                                           Icons.remove,
@@ -669,14 +670,14 @@ class categories_itemsState extends State<categories_items> {
                                                     Container(
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(3),
+                                                            BorderRadius
+                                                                .circular(3),
                                                       ),
                                                       child: Text(
                                                         categoriesdata!
                                                             .items![_index]
                                                             .subcategoryItems![
-                                                        index]
+                                                                index]
                                                             .itemQty!
                                                             .toString(),
                                                         style: TextStyle(
@@ -686,42 +687,42 @@ class categories_itemsState extends State<categories_items> {
                                                     InkWell(
                                                         onTap: () async {
                                                           if (categoriesdata!
-                                                              .items![
-                                                          _index]
-                                                              .subcategoryItems![
-                                                          index]
-                                                              .hasVariation ==
-                                                              "1" ||
+                                                                      .items![
+                                                                          _index]
+                                                                      .subcategoryItems![
+                                                                          index]
+                                                                      .hasVariation ==
+                                                                  "1" ||
                                                               // ignore: prefer_is_empty
                                                               categoriesdata!
-                                                                  .items![
-                                                              _index]
-                                                                  .subcategoryItems![
-                                                              index]
-                                                                  .addons!
-                                                                  .length >
+                                                                      .items![
+                                                                          _index]
+                                                                      .subcategoryItems![
+                                                                          index]
+                                                                      .addons!
+                                                                      .length >
                                                                   0) {
                                                             cart = await Get.to(
-                                                                    () => showvariation(
+                                                                () => showvariation(
                                                                     categoriesdata!
                                                                         .items![
-                                                                    _index]
+                                                                            _index]
                                                                         .subcategoryItems![index]));
 
                                                             if (cart == 1) {
                                                               setState(() {
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .itemQty = int.parse(categoriesdata!
-                                                                    .items![
-                                                                _index]
-                                                                    .subcategoryItems![
-                                                                index]
-                                                                    .itemQty!
-                                                                    .toString()) +
+                                                                        .items![
+                                                                            _index]
+                                                                        .subcategoryItems![
+                                                                            index]
+                                                                        .itemQty!
+                                                                        .toString()) +
                                                                     1;
                                                               });
                                                             }
@@ -729,39 +730,39 @@ class categories_itemsState extends State<categories_items> {
                                                             addtocart(
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .id,
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .itemName,
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .imageName,
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .itemType,
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .tax,
                                                                 categoriesdata!
                                                                     .items![
-                                                                _index]
+                                                                        _index]
                                                                     .subcategoryItems![
-                                                                index]
+                                                                        index]
                                                                     .price);
                                                           }
                                                         },

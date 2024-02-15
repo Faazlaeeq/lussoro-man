@@ -19,7 +19,7 @@ import 'package:single_ecommerce/main.dart';
 import 'package:single_ecommerce/pages/orders/orderdetails.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
-import '../../theme/thememodel.dart';
+import '../../theme-old/thememodel.dart';
 import '../cart/cartpage.dart';
 import '../favorite/favoritepage.dart';
 import '../orders/orders.dart';
@@ -162,6 +162,7 @@ class _HomepageState extends State<Homepage> {
       },
     );
   }
+
   String? userid;
   String? islogin;
   PageController pageController = PageController();
@@ -170,9 +171,9 @@ class _HomepageState extends State<Homepage> {
 
   getdata() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    islogin =prefs.getString(UD_user_is_login_required);
+    islogin = prefs.getString(UD_user_is_login_required);
     setState(() {
-      if(islogin == "1"){
+      if (islogin == "1") {
         _selectedindex = widget.count!;
         userid = (prefs.getString(UD_user_id) ?? "");
         // if (widget.count == 2 ||  widget.count == 3 || widget.count == 0) {
@@ -183,7 +184,6 @@ class _HomepageState extends State<Homepage> {
         //   );
         // }
       }
-
     });
   }
 
@@ -315,13 +315,13 @@ class _HomepageState extends State<Homepage> {
             body: PageView(
               controller: pageController,
               physics: NeverScrollableScrollPhysics(),
-              children:  [
+              children: [
                 Homescreen(),
-                if(islogin == "1" && userid != "" && userid != "") ...[
+                if (islogin == "1" && userid != "" && userid != "") ...[
                   Favorite()
                 ],
                 Viewcart(),
-                if(islogin == "1" && userid != "" && userid != "") ...[
+                if (islogin == "1" && userid != "" && userid != "") ...[
                   Orderhistory()
                 ],
                 Profilepage()
@@ -342,7 +342,7 @@ class _HomepageState extends State<Homepage> {
                     color: themenofier.isdark ? Colors.white : Colors.black,
                   ),
                 ),
-                if(islogin == "1" && userid != "" && userid != "") ...[
+                if (islogin == "1" && userid != "" && userid != "") ...[
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(
                       'Assets/Icons/Favorite.svg',
@@ -359,68 +359,68 @@ class _HomepageState extends State<Homepage> {
                 ],
                 BottomNavigationBarItem(
                     icon: Obx(
-                          () => count.cartcountnumber.value == 0
+                      () => count.cartcountnumber.value == 0
                           ? SvgPicture.asset(
-                        'Assets/Icons/Cart.svg',
-                        height: height.bottombaricon,
-                        color: themenofier.isdark
-                            ? Colors.white
-                            : Colors.black,
-                      )
+                              'Assets/Icons/Cart.svg',
+                              height: height.bottombaricon,
+                              color: themenofier.isdark
+                                  ? Colors.white
+                                  : Colors.black,
+                            )
                           : badges.Badge(
-                        // alignment: Alignment.topCenter,
-                        padding: EdgeInsets.all(5),
-                        toAnimate: false,
-                        elevation: 0,
-                        badgeColor: color.red,
-                        badgeContent: Text(
-                          count.cartcountnumber.value.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                        child: SvgPicture.asset(
-                          'Assets/Icons/Cart.svg',
-                          height: height.bottombaricon,
-                          color: themenofier.isdark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
+                              // alignment: Alignment.topCenter,
+                              padding: EdgeInsets.all(5),
+                              toAnimate: false,
+                              elevation: 0,
+                              badgeColor: color.red,
+                              badgeContent: Text(
+                                count.cartcountnumber.value.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              child: SvgPicture.asset(
+                                'Assets/Icons/Cart.svg',
+                                height: height.bottombaricon,
+                                color: themenofier.isdark
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
                     ),
                     label: "",
                     activeIcon: Obx(
-                          () => count.cartcountnumber.value == 0
+                      () => count.cartcountnumber.value == 0
                           ? SvgPicture.asset(
-                        'Assets/Icons/Cartdark.svg',
-                        height: height.bottombaricon,
-                        color: themenofier.isdark
-                            ? Colors.white
-                            : Colors.black,
-                      )
+                              'Assets/Icons/Cartdark.svg',
+                              height: height.bottombaricon,
+                              color: themenofier.isdark
+                                  ? Colors.white
+                                  : Colors.black,
+                            )
                           : badges.Badge(
-                        padding: const EdgeInsets.all(5),
-                        toAnimate: false,
-                        elevation: 0,
-                        badgeColor: color.red,
-                        badgeContent: Text(
-                          count.cartcountnumber.value.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                        child: SvgPicture.asset(
-                          'Assets/Icons/Cartdark.svg',
-                          height: height.bottombaricon,
-                          color: themenofier.isdark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
+                              padding: const EdgeInsets.all(5),
+                              toAnimate: false,
+                              elevation: 0,
+                              badgeColor: color.red,
+                              badgeContent: Text(
+                                count.cartcountnumber.value.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              child: SvgPicture.asset(
+                                'Assets/Icons/Cartdark.svg',
+                                height: height.bottombaricon,
+                                color: themenofier.isdark
+                                    ? Colors.white
+                                    : Colors.black,
+                              ),
+                            ),
                     )),
-                if(islogin == "1" && userid != "" && userid != "") ...[
+                if (islogin == "1" && userid != "" && userid != "") ...[
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(
                       'Assets/Icons/Order.svg',

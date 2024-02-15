@@ -10,7 +10,6 @@ import 'package:single_ecommerce/widgets/loader.dart';
 
 import '../model/authentication/loginrequiredmodel.dart';
 
-
 class splash_screen extends StatefulWidget {
   const splash_screen({Key? key}) : super(key: key);
 
@@ -19,7 +18,6 @@ class splash_screen extends StatefulWidget {
 }
 
 class _splash_screenState extends State<splash_screen> {
-
   int? initscreen;
   String? sessionid;
 
@@ -50,17 +48,17 @@ class _splash_screenState extends State<splash_screen> {
     var response =
         await Dio().post(DefaultApi.appUrl + PostAPI.loginrequired, data: map);
     print(response);
-     data = loginrequiredmodel.fromJson(response.data);
+    data = loginrequiredmodel.fromJson(response.data);
     if (data.status == 1) {
       if (sessionid == "" || sessionid == null) {
         prefs.setString(UD_user_session_id, data.sessionId.toString());
         print(data.sessionId.toString());
       }
-      prefs.setString(UD_user_is_login_required, data.isLoginRequired.toString());
+      prefs.setString(
+          UD_user_is_login_required, data.isLoginRequired.toString());
       print(data.isLoginRequired.toString());
       goup();
-    }
-    else{
+    } else {
       loader.showErroDialog(description: data.message);
     }
   }
@@ -75,11 +73,11 @@ class _splash_screenState extends State<splash_screen> {
         children: [
           Center(
             child: Image.asset(
-             "Assets/Icons/ic_logo.png",
-              height: MediaQuery.of(context).size.height / 5,
-              fit: BoxFit.fill,
+              "Assets/images/splash-bg-img.png",
+              fit: BoxFit.fitHeight,
             ),
-          ),],
+          ),
+        ],
       ),
     );
   }

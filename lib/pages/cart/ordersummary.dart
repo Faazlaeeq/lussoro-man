@@ -13,7 +13,7 @@ import 'package:single_ecommerce/model/cart/checkpromocodeModel.dart';
 import 'package:single_ecommerce/model/settings/getaddressmodel.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
 import 'package:single_ecommerce/pages/profile/addaddress.dart';
-import 'package:single_ecommerce/theme/thememodel.dart';
+import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/utils/validator.dart/validator.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
@@ -533,9 +533,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                               : Colors.black,
                                           fontSize: 10.5.sp,
                                           fontFamily: "Poppins"),
-                                    )
-
-                                    ),
+                                    )),
                                 // Spacer(),
                                 if (discountoffer == "0.00") ...[
                                   SizedBox(
@@ -784,19 +782,29 @@ class _OrdersummaryState extends State<Ordersummary> {
                                               await SharedPreferences
                                                   .getInstance();
                                           setState(() {
-                                            lati_tude = (prefs.getString(latitude) ?? "");
-                                            longi_tude = (prefs.getString(longitude) ?? "");
-                                            confirm_Address = (prefs.getString(confirmAddress) ?? "");
-                                            confirm_house = (prefs.getString(confirmhouse_no) ?? "");
-                                            confirm_Area = (prefs.getString(confirmArea) ?? "");
-                                            addresstype = (prefs.getString(Addresstype) ?? "");
+                                            lati_tude =
+                                                (prefs.getString(latitude) ??
+                                                    "");
+                                            longi_tude =
+                                                (prefs.getString(longitude) ??
+                                                    "");
+                                            confirm_Address = (prefs.getString(
+                                                    confirmAddress) ??
+                                                "");
+                                            confirm_house = (prefs.getString(
+                                                    confirmhouse_no) ??
+                                                "");
+                                            confirm_Area =
+                                                (prefs.getString(confirmArea) ??
+                                                    "");
+                                            addresstype =
+                                                (prefs.getString(Addresstype) ??
+                                                    "");
                                             deliveryfees = prefs
                                                 .getString(Delivery_charge)!;
                                             print("roshni $deliveryfees");
                                           });
-
-                                        }
-                                        else {
+                                        } else {
                                           Addressdata = await Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -838,21 +846,18 @@ class _OrdersummaryState extends State<Ordersummary> {
                                                 .getString(Delivery_charge)!;
                                             print(
                                                 "nsjdhfsfhydsv $deliveryfees");
-
                                           });
-
                                         }
-                                        ordertotal =
-                                            (double.parse(ordersubtotal) +
-                                                (double.parse(summarydata!.summery!.tax
-                                                    .toString()))+
+                                        ordertotal = (double.parse(
+                                                    ordersubtotal) +
+                                                (double.parse(summarydata!
+                                                    .summery!.tax
+                                                    .toString())) +
                                                 double.parse(
-                                                    deliveryfees
-                                                        .toString())-
+                                                    deliveryfees.toString()) -
                                                 double.parse(
-                                                    discountoffer
-                                                        .toString()))
-                                                .toString();
+                                                    discountoffer.toString()))
+                                            .toString();
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
@@ -900,8 +905,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                         top: 0.5.h,
                                       ),
                                       child: Text(
-                                        'Set_your_delivery_address'
-                                            .tr,
+                                        'Set_your_delivery_address'.tr,
                                         style: TextStyle(
                                             fontSize: 10.5.sp,
                                             fontFamily: "Poppins_semibold"),
@@ -933,8 +937,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                         top: 0.5.h,
                                       ),
                                       child: Text(
-                                        'Set_your_delivery_address'
-                                            .tr,
+                                        'Set_your_delivery_address'.tr,
                                         style: TextStyle(
                                             fontSize: 10.5.sp,
                                             fontFamily: "Poppins_semibold"),
@@ -1099,8 +1102,8 @@ class _OrdersummaryState extends State<Ordersummary> {
                                 textAlignVertical: TextAlignVertical.top,
                                 // controller: Phoneno,
                                 decoration: InputDecoration(
-                                    hintText: LocaleKeys
-                                        .Write_order_instructions.tr,
+                                    hintText:
+                                        LocaleKeys.Write_order_instructions.tr,
                                     hintStyle: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 10.5.sp,
@@ -1170,24 +1173,22 @@ class _OrdersummaryState extends State<Ordersummary> {
                         if (_formkey.currentState!.validate()) {
                           if (fullname == "") {
                             loader.showErroDialog(
-                                description: 'Please_enter_full_name'
-                                  ..tr);
+                                description: 'Please_enter_full_name'..tr);
                           } else if (email == "") {
                             loader.showErroDialog(
                                 description: LocaleKeys
                                     .Please_enter_valid_email_address.tr);
                           } else if (mobile_no == "") {
                             loader.showErroDialog(
-                                description:
-                                    'Please_enter_phone_no'.tr);
+                                description: 'Please_enter_phone_no'.tr);
                           } else if (lati_tude == "" ||
                               longi_tude == "" ||
                               confirm_Address == "" ||
                               confirm_house == "" ||
                               confirm_Area == "") {
                             loader.showErroDialog(
-                              description: LocaleKeys
-                                  .Please_select_delivery_address.tr,
+                              description:
+                                  LocaleKeys.Please_select_delivery_address.tr,
                             );
                           } else {
                             Navigator.push(
@@ -1220,8 +1221,8 @@ class _OrdersummaryState extends State<Ordersummary> {
                         if (isopendata.isCartEmpty == "0") {
                           if (Addressdata == null) {
                             loader.showErroDialog(
-                              description: LocaleKeys
-                                  .Please_select_delivery_address.tr,
+                              description:
+                                  LocaleKeys.Please_select_delivery_address.tr,
                             );
                           } else {
                             Navigator.push(

@@ -118,6 +118,7 @@ flutter:
     - Assets/
     - Assets/Icons/
     - Assets/Image/
+    - Assets/images/
     - Assets/product/
     - Assets/translation/
     - Assets/svgicon/
@@ -135,23 +136,33 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
   fonts:
-  - family: Poppins
-    fonts:
-       - asset: Assets/font/Mont-ExtraLight.otf
+    - family: Mont
+      fonts:
+        - asset: Assets/font/Mont-ExtraLight.otf
+        - asset: Assets/font/Mont-Heavy.otf
+          weight: 700
+        
+    - family: Poppins
+      fonts:
+        - asset: Assets/font/Mont-ExtraLight.otf
+        #  - asset: Assets/font/Poppins-Regular.ttf
+
+    - family: Poppins_bold
+      fonts:
+        - asset: Assets/font/Mont-Heavy.otf
+        #  - asset: Assets/font/Poppins-Bold.ttf
+
+    - family: Poppins_semibold
+      fonts:
+        - asset: Assets/font/Poppins-SemiBold.ttf
+    - family: Poppins_medium
+      fonts:
+        - asset: Assets/font/Poppins-Medium.ttf
+
+  
       #  - asset: Assets/font/Poppins-Regular.ttf
-
-  - family: Poppins_bold
-    fonts:
-       - asset: Assets/font/Mont-Heavy.otf
-      #  - asset: Assets/font/Poppins-Bold.ttf
-
-  - family: Poppins_semibold
-    fonts:
-       - asset: Assets/font/Poppins-SemiBold.ttf
-  - family: Poppins_medium
-    fonts:
-       - asset: Assets/font/Poppins-Medium.ttf
 
   
   # 

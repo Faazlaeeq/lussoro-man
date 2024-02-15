@@ -28,14 +28,13 @@ class productcontroller extends GetxController {
       var userid = prefs.getString(UD_user_id);
 
       var map;
-      if(userid == "" || userid == null){
+      if (userid == "" || userid == null) {
         map = {
           "session_id": prefs.getString(UD_user_session_id),
           "filter": "",
           "search": "",
         };
-      }
-      else{
+      } else {
         map = {
           "user_id": userid,
           "filter": "",
@@ -55,8 +54,7 @@ class productcontroller extends GetxController {
 }
 
 class Search extends StatefulWidget {
-  const Search({Key? key}) : super(key: key);
-
+  Search({Key? key}) : super(key: key);
   @override
   State<Search> createState() => _SearchState();
 }
@@ -260,8 +258,7 @@ class _SearchState extends State<Search> {
                                                               2,
                                                       color: Colors.black38,
                                                       child: Text(
-                                                        'Out_of_Stock'
-                                                            .tr,
+                                                        'Out_of_Stock'.tr,
                                                         style: TextStyle(
                                                           fontSize: 15.sp,
                                                           color: Colors.white,
