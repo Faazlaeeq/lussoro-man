@@ -267,7 +267,7 @@ class _ProfilepageState extends State<Profilepage> {
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return SafeArea(
           child: Scaffold(
-            
+
               body: SingleChildScrollView(
                   child: Column(
         children: [

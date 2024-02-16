@@ -149,11 +149,21 @@ flutter:
       fonts:
         - asset: Assets/font/Mont-ExtraLight.otf
         #  - asset: Assets/font/Poppins-Regular.ttf
+        
+    - family: Poppins-regular
+      fonts:
+        # - asset: Assets/font/Mont-ExtraLight.otf
+        - asset: Assets/font/Poppins-Regular.ttf
 
     - family: Poppins_bold
       fonts:
         - asset: Assets/font/Mont-Heavy.otf
         #  - asset: Assets/font/Poppins-Bold.ttf
+
+    - family: Poppins-Heavy
+      fonts:
+        # - asset: Assets/font/Mont-Heavy.otf
+        - asset: Assets/font/Poppins-Bold.ttf
 
     - family: Poppins_semibold
       fonts:

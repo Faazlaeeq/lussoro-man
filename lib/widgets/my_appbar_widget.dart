@@ -14,6 +14,10 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.positionedWidget,
     this.showTrailingIcon = false,
     this.onActionPressed,
+    this.customAction,
+    this.bgColor = MyColors.forgroundWhiteColor,
+    this.surfaceTintColor = MyColors.forgroundWhiteColor,
+    this.shadowColor = MyColors.shadowColor,
   });
 
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -25,13 +29,18 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool showTrailingIcon;
   final VoidCallback? onpressed;
   final VoidCallback? onActionPressed;
+  final List<Widget>? customAction;
+  final Color bgColor;
+  final Color surfaceTintColor;
+  final Color shadowColor;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       toolbarHeight: 80,
-      surfaceTintColor: MyColors.forgroundWhiteColor,
-      shadowColor: MyColors.shadowColor,
+      surfaceTintColor: surfaceTintColor,
+      shadowColor: shadowColor,
+      backgroundColor: bgColor,
       scrolledUnderElevation: 10,
       leadingWidth: 90,
       leading: IconButton(
@@ -72,7 +81,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
                 width: padding5,
               )
             ]
-          : [],
+          : customAction ?? [],
     );
   }
 
