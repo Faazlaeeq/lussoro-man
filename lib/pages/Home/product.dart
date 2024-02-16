@@ -824,19 +824,19 @@ class _ProductState extends State<Product> {
 
                   //child: Column(
 
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       SizedBox(
-                  //           height: MediaQuery.of(context).size.width,
-                  //           width: MediaQuery.of(context).size.width,
-                  //           // color: Colors.green,
-                  //           child: ClipRRect(
-                  //             child: Image.network(
-                  //               itemdata!.data!.itemImages![0].imageUrl
-                  //                   .toString(),
-                  //               fit: BoxFit.contain,
-                  //             ),
-                  //           )),
+                      // crossAxisAlignment: CrossAxisAlignment.start,
+                      // children: [
+                      //   SizedBox(
+                      //       height: MediaQuery.of(context).size.width,
+                      //       width: MediaQuery.of(context).size.width,
+                      //       // color: Colors.green,
+                      //       child: ClipRRect(
+                      //         child: Image.network(
+                      //           itemdata!.data!.itemImages![0].imageUrl
+                      //               .toString(),
+                      //           fit: BoxFit.contain,
+                      //         ),
+                      //       )),
                   //      //item name
                   //       Row(
                   //         children: [
@@ -1767,7 +1767,7 @@ class _ProductState extends State<Product> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: color.darkblack,
+                              color: Colors.white,
                             ),
                           ),
                           height: 6.5.h,
@@ -1778,14 +1778,14 @@ class _ProductState extends State<Product> {
                                     'Viewcart'.tr,
                                     style: TextStyle(
                                         fontFamily: 'Poppins_semibold',
-                                        color: color.darkblack,
+                                        color: Colors.white,
                                         fontSize: 14.sp),
                                   )
                                 : Text(
                                     "${'Viewcart'.tr}(${count.cartcountnumber.value.toString()})",
                                     style: TextStyle(
                                         fontFamily: 'Poppins_semibold',
-                                        color: color.primarycolor,
+                                        color: color.white,
                                         fontSize: 14.sp),
                                   )),
                             onPressed: () {
@@ -1815,7 +1815,7 @@ class _ProductState extends State<Product> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: color.green,
+                              color: color.white,
                             ),
                           ),
                           height: 6.5.h,
@@ -1888,3 +1888,4 @@ class _ProductState extends State<Product> {
     );
   }
 }
+// aasim
