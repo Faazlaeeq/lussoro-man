@@ -41,7 +41,7 @@ class _SignupState extends State<Signup> {
   final Refcode = TextEditingController();
   final Password = TextEditingController();
   bool _obscureText = true;
-  String? countrycode = "91";
+  String? countrycode = "92";
 
   bool isChecked = false;
   Signupmodel? Signupdata;
@@ -191,7 +191,7 @@ class _SignupState extends State<Signup> {
                   ),
                   child: Text(
                     LocaleKeys
-                            .Create_an_account_so_you_can_order_your_favourite_product_faster
+                        .Create_an_account_so_you_can_order_your_favourite_product_faster
                         .tr,
                     style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),
                   ),
@@ -200,8 +200,8 @@ class _SignupState extends State<Signup> {
                   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
                   child: Center(
                     child: TextFormField(
-                      validator: (value) => Validators.validateName(
-                          value!, 'First_name'.tr),
+                      validator: (value) =>
+                          Validators.validateName(value!, 'First_name'.tr),
                       cursorColor: color.grey,
                       textInputAction: TextInputAction.next,
                       controller: Name,
@@ -282,7 +282,7 @@ class _SignupState extends State<Signup> {
                           borderSide: BorderSide(color: color.grey),
                         ),
                       ),
-                      initialCountryCode: 'IN',
+                      initialCountryCode: 'PK',
                       onCountryChanged: (value) {
                         countrycode = value.dialCode;
                         print(countrycode);
@@ -399,8 +399,8 @@ class _SignupState extends State<Signup> {
                       if (_formkey.currentState!.validate()) {
                         if (isChecked == false) {
                           loader.showErroDialog(
-                              description: LocaleKeys
-                                  .Please_select_terms_conditions.tr);
+                              description:
+                                  LocaleKeys.Please_select_terms_conditions.tr);
                         } else {
                           if (widget.type == null && registertype == "email") {
                             SignupAPI("email");
@@ -411,8 +411,7 @@ class _SignupState extends State<Signup> {
                           } else if (registertype == "mobile") {
                             // print(4);
                             SignupAPI("email");
-                          }
-                          else{
+                          } else {
                             SignupAPI("email");
                           }
                         }

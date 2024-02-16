@@ -57,7 +57,7 @@ class CommonWidgets {
 
   static Widget customListTile({
     required BuildContext context,
-    String? imageUrl,
+    ImageProvider? imageUrl,
     String? name,
     String? subtitle,
     Widget? titleEnd,
@@ -100,7 +100,7 @@ class CommonWidgets {
                         borderRadius: BorderRadius.circular(imageBorderRadius),
                         image: DecorationImage(
                             alignment: imageAlignment,
-                            image: AssetImage(imageUrl),
+                            image: imageUrl,
                             fit: fit ?? BoxFit.cover)),
                     height: heightImg ?? 60,
                     width: widthImg ?? 60,

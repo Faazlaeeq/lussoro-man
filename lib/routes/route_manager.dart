@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:single_ecommerce/pages/Home/Homepage.dart';
+import 'package:single_ecommerce/pages/Home/product.dart';
 
 class RoutesManager {
   static const String home = "/";
@@ -29,6 +31,10 @@ class RoutesManager {
         return MaterialPageRoute(
           builder: (context) => Homepage(0),
         );
+
+      case (productDisplay):
+        return MaterialPageRoute(
+            builder: (context) => Product(settings.arguments as int));
 
       default:
         return MaterialPageRoute(builder: (context) => Homepage(0));

@@ -55,7 +55,7 @@ class Apptranslation extends Translations {
           "Dont_receive_an_OTP": "Don't receive an OTP?",
           "Resend_OTP": "Resend OTP",
           "comment6": "MARK: Home Screen",
-          "ecommerce_User": "E-commerce User",
+          "ecommerce_User": "Lussoro Man",
           "Welcome_you": "Welcomes you",
           "Search_Here": "Search Here..",
           "Categories": "Categories",
