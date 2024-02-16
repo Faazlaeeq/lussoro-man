@@ -928,7 +928,7 @@ class _ProductState extends State<Product> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: color.darkblack,
+                color: Colors.white,
               ),
             ),
             height: 6.5.h,
@@ -939,14 +939,14 @@ class _ProductState extends State<Product> {
                       'Viewcart'.tr,
                       style: TextStyle(
                           fontFamily: 'Poppins_semibold',
-                          color: color.darkblack,
+                          color: Colors.white,
                           fontSize: 14.sp),
                     )
                   : Text(
                       "${'Viewcart'.tr}(${count.cartcountnumber.value.toString()})",
                       style: TextStyle(
                           fontFamily: 'Poppins_semibold',
-                          color: color.primarycolor,
+                          color: color.white,
                           fontSize: 14.sp),
                     )),
               onPressed: () {
@@ -974,7 +974,7 @@ class _ProductState extends State<Product> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: color.green,
+                color: color.white,
               ),
             ),
             height: 6.5.h,
@@ -1037,3 +1037,4 @@ class _ProductState extends State<Product> {
         ]));
   }
 }
+// aasim
