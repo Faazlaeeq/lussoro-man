@@ -268,11 +268,11 @@ class _SignupState extends State<Signup> {
                             TextStyle(fontFamily: 'Poppins', fontSize: 10.sp,color: Colors.black),
                       ),
 
-                      initialCountryCode: 'PK',
-                      onCountryChanged: (value) {
-                        countrycode = value.dialCode;
-                        print(countrycode);
-                      },
+                      // // initialCountryCode: 'PK',
+                      // onCountryChanged: (value) {
+                      //   countrycode = value.dialCode;
+                      //   print(countrycode);
+                      // },
 
                     ),
                   ),
@@ -311,30 +311,31 @@ class _SignupState extends State<Signup> {
                 //     ),
                 //   ),
                 // ),
-                // Container(
-                //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                //   child: Center(
-                //     child: TextField(
-                //       cursorColor: color.grey,
-                //       controller: Refcode,
-                //       textInputAction: TextInputAction.next,
-                //       decoration: InputDecoration(
-                //         border: OutlineInputBorder(),
-                //         enabledBorder: OutlineInputBorder(
-                //           borderSide: BorderSide(color: color.grey),
-                //         ),
-                //         focusedBorder: OutlineInputBorder(
-                //           borderSide: BorderSide(color: color.grey),
-                //         ),
-                //         hintText: 'Referral_code_Optional'.tr,
-                //         hintStyle: TextStyle(
-                //           fontFamily: 'Poppins',
-                //           fontSize: 10.sp,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                  child: Center(
+                    child: TextField(
+                      cursorColor: color.grey,
+                      controller: Refcode,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        border: UnderlineInputBorder(),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: color.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: color.grey),
+                        ),
+                        hintText: 'Referral_code_Optional'.tr,
+                        hintStyle: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 10.sp,
+                          color: Colors.black
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 if (registertype == "email" && widget.emailid == null) ...[
                   Container(
                     margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
@@ -383,7 +384,7 @@ class _SignupState extends State<Signup> {
                         cursorColor: color.grey,
                         obscureText: _obscureText,
                         validator: (value) =>
-                            Validators.validatePassword(value!),
+                            Validators.validateConfirmPassword(value!),
                         controller: Password,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(

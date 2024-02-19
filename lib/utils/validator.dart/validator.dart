@@ -15,6 +15,21 @@ class Validators {
     return null;
   }
 
+  static String? validateConfirmPassword(String value) {
+    String pattern =
+        r'^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$';
+    RegExp regExp = RegExp(pattern);
+    if (value.length == 0) {
+      return "ConfirmPassword is Required";
+    }
+    //  else if (!regExp.hasMatch(value)) {
+    //   return "Minimum 8 characters password required\nwith a combination of uppercase and lowercase letter and number are required.";
+    // }
+    else {
+      return null;
+    }
+  }
+  
   static String? validateRequired(String value, String type) {
     if (value.length == 0) {
       return "$type is Required";
@@ -177,4 +192,6 @@ class Validators {
       return null;
     }
   }
+
+
 }
