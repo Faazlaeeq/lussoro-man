@@ -6,11 +6,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:single_ecommerce/model/home/homescreenmodel.dart';
 import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/home/categories_itemmodel.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
+import 'package:single_ecommerce/widgets/Home/new_arrival_card.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -45,6 +47,9 @@ class categories_itemsState extends State<categories_items> {
   categories_item_model? categoriesdata;
   addtocartmodel? addtocartdata;
   cartcount count = Get.put(cartcount());
+
+  homescreenmodel? homedata;
+  
 
   categories_itemAPi() async {
     try {
@@ -247,11 +252,59 @@ class categories_itemsState extends State<categories_items> {
                                 left: MediaQuery.of(context).size.width / 33,
                                 right: MediaQuery.of(context).size.width / 33),
                             itemBuilder: (context, index) {
+                              
+                          //     SizedBox(
+                          //   height: height(context) * .7,
+                          //   child: ListView.builder(
+                          //     padding: EdgeInsets.only(
+                          //       right: 3.w,
+                          //     ),
+                          //     scrollDirection: Axis.horizontal,
+                          //     itemCount: homedata!.trendingitems!.length,
+                          //     itemBuilder: (BuildContext context, int index) {
+                          //       return InkWell(
+                          //           onTap: () {
+                          //             // Navigator.of(context).pushNamed(
+                          //             //     // RoutesManager.productDisplay,
+                          //             //     // arguments: widget.productCardItems[index],
+                          //             //     );
+                          //           },
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.all(8.0),
+                          //             child: productCard(
+                          //               context,
+                          //               homedata!.trendingitems![index].imageUrl
+                          //                   .toString(),
+                          //               homedata!.trendingitems![index].itemName
+                          //                   .toString(),
+                          //               homedata!.trendingitems![index]
+                          //                   .categoryInfo!.categoryName
+                          //                   .toString(),
+                          //               homedata!.trendingitems![index].price
+                          //                   .toString(),
+                          //             ),
+                          //           ));
+                          //     },
+                          //   ),
+                          // ),
+                          // ),
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                              
                               return Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
                                       border: Border.all(
-                                          width: 1, color: Colors.grey)),
+                                          width: 1, color: Colors.transparent)),
                                   margin: EdgeInsets.only(
                                     top:
                                         MediaQuery.of(context).size.height / 70,

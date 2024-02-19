@@ -96,9 +96,12 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
+  PageController pageController = PageController();
+
   @override
   void initState() {
     _selectedindex = widget.count;
+
     // getConnectivity();
     super.initState();
     getdata();
@@ -166,7 +169,6 @@ class _HomepageState extends State<Homepage> {
 
   String? userid;
   String? islogin;
-  PageController pageController = PageController();
   int cardcount = 0;
   cartcount count = Get.put(cartcount());
 
@@ -177,13 +179,13 @@ class _HomepageState extends State<Homepage> {
       if (islogin == "1") {
         _selectedindex = widget.count!;
         userid = (prefs.getString(UD_user_id) ?? "");
-        // if (widget.count == 2 ||  widget.count == 3 || widget.count == 0) {
-        //   pageController.animateToPage(
-        //     widget.count!,
-        //     duration: const Duration(milliseconds: 1),
-        //     curve: Curves.ease,
-        //   );
-        // }
+        if (widget.count == 2 || widget.count == 3 || widget.count == 0) {
+          pageController.animateToPage(
+            widget.count!,
+            duration: const Duration(milliseconds: 1),
+            curve: Curves.ease,
+          );
+        }
       }
     });
   }
@@ -252,6 +254,9 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     // connections().conect();
+    debugPrint(
+        "faaz:login state: ${islogin == "1"} userId: ${(userid != " ")}");
+    debugPrint("faaz:selected index: $_selectedindex, count: ${widget.count}");
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return OverlaySupport(
         child: WillPopScope(
