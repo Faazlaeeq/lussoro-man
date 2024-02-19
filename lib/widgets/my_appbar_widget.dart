@@ -15,8 +15,8 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.showTrailingIcon = false,
     this.onActionPressed,
     this.customAction,
-    this.bgColor = MyColors.forgroundWhiteColor,
-    this.surfaceTintColor = MyColors.forgroundWhiteColor,
+    this.bgColor = MyColors.secondaryColor,
+    this.surfaceTintColor = MyColors.secondaryColor,
     this.shadowColor = MyColors.shadowColor,
   });
 

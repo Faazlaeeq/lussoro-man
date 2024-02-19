@@ -87,8 +87,9 @@ Future<void> main() async {
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: (settings) =>
                     RoutesManager().generateRoute(settings),
-                theme: thememodel.isdark ? myTheme(context) : myTheme(context),
-                home: const splash_screen(),
+                theme: myTheme(context),
+                themeMode: ThemeMode.light,
+                home: splash_screen(),
               ));
             },
           );

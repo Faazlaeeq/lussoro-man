@@ -3,15 +3,15 @@
 import 'package:flutter/material.dart';
 
 class color {
-  static var primarycolor = Color(0xff215272);
+  static var primarycolor = Color.fromARGB(255, 0, 0, 0);
   static var red = Color(0xffF82647);
   static var white = Color(0xffFFFFFF);
-  static var green = Color(0xff0d9444);
+  static var green = Color.fromRGBO(102, 102, 102, 1);
   static var black = Color(0xff2D2942);
   static var grey = Colors.grey;
   static var darkblack = Colors.black;
   static var yellow = Color(0xffFFB03B);
-  static var lightgreen = Color(0xff34C759);
+  static var lightgreen = Color.fromRGBO(102, 102, 102, 1);
 
   // status 1
   static var status1 = Color(0xff8E8E93);

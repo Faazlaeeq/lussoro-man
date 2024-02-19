@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481213972450",
+    "project_id": "lussoroman-c4505",
+    "storage_bucket": "lussoroman-c4505.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481213972450:android:331164dbb787ae73a743bb",
+        "android_client_info": {
+          "package_name": "com.singleecommerce_user.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRjZsk3gkSUWUIjGBS_2n_Xrbt0rlcjVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
