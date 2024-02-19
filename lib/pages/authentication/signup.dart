@@ -172,8 +172,16 @@ class _SignupState extends State<Signup> {
             child: Column(
               children: [
                 Container(
+                  padding: EdgeInsets.only(top: 50, left: 30,right: 30, bottom: 30),
+                  child: Center(
+                            child: Image.asset('Assets/images/logo-black.png',
+                            height: 200,)
+                            
+                          ),
+                ),
+                Container(
                   alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(left: 4.w, top: 2.h),
+                  margin: EdgeInsets.only(left: 4.w,),
                   child: Text(
                     'Signup'.tr,
                     style: TextStyle(
@@ -187,7 +195,7 @@ class _SignupState extends State<Signup> {
                   margin: EdgeInsets.only(
                     left: 4.w,
                     right: 4.w,
-                    top: 0.8.h,
+                    top: 0.2.h,
                   ),
                   child: Text(
                     LocaleKeys
@@ -201,24 +209,26 @@ class _SignupState extends State<Signup> {
                   child: Center(
                     child: TextFormField(
                       validator: (value) => Validators.validateName(
-                          value!, 'First_name'.tr),
+                          value!, 'First_name'.tr,),
                       cursorColor: color.grey,
                       textInputAction: TextInputAction.next,
                       controller: Name,
                       decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: color.grey,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: color.grey),
                         ),
-                        border: OutlineInputBorder(),
+                        border: UnderlineInputBorder(),
                         hintText: (Full_name.tr),
                         hintStyle: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 10.sp,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
                     ),
@@ -240,80 +250,82 @@ class _SignupState extends State<Signup> {
                       textInputAction: TextInputAction.next,
                       controller: Email,
                       decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
+                        enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: color.grey,
                           ),
                         ),
-                        focusedBorder: OutlineInputBorder(
+                        focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: color.grey,
                           ),
                         ),
-                        border: OutlineInputBorder(),
+                        border: UnderlineInputBorder(),
                         hintText: 'Email'.tr,
                         hintStyle:
-                            TextStyle(fontFamily: 'Poppins', fontSize: 10.sp),
+                            TextStyle(fontFamily: 'Poppins', fontSize: 10.sp,color: Colors.black),
                       ),
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                  child: Center(
-                    child: IntlPhoneField(
-                      cursorColor: color.grey,
-                      controller: Mobile,
-                      showCountryFlag: false,
-                      disableLengthCheck: true,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        hintText: 'Mobile'.tr,
-                        hintStyle: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 10.sp,
-                        ),
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                      ),
-                      initialCountryCode: 'IN',
-                      onCountryChanged: (value) {
-                        countrycode = value.dialCode;
-                        print(countrycode);
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                  child: Center(
-                    child: TextField(
-                      cursorColor: color.grey,
-                      controller: Refcode,
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                        hintText: 'Referral_code_Optional'.tr,
-                        hintStyle: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                //   child: Center(
+                //     child: IntlPhoneField(
+                //       cursorColor: color.grey,
+                //       controller: Mobile,
+                //       showCountryFlag: false,
+                //       disableLengthCheck: true,
+                //       keyboardType: TextInputType.number,
+                //       textInputAction: TextInputAction.next,
+                //       decoration: InputDecoration(
+                //         hintText: 'Mobile'.tr,
+                //         hintStyle: TextStyle(
+                //           fontFamily: 'Poppins',
+                //           fontSize: 10.sp,
+                //           color: color.black,
+                //           fontWeight: FontWeight.bold
+                //         ),
+                //         border: UnderlineInputBorder(),
+                //         enabledBorder: UnderlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //         focusedBorder: UnderlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //       ),
+                //       initialCountryCode: 'IN',
+                //       onCountryChanged: (value) {
+                //         countrycode = value.dialCode;
+                //         print(countrycode);
+                //       },
+                //     ),
+                //   ),
+                // ),
+                // Container(
+                //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                //   child: Center(
+                //     child: TextField(
+                //       cursorColor: color.grey,
+                //       controller: Refcode,
+                //       textInputAction: TextInputAction.next,
+                //       decoration: InputDecoration(
+                //         border: OutlineInputBorder(),
+                //         enabledBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //         focusedBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //         hintText: 'Referral_code_Optional'.tr,
+                //         hintStyle: TextStyle(
+                //           fontFamily: 'Poppins',
+                //           fontSize: 10.sp,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 if (registertype == "email" && widget.emailid == null) ...[
                   Container(
                     margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
@@ -336,19 +348,60 @@ class _SignupState extends State<Signup> {
                                 _obscureText
                                     ? Icons.visibility
                                     : Icons.visibility_off,
-                                color: Colors.grey,
+                                color: Colors.black,
                               )),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: color.grey),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: color.grey),
                           ),
-                          border: OutlineInputBorder(),
+                          border: UnderlineInputBorder(),
                           hintText: 'Password'.tr,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 10.sp,
+                            color: Colors.black
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                    child: Center(
+                      child: TextFormField(
+                        cursorColor: color.grey,
+                        obscureText: _obscureText,
+                        validator: (value) =>
+                            Validators.validatePassword(value!),
+                        controller: Password,
+                        textInputAction: TextInputAction.done,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              icon: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
+                              )),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: color.grey),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: color.grey),
+                          ),
+                          border: UnderlineInputBorder(),
+                          hintText: 'ConfirmPassword'.tr,
+                          hintStyle: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 10.sp,
+                            color: Colors.black
                           ),
                         ),
                       ),
@@ -419,7 +472,7 @@ class _SignupState extends State<Signup> {
                       }
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: color.primarycolor,
+                      backgroundColor: color.darkblack,
                     ),
                     child: Text(
                       'Signup'.tr,
