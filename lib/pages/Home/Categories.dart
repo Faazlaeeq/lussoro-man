@@ -99,7 +99,7 @@ class CategoryTile extends StatelessWidget {
       height: 70,
       width: width(context),
       margin: const EdgeInsets.symmetric(vertical: padding1),
-      padding: const EdgeInsets.symmetric(horizontal: padding5),
+      padding: const EdgeInsets.symmetric(horizontal: padding3),
       decoration: BoxDecoration(
           color: MyColors.primaryColor,
           borderRadius: BorderRadius.circular(50)),
@@ -110,10 +110,14 @@ class CategoryTile extends StatelessWidget {
         },
         child: Row(
           children: [
-            Image.asset(
-              icon,
-              height: 25,
-              width: 25,
+            ClipOval(
+              clipBehavior: Clip.antiAlias,
+              child: Image.network(
+                icon,
+                height: 40,
+                width: 40,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: padding3,
@@ -124,10 +128,11 @@ class CategoryTile extends StatelessWidget {
                     .bodyLarge!
                     .copyWith(color: MyColors.secondaryColor)),
             const Expanded(child: SizedBox()),
-            Text(subTitle,
+            Text("See Products  ",
                 style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: MyColors.secondaryColor,
-                    fontWeight: FontWeight.bold))
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins-regular'))
           ],
         ),
       ),
