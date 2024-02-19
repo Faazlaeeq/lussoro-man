@@ -78,6 +78,7 @@ dependencies:
   flutter_native_splash: ^2.2.9
   myfatoorah_flutter: ^2.1.18
   flutter_paypal: ^0.0.8
+  salomon_bottom_bar: ^3.3.2
 
 flutter_native_splash:
   color: "#215272"
@@ -148,11 +149,21 @@ flutter:
       fonts:
         - asset: Assets/font/Mont-ExtraLight.otf
         #  - asset: Assets/font/Poppins-Regular.ttf
+        
+    - family: Poppins-regular
+      fonts:
+        # - asset: Assets/font/Mont-ExtraLight.otf
+        - asset: Assets/font/Poppins-Regular.ttf
 
     - family: Poppins_bold
       fonts:
         - asset: Assets/font/Mont-Heavy.otf
         #  - asset: Assets/font/Poppins-Bold.ttf
+
+    - family: Poppins-Heavy
+      fonts:
+        # - asset: Assets/font/Mont-Heavy.otf
+        - asset: Assets/font/Poppins-Bold.ttf
 
     - family: Poppins_semibold
       fonts:

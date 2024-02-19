@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/pages/splash_screen.dart';
+import 'package:single_ecommerce/routes/route_manager.dart';
 import 'package:single_ecommerce/theme-old/mythemes.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
@@ -84,8 +85,10 @@ Future<void> main() async {
                 translations: Apptranslation(),
                 locale: const Locale('en', 'US'),
                 debugShowCheckedModeBanner: false,
-                theme:
-                    thememodel.isdark ? MyThemes.DarkTheme : myTheme(context),
+                onGenerateRoute: (settings) =>
+                    RoutesManager().generateRoute(settings),
+                theme: myTheme(context),
+                themeMode: ThemeMode.light,
                 home: splash_screen(),
               ));
             },
