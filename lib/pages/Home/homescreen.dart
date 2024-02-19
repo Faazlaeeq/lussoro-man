@@ -1750,34 +1750,33 @@ class _HomescreenState extends State<Homescreen> {
           )
         ],
       ),
-      SizedBox(
-        height: height(context) * .7,
-        child: ListView.builder(
-          padding: EdgeInsets.only(
-            right: 3.w,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemCount: homedata!.trendingitems!.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(RoutesManager.productDisplay,
-                      arguments: homedata!.trendingitems![index].id);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: productCard(
-                    context,
-                    homedata!.trendingitems![index].imageUrl.toString(),
-                    homedata!.trendingitems![index].itemName.toString(),
-                    homedata!.trendingitems![index].categoryInfo!.categoryName
-                        .toString(),
-                    homedata!.trendingitems![index].price.toString(),
-                  ),
-                ));
-          },
-        ),
-      ),
+      // SizedBox(
+      //   child: ListView.builder(
+      //     padding: EdgeInsets.only(
+      //       right: 3.w,
+      //     ),
+      //     scrollDirection: Axis.horizontal,
+      //     itemCount: homedata!.trendingitems!.length,
+      //     itemBuilder: (BuildContext context, int index) {
+      //       return InkWell(
+      //           onTap: () {
+      //             Navigator.of(context).pushNamed(RoutesManager.productDisplay,
+      //                 arguments: homedata!.trendingitems![index].id);
+      //           },
+      //           child: Padding(
+      //             padding: const EdgeInsets.all(8.0),
+      //             child: productCard(
+      //               context,
+      //               homedata!.trendingitems![index].imageUrl.toString(),
+      //               homedata!.trendingitems![index].itemName.toString(),
+      //               homedata!.trendingitems![index].categoryInfo!.categoryName
+      //                   .toString(),
+      //               homedata!.trendingitems![index].price.toString(),
+      //             ),
+      //           ));
+      //     },
+      //   ),
+      // ),
       SizedBox(
         height: 33.h,
         child: ListView.builder(

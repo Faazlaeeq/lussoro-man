@@ -27,7 +27,7 @@ abstract class  LocaleKeys {
   static const Are_you_sure_to_continue_as_a_guest = 'Are_you_sure_to_continue_as_a_guest';
   static const Please_enter_all_details = 'Please_enter_all_details';
   static const comment2 = 'comment2';
-  static const Create_an_account_so_you_can_order_your_favourite_product_faster = 'Create_an_account_so_you_can_order_your_favourite_product_faster';
+  static const Create_an_account_so_you_can_order_your_favourite_product_faster = 'Create a New account';
   static const Full_name = 'Full_name';
   static const Mobile = 'Mobile';
   static const Referral_code_Optional = 'Referral_code_Optional';
