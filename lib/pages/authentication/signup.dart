@@ -175,7 +175,7 @@ class _SignupState extends State<Signup> {
                   padding: EdgeInsets.only(top: 50, left: 30,right: 30, bottom: 30),
                   child: Center(
                             child: Image.asset('Assets/images/logo-black.png',
-                            height: 200,)
+                            height: 185,)
                             
                           ),
                 ),
