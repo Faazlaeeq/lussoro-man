@@ -172,16 +172,19 @@ class _SignupState extends State<Signup> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 50, left: 30,right: 30, bottom: 30),
+                  padding:
+                      EdgeInsets.only(top: 50, left: 30, right: 30, bottom: 30),
                   child: Center(
                             child: Image.asset('Assets/images/logo-black.png',
-                            height: 185,)
+                            height: 200,)
                             
                           ),
                 ),
                 Container(
                   alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(left: 4.w,),
+                  margin: EdgeInsets.only(
+                    left: 4.w,
+                  ),
                   child: Text(
                     'Signup'.tr,
                     style: TextStyle(
@@ -208,10 +211,10 @@ class _SignupState extends State<Signup> {
                   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
                   child: Center(
                     child: TextFormField(
-
                       validator: (value) => Validators.validateName(
-                          value!, 'First_name'.tr,),
-
+                        value!,
+                        'First_name'.tr,
+                      ),
                       cursorColor: color.grey,
                       textInputAction: TextInputAction.next,
                       controller: Name,
@@ -227,11 +230,10 @@ class _SignupState extends State<Signup> {
                         border: UnderlineInputBorder(),
                         hintText: (Full_name.tr),
                         hintStyle: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 10.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                        ),
+                            fontFamily: 'Poppins',
+                            fontSize: 10.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -268,11 +270,11 @@ class _SignupState extends State<Signup> {
                             TextStyle(fontFamily: 'Poppins', fontSize: 10.sp,color: Colors.black),
                       ),
 
-                      // // initialCountryCode: 'PK',
-                      // onCountryChanged: (value) {
-                      //   countrycode = value.dialCode;
-                      //   print(countrycode);
-                      // },
+                      initialCountryCode: 'PK',
+                      onCountryChanged: (value) {
+                        countrycode = value.dialCode;
+                        print(countrycode);
+                      },
 
                     ),
                   ),
@@ -311,31 +313,30 @@ class _SignupState extends State<Signup> {
                 //     ),
                 //   ),
                 // ),
-                Container(
-                  margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                  child: Center(
-                    child: TextField(
-                      cursorColor: color.grey,
-                      controller: Refcode,
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: color.grey),
-                        ),
-                        hintText: 'Referral_code_Optional'.tr,
-                        hintStyle: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 10.sp,
-                          color: Colors.black
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                //   child: Center(
+                //     child: TextField(
+                //       cursorColor: color.grey,
+                //       controller: Refcode,
+                //       textInputAction: TextInputAction.next,
+                //       decoration: InputDecoration(
+                //         border: OutlineInputBorder(),
+                //         enabledBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //         focusedBorder: OutlineInputBorder(
+                //           borderSide: BorderSide(color: color.grey),
+                //         ),
+                //         hintText: 'Referral_code_Optional'.tr,
+                //         hintStyle: TextStyle(
+                //           fontFamily: 'Poppins',
+                //           fontSize: 10.sp,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 if (registertype == "email" && widget.emailid == null) ...[
                   Container(
                     margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
@@ -384,7 +385,7 @@ class _SignupState extends State<Signup> {
                         cursorColor: color.grey,
                         obscureText: _obscureText,
                         validator: (value) =>
-                            Validators.validateConfirmPassword(value!),
+                            Validators.validatePassword(value!),
                         controller: Password,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(

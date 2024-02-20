@@ -69,6 +69,12 @@ class _CategoriespageState extends State<Categoriespage> {
                     title:
                         widget.categoriesdata![index].categoryName.toString(),
                     subTitle: "",
+                    onTap: () {
+                      Get.to(() => categories_items(
+                            widget.categoriesdata![index].id,
+                            widget.categoriesdata![index].categoryName,
+                          ));
+                    },
                   );
                 },
                 itemCount: widget.categoriesdata!.length,
@@ -88,10 +94,12 @@ class CategoryTile extends StatelessWidget {
     this.title = "New Arrival",
     this.subTitle = "208 Products",
     this.icon = "assets/icons/new-arrival.png",
+    this.onTap,
   });
   final String icon;
   final String title;
   final String subTitle;
+  final Function()? onTap;
   // final List<ProductCard> items;
   @override
   Widget build(BuildContext context) {
@@ -104,10 +112,7 @@ class CategoryTile extends StatelessWidget {
           color: MyColors.primaryColor,
           borderRadius: BorderRadius.circular(50)),
       child: InkWell(
-        onTap: () {
-          // Navigator.of(context)
-          //     .pushNamed(RoutesManager.productsByCat, arguments: items);
-        },
+        onTap: onTap,
         child: Row(
           children: [
             ClipOval(

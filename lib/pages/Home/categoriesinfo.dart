@@ -49,7 +49,6 @@ class categories_itemsState extends State<categories_items> {
   cartcount count = Get.put(cartcount());
 
   homescreenmodel? homedata;
-  
 
   categories_itemAPi() async {
     try {
@@ -252,593 +251,98 @@ class categories_itemsState extends State<categories_items> {
                                 left: MediaQuery.of(context).size.width / 33,
                                 right: MediaQuery.of(context).size.width / 33),
                             itemBuilder: (context, index) {
-                              
-                          //     SizedBox(
-                          //   height: height(context) * .7,
-                          //   child: ListView.builder(
-                          //     padding: EdgeInsets.only(
-                          //       right: 3.w,
-                          //     ),
-                          //     scrollDirection: Axis.horizontal,
-                          //     itemCount: homedata!.trendingitems!.length,
-                          //     itemBuilder: (BuildContext context, int index) {
-                          //       return InkWell(
-                          //           onTap: () {
-                          //             // Navigator.of(context).pushNamed(
-                          //             //     // RoutesManager.productDisplay,
-                          //             //     // arguments: widget.productCardItems[index],
-                          //             //     );
-                          //           },
-                          //           child: Padding(
-                          //             padding: const EdgeInsets.all(8.0),
-                          //             child: productCard(
-                          //               context,
-                          //               homedata!.trendingitems![index].imageUrl
-                          //                   .toString(),
-                          //               homedata!.trendingitems![index].itemName
-                          //                   .toString(),
-                          //               homedata!.trendingitems![index]
-                          //                   .categoryInfo!.categoryName
-                          //                   .toString(),
-                          //               homedata!.trendingitems![index].price
-                          //                   .toString(),
-                          //             ),
-                          //           ));
-                          //     },
-                          //   ),
-                          // ),
-                          // ),
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                              return Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(
-                                          width: 1, color: Colors.transparent)),
-                                  margin: EdgeInsets.only(
-                                    top:
-                                        MediaQuery.of(context).size.height / 70,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      Get.to(() => Product(categoriesdata!
-                                          .items![_index]
-                                          .subcategoryItems![index]
-                                          .id));
+                              //     SizedBox(
+                              //   height: height(context) * .7,
+                              //   child: ListView.builder(
+                              //     padding: EdgeInsets.only(
+                              //       right: 3.w,
+                              //     ),
+                              //     scrollDirection: Axis.horizontal,
+                              //     itemCount: homedata!.trendingitems!.length,
+                              //     itemBuilder: (BuildContext context, int index) {
+                              //       return InkWell(
+                              //           onTap: () {
+                              //             // Navigator.of(context).pushNamed(
+                              //             //     // RoutesManager.productDisplay,
+                              //             //     // arguments: widget.productCardItems[index],
+                              //             //     );
+                              //           },
+                              //           child: Padding(
+                              //             padding: const EdgeInsets.all(8.0),
+                              //             child: productCard(
+                              //               context,
+                              //               homedata!.trendingitems![index].imageUrl
+                              //                   .toString(),
+                              //               homedata!.trendingitems![index].itemName
+                              //                   .toString(),
+                              //               homedata!.trendingitems![index]
+                              //                   .categoryInfo!.categoryName
+                              //                   .toString(),
+                              //               homedata!.trendingitems![index].price
+                              //                   .toString(),
+                              //             ),
+                              //           ));
+                              //     },
+                              //   ),
+                              // ),
+                              // ),
+
+                              return InkWell(
+                                onTap: () {
+                                  Get.to(() => Product(
+                                        categoriesdata!.items![_index]
+                                            .subcategoryItems![index].id,
+                                      ));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: productCard(
+                                    context,
+                                    categoriesdata!.items![_index]
+                                        .subcategoryItems![index].imageUrl
+                                        .toString(),
+                                    categoriesdata!.items![_index]
+                                        .subcategoryItems![index].itemName
+                                        .toString(),
+                                    categoriesdata!
+                                        .items![_index]
+                                        .subcategoryItems![index]
+                                        .categoryInfo!
+                                        .categoryName
+                                        .toString(),
+                                    categoriesdata!.items![_index]
+                                        .subcategoryItems![index].price
+                                        .toString(),
+                                    () {
+                                      if (userid == "") {
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (c) => Login()),
+                                                (r) => false);
+                                      } else if (categoriesdata!
+                                              .items![_index]
+                                              .subcategoryItems![index]
+                                              .isFavorite ==
+                                          "0") {
+                                        managefavarite(
+                                            categoriesdata!.items![_index]
+                                                .subcategoryItems![index].id,
+                                            "favorite",
+                                            index,
+                                            _index);
+                                      } else {
+                                        managefavarite(
+                                            categoriesdata!.items![_index]
+                                                .subcategoryItems![index].id,
+                                            "unfavorite",
+                                            index,
+                                            _index);
+                                      }
                                     },
-                                    child: Column(children: [
-                                      Stack(
-                                        children: [
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2.3,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                2.2,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                      topLeft:
-                                                          Radius.circular(5),
-                                                      topRight:
-                                                          Radius.circular(5)),
-                                              child: Image.network(
-                                                categoriesdata!
-                                                    .items![_index]
-                                                    .subcategoryItems![index]
-                                                    .imageUrl,
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                          if (categoriesdata!
-                                                  .items![_index]
-                                                  .subcategoryItems![index]
-                                                  .hasVariation ==
-                                              "0") ...[
-                                            if (categoriesdata!
-                                                        .items![_index]
-                                                        .subcategoryItems![
-                                                            index]
-                                                        .availableQty ==
-                                                    "" ||
-                                                int.parse(categoriesdata!
-                                                        .items![_index]
-                                                        .subcategoryItems![
-                                                            index]
-                                                        .availableQty
-                                                        .toString()) <=
-                                                    0) ...[
-                                              Positioned(
-                                                child: Container(
-                                                  alignment: Alignment.center,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2.3,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      2.2,
-                                                  color: Colors.black38,
-                                                  child: Text(
-                                                    'Out_of_Stock'.tr,
-                                                    style: TextStyle(
-                                                      fontSize: 15.sp,
-                                                      color: Colors.white,
-                                                      fontFamily:
-                                                          'poppins_semibold',
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ]
-                                          ],
-                                          if (is_login == "1") ...[
-                                            Positioned(
-                                                top: 5.0,
-                                                right: 5.0,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    if (userid == "") {
-                                                      Navigator.of(context)
-                                                          .pushAndRemoveUntil(
-                                                              MaterialPageRoute(
-                                                                  builder: (c) =>
-                                                                      Login()),
-                                                              (r) => false);
-                                                    } else if (categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .isFavorite ==
-                                                        "0") {
-                                                      managefavarite(
-                                                          categoriesdata!
-                                                              .items![_index]
-                                                              .subcategoryItems![
-                                                                  index]
-                                                              .id,
-                                                          "favorite",
-                                                          index,
-                                                          _index);
-                                                    } else {
-                                                      managefavarite(
-                                                          categoriesdata!
-                                                              .items![_index]
-                                                              .subcategoryItems![
-                                                                  index]
-                                                              .id,
-                                                          "unfavorite",
-                                                          index,
-                                                          _index);
-                                                    }
-                                                  },
-                                                  child: Container(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              17,
-                                                      width: MediaQuery.of(context)
-                                                              .size
-                                                              .width /
-                                                          8,
-                                                      padding: EdgeInsets.all(
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .height /
-                                                              80),
-                                                      decoration: BoxDecoration(
-                                                        // shape: BoxShape.values,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                        color: Colors.black26,
-                                                      ),
-                                                      child: categoriesdata!
-                                                                  .items![
-                                                                      _index]
-                                                                  .subcategoryItems![
-                                                                      index]
-                                                                  .isFavorite ==
-                                                              "0"
-                                                          ? SvgPicture.asset(
-                                                              'Assets/Icons/Favorite.svg',
-                                                              color:
-                                                                  Colors.white,
-                                                            )
-                                                          : SvgPicture.asset(
-                                                              'Assets/Icons/Favoritedark.svg',
-                                                              color:
-                                                                  Colors.white,
-                                                            )),
-                                                )),
-                                          ],
-                                        ],
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  95)),
-                                      Row(
-                                        children: [
-                                          Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      50)),
-                                          Text(
-                                            categoriesdata!
-                                                .items![_index]
-                                                .subcategoryItems![index]
-                                                .categoryInfo!
-                                                .categoryName,
-                                            style: TextStyle(
-                                              fontSize: 11,
-                                              fontFamily: 'Poppins',
-                                              color: color.green,
-                                            ),
-                                          ),
-                                          Padding(
-                                              padding: EdgeInsets.only(
-                                                  right: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      50))
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: MediaQuery.of(context)
-                                                          .size
-                                                          .width /
-                                                      50)),
-                                          Expanded(
-                                            child: Text(
-                                              categoriesdata!
-                                                  .items![_index]
-                                                  .subcategoryItems![index]
-                                                  .itemName,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                fontSize: 10.5.sp,
-                                                fontFamily: 'Poppins_semibold',
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                50,
-                                            right: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                50),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            if (categoriesdata!
-                                                    .items![_index]
-                                                    .subcategoryItems![index]
-                                                    .hasVariation ==
-                                                "1") ...[
-                                              Expanded(
-                                                child: Text(
-                                                  currency_position == "1"
-                                                      ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}"
-                                                      : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}$currency",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                    fontSize: 10.sp,
-                                                    fontFamily: 'Poppins_bold',
-                                                  ),
-                                                ),
-                                              ),
-                                            ] else ...[
-                                              Expanded(
-                                                child: Text(
-                                                  currency_position == "1"
-                                                      ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}"
-                                                      : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}$currency",
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                    fontSize: 10.sp,
-                                                    fontFamily: 'Poppins_bold',
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                            //
-
-                                            if (categoriesdata!
-                                                    .items![_index]
-                                                    .subcategoryItems![index]
-                                                    .isCart ==
-                                                "0") ...[
-                                              InkWell(
-                                                onTap: () async {
-                                                  if (categoriesdata!
-                                                              .items![_index]
-                                                              .subcategoryItems![
-                                                                  index]
-                                                              .hasVariation ==
-                                                          "1" ||
-                                                      categoriesdata!
-                                                          .items![_index]
-                                                          .subcategoryItems![
-                                                              index]
-                                                          .addons!
-                                                          .isNotEmpty) {
-                                                    cart = await Get.to(() =>
-                                                        showvariation(categoriesdata!
-                                                                .items![_index]
-                                                                .subcategoryItems![
-                                                            index]));
-                                                    if (cart == 1) {
-                                                      setState(() {
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .isCart = "1";
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .itemQty = int.parse(
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .itemQty!
-                                                                    .toString()) +
-                                                            1;
-                                                      });
-                                                    }
-                                                  } else {
-                                                    // if (userid == "") {
-                                                    //   Navigator.of(context)
-                                                    //       .pushAndRemoveUntil(
-                                                    //           MaterialPageRoute(
-                                                    //               builder: (c) =>
-                                                    //                   Login()),
-                                                    //           (r) => false);
-                                                    // } else {
-                                                    addtocart(
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .id,
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .itemName,
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .imageName,
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .itemType,
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .tax,
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .price);
-                                                    // }
-                                                  }
-                                                },
-                                                child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(4),
-                                                        border: Border.all(
-                                                            color:
-                                                                Colors.grey)),
-                                                    height: 3.5.h,
-                                                    width: 17.w,
-                                                    child: Center(
-                                                      child: Text(
-                                                        'ADD'.tr,
-                                                        style: TextStyle(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 9.5.sp,
-                                                            color: color.green),
-                                                      ),
-                                                    )),
-                                              ),
-                                            ] else if (categoriesdata!
-                                                    .items![_index]
-                                                    .subcategoryItems![index]
-                                                    .isCart ==
-                                                "1") ...[
-                                              Container(
-                                                height: 3.6.h,
-                                                width: 22.w,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    InkWell(
-                                                        onTap: () {
-                                                          loader.showErroDialog(
-                                                              description:
-                                                                  LocaleKeys
-                                                                      .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item);
-                                                        },
-                                                        child: Icon(
-                                                          Icons.remove,
-                                                          color: color.green,
-                                                          size: 16,
-                                                        )),
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(3),
-                                                      ),
-                                                      child: Text(
-                                                        categoriesdata!
-                                                            .items![_index]
-                                                            .subcategoryItems![
-                                                                index]
-                                                            .itemQty!
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            fontSize: 10.sp),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                        onTap: () async {
-                                                          if (categoriesdata!
-                                                                      .items![
-                                                                          _index]
-                                                                      .subcategoryItems![
-                                                                          index]
-                                                                      .hasVariation ==
-                                                                  "1" ||
-                                                              // ignore: prefer_is_empty
-                                                              categoriesdata!
-                                                                      .items![
-                                                                          _index]
-                                                                      .subcategoryItems![
-                                                                          index]
-                                                                      .addons!
-                                                                      .length >
-                                                                  0) {
-                                                            cart = await Get.to(
-                                                                () => showvariation(
-                                                                    categoriesdata!
-                                                                        .items![
-                                                                            _index]
-                                                                        .subcategoryItems![index]));
-
-                                                            if (cart == 1) {
-                                                              setState(() {
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .itemQty = int.parse(categoriesdata!
-                                                                        .items![
-                                                                            _index]
-                                                                        .subcategoryItems![
-                                                                            index]
-                                                                        .itemQty!
-                                                                        .toString()) +
-                                                                    1;
-                                                              });
-                                                            }
-                                                          } else {
-                                                            addtocart(
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .id,
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .itemName,
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .imageName,
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .itemType,
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .tax,
-                                                                categoriesdata!
-                                                                    .items![
-                                                                        _index]
-                                                                    .subcategoryItems![
-                                                                        index]
-                                                                    .price);
-                                                          }
-                                                        },
-                                                        child: Icon(
-                                                          Icons.add,
-                                                          color: color.green,
-                                                          size: 16,
-                                                        )),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              top: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  70)),
-                                    ]),
-                                  ));
+                                  ),
+                                ),
+                              );
                             });
                       })),
                 ),
@@ -848,5 +352,367 @@ class categories_itemsState extends State<categories_items> {
         );
       },
     );
+  }
+
+  Container OldCardDesign(BuildContext context, int _index, int index) {
+    return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            border: Border.all(width: 1, color: Colors.transparent)),
+        margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height / 70,
+        ),
+        child: InkWell(
+          onTap: () {
+            Get.to(() => Product(
+                categoriesdata!.items![_index].subcategoryItems![index].id));
+          },
+          child: Column(children: [
+            Stack(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.width / 2.3,
+                  width: MediaQuery.of(context).size.width / 2.2,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5)),
+                    child: Image.network(
+                      categoriesdata!
+                          .items![_index].subcategoryItems![index].imageUrl,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                if (categoriesdata!
+                        .items![_index].subcategoryItems![index].hasVariation ==
+                    "0") ...[
+                  if (categoriesdata!.items![_index].subcategoryItems![index]
+                              .availableQty ==
+                          "" ||
+                      int.parse(categoriesdata!.items![_index]
+                              .subcategoryItems![index].availableQty
+                              .toString()) <=
+                          0) ...[
+                    Positioned(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: MediaQuery.of(context).size.width / 2.3,
+                        width: MediaQuery.of(context).size.width / 2.2,
+                        color: Colors.black38,
+                        child: Text(
+                          'Out_of_Stock'.tr,
+                          style: TextStyle(
+                            fontSize: 15.sp,
+                            color: Colors.white,
+                            fontFamily: 'poppins_semibold',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]
+                ],
+                if (is_login == "1") ...[
+                  Positioned(
+                      top: 5.0,
+                      right: 5.0,
+                      child: InkWell(
+                        onTap: () {
+                          if (userid == "") {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(builder: (c) => Login()),
+                                (r) => false);
+                          } else if (categoriesdata!.items![_index]
+                                  .subcategoryItems![index].isFavorite ==
+                              "0") {
+                            managefavarite(
+                                categoriesdata!
+                                    .items![_index].subcategoryItems![index].id,
+                                "favorite",
+                                index,
+                                _index);
+                          } else {
+                            managefavarite(
+                                categoriesdata!
+                                    .items![_index].subcategoryItems![index].id,
+                                "unfavorite",
+                                index,
+                                _index);
+                          }
+                        },
+                        child: Container(
+                            height: MediaQuery.of(context).size.height / 17,
+                            width: MediaQuery.of(context).size.width / 8,
+                            padding: EdgeInsets.all(
+                                MediaQuery.of(context).size.height / 80),
+                            decoration: BoxDecoration(
+                              // shape: BoxShape.values,
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black26,
+                            ),
+                            child: categoriesdata!.items![_index]
+                                        .subcategoryItems![index].isFavorite ==
+                                    "0"
+                                ? SvgPicture.asset(
+                                    'Assets/Icons/Favorite.svg',
+                                    color: Colors.white,
+                                  )
+                                : SvgPicture.asset(
+                                    'Assets/Icons/Favoritedark.svg',
+                                    color: Colors.white,
+                                  )),
+                      )),
+                ],
+              ],
+            ),
+            Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 95)),
+            Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width / 50)),
+                Text(
+                  categoriesdata!.items![_index].subcategoryItems![index]
+                      .categoryInfo!.categoryName,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontFamily: 'Poppins',
+                    color: color.green,
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width / 50))
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                    padding: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width / 50)),
+                Expanded(
+                  child: Text(
+                    categoriesdata!
+                        .items![_index].subcategoryItems![index].itemName,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 10.5.sp,
+                      fontFamily: 'Poppins_semibold',
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width / 50,
+                  right: MediaQuery.of(context).size.width / 50),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (categoriesdata!.items![_index].subcategoryItems![index]
+                          .hasVariation ==
+                      "1") ...[
+                    Expanded(
+                      child: Text(
+                        currency_position == "1"
+                            ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}"
+                            : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].variation![0].productPrice.toString()))}$currency",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontFamily: 'Poppins_bold',
+                        ),
+                      ),
+                    ),
+                  ] else ...[
+                    Expanded(
+                      child: Text(
+                        currency_position == "1"
+                            ? "$currency${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}"
+                            : "${numberFormat.format(double.parse(categoriesdata!.items![_index].subcategoryItems![index].price.toString()))}$currency",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 10.sp,
+                          fontFamily: 'Poppins_bold',
+                        ),
+                      ),
+                    ),
+                  ],
+                  //
+
+                  if (categoriesdata!
+                          .items![_index].subcategoryItems![index].isCart ==
+                      "0") ...[
+                    InkWell(
+                      onTap: () async {
+                        if (categoriesdata!.items![_index]
+                                    .subcategoryItems![index].hasVariation ==
+                                "1" ||
+                            categoriesdata!.items![_index]
+                                .subcategoryItems![index].addons!.isNotEmpty) {
+                          cart = await Get.to(() => showvariation(
+                              categoriesdata!
+                                  .items![_index].subcategoryItems![index]));
+                          if (cart == 1) {
+                            setState(() {
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].isCart = "1";
+                              categoriesdata!
+                                  .items![_index]
+                                  .subcategoryItems![index]
+                                  .itemQty = int.parse(categoriesdata!
+                                      .items![_index]
+                                      .subcategoryItems![index]
+                                      .itemQty!
+                                      .toString()) +
+                                  1;
+                            });
+                          }
+                        } else {
+                          // if (userid == "") {
+                          //   Navigator.of(context)
+                          //       .pushAndRemoveUntil(
+                          //           MaterialPageRoute(
+                          //               builder: (c) =>
+                          //                   Login()),
+                          //           (r) => false);
+                          // } else {
+                          addtocart(
+                              categoriesdata!
+                                  .items![_index].subcategoryItems![index].id,
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].itemName,
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].imageName,
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].itemType,
+                              categoriesdata!
+                                  .items![_index].subcategoryItems![index].tax,
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].price);
+                          // }
+                        }
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              border: Border.all(color: Colors.grey)),
+                          height: 3.5.h,
+                          width: 17.w,
+                          child: Center(
+                            child: Text(
+                              'ADD'.tr,
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 9.5.sp,
+                                  color: color.green),
+                            ),
+                          )),
+                    ),
+                  ] else if (categoriesdata!
+                          .items![_index].subcategoryItems![index].isCart ==
+                      "1") ...[
+                    Container(
+                      height: 3.6.h,
+                      width: 22.w,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                loader.showErroDialog(
+                                    description: LocaleKeys
+                                        .The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item);
+                              },
+                              child: Icon(
+                                Icons.remove,
+                                color: color.green,
+                                size: 16,
+                              )),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            child: Text(
+                              categoriesdata!.items![_index]
+                                  .subcategoryItems![index].itemQty!
+                                  .toString(),
+                              style: TextStyle(fontSize: 10.sp),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () async {
+                                if (categoriesdata!
+                                            .items![_index]
+                                            .subcategoryItems![index]
+                                            .hasVariation ==
+                                        "1" ||
+                                    // ignore: prefer_is_empty
+                                    categoriesdata!
+                                            .items![_index]
+                                            .subcategoryItems![index]
+                                            .addons!
+                                            .length >
+                                        0) {
+                                  cart = await Get.to(() => showvariation(
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index]));
+
+                                  if (cart == 1) {
+                                    setState(() {
+                                      categoriesdata!
+                                          .items![_index]
+                                          .subcategoryItems![index]
+                                          .itemQty = int.parse(categoriesdata!
+                                              .items![_index]
+                                              .subcategoryItems![index]
+                                              .itemQty!
+                                              .toString()) +
+                                          1;
+                                    });
+                                  }
+                                } else {
+                                  addtocart(
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].id,
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].itemName,
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].imageName,
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].itemType,
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].tax,
+                                      categoriesdata!.items![_index]
+                                          .subcategoryItems![index].price);
+                                }
+                              },
+                              child: Icon(
+                                Icons.add,
+                                color: color.green,
+                                size: 16,
+                              )),
+                        ],
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.width / 70)),
+          ]),
+        ));
   }
 }

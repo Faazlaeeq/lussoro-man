@@ -39,7 +39,7 @@ class _LoginState extends State<Login> {
   }
 
   String? Logintype = "";
-  String? countrycode = "91";
+  String? countrycode = "92";
 
   token() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -309,7 +309,6 @@ class _LoginState extends State<Login> {
           }
         },
         child: Scaffold(
-          
           resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             child: Form(
@@ -319,44 +318,43 @@ class _LoginState extends State<Login> {
                   Container(
                     alignment: Alignment.topLeft,
                     margin:
+<<<<<<< HEAD
                         EdgeInsets.only(left: 4.5.w, top: 4.5.h, bottom: 1.h),
                     child:
                      Column(
                        children: [
+=======
+                        EdgeInsets.only(left: 4.5.w, top: 3.5.h, bottom: 1.h),
+                    child: Column(
+                      children: [
+>>>>>>> deployment
                         Container(
                           padding: EdgeInsets.all(30),
                           child: Center(
-                            child: Column(
-
-                              children: [
-                              Image.asset('Assets/images/logo-black.png'),
-                              
-                              ]
-                            )
-                            
-                          ),
+                              child: Column(children: [
+                            Image.asset('Assets/images/logo-black.png'),
+                          ])),
                         ),
-                        
-                         Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             Container(
-                               alignment: Alignment.topLeft,
-                               child: Text(
+                          children: [
+                            Container(
+                              alignment: Alignment.topLeft,
+                              child: Text(
                                 'Welcome!'.tr,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
-                                    fontSize: 23.sp,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Poppins_Bold',
-                                    ),
-                                                   ),
-                             ),
-                           ],
-                         ),
-                       ],
-                     ),
+                                  fontSize: 23.sp,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Poppins_Bold',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     alignment: Alignment.topLeft,
@@ -502,8 +500,7 @@ class _LoginState extends State<Login> {
                             print("1");
                             if (mobile.value.text.isEmpty) {
                               loader.showErroDialog(
-                                  description:
-                                      'Please_enter_all_details'.tr);
+                                  description: 'Please_enter_all_details'.tr);
                             } else {
                               login();
                             }
@@ -533,59 +530,59 @@ class _LoginState extends State<Login> {
                           fontSize: 11.sp,
                         )),
                   ),
-                  // Padding(
-                  //     padding: EdgeInsets.only(
-                  //   top: 2.h,
-                  // )),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Container(
-                  //       decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: Colors.black26,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(6)),
-                  //       child: Card(
-                  //         elevation: 0,
-                  //         child: InkWell(
-                  //             borderRadius: BorderRadius.zero,
-                  //             onTap: () async {
-                  //               googlelogin();
-                  //             },
-                  //             child: Image.asset(
-                  //               'Assets/Icons/google.png',
-                  //               height: 5.h,
-                  //               width: 11.w,
-                  //             )),
-                  //       ),
-                  //     ),
-                  //     SizedBox(
-                  //       width: 4.w,
-                  //     ),
-                  //     Container(
-                  //       decoration: BoxDecoration(
-                  //           border: Border.all(
-                  //             color: Colors.black26,
-                  //           ),
-                  //           borderRadius: BorderRadius.circular(6)),
-                  //       child: Card(
-                  //         elevation: 0,
-                  //         child: InkWell(
-                  //             onTap: () async {
-                  //               print("object");
+                  Padding(
+                      padding: EdgeInsets.only(
+                    top: 2.h,
+                  )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black26,
+                            ),
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Card(
+                          elevation: 0,
+                          child: InkWell(
+                              borderRadius: BorderRadius.zero,
+                              onTap: () async {
+                                googlelogin();
+                              },
+                              child: Image.asset(
+                                'Assets/Icons/google.png',
+                                height: 5.h,
+                                width: 11.w,
+                              )),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black26,
+                            ),
+                            borderRadius: BorderRadius.circular(6)),
+                        child: Card(
+                          elevation: 0,
+                          child: InkWell(
+                              onTap: () async {
+                                print("object");
 
-                  //               _FBlogin();
-                  //             },
-                  //             child: Image.asset(
-                  //               'Assets/Icons/facebook.png',
-                  //               height: 5.h,
-                  //               width: 11.w,
-                  //             )),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                                _FBlogin();
+                              },
+                              child: Image.asset(
+                                'Assets/Icons/facebook.png',
+                                height: 5.h,
+                                width: 11.w,
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
                   Container(
                       alignment: Alignment.topCenter,
                       margin: EdgeInsets.only(top: 1.h),
@@ -613,9 +610,7 @@ class _LoginState extends State<Login> {
                         foregroundColor: Colors.white,
                         backgroundColor: color.darkblack,
                       ),
-                      
-                      child:
-                      Text(
+                      child: Text(
                         'Signup Now'.tr,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
