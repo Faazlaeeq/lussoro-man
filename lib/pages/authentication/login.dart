@@ -420,7 +420,8 @@ class _LoginState extends State<Login> {
                     Container(
                       margin:
                           EdgeInsets.only(top: 3.5.h, left: 4.w, right: 4.w),
-                      child: Center(
+                      // child: Center(
+                        
                         child: TextFormField(
                           validator: (value) =>
                               Validators.validatePassword(value!),
@@ -451,7 +452,7 @@ class _LoginState extends State<Login> {
                                 borderSide: BorderSide(color: Colors.grey),
                               )),
                         ),
-                      ),
+                      // ),
                     ),
                     Container(
                       alignment: Alignment.topRight,
