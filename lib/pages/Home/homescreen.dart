@@ -420,9 +420,7 @@ class _HomescreenState extends State<Homescreen> {
                           ...bannerSection3Widgets,
                         if (homedata!.testimonials!.isNotEmpty)
                           ...testinomialsWidgets(context),
-                        if (homedata!.appdata!.isAppBottomImage.toString() ==
-                            "1")
-                          ...appbottomImageWidgets(context),
+                        
                       ],
                     ),
                   ),
