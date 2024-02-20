@@ -318,16 +318,10 @@ class _LoginState extends State<Login> {
                   Container(
                     alignment: Alignment.topLeft,
                     margin:
-<<<<<<< HEAD
                         EdgeInsets.only(left: 4.5.w, top: 4.5.h, bottom: 1.h),
                     child:
                      Column(
-                       children: [
-=======
-                        EdgeInsets.only(left: 4.5.w, top: 3.5.h, bottom: 1.h),
-                    child: Column(
                       children: [
->>>>>>> deployment
                         Container(
                           padding: EdgeInsets.all(30),
                           child: Center(
