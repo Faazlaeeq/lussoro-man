@@ -81,7 +81,7 @@ class _SignupState extends State<Signup> {
 
       var finallist = await response.data;
       Signupdata = Signupmodel.fromJson(finallist);
-      print(response);
+      print("res of signUp req: $response");
       loader.hideLoading();
 
       if (Signupdata!.status == 1) {
@@ -100,7 +100,7 @@ class _SignupState extends State<Signup> {
         );
       } else if (Signupdata!.status == 0) {
         loader.showErroDialog(description: Signupdata!.message);
-        print(Signupdata!.message);
+        print("signupdata msg: ${Signupdata!.message}");
       } else if (Signupdata!.status == 3) {
         Get.to(
           () => Otp(
@@ -114,7 +114,7 @@ class _SignupState extends State<Signup> {
         loader.showErroDialog(description: Signupdata!.message);
       }
     } catch (e) {
-      print(e);
+      print("catched Error: $e");
     }
   }
 

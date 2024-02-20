@@ -36,13 +36,15 @@ class Profilepage extends StatefulWidget {
   @override
   State<Profilepage> createState() => _ProfilepageState();
 }
-class OptionTileModel{
+
+class OptionTileModel {
   String text;
   void Function() fucn;
   String imgUrl;
 
   OptionTileModel(this.text, this.fucn, this.imgUrl);
 }
+
 class _ProfilepageState extends State<Profilepage> {
   String userid = "";
   String islogin = "";
@@ -53,8 +55,6 @@ class _ProfilepageState extends State<Profilepage> {
   String check_addons = "";
   bool? status;
   cartcount _cartcount = Get.put(cartcount());
-
-
 
   @override
   void initState() {
@@ -89,1139 +89,1044 @@ class _ProfilepageState extends State<Profilepage> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    List<OptionTileModel> pageContent= [
-      ...[if (islogin == "1") ...[
-        if (user_logintype == "email" &&
-            check_addons == "email")OptionTileModel('Change_Password'.tr, () {
-          userid == ""
-              ? Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (c) => Login()),
-                  (r) => false)
-              : Navigator.push(
+    List<OptionTileModel> pageContent = [
+      ...[
+        if (islogin == "1") ...[
+          if (user_logintype == "email" && check_addons == "email")
+            OptionTileModel('Change_Password'.tr, () {
+              userid == ""
+                  ? Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                  : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Changepass()));
+            }, "Assets/Icons/password.png"),
+        ]
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel('My_Addresses'.tr, () {
+            // print(userdata!.data!.wallet);
+            userid == ""
+                ? Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                : Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Wallet()));
+          }, "Assets/Icons/address2.png")
+        ]
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel('Testimonials'.tr, () {
+            userid == ""
+                ? Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Ratingreview()),
+                  );
+          }, "Assets/Icons/testinomials.png")
+        ]
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel('Refer_Earn'.tr, () {
+            userid == ""
+                ? Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Refer_earn()));
+          }, "Assets/Icons/earn-with-bg.png")
+        ]
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel('Notification_Settings'.tr, () {
+            userid == ""
+                ? Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Notificationpage()));
+          }, "Assets/Icons/notification-with-bg.png")
+        ]
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel('Help_Contact_Us'.tr, () {
+            Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                  const Changepass()));
-        }, "Assets/Icons/password.png"),
-      ]],
-      ...[  if (islogin == "1")...[OptionTileModel('My_Addresses'.tr,() {
-        // print(userdata!.data!.wallet);
-        userid == ""
-            ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (c) => Login()),
-                (r) => false)
-            : Navigator.push(
+              MaterialPageRoute(builder: (context) => Helpcontactus()),
+            );
+          }, "Assets/Icons/help2-with-bg.png")
+        ]
+      ],
+      ...[
+        OptionTileModel('Privacy_Policy'.tr, () {
+          Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => Wallet()));
-      },"Assets/Icons/address2.png")]],...[  if (islogin == "1")...[OptionTileModel('Testimonials'.tr,() {
-        userid == ""
-            ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (c) => Login()),
-                (r) => false)
-            : Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-              const Ratingreview()),
-        );
-      },"Assets/Icons/testinomials.png")]],
-      ...[  if (islogin == "1")...[OptionTileModel('Refer_Earn'.tr,() {
-        userid == ""
-            ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (c) => Login()),
-                (r) => false)
-            : Navigator.push(
+            MaterialPageRoute(builder: (context) => Privacypolicy()),
+          );
+        }, "Assets/Icons/privacy2-with-bg.png")
+      ],
+      ...[
+        OptionTileModel('Faqs'.tr, () {
+          Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                const Refer_earn()));
-      },"Assets/Icons/earn-with-bg.png")]],
-      ...[  if (islogin == "1")...[OptionTileModel('Notification_Settings'.tr,() {
-        userid == ""
-            ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (c) => Login()),
-                (r) => false)
-            : Navigator.push(
+            MaterialPageRoute(builder: (context) => Faqs()),
+          );
+        }, "Assets/Icons/faq2-with-bg.png")
+      ],
+      ...[
+        OptionTileModel('About_us'.tr, () {
+          Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                const Notificationpage()));
-      },"Assets/Icons/notification-with-bg.png")]],
-       ...[  if (islogin == "1")...[OptionTileModel('Help_Contact_Us'.tr,() {
-         Navigator.push(
-           context,
-           MaterialPageRoute(
-               builder: (context) => Helpcontactus()),
-         );
-       },"Assets/Icons/help2-with-bg.png")]],
-      ...[OptionTileModel('Privacy_Policy'.tr,() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Privacypolicy()),
-        );
-      },"Assets/Icons/privacy2-with-bg.png")],
-      ...[OptionTileModel('Faqs'.tr,() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Faqs()),
-        );
-      },"Assets/Icons/faq2-with-bg.png")] ,  ...[OptionTileModel('About_us'.tr, () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) => Aboutus()),
-    );
-    },
-      "Assets/Icons/aboutus-with-bg.png")],
-     ...[  if (islogin == "1") ...[OptionTileModel( userid == "" ? 'Login'.tr : 'Logout'.tr, () {
-        userid == ""
-            ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (c) => Login()),
-                (r) => false)
-            : showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(
-                  'ecommerce_User'.tr,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontFamily: 'Poppins_bold',
-                  ),
-                ),
-                content: Text(
-                  LocaleKeys
-                      .Are_you_sure_to_logout_from_this_app
-                      .tr,
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      fontFamily: 'Poppins'),
-                ),
-                actions: <Widget>[
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                      color.primarycolor,
-                    ),
-                    child: Text(
-                      'Logout'.tr,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                    onPressed: () async {
-                      SharedPreferences prefs =
-                      await SharedPreferences
-                          .getInstance();
-                      // prefs.clear();
-                      prefs.remove(UD_user_id);
-                      prefs.remove(UD_user_name);
-                      prefs.remove(UD_user_email);
-                      _cartcount
-                          .cartcountnumber.value = 0;
-                      Navigator.of(context)
-                          .pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (c) =>
-                                  Login()),
-                              (r) => false);
-                    },
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                      color.primarycolor,
-                    ),
-                    child: Text(
-                      'Cancel'.tr,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              );
-            });
-      },
-          "Assets/Icons/loginout.png"//conditional Image
-      )]]];
+            MaterialPageRoute(builder: (context) => Aboutus()),
+          );
+        }, "Assets/Icons/aboutus-with-bg.png")
+      ],
+      ...[
+        if (islogin == "1") ...[
+          OptionTileModel(userid == "" ? 'Login'.tr : 'Logout'.tr, () {
+            userid == ""
+                ? Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => Login()), (r) => false)
+                : showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          'ecommerce_User'.tr,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontFamily: 'Poppins_bold',
+                          ),
+                        ),
+                        content: Text(
+                          LocaleKeys.Are_you_sure_to_logout_from_this_app.tr,
+                          style:
+                              TextStyle(fontSize: 12.sp, fontFamily: 'Poppins'),
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: color.primarycolor,
+                            ),
+                            child: Text(
+                              'Logout'.tr,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                            onPressed: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              // prefs.clear();
+                              prefs.remove(UD_user_id);
+                              prefs.remove(UD_user_name);
+                              prefs.remove(UD_user_email);
+                              _cartcount.cartcountnumber.value = 0;
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(builder: (c) => Login()),
+                                  (r) => false);
+                            },
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: color.primarycolor,
+                            ),
+                            child: Text(
+                              'Cancel'.tr,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.white,
+                                fontFamily: 'Poppins',
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    });
+          }, "Assets/Icons/loginout.png" //conditional Image
+              )
+        ]
+      ]
+    ];
 
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return SafeArea(
           child: Scaffold(
-
               body: SingleChildScrollView(
-                  child: Column(
-        children: [
-          Container(
+                  child: Column(children: [
+        Container(
             child: Column(
-              children: [
-                //Header
-                profileHeader(context, themenofier),
-                Container(
-                    decoration: BoxDecoration(
-                      border:
-                      Border.all(color: MyColors.outlineColorOnLight, width: 1.5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: Size.padding4, vertical: Size.padding1),
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: Size.padding2),
-                    child: Column(
-                        children: List.generate(
-                            pageContent.length,((index) => Padding(
+          children: [
+            //Header
+            profileHeader(context, themenofier),
+            Container(
+              decoration: BoxDecoration(
+                border:
+                    Border.all(color: MyColors.outlineColorOnLight, width: 1.5),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(
+                  horizontal: Size.padding4, vertical: Size.padding1),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 0, vertical: Size.padding2),
+              child: Column(
+                children: List.generate(
+                    pageContent.length,
+                    ((index) => Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: Size.padding1, vertical: Size.padding1),
+                              horizontal: Size.padding1,
+                              vertical: Size.padding1),
                           child: ListTile(
-                            leading: Image.asset(pageContent[index].imgUrl,height: 40,width:40),
+                            leading: Image.asset(pageContent[index].imgUrl,
+                                height: 40, width: 40),
                             title: Text(pageContent[index].text,
-                                style:
-                                Theme.of(context).textTheme.titleSmall),
+                                style: Theme.of(context).textTheme.titleSmall),
                             trailing: const Icon(
                               Icons.arrow_forward_ios,
                               size: 10,
                             ),
-                            onTap:pageContent[index].fucn,
+                            onTap: pageContent[index].fucn,
                           ),
                         ))),
-
-            ),
-          )
-        ],
-      ))]))));
+              ),
+            )
+          ],
+        ))
+      ]))));
     });
   }
 
   Padding listofOptions(ThemeModel themenofier, BuildContext context) {
     return Padding(
-                padding: EdgeInsets.only(
-                  left: 3.5.w,
-                  right: 3.5.w,
+      padding: EdgeInsets.only(
+        left: 3.5.w,
+        right: 3.5.w,
+      ),
+      child: Column(children: [
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                top: 1.h,
+              ),
+              height: height.settingsheight,
+              child: Row(
+                children: [
+                  Text(
+                    'Settings'.tr,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontFamily: 'Poppins_semibold',
+                      color: themenofier.isdark ? Colors.white : color.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (islogin == "1") ...[
+              if (user_logintype == "email" && check_addons == "email") ...[
+                InkWell(
+                  onTap: () {
+                    userid == ""
+                        ? Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (c) => Login()),
+                            (r) => false)
+                        : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Changepass()));
+                  },
+                  child: Container(
+                    height: height.settingsheight,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'Assets/svgicon/Lock.svg',
+                          height: height.settingiconheight,
+                          color:
+                              themenofier.isdark ? Colors.white : Colors.black,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 3.3.w,
+                            right: 3.3.w,
+                          ),
+                          child: Text(
+                            'Change_Password'.tr,
+                            style: TextStyle(
+                                fontSize: 10.sp, fontFamily: 'Poppins'),
+                          ),
+                        ),
+                        Spacer(),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 13.sp,
+                          color: Colors.grey,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
-                child: Column(children: [
-                  Column(
+                Container(
+                  height: 0.8.sp,
+                  width: MediaQuery.of(context).size.width,
+                  color: themenofier.isdark ? Colors.white : Colors.grey,
+                ),
+              ],
+            ],
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Manage_Addresses()));
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
                     children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Address.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
                       Container(
                         margin: EdgeInsets.only(
-                          top: 1.h,
+                          left: 3.3.w,
+                          right: 3.3.w,
                         ),
-                        height: height.settingsheight,
-                        child: Row(
-                          children: [
-                            Text(
-                              'Settings'.tr,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontFamily: 'Poppins_semibold',
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : color.black,
-                              ),
-                            ),
-                          ],
+                        child: Text(
+                          'My_Addresses'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
                         ),
                       ),
-                      if (islogin == "1") ...[
-                        if (user_logintype == "email" &&
-                            check_addons == "email") ...[
-                          InkWell(
-                            onTap: () {
-                              userid == ""
-                                  ? Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (c) => Login()),
-                                      (r) => false)
-                                  : Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Changepass()));
-                            },
-                            child: Container(
-                              height: height.settingsheight,
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'Assets/svgicon/Lock.svg',
-                                    height: height.settingiconheight,
-                                    color: themenofier.isdark
-                                        ? Colors.white
-                                        : Colors.black,
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                      left: 3.3.w,
-                                      right: 3.3.w,
-                                    ),
-                                    child: Text(
-                                      'Change_Password'.tr,
-                                      style: TextStyle(
-                                          fontSize: 10.sp,
-                                          fontFamily: 'Poppins'),
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 13.sp,
-                                    color: Colors.grey,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: 0.8.sp,
-                            width: MediaQuery.of(context).size.width,
-                            color: themenofier.isdark
-                                ? Colors.white
-                                : Colors.grey,
-                          ),
-                        ],
-                      ],
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Manage_Addresses()));
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Address.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'My_Addresses'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            // print(userdata!.data!.wallet);
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Wallet()));
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Wallet.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'My_Wallet'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const Ratingreview()),
-                                  );
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Testimonial.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'Testimonials'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const Refer_earn()));
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Referearn.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'Refer_Earn'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const Notificationpage()));
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Notification.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'Notification_Settings'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      InkWell(
-                        onTap: () {
-                          _showbottomsheet();
-                        },
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'Assets/svgicon/Changelayout.svg',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'Change_Layout'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 13.sp,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Helpcontactus()),
-                            );
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Help.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    'Help_Contact_Us'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color:
-                              themenofier.isdark ? Colors.white : Colors.grey,
-                        ),
-                      ],
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Privacypolicy()),
-                          );
-                        },
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'Assets/svgicon/Privacypolicy.svg',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'Privacy_Policy'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 13.sp,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Aboutus()),
-                          );
-                        },
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'Assets/svgicon/Aboutus.svg',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'About_Us'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 13.sp,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Faqs()),
-                          );
-                        },
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'Assets/svgicon/Order.svg',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'Faqs'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 13.sp,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Gallary()),
-                          );
-                        },
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(
-                                'Assets/svgicon/Gallary.svg',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'Gallery'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 13.sp,
-                                color: Colors.grey,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      InkWell(
-                        child: Container(
-                          height: height.settingsheight,
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'Assets/Icons/darkmode.png',
-                                height: height.settingiconheight,
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  left: 3.3.w,
-                                  right: 3.3.w,
-                                ),
-                                child: Text(
-                                  'Darkmode'.tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp, fontFamily: 'Poppins'),
-                                ),
-                              ),
-                              Spacer(),
-                              Switch.adaptive(
-                                  inactiveTrackColor: Colors.grey,
-                                  activeColor: Colors.white,
-                                  inactiveThumbColor: Colors.black,
-                                  value: themenofier.isdark ? true : false,
-                                  onChanged: (value) {
-                                    themenofier.isdark
-                                        ? themenofier.isDark = false
-                                        : themenofier.isDark = true;
-                                  }),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 0.8.sp,
-                        width: MediaQuery.of(context).size.width,
-                        color:
-                            themenofier.isdark ? Colors.white : Colors.grey,
-                      ),
-                      if (islogin == "1") ...[
-                        InkWell(
-                          onTap: () {
-                            userid == ""
-                                ? Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (c) => Login()),
-                                    (r) => false)
-                                : showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text(
-                                          'ecommerce_User'.tr,
-                                          style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontFamily: 'Poppins_bold',
-                                          ),
-                                        ),
-                                        content: Text(
-                                          LocaleKeys
-                                              .Are_you_sure_to_logout_from_this_app
-                                              .tr,
-                                          style: TextStyle(
-                                              fontSize: 12.sp,
-                                              fontFamily: 'Poppins'),
-                                        ),
-                                        actions: <Widget>[
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  color.primarycolor,
-                                            ),
-                                            child: Text(
-                                              'Logout'.tr,
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                                color: Colors.white,
-                                                fontFamily: 'Poppins',
-                                              ),
-                                            ),
-                                            onPressed: () async {
-                                              SharedPreferences prefs =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              // prefs.clear();
-                                              prefs.remove(UD_user_id);
-                                              prefs.remove(UD_user_name);
-                                              prefs.remove(UD_user_email);
-                                              _cartcount
-                                                  .cartcountnumber.value = 0;
-                                              Navigator.of(context)
-                                                  .pushAndRemoveUntil(
-                                                      MaterialPageRoute(
-                                                          builder: (c) =>
-                                                              Login()),
-                                                      (r) => false);
-                                            },
-                                          ),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  color.primarycolor,
-                                            ),
-                                            child: Text(
-                                              'Cancel'.tr,
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                                color: Colors.white,
-                                                fontFamily: 'Poppins',
-                                              ),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    });
-                          },
-                          child: Container(
-                            height: height.settingsheight,
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'Assets/svgicon/Logout.svg',
-                                  height: height.settingiconheight,
-                                  color: themenofier.isdark
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
-                                Container(
-                                  // alignment: Alignment.center,
-                                  margin: EdgeInsets.only(
-                                    left: 3.3.w,
-                                    right: 3.3.w,
-                                  ),
-                                  child: Text(
-                                    userid == "" ? 'Login'.tr : 'Logout'.tr,
-                                    style: TextStyle(
-                                        fontSize: 10.sp,
-                                        fontFamily: 'Poppins'),
-                                  ),
-                                ),
-                                Spacer(),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 13.sp,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 0.8.sp,
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.black12,
-                        ),
-                      ],
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
                     ],
-                  )
-                ]),
-              );
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  // print(userdata!.data!.wallet);
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Wallet()));
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Wallet.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          'My_Wallet'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Ratingreview()),
+                        );
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Testimonial.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          'Testimonials'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Refer_earn()));
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Referearn.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          'Refer_Earn'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Notificationpage()));
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Notification.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          'Notification_Settings'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            InkWell(
+              onTap: () {
+                _showbottomsheet();
+              },
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'Assets/svgicon/Changelayout.svg',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'Change_Layout'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 13.sp,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Helpcontactus()),
+                  );
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Help.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          'Help_Contact_Us'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: themenofier.isdark ? Colors.white : Colors.grey,
+              ),
+            ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Privacypolicy()),
+                );
+              },
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'Assets/svgicon/Privacypolicy.svg',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'Privacy_Policy'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 13.sp,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Aboutus()),
+                );
+              },
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'Assets/svgicon/Aboutus.svg',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'About_Us'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 13.sp,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Faqs()),
+                );
+              },
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'Assets/svgicon/Order.svg',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'Faqs'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 13.sp,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Gallary()),
+                );
+              },
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      'Assets/svgicon/Gallary.svg',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'Gallery'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 13.sp,
+                      color: Colors.grey,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            InkWell(
+              child: Container(
+                height: height.settingsheight,
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'Assets/Icons/darkmode.png',
+                      height: height.settingiconheight,
+                      color: themenofier.isdark ? Colors.white : Colors.black,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 3.3.w,
+                        right: 3.3.w,
+                      ),
+                      child: Text(
+                        'Darkmode'.tr,
+                        style:
+                            TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                      ),
+                    ),
+                    Spacer(),
+                    Switch.adaptive(
+                        inactiveTrackColor: Colors.grey,
+                        activeColor: Colors.white,
+                        inactiveThumbColor: Colors.black,
+                        value: themenofier.isdark ? true : false,
+                        onChanged: (value) {
+                          themenofier.isdark
+                              ? themenofier.isDark = false
+                              : themenofier.isDark = true;
+                        }),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: 0.8.sp,
+              width: MediaQuery.of(context).size.width,
+              color: themenofier.isdark ? Colors.white : Colors.grey,
+            ),
+            if (islogin == "1") ...[
+              InkWell(
+                onTap: () {
+                  userid == ""
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (c) => Login()),
+                          (r) => false)
+                      : showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                'ecommerce_User'.tr,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontFamily: 'Poppins_bold',
+                                ),
+                              ),
+                              content: Text(
+                                LocaleKeys
+                                    .Are_you_sure_to_logout_from_this_app.tr,
+                                style: TextStyle(
+                                    fontSize: 12.sp, fontFamily: 'Poppins'),
+                              ),
+                              actions: <Widget>[
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: color.primarycolor,
+                                  ),
+                                  child: Text(
+                                    'Logout'.tr,
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    SharedPreferences prefs =
+                                        await SharedPreferences.getInstance();
+                                    // prefs.clear();
+                                    prefs.remove(UD_user_id);
+                                    prefs.remove(UD_user_name);
+                                    prefs.remove(UD_user_email);
+                                    _cartcount.cartcountnumber.value = 0;
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (c) => Login()),
+                                        (r) => false);
+                                  },
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: color.primarycolor,
+                                  ),
+                                  child: Text(
+                                    'Cancel'.tr,
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                },
+                child: Container(
+                  height: height.settingsheight,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'Assets/svgicon/Logout.svg',
+                        height: height.settingiconheight,
+                        color: themenofier.isdark ? Colors.white : Colors.black,
+                      ),
+                      Container(
+                        // alignment: Alignment.center,
+                        margin: EdgeInsets.only(
+                          left: 3.3.w,
+                          right: 3.3.w,
+                        ),
+                        child: Text(
+                          userid == "" ? 'Login'.tr : 'Logout'.tr,
+                          style:
+                              TextStyle(fontSize: 10.sp, fontFamily: 'Poppins'),
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 13.sp,
+                        color: Colors.grey,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 0.8.sp,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black12,
+              ),
+            ],
+          ],
+        )
+      ]),
+    );
   }
 
   Container profileHeader(BuildContext context, ThemeModel themenofier) {
     return Container(
-                height: 23.h,
-                width: MediaQuery.of(context).size.width,
-                color: themenofier.isdark ? Colors.white : color.black,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(
-                              left: 4.w, right: 4.w, top: 5.w),
-                          child: Text(
-                            'Myprofile'.tr,
-                            style: TextStyle(
-                                color: themenofier.isdark
-                                    ? Colors.black
-                                    : Colors.white,
-                                fontSize: 15.sp,
-                                fontFamily: 'Poppins_semibold'),
-                          ),
-                        ),
-                        Spacer(),
-                        if (islogin == "1") ...[
-                          Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-
-                              ),
-                              height: 5.h,
-                              width: 5.h,
-                              margin: EdgeInsets.only(top: 3.5.h),
-                              child: InkWell(
-                                  onTap: () {
-                                    userid == ""
-                                        ? Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (c) => Login()),
-                                                (r) => false)
-                                        : Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        Editprofile()))
-                                            .then((value) {
-                                            getprefs_data();
-                                          });
-                                  },
-                                  child: Center(
-                                    child: SvgPicture.asset(
-                                      'Assets/svgicon/Edit.svg',
-
-                                    ),
-                                  ))),
-                        ],
-                        Padding(padding: EdgeInsets.only(right: 4.8.w)),
-                      ],
-                    ),
-                    if (username == "")
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: Size.padding2),
-                        child: CommonWidgets.customListTile(
-                            context: context,
-                            name: 'Guest',
-                            nameTheme: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontSize: 18),
-                            imageUrl: AssetImage(
-                                'Assets/Image/defaultuserprofile.png'),
-                            subtitle: "guest@gmail.com",
-                            verticalPadding: Size.padding2,
-                            horizontalPadding: Size.padding2,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            subtitleStyle: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontSize: 12,
-                                    color: MyColors.subtitleColor)),
-                      )
-                    else
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: Size.padding2),
-                        child: CommonWidgets.customListTile(
-                            context: context,
-                            name: username,
-                            nameTheme: Theme.of(context)
-                                .textTheme
-                                .bodyLarge!
-                                .copyWith(fontSize: 18),
-                            imageUrl: NetworkImage(userprofile.toString()),
-                            subtitle: useremail,
-                            verticalPadding: Size.padding2,
-                            horizontalPadding: Size.padding2,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            subtitleStyle: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(
-                                    fontSize: 12,
-                                    color: MyColors.subtitleColor)),
-                      ),
-                  ],
+      height: 23.h,
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 4.w, right: 4.w, top: 5.w),
+                child: Text(
+                  'Myprofile'.tr,
+                  style: TextStyle(
+                      color: themenofier.isdark ? Colors.black : Colors.white,
+                      fontSize: 15.sp,
+                      fontFamily: 'Poppins_semibold'),
                 ),
-              );
+              ),
+              Spacer(),
+              if (islogin == "1") ...[
+                Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    height: 5.h,
+                    width: 5.h,
+                    margin: EdgeInsets.only(top: 3.5.h),
+                    child: InkWell(
+                        onTap: () {
+                          userid == ""
+                              ? Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(builder: (c) => Login()),
+                                  (r) => false)
+                              : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Editprofile()))
+                                  .then((value) {
+                                  getprefs_data();
+                                });
+                        },
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'Assets/svgicon/Edit.svg',
+                          ),
+                        ))),
+              ],
+              Padding(padding: EdgeInsets.only(right: 4.8.w)),
+            ],
+          ),
+          if (username == "")
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Size.padding2),
+              child: CommonWidgets.customListTile(
+                  context: context,
+                  name: 'Guest',
+                  nameTheme: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 18),
+                  imageUrl: AssetImage('Assets/Image/defaultuserprofile.png'),
+                  subtitle: "guest@gmail.com",
+                  verticalPadding: Size.padding2,
+                  horizontalPadding: Size.padding2,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  subtitleStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 12, color: MyColors.subtitleColor)),
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Size.padding2),
+              child: CommonWidgets.customListTile(
+                  context: context,
+                  name: username,
+                  nameTheme: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(fontSize: 18),
+                  imageUrl: NetworkImage(userprofile.toString()),
+                  subtitle: useremail,
+                  verticalPadding: Size.padding2,
+                  horizontalPadding: Size.padding2,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  subtitleStyle: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(fontSize: 12, color: MyColors.subtitleColor)),
+            ),
+        ],
+      ),
+    );
   }
 
   _showbottomsheet() {

@@ -89,7 +89,7 @@ Future<void> main() async {
                     RoutesManager().generateRoute(settings),
                 theme: myTheme(context),
                 themeMode: ThemeMode.light,
-                home: splash_screen(),
+                home: const splash_screen(),
               ));
             },
           );

@@ -40,34 +40,37 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   login_required() async {
-    loginrequiredmodel? data;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    sessionid = (prefs.getString(UD_user_session_id) ?? "");
-    var map = {};
-    var response =
-        await Dio().post(DefaultApi.appUrl + PostAPI.loginrequired, data: map);
-    print(response);
-    data = loginrequiredmodel.fromJson(response.data);
-    if (data.status == 1) {
-      if (sessionid == "" || sessionid == null) {
-        prefs.setString(UD_user_session_id, data.sessionId.toString());
-        print(data.sessionId.toString());
+    try {
+      loginrequiredmodel? data;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      sessionid = (prefs.getString(UD_user_session_id) ?? "");
+      var map = {};
+      var response = await Dio()
+          .post(DefaultApi.appUrl + PostAPI.loginrequired, data: map);
+      print(response);
+      data = loginrequiredmodel.fromJson(response.data);
+      if (data.status == 1) {
+        if (sessionid == "" || sessionid == null) {
+          prefs.setString(UD_user_session_id, data.sessionId.toString());
+          print(data.sessionId.toString());
+        }
+        prefs.setString(
+            UD_user_is_login_required, data.isLoginRequired.toString());
+        print(data.isLoginRequired.toString());
+        goup();
+      } else {
+        loader.showErroDialog(description: data.message);
       }
-      prefs.setString(
-          UD_user_is_login_required, data.isLoginRequired.toString());
-      print(data.isLoginRequired.toString());
-      goup();
-    } else {
-      loader.showErroDialog(description: data.message);
+    } catch (e) {
+      loader.showErroDialog(description: e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Image.asset(
+    return Image.asset(
       "Assets/images/splash-bg-img.png",
       fit: BoxFit.fitWidth,
-    ));
+    );
   }
 }
