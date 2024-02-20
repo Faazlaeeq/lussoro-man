@@ -827,387 +827,434 @@ class _HomescreenState extends State<Homescreen> {
         ],
       ),
       SizedBox(
-        height: 33.h,
+        height: 250,
         child: ListView.builder(
           padding: EdgeInsets.only(
-            right: 3.w,
+            left: 3.w,
           ),
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.recommendeditems!.length,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        Product(homedata!.recommendeditems![index].id)),
-              );
-            },
-            child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    border: Border.all(width: 0.8.sp, color: Colors.grey)),
-                margin: EdgeInsets.only(
-                  top: 1.h,
-                  left: 3.5.w,
-                ),
-                height: 32.h,
-                width: 45.w,
-                child: Column(children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 20.h,
-                        width: 46.w,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(5),
-                                topRight: Radius.circular(5))),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(5),
-                              topRight: Radius.circular(5)),
-                          child: Image.network(
-                            homedata!.recommendeditems![index].imageUrl
-                                .toString(),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                      if (homedata!.recommendeditems![index].hasVariation ==
-                          "0") ...[
-                        if (homedata!.recommendeditems![index].availableQty ==
-                                "" ||
-                            int.parse(homedata!
-                                    .recommendeditems![index].availableQty
-                                    .toString()) <=
-                                0) ...[
-                          Positioned(
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 20.h,
-                              width: 46.w,
-                              color: Colors.black38,
-                              child: Text(
-                                'Out_of_Stock'.tr,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Colors.white,
-                                  fontFamily: 'poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ]
-                      ],
-                      if (is_login == "1") ...[
-                        Positioned(
-                            top: 5.0,
-                            right: 5.0,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (userid == "") {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (c) => Login()),
-                                      (r) => false);
-                                } else if (homedata!
-                                        .recommendeditems![index].isFavorite ==
-                                    "0") {
-                                  managefavarite(
-                                      homedata!.recommendeditems![index].id,
-                                      "favorite",
-                                      index,
-                                      "todayspecial");
-                                } else if (homedata!
-                                        .recommendeditems![index].isFavorite ==
-                                    "1") {
-                                  managefavarite(
-                                      homedata!.recommendeditems![index].id,
-                                      "unfavorite",
-                                      index,
-                                      "recommendeditems");
-                                }
-                              },
-                              child: Container(
-                                  height: 6.h,
-                                  width: 12.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.black26,
-                                  ),
-                                  child: Center(
-                                    child: homedata!.recommendeditems![index]
-                                                .isFavorite ==
-                                            "0"
-                                        ? SvgPicture.asset(
-                                            'Assets/Icons/Favorite.svg',
-                                            color: Colors.white,
-                                          )
-                                        : SvgPicture.asset(
-                                            'Assets/Icons/Favoritedark.svg',
-                                            color: Colors.white,
-                                          ),
-                                  )),
-                            )),
-                      ]
-                    ],
+          itemBuilder: (BuildContext context, int index) {
+            return InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(RoutesManager.productDisplay,
+                      arguments: homedata!.recommendeditems![index].id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: productCard(
+                    context,
+                    homedata!.recommendeditems![index].imageUrl.toString(),
+                    homedata!.recommendeditems![index].itemName.toString(),
+                    homedata!
+                        .recommendeditems![index].categoryInfo!.categoryName
+                        .toString(),
+                    homedata!.recommendeditems![index].price.toString(),
+                    () {
+                      if (userid == "") {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (c) => Login()),
+                            (r) => false);
+                      } else if (homedata!
+                              .recommendeditems![index].isFavorite ==
+                          "0") {
+                        managefavarite(homedata!.recommendeditems![index].id,
+                            "favorite", index, "recommended");
+                      } else if (homedata!
+                              .recommendeditems![index].isFavorite ==
+                          "1") {
+                        managefavarite(homedata!.recommendeditems![index].id,
+                            "unfavorite", index, "recommended");
+                      }
+                    },
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.9.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                homedata!.recommendeditems![index].categoryInfo!
-                                    .categoryName
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 8.sp,
-                                  fontFamily: 'Poppins',
-                                  color: color.green,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.5.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                homedata!.recommendeditems![index].itemName
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontFamily: 'Poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            if (homedata!
-                                    .recommendeditems![index].hasVariation ==
-                                "1") ...[
-                              Expanded(
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}$currency",
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                ),
-                              ),
-                            ] else ...[
-                              Expanded(
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}$currency",
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                ),
-                              ),
-                            ],
-                            if (homedata!.recommendeditems![index].isCart ==
-                                "0") ...[
-                              GestureDetector(
-                                onTap: () async {
-                                  if (homedata!.recommendeditems![index]
-                                              .hasVariation ==
-                                          "1" ||
-                                      homedata!.recommendeditems![index].addons!
-                                          .isNotEmpty) {
-                                    cart = await Get.to(() => showvariation(
-                                        homedata!.recommendeditems![index]));
-                                    if (cart == 1) {
-                                      setState(() {
-                                        homedata!.recommendeditems![index]
-                                            .isCart = "1";
-                                        homedata!.recommendeditems![index]
-                                            .itemQty = int.parse(homedata!
-                                                .recommendeditems![index]
-                                                .itemQty!
-                                                .toString()) +
-                                            1;
-                                      });
-                                    }
-                                  } else {
-                                    // if (userid == "") {
-                                    //   Navigator.of(
-                                    //           context)
-                                    //       .pushAndRemoveUntil(
-                                    //           MaterialPageRoute(
-                                    //               builder: (c) =>
-                                    //                   Login()),
-                                    //           (r) =>
-                                    //               false);
-                                    // } else {
-                                    addtocart(
-                                        homedata!.recommendeditems![index].id,
-                                        homedata!
-                                            .recommendeditems![index].itemName,
-                                        homedata!
-                                            .recommendeditems![index].imageName,
-                                        homedata!
-                                            .recommendeditems![index].itemType,
-                                        homedata!.recommendeditems![index].tax,
-                                        homedata!
-                                            .recommendeditems![index].price);
-                                  }
-                                  // }
-                                },
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: Colors.grey)),
-                                    height: 3.5.h,
-                                    width: 17.w,
-                                    child: Center(
-                                      child: Text(
-                                        'ADD'.tr,
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 9.5.sp,
-                                            color: color.green),
-                                      ),
-                                    )),
-                              ),
-                            ] else if (homedata!
-                                    .recommendeditems![index].isCart ==
-                                "1") ...[
-                              Container(
-                                height: 3.6.h,
-                                width: 22.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    GestureDetector(
-                                        onTap: () {
-                                          loader.showErroDialog(
-                                            description:
-                                                'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
-                                                    .tr,
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                      ),
-                                      child: Text(
-                                        homedata!
-                                            .recommendeditems![index].itemQty!
-                                            .toString(),
-                                        style: TextStyle(fontSize: 10.sp),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                        onTap: () async {
-                                          if (homedata!.recommendeditems![index]
-                                                      .hasVariation ==
-                                                  "1" ||
-                                              homedata!.recommendeditems![index]
-                                                      .addons!.length >
-                                                  0) {
-                                            cart = await Get.to(() =>
-                                                showvariation(homedata!
-                                                    .recommendeditems![index]));
-                                            if (cart == 1) {
-                                              setState(() {
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .itemQty = int.parse(
-                                                        homedata!
-                                                            .recommendeditems![
-                                                                index]
-                                                            .itemQty!
-                                                            .toString()) +
-                                                    1;
-                                              });
-                                            }
-                                          } else {
-                                            addtocart(
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .id,
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .itemName,
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .imageName,
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .itemType,
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .tax,
-                                                homedata!
-                                                    .recommendeditems![index]
-                                                    .price);
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.add,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0.2.h,
-                      )
-                    ],
-                  )
-                ])),
-          ),
+                ));
+          },
         ),
       ),
+      // SizedBox(
+      //   height: 33.h,
+      //   child: ListView.builder(
+      //     padding: EdgeInsets.only(
+      //       right: 3.w,
+      //     ),
+      //     scrollDirection: Axis.horizontal,
+      //     itemCount: homedata!.recommendeditems!.length,
+      //     itemBuilder: (context, index) => GestureDetector(
+      //       onTap: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //               builder: (context) =>
+      //                   Product(homedata!.recommendeditems![index].id)),
+      //         );
+      //       },
+      //       child: Container(
+      //           decoration: BoxDecoration(
+      //               borderRadius: BorderRadius.circular(7),
+      //               border: Border.all(width: 0.8.sp, color: Colors.grey)),
+      //           margin: EdgeInsets.only(
+      //             top: 1.h,
+      //             left: 3.5.w,
+      //           ),
+      //           height: 32.h,
+      //           width: 45.w,
+      //           child: Column(children: [
+      //             Stack(
+      //               children: [
+      //                 Container(
+      //                   height: 20.h,
+      //                   width: 46.w,
+      //                   decoration: BoxDecoration(
+      //                       borderRadius: const BorderRadius.only(
+      //                           topLeft: Radius.circular(5),
+      //                           topRight: Radius.circular(5))),
+      //                   child: ClipRRect(
+      //                     borderRadius: const BorderRadius.only(
+      //                         topLeft: Radius.circular(5),
+      //                         topRight: Radius.circular(5)),
+      //                     child: Image.network(
+      //                       homedata!.recommendeditems![index].imageUrl
+      //                           .toString(),
+      //                       fit: BoxFit.contain,
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 if (homedata!.recommendeditems![index].hasVariation ==
+      //                     "0") ...[
+      //                   if (homedata!.recommendeditems![index].availableQty ==
+      //                           "" ||
+      //                       int.parse(homedata!
+      //                               .recommendeditems![index].availableQty
+      //                               .toString()) <=
+      //                           0) ...[
+      //                     Positioned(
+      //                       child: Container(
+      //                         alignment: Alignment.center,
+      //                         height: 20.h,
+      //                         width: 46.w,
+      //                         color: Colors.black38,
+      //                         child: Text(
+      //                           'Out_of_Stock'.tr,
+      //                           style: TextStyle(
+      //                             fontSize: 15.sp,
+      //                             color: Colors.white,
+      //                             fontFamily: 'poppins_semibold',
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ]
+      //                 ],
+      //                 if (is_login == "1") ...[
+      //                   Positioned(
+      //                       top: 5.0,
+      //                       right: 5.0,
+      //                       child: GestureDetector(
+      //                         onTap: () {
+      //                           if (userid == "") {
+      //                             Navigator.of(context).pushAndRemoveUntil(
+      //                                 MaterialPageRoute(
+      //                                     builder: (c) => Login()),
+      //                                 (r) => false);
+      //                           } else if (homedata!
+      //                                   .recommendeditems![index].isFavorite ==
+      //                               "0") {
+      //                             managefavarite(
+      //                                 homedata!.recommendeditems![index].id,
+      //                                 "favorite",
+      //                                 index,
+      //                                 "todayspecial");
+      //                           } else if (homedata!
+      //                                   .recommendeditems![index].isFavorite ==
+      //                               "1") {
+      //                             managefavarite(
+      //                                 homedata!.recommendeditems![index].id,
+      //                                 "unfavorite",
+      //                                 index,
+      //                                 "recommendeditems");
+      //                           }
+      //                         },
+      //                         child: Container(
+      //                             height: 6.h,
+      //                             width: 12.w,
+      //                             decoration: BoxDecoration(
+      //                               borderRadius: BorderRadius.circular(12),
+      //                               color: Colors.black26,
+      //                             ),
+      //                             child: Center(
+      //                               child: homedata!.recommendeditems![index]
+      //                                           .isFavorite ==
+      //                                       "0"
+      //                                   ? SvgPicture.asset(
+      //                                       'Assets/Icons/Favorite.svg',
+      //                                       color: Colors.white,
+      //                                     )
+      //                                   : SvgPicture.asset(
+      //                                       'Assets/Icons/Favoritedark.svg',
+      //                                       color: Colors.white,
+      //                                     ),
+      //                             )),
+      //                       )),
+      //                 ]
+      //               ],
+      //             ),
+      //             Column(
+      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //               children: [
+      //                 Padding(
+      //                   padding: EdgeInsets.only(
+      //                     left: 2.w,
+      //                     right: 2.w,
+      //                     top: 0.9.h,
+      //                   ),
+      //                   child: Row(
+      //                     children: [
+      //                       Expanded(
+      //                         child: Text(
+      //                           homedata!.recommendeditems![index].categoryInfo!
+      //                               .categoryName
+      //                               .toString(),
+      //                           overflow: TextOverflow.ellipsis,
+      //                           style: TextStyle(
+      //                             fontSize: 8.sp,
+      //                             fontFamily: 'Poppins',
+      //                             color: color.green,
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 Padding(
+      //                   padding: EdgeInsets.only(
+      //                     left: 2.w,
+      //                     right: 2.w,
+      //                     top: 0.5.h,
+      //                   ),
+      //                   child: Row(
+      //                     children: [
+      //                       Expanded(
+      //                         child: Text(
+      //                           homedata!.recommendeditems![index].itemName
+      //                               .toString(),
+      //                           overflow: TextOverflow.ellipsis,
+      //                           style: TextStyle(
+      //                             fontSize: 10.sp,
+      //                             fontFamily: 'Poppins_semibold',
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 Padding(
+      //                   padding:
+      //                       EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
+      //                   child: Row(
+      //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                     children: [
+      //                       if (homedata!
+      //                               .recommendeditems![index].hasVariation ==
+      //                           "1") ...[
+      //                         Expanded(
+      //                           child: Text(
+      //                             currency_position == "1"
+      //                                 ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}"
+      //                                 : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].variation![0].productPrice.toString()))}$currency",
+      //                             overflow: TextOverflow.ellipsis,
+      //                             maxLines: 1,
+      //                             style: TextStyle(
+      //                               fontSize: 10.sp,
+      //                               fontFamily: 'Poppins_bold',
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ] else ...[
+      //                         Expanded(
+      //                           child: Text(
+      //                             currency_position == "1"
+      //                                 ? "$currency${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}"
+      //                                 : "${numberFormat.format(double.parse(homedata!.recommendeditems![index].price.toString()))}$currency",
+      //                             overflow: TextOverflow.ellipsis,
+      //                             maxLines: 1,
+      //                             style: TextStyle(
+      //                               fontSize: 10.sp,
+      //                               fontFamily: 'Poppins_bold',
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ],
+      //                       if (homedata!.recommendeditems![index].isCart ==
+      //                           "0") ...[
+      //                         GestureDetector(
+      //                           onTap: () async {
+      //                             if (homedata!.recommendeditems![index]
+      //                                         .hasVariation ==
+      //                                     "1" ||
+      //                                 homedata!.recommendeditems![index].addons!
+      //                                     .isNotEmpty) {
+      //                               cart = await Get.to(() => showvariation(
+      //                                   homedata!.recommendeditems![index]));
+      //                               if (cart == 1) {
+      //                                 setState(() {
+      //                                   homedata!.recommendeditems![index]
+      //                                       .isCart = "1";
+      //                                   homedata!.recommendeditems![index]
+      //                                       .itemQty = int.parse(homedata!
+      //                                           .recommendeditems![index]
+      //                                           .itemQty!
+      //                                           .toString()) +
+      //                                       1;
+      //                                 });
+      //                               }
+      //                             } else {
+      //                               // if (userid == "") {
+      //                               //   Navigator.of(
+      //                               //           context)
+      //                               //       .pushAndRemoveUntil(
+      //                               //           MaterialPageRoute(
+      //                               //               builder: (c) =>
+      //                               //                   Login()),
+      //                               //           (r) =>
+      //                               //               false);
+      //                               // } else {
+      //                               addtocart(
+      //                                   homedata!.recommendeditems![index].id,
+      //                                   homedata!
+      //                                       .recommendeditems![index].itemName,
+      //                                   homedata!
+      //                                       .recommendeditems![index].imageName,
+      //                                   homedata!
+      //                                       .recommendeditems![index].itemType,
+      //                                   homedata!.recommendeditems![index].tax,
+      //                                   homedata!
+      //                                       .recommendeditems![index].price);
+      //                             }
+      //                             // }
+      //                           },
+      //                           child: Container(
+      //                               decoration: BoxDecoration(
+      //                                   borderRadius: BorderRadius.circular(4),
+      //                                   border: Border.all(color: Colors.grey)),
+      //                               height: 3.5.h,
+      //                               width: 17.w,
+      //                               child: Center(
+      //                                 child: Text(
+      //                                   'ADD'.tr,
+      //                                   style: TextStyle(
+      //                                       fontFamily: 'Poppins',
+      //                                       fontSize: 9.5.sp,
+      //                                       color: color.green),
+      //                                 ),
+      //                               )),
+      //                         ),
+      //                       ] else if (homedata!
+      //                               .recommendeditems![index].isCart ==
+      //                           "1") ...[
+      //                         Container(
+      //                           height: 3.6.h,
+      //                           width: 22.w,
+      //                           decoration: BoxDecoration(
+      //                             border: Border.all(color: Colors.grey),
+      //                             borderRadius: BorderRadius.circular(5),
+      //                           ),
+      //                           child: Row(
+      //                             mainAxisAlignment:
+      //                                 MainAxisAlignment.spaceAround,
+      //                             children: [
+      //                               GestureDetector(
+      //                                   onTap: () {
+      //                                     loader.showErroDialog(
+      //                                       description:
+      //                                           'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
+      //                                               .tr,
+      //                                     );
+      //                                   },
+      //                                   child: Icon(
+      //                                     Icons.remove,
+      //                                     color: color.green,
+      //                                     size: 16,
+      //                                   )),
+      //                               Container(
+      //                                 decoration: BoxDecoration(
+      //                                   borderRadius: BorderRadius.circular(3),
+      //                                 ),
+      //                                 child: Text(
+      //                                   homedata!
+      //                                       .recommendeditems![index].itemQty!
+      //                                       .toString(),
+      //                                   style: TextStyle(fontSize: 10.sp),
+      //                                 ),
+      //                               ),
+      //                               GestureDetector(
+      //                                   onTap: () async {
+      //                                     if (homedata!.recommendeditems![index]
+      //                                                 .hasVariation ==
+      //                                             "1" ||
+      //                                         homedata!.recommendeditems![index]
+      //                                                 .addons!.length >
+      //                                             0) {
+      //                                       cart = await Get.to(() =>
+      //                                           showvariation(homedata!
+      //                                               .recommendeditems![index]));
+      //                                       if (cart == 1) {
+      //                                         setState(() {
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .itemQty = int.parse(
+      //                                                   homedata!
+      //                                                       .recommendeditems![
+      //                                                           index]
+      //                                                       .itemQty!
+      //                                                       .toString()) +
+      //                                               1;
+      //                                         });
+      //                                       }
+      //                                     } else {
+      //                                       addtocart(
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .id,
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .itemName,
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .imageName,
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .itemType,
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .tax,
+      //                                           homedata!
+      //                                               .recommendeditems![index]
+      //                                               .price);
+      //                                     }
+      //                                   },
+      //                                   child: Icon(
+      //                                     Icons.add,
+      //                                     color: color.green,
+      //                                     size: 16,
+      //                                   )),
+      //                             ],
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 SizedBox(
+      //                   height: 0.2.h,
+      //                 )
+      //               ],
+      //             )
+      //           ])),
+      //     ),
+      //   ),
+      // ),
+
       SizedBox(
         height: 2.5.h,
       ),
@@ -1294,377 +1341,422 @@ class _HomescreenState extends State<Homescreen> {
         ],
       ),
       SizedBox(
-        // padding: EdgeInsets.only(left: 1.w, right: 4.w),
-        height: 33.h,
+        height: 250,
         child: ListView.builder(
           padding: EdgeInsets.only(
-            right: 3.w,
+            left: 3.w,
           ),
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.todayspecial!.length,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        Product(homedata!.todayspecial![index].id)),
-              );
-            },
-            child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    border: Border.all(width: 0.8.sp, color: Colors.grey)),
-                margin: EdgeInsets.only(
-                  top: 1.h,
-                  left: 3.5.w,
-                ),
-                height: 32.h,
-                width: 45.w,
-                child: Column(children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 20.h,
-                        width: 46.w,
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(5),
-                                topRight: Radius.circular(5))),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(5),
-                              topRight: Radius.circular(5)),
-                          child: Image.network(
-                            homedata!.todayspecial![index].imageUrl.toString(),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                      if (homedata!.todayspecial![index].hasVariation ==
-                          "0") ...[
-                        if (homedata!.todayspecial![index].availableQty == "" ||
-                            int.parse(homedata!
-                                    .todayspecial![index].availableQty
-                                    .toString()) <=
-                                0) ...[
-                          Positioned(
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 20.h,
-                              width: 46.w,
-                              color: Colors.black38,
-                              child: Text(
-                                'Out_of_Stock'.tr,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Colors.white,
-                                  fontFamily: 'poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ],
-                      if (is_login == "1") ...[
-                        Positioned(
-                            top: 5.0,
-                            right: 5.0,
-                            child: GestureDetector(
-                              onTap: () {
-                                if (userid == "") {
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (c) => Login()),
-                                      (r) => false);
-                                } else if (homedata!
-                                        .todayspecial![index].isFavorite ==
-                                    "0") {
-                                  managefavarite(
-                                      homedata!.todayspecial![index].id,
-                                      "favorite",
-                                      index,
-                                      "todayspecial");
-                                } else if (homedata!
-                                        .todayspecial![index].isFavorite ==
-                                    "1") {
-                                  managefavarite(
-                                      homedata!.todayspecial![index].id,
-                                      "unfavorite",
-                                      index,
-                                      "todayspecial");
-                                }
-                              },
-                              child: Container(
-                                  height: 6.h,
-                                  width: 12.w,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: Colors.black26,
-                                  ),
-                                  child: Center(
-                                    child: homedata!.todayspecial![index]
-                                                .isFavorite ==
-                                            "0"
-                                        ? SvgPicture.asset(
-                                            'Assets/Icons/Favorite.svg',
-                                            color: Colors.white,
-                                          )
-                                        : SvgPicture.asset(
-                                            'Assets/Icons/Favoritedark.svg',
-                                            color: Colors.white,
-                                          ),
-                                  )),
-                            )),
-                      ]
-                    ],
+          itemBuilder: (BuildContext context, int index) {
+            return InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(RoutesManager.productDisplay,
+                      arguments: homedata!.todayspecial![index].id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: productCard(
+                    context,
+                    homedata!.todayspecial![index].imageUrl.toString(),
+                    homedata!.todayspecial![index].itemName.toString(),
+                    homedata!.todayspecial![index].categoryInfo!.categoryName
+                        .toString(),
+                    homedata!.todayspecial![index].price.toString(),
+                    () {
+                      if (userid == "") {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (c) => Login()),
+                            (r) => false);
+                      } else if (homedata!.todayspecial![index].isFavorite ==
+                          "0") {
+                        managefavarite(homedata!.todayspecial![index].id,
+                            "favorite", index, "todayspecial");
+                      } else if (homedata!.todayspecial![index].isFavorite ==
+                          "1") {
+                        managefavarite(homedata!.todayspecial![index].id,
+                            "unfavorite", index, "todayspecial");
+                      }
+                    },
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.9.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              homedata!.todayspecial![index].categoryInfo!
-                                  .categoryName
-                                  .toString(),
-                              style: TextStyle(
-                                fontSize: 8.sp,
-                                fontFamily: 'Poppins',
-                                color: color.green,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.5.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                homedata!.todayspecial![index].itemName
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontFamily: 'Poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            if (homedata!.todayspecial![index].hasVariation ==
-                                "1") ...[
-                              SizedBox(
-                                height: 3.h,
-                                width: 18.w,
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}$currency",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ] else ...[
-                              SizedBox(
-                                height: 3.h,
-                                width: 18.w,
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}$currency",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ],
-                            if (homedata!.todayspecial![index].isCart ==
-                                "0") ...[
-                              GestureDetector(
-                                onTap: () async {
-                                  if (homedata!.todayspecial![index]
-                                              .hasVariation ==
-                                          "1" ||
-                                      homedata!.todayspecial![index].addons!
-                                          .isNotEmpty) {
-                                    cart = await Get.to(() => showvariation(
-                                        homedata!.todayspecial![index]));
-                                    if (cart == 1) {
-                                      setState(() {
-                                        homedata!.todayspecial![index].isCart =
-                                            "1";
-                                        homedata!.todayspecial![index].itemQty =
-                                            int.parse(homedata!
-                                                    .todayspecial![index]
-                                                    .itemQty!
-                                                    .toString()) +
-                                                1;
-                                      });
-                                    }
-                                  } else {
-                                    // if (userid == "") {
-                                    //   Navigator.of(
-                                    //           context)
-                                    //       .pushAndRemoveUntil(
-                                    //           MaterialPageRoute(
-                                    //               builder: (c) =>
-                                    //                   Login()),
-                                    //           (r) =>
-                                    //               false);
-                                    // } else {
-                                    addtocart(
-                                        homedata!.todayspecial![index].id,
-                                        homedata!.todayspecial![index].itemName,
-                                        homedata!
-                                            .todayspecial![index].imageName,
-                                        homedata!.todayspecial![index].itemType,
-                                        homedata!.todayspecial![index].tax,
-                                        homedata!.todayspecial![index].price);
-                                    // }
-                                  }
-                                },
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: Colors.grey)),
-                                    height: 3.5.h,
-                                    width: 17.w,
-                                    child: Center(
-                                      child: Text(
-                                        'ADD'.tr,
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 9.5.sp,
-                                            color: color.green),
-                                      ),
-                                    )),
-                              ),
-                            ] else if (homedata!.todayspecial![index].isCart ==
-                                "1") ...[
-                              Container(
-                                height: 3.6.h,
-                                width: 22.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    GestureDetector(
-                                        onTap: () {
-                                          loader.showErroDialog(
-                                            description:
-                                                'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
-                                                    .tr,
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                      ),
-                                      child: Text(
-                                        homedata!.todayspecial![index].itemQty!
-                                            .toString(),
-                                        style: TextStyle(fontSize: 10.sp),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                        onTap: () async {
-                                          if (homedata!.todayspecial![index]
-                                                      .hasVariation ==
-                                                  "1" ||
-                                              homedata!.todayspecial![index]
-                                                      .addons!.length >
-                                                  0) {
-                                            cart = await Get.to(() =>
-                                                showvariation(homedata!
-                                                    .todayspecial![index]));
-                                            if (cart == 1) {
-                                              setState(() {
-                                                homedata!.todayspecial![index]
-                                                    .itemQty = int.parse(
-                                                        homedata!
-                                                            .todayspecial![
-                                                                index]
-                                                            .itemQty!
-                                                            .toString()) +
-                                                    1;
-                                              });
-                                            }
-                                          } else {
-                                            addtocart(
-                                                homedata!
-                                                    .todayspecial![index].id,
-                                                homedata!.todayspecial![index]
-                                                    .itemName,
-                                                homedata!.todayspecial![index]
-                                                    .imageName,
-                                                homedata!.todayspecial![index]
-                                                    .itemType,
-                                                homedata!
-                                                    .todayspecial![index].tax,
-                                                homedata!.todayspecial![index]
-                                                    .price);
-                                            // addtocart(
-                                            //     index,
-                                            //     "trending");
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.add,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0.2.h,
-                      )
-                    ],
-                  )
-                ])),
-          ),
+                ));
+          },
         ),
       ),
+      // SizedBox(
+      //   // padding: EdgeInsets.only(left: 1.w, right: 4.w),
+
+      //   height: 33.h,
+      //   child: ListView.builder(
+      //     padding: EdgeInsets.only(
+      //       right: 3.w,
+      //     ),
+      //     scrollDirection: Axis.horizontal,
+      //     itemCount: homedata!.todayspecial!.length,
+      //     itemBuilder: (context, index) => GestureDetector(
+      //       onTap: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //               builder: (context) =>
+      //                   Product(homedata!.todayspecial![index].id)),
+      //         );
+      //       },
+      //       child: Container(
+      //           decoration: BoxDecoration(
+      //               borderRadius: BorderRadius.circular(7),
+      //               border: Border.all(width: 0.8.sp, color: Colors.grey)),
+      //           margin: EdgeInsets.only(
+      //             top: 1.h,
+      //             left: 3.5.w,
+      //           ),
+      //           height: 32.h,
+      //           width: 45.w,
+      //           child: Column(children: [
+      //             Stack(
+      //               children: [
+      //                 Container(
+      //                   height: 20.h,
+      //                   width: 46.w,
+      //                   decoration: BoxDecoration(
+      //                       borderRadius: const BorderRadius.only(
+      //                           topLeft: Radius.circular(5),
+      //                           topRight: Radius.circular(5))),
+      //                   child: ClipRRect(
+      //                     borderRadius: const BorderRadius.only(
+      //                         topLeft: Radius.circular(5),
+      //                         topRight: Radius.circular(5)),
+      //                     child: Image.network(
+      //                       homedata!.todayspecial![index].imageUrl.toString(),
+      //                       fit: BoxFit.contain,
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 if (homedata!.todayspecial![index].hasVariation ==
+      //                     "0") ...[
+      //                   if (homedata!.todayspecial![index].availableQty == "" ||
+      //                       int.parse(homedata!
+      //                               .todayspecial![index].availableQty
+      //                               .toString()) <=
+      //                           0) ...[
+      //                     Positioned(
+      //                       child: Container(
+      //                         alignment: Alignment.center,
+      //                         height: 20.h,
+      //                         width: 46.w,
+      //                         color: Colors.black38,
+      //                         child: Text(
+      //                           'Out_of_Stock'.tr,
+      //                           style: TextStyle(
+      //                             fontSize: 15.sp,
+      //                             color: Colors.white,
+      //                             fontFamily: 'poppins_semibold',
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ],
+      //                 ],
+      //                 if (is_login == "1") ...[
+      //                   Positioned(
+      //                       top: 5.0,
+      //                       right: 5.0,
+      //                       child: GestureDetector(
+      //                         onTap: () {
+      //                           if (userid == "") {
+      //                             Navigator.of(context).pushAndRemoveUntil(
+      //                                 MaterialPageRoute(
+      //                                     builder: (c) => Login()),
+      //                                 (r) => false);
+      //                           } else if (homedata!
+      //                                   .todayspecial![index].isFavorite ==
+      //                               "0") {
+      //                             managefavarite(
+      //                                 homedata!.todayspecial![index].id,
+      //                                 "favorite",
+      //                                 index,
+      //                                 "todayspecial");
+      //                           } else if (homedata!
+      //                                   .todayspecial![index].isFavorite ==
+      //                               "1") {
+      //                             managefavarite(
+      //                                 homedata!.todayspecial![index].id,
+      //                                 "unfavorite",
+      //                                 index,
+      //                                 "todayspecial");
+      //                           }
+      //                         },
+      //                         child: Container(
+      //                             height: 6.h,
+      //                             width: 12.w,
+      //                             decoration: BoxDecoration(
+      //                               borderRadius: BorderRadius.circular(12),
+      //                               color: Colors.black26,
+      //                             ),
+      //                             child: Center(
+      //                               child: homedata!.todayspecial![index]
+      //                                           .isFavorite ==
+      //                                       "0"
+      //                                   ? SvgPicture.asset(
+      //                                       'Assets/Icons/Favorite.svg',
+      //                                       color: Colors.white,
+      //                                     )
+      //                                   : SvgPicture.asset(
+      //                                       'Assets/Icons/Favoritedark.svg',
+      //                                       color: Colors.white,
+      //                                     ),
+      //                             )),
+      //                       )),
+      //                 ]
+      //               ],
+      //             ),
+      //             Column(
+      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //               children: [
+      //                 Padding(
+      //                   padding: EdgeInsets.only(
+      //                     left: 2.w,
+      //                     right: 2.w,
+      //                     top: 0.9.h,
+      //                   ),
+      //                   child: Row(
+      //                     children: [
+      //                       Text(
+      //                         homedata!.todayspecial![index].categoryInfo!
+      //                             .categoryName
+      //                             .toString(),
+      //                         style: TextStyle(
+      //                           fontSize: 8.sp,
+      //                           fontFamily: 'Poppins',
+      //                           color: color.green,
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 Padding(
+      //                   padding: EdgeInsets.only(
+      //                     left: 2.w,
+      //                     right: 2.w,
+      //                     top: 0.5.h,
+      //                   ),
+      //                   child: Row(
+      //                     children: [
+      //                       Expanded(
+      //                         child: Text(
+      //                           homedata!.todayspecial![index].itemName
+      //                               .toString(),
+      //                           overflow: TextOverflow.ellipsis,
+      //                           style: TextStyle(
+      //                             fontSize: 10.sp,
+      //                             fontFamily: 'Poppins_semibold',
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 Padding(
+      //                   padding:
+      //                       EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
+      //                   child: Row(
+      //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                     children: [
+      //                       if (homedata!.todayspecial![index].hasVariation ==
+      //                           "1") ...[
+      //                         SizedBox(
+      //                           height: 3.h,
+      //                           width: 18.w,
+      //                           child: Text(
+      //                             currency_position == "1"
+      //                                 ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}"
+      //                                 : "${numberFormat.format(double.parse(homedata!.todayspecial![index].variation![0].productPrice.toString()))}$currency",
+      //                             style: TextStyle(
+      //                               fontSize: 10.sp,
+      //                               fontFamily: 'Poppins_bold',
+      //                             ),
+      //                             overflow: TextOverflow.ellipsis,
+      //                             maxLines: 1,
+      //                           ),
+      //                         ),
+      //                       ] else ...[
+      //                         SizedBox(
+      //                           height: 3.h,
+      //                           width: 18.w,
+      //                           child: Text(
+      //                             currency_position == "1"
+      //                                 ? "$currency${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}"
+      //                                 : "${numberFormat.format(double.parse(homedata!.todayspecial![index].price.toString()))}$currency",
+      //                             style: TextStyle(
+      //                               fontSize: 10.sp,
+      //                               fontFamily: 'Poppins_bold',
+      //                             ),
+      //                             overflow: TextOverflow.ellipsis,
+      //                             maxLines: 1,
+      //                           ),
+      //                         ),
+      //                       ],
+      //                       if (homedata!.todayspecial![index].isCart ==
+      //                           "0") ...[
+      //                         GestureDetector(
+      //                           onTap: () async {
+      //                             if (homedata!.todayspecial![index]
+      //                                         .hasVariation ==
+      //                                     "1" ||
+      //                                 homedata!.todayspecial![index].addons!
+      //                                     .isNotEmpty) {
+      //                               cart = await Get.to(() => showvariation(
+      //                                   homedata!.todayspecial![index]));
+      //                               if (cart == 1) {
+      //                                 setState(() {
+      //                                   homedata!.todayspecial![index].isCart =
+      //                                       "1";
+      //                                   homedata!.todayspecial![index].itemQty =
+      //                                       int.parse(homedata!
+      //                                               .todayspecial![index]
+      //                                               .itemQty!
+      //                                               .toString()) +
+      //                                           1;
+      //                                 });
+      //                               }
+      //                             } else {
+      //                               // if (userid == "") {
+      //                               //   Navigator.of(
+      //                               //           context)
+      //                               //       .pushAndRemoveUntil(
+      //                               //           MaterialPageRoute(
+      //                               //               builder: (c) =>
+      //                               //                   Login()),
+      //                               //           (r) =>
+      //                               //               false);
+      //                               // } else {
+      //                               addtocart(
+      //                                   homedata!.todayspecial![index].id,
+      //                                   homedata!.todayspecial![index].itemName,
+      //                                   homedata!
+      //                                       .todayspecial![index].imageName,
+      //                                   homedata!.todayspecial![index].itemType,
+      //                                   homedata!.todayspecial![index].tax,
+      //                                   homedata!.todayspecial![index].price);
+      //                               // }
+      //                             }
+      //                           },
+      //                           child: Container(
+      //                               decoration: BoxDecoration(
+      //                                   borderRadius: BorderRadius.circular(4),
+      //                                   border: Border.all(color: Colors.grey)),
+      //                               height: 3.5.h,
+      //                               width: 17.w,
+      //                               child: Center(
+      //                                 child: Text(
+      //                                   'ADD'.tr,
+      //                                   style: TextStyle(
+      //                                       fontFamily: 'Poppins',
+      //                                       fontSize: 9.5.sp,
+      //                                       color: color.green),
+      //                                 ),
+      //                               )),
+      //                         ),
+      //                       ] else if (homedata!.todayspecial![index].isCart ==
+      //                           "1") ...[
+      //                         Container(
+      //                           height: 3.6.h,
+      //                           width: 22.w,
+      //                           decoration: BoxDecoration(
+      //                             border: Border.all(color: Colors.grey),
+      //                             borderRadius: BorderRadius.circular(5),
+      //                           ),
+      //                           child: Row(
+      //                             mainAxisAlignment:
+      //                                 MainAxisAlignment.spaceAround,
+      //                             children: [
+      //                               GestureDetector(
+      //                                   onTap: () {
+      //                                     loader.showErroDialog(
+      //                                       description:
+      //                                           'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
+      //                                               .tr,
+      //                                     );
+      //                                   },
+      //                                   child: Icon(
+      //                                     Icons.remove,
+      //                                     color: color.green,
+      //                                     size: 16,
+      //                                   )),
+      //                               Container(
+      //                                 decoration: BoxDecoration(
+      //                                   borderRadius: BorderRadius.circular(3),
+      //                                 ),
+      //                                 child: Text(
+      //                                   homedata!.todayspecial![index].itemQty!
+      //                                       .toString(),
+      //                                   style: TextStyle(fontSize: 10.sp),
+      //                                 ),
+      //                               ),
+      //                               GestureDetector(
+      //                                   onTap: () async {
+      //                                     if (homedata!.todayspecial![index]
+      //                                                 .hasVariation ==
+      //                                             "1" ||
+      //                                         homedata!.todayspecial![index]
+      //                                                 .addons!.length >
+      //                                             0) {
+      //                                       cart = await Get.to(() =>
+      //                                           showvariation(homedata!
+      //                                               .todayspecial![index]));
+      //                                       if (cart == 1) {
+      //                                         setState(() {
+      //                                           homedata!.todayspecial![index]
+      //                                               .itemQty = int.parse(
+      //                                                   homedata!
+      //                                                       .todayspecial![
+      //                                                           index]
+      //                                                       .itemQty!
+      //                                                       .toString()) +
+      //                                               1;
+      //                                         });
+      //                                       }
+      //                                     } else {
+      //                                       addtocart(
+      //                                           homedata!
+      //                                               .todayspecial![index].id,
+      //                                           homedata!.todayspecial![index]
+      //                                               .itemName,
+      //                                           homedata!.todayspecial![index]
+      //                                               .imageName,
+      //                                           homedata!.todayspecial![index]
+      //                                               .itemType,
+      //                                           homedata!
+      //                                               .todayspecial![index].tax,
+      //                                           homedata!.todayspecial![index]
+      //                                               .price);
+      //                                       // addtocart(
+      //                                       //     index,
+      //                                       //     "trending");
+      //                                     }
+      //                                   },
+      //                                   child: Icon(
+      //                                     Icons.add,
+      //                                     color: color.green,
+      //                                     size: 16,
+      //                                   )),
+      //                             ],
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ],
+      //                   ),
+      //                 ),
+      //                 SizedBox(
+      //                   height: 0.2.h,
+      //                 )
+      //               ],
+      //             )
+      //           ])),
+      //     ),
+      //   ),
+      // ),
+
       SizedBox(
         height: 2.5.h,
       ),
@@ -1750,420 +1842,437 @@ class _HomescreenState extends State<Homescreen> {
           )
         ],
       ),
-      // SizedBox(
-      //   child: ListView.builder(
-      //     padding: EdgeInsets.only(
-      //       right: 3.w,
-      //     ),
-      //     scrollDirection: Axis.horizontal,
-      //     itemCount: homedata!.trendingitems!.length,
-      //     itemBuilder: (BuildContext context, int index) {
-      //       return InkWell(
-      //           onTap: () {
-      //             Navigator.of(context).pushNamed(RoutesManager.productDisplay,
-      //                 arguments: homedata!.trendingitems![index].id);
-      //           },
-      //           child: Padding(
-      //             padding: const EdgeInsets.all(8.0),
-      //             child: productCard(
-      //               context,
-      //               homedata!.trendingitems![index].imageUrl.toString(),
-      //               homedata!.trendingitems![index].itemName.toString(),
-      //               homedata!.trendingitems![index].categoryInfo!.categoryName
-      //                   .toString(),
-      //               homedata!.trendingitems![index].price.toString(),
-      //             ),
-      //           ));
-      //     },
-      //   ),
-      // ),
       SizedBox(
-        height: 33.h,
+        height: 250,
         child: ListView.builder(
           padding: EdgeInsets.only(
-            right: 3.w,
+            left: 3.w,
           ),
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.trendingitems!.length,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        Product(homedata!.trendingitems![index].id)),
-              );
-            },
-            child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7),
-                    border: Border.all(width: 0.8.sp, color: Colors.grey)),
-                margin: EdgeInsets.only(
-                  top: 1.h,
-                  left: 3.5.w,
-                ),
-                height: 32.h,
-                width: 45.w,
-                child: Column(children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 20.h,
-                        width: 46.w,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(
-                              5,
-                            ),
-                            topRight: Radius.circular(
-                              5,
-                            ),
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(
-                              5,
-                            ),
-                            topRight: Radius.circular(
-                              5,
-                            ),
-                          ),
-                          child: Image.network(
-                            homedata!.trendingitems![index].imageUrl.toString(),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
-                      if (homedata!.trendingitems![index].hasVariation ==
-                          "0") ...[
-                        if (homedata!.trendingitems![index].availableQty ==
-                                "" ||
-                            int.parse(homedata!
-                                    .trendingitems![index].availableQty
-                                    .toString()) <=
-                                0) ...[
-                          Positioned(
-                            child: Container(
-                              alignment: Alignment.center,
-                              height: 20.h,
-                              width: 46.w,
-                              color: Colors.black38,
-                              child: Text(
-                                'Out_of_Stock'.tr,
-                                style: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Colors.white,
-                                  fontFamily: 'poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ]
-                      ],
-                      if (is_login == "1") ...[
-                        Positioned(
-                          top: 5.0,
-                          right: 5.0,
-                          child: GestureDetector(
-                            onTap: () {
-                              if (userid == "") {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(builder: (c) => Login()),
-                                    (r) => false);
-                              } else if (homedata!
-                                      .trendingitems![index].isFavorite ==
-                                  "0") {
-                                managefavarite(
-                                    homedata!.trendingitems![index].id,
-                                    "favorite",
-                                    index,
-                                    "trending");
-                              } else if (homedata!
-                                      .trendingitems![index].isFavorite ==
-                                  "1") {
-                                managefavarite(
-                                    homedata!.trendingitems![index].id,
-                                    "unfavorite",
-                                    index,
-                                    "trending");
-                              }
-                            },
-                            child: Container(
-                              height: 6.h,
-                              width: 12.w,
-                              decoration: BoxDecoration(
-                                // shape: BoxShape.values,
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.black26,
-                              ),
-                              child: Center(
-                                child: homedata!
-                                            .trendingitems![index].isFavorite ==
-                                        "0"
-                                    ? SvgPicture.asset(
-                                        'Assets/Icons/Favorite.svg',
-                                        color: Colors.white,
-                                      )
-                                    : SvgPicture.asset(
-                                        'Assets/Icons/Favoritedark.svg',
-                                        color: Colors.white,
-                                      ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ]
-                    ],
+          itemBuilder: (BuildContext context, int index) {
+            return InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(RoutesManager.productDisplay,
+                      arguments: homedata!.trendingitems![index].id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: productCard(
+                    context,
+                    homedata!.trendingitems![index].imageUrl.toString(),
+                    homedata!.trendingitems![index].itemName.toString(),
+                    homedata!.trendingitems![index].categoryInfo!.categoryName
+                        .toString(),
+                    homedata!.trendingitems![index].price.toString(),
+                    () {
+                      if (userid == "") {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (c) => Login()),
+                            (r) => false);
+                      } else if (homedata!.trendingitems![index].isFavorite ==
+                          "0") {
+                        managefavarite(homedata!.trendingitems![index].id,
+                            "favorite", index, "trending");
+                      } else if (homedata!.trendingitems![index].isFavorite ==
+                          "1") {
+                        managefavarite(homedata!.trendingitems![index].id,
+                            "unfavorite", index, "trending");
+                      }
+                    },
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.9.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              homedata!.trendingitems![index].categoryInfo!
-                                  .categoryName
-                                  .toString(),
-                              style: TextStyle(
-                                fontSize: 8.sp,
-                                fontFamily: 'Poppins',
-                                color: color.green,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 2.w,
-                          right: 2.w,
-                          top: 0.5.h,
-                        ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                homedata!.trendingitems![index].itemName
-                                    .toString(),
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontFamily: 'Poppins_semibold',
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            if (homedata!.trendingitems![index].hasVariation ==
-                                "1") ...[
-                              SizedBox(
-                                height: 3.h,
-                                width: 18.w,
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}$currency",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ] else ...[
-                              SizedBox(
-                                height: 3.h,
-                                width: 18.w,
-                                child: Text(
-                                  currency_position == "1"
-                                      ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}"
-                                      : "${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}$currency",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontFamily: 'Poppins_bold',
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ],
-                            //////
-                            if (homedata!.trendingitems![index].isCart ==
-                                "0") ...[
-                              GestureDetector(
-                                onTap: () async {
-                                  if (homedata!.trendingitems![index]
-                                              .hasVariation ==
-                                          "1" ||
-                                      homedata!.trendingitems![index].addons!
-                                          .isNotEmpty) {
-                                    cart = await Get.to(() => showvariation(
-                                        homedata!.trendingitems![index]));
-                                    if (cart == 1) {
-                                      setState(() {
-                                        homedata!.trendingitems![index].isCart =
-                                            "1";
-                                        homedata!.trendingitems![index]
-                                            .itemQty = int.parse(homedata!
-                                                .trendingitems![index].itemQty!
-                                                .toString()) +
-                                            1;
-                                      });
-                                    }
-                                  } else {
-                                    // if (userid == "") {
-                                    //   Navigator.of(
-                                    //           context)
-                                    //       .pushAndRemoveUntil(
-                                    //           MaterialPageRoute(
-                                    //               builder: (c) =>
-                                    //                   Login()),
-                                    //           (r) =>
-                                    //               false);
-                                    // } else {
-                                    addtocart(
-                                        homedata!.trendingitems![index].id,
-                                        homedata!
-                                            .trendingitems![index].itemName,
-                                        homedata!
-                                            .trendingitems![index].imageName,
-                                        homedata!
-                                            .trendingitems![index].itemType,
-                                        homedata!.trendingitems![index].tax,
-                                        homedata!.trendingitems![index].price);
-                                    //   }
-                                  }
-                                },
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: Colors.grey)),
-                                    height: 3.5.h,
-                                    width: 17.w,
-                                    child: Center(
-                                      child: Text(
-                                        'ADD'.tr,
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins_medium',
-                                            fontSize: 9.5.sp,
-                                            color: color.green),
-                                      ),
-                                    )),
-                              ),
-                            ] else if (homedata!.trendingitems![index].isCart ==
-                                "1") ...[
-                              Container(
-                                height: 3.6.h,
-                                width: 22.w,
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    GestureDetector(
-                                        onTap: () {
-                                          loader.showErroDialog(
-                                            description:
-                                                'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
-                                                    .tr,
-                                          );
-                                        },
-                                        child: Icon(
-                                          Icons.remove,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                      ),
-                                      child: Text(
-                                        homedata!.trendingitems![index].itemQty!
-                                            .toString(),
-                                        style: TextStyle(fontSize: 10.sp),
-                                      ),
-                                    ),
-                                    InkWell(
-                                        onTap: () async {
-                                          if (homedata!.trendingitems![index]
-                                                      .hasVariation ==
-                                                  "1" ||
-                                              homedata!.trendingitems![index]
-                                                      .addons!.length >
-                                                  0) {
-                                            cart = await Navigator.of(context)
-                                                .push(MaterialPageRoute(
-                                              builder: (context) =>
-                                                  showvariation(homedata!
-                                                      .trendingitems![index]),
-                                            ));
-
-                                            if (cart == 1) {
-                                              setState(() {
-                                                homedata!.trendingitems![index]
-                                                    .itemQty = int.parse(
-                                                        homedata!
-                                                            .trendingitems![
-                                                                index]
-                                                            .itemQty) +
-                                                    1;
-                                              });
-                                            }
-                                          } else {
-                                            addtocart(
-                                                homedata!
-                                                    .trendingitems![index].id,
-                                                homedata!.trendingitems![index]
-                                                    .itemName,
-                                                homedata!.trendingitems![index]
-                                                    .imageName,
-                                                homedata!.trendingitems![index]
-                                                    .itemType,
-                                                homedata!
-                                                    .trendingitems![index].tax,
-                                                homedata!.trendingitems![index]
-                                                    .price);
-                                          }
-                                        },
-                                        child: Icon(
-                                          Icons.add,
-                                          color: color.green,
-                                          size: 16,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 0.2.h,
-                      )
-                    ],
-                  )
-                ])),
-          ),
+                ));
+          },
         ),
-      ),
+      )
+      //   SizedBox(
+      //     height: 250,
+      //     child: ListView.builder(
+      //       padding: EdgeInsets.only(
+      //         right: 3.w,
+      //       ),
+      //       scrollDirection: Axis.horizontal,
+      //       itemCount: homedata!.trendingitems!.length,
+      //       itemBuilder: (context, index) => GestureDetector(
+      //         onTap: () {
+      //           Navigator.push(
+      //             context,
+      //             MaterialPageRoute(
+      //                 builder: (context) =>
+      //                     Product(homedata!.trendingitems![index].id)),
+      //           );
+      //         },
+      //         child: Container(
+      //             decoration: BoxDecoration(
+      //                 borderRadius: BorderRadius.circular(7),
+      //                 border: Border.all(width: 0.8.sp, color: Colors.grey)),
+      //             margin: EdgeInsets.only(
+      //               top: 1.h,
+      //               left: 3.5.w,
+      //             ),
+      //             height: 32.h,
+      //             width: 45.w,
+      //             child: Column(children: [
+      //               Stack(
+      //                 children: [
+      //                   Container(
+      //                     height: 20.h,
+      //                     width: 46.w,
+      //                     decoration: BoxDecoration(
+      //                       borderRadius: BorderRadius.only(
+      //                         topLeft: Radius.circular(
+      //                           5,
+      //                         ),
+      //                         topRight: Radius.circular(
+      //                           5,
+      //                         ),
+      //                       ),
+      //                     ),
+      //                     child: ClipRRect(
+      //                       borderRadius: const BorderRadius.only(
+      //                         topLeft: Radius.circular(
+      //                           5,
+      //                         ),
+      //                         topRight: Radius.circular(
+      //                           5,
+      //                         ),
+      //                       ),
+      //                       child: Image.network(
+      //                         homedata!.trendingitems![index].imageUrl.toString(),
+      //                         fit: BoxFit.contain,
+      //                       ),
+      //                     ),
+      //                   ),
+      //                   if (homedata!.trendingitems![index].hasVariation ==
+      //                       "0") ...[
+      //                     if (homedata!.trendingitems![index].availableQty ==
+      //                             "" ||
+      //                         int.parse(homedata!
+      //                                 .trendingitems![index].availableQty
+      //                                 .toString()) <=
+      //                             0) ...[
+      //                       Positioned(
+      //                         child: Container(
+      //                           alignment: Alignment.center,
+      //                           height: 20.h,
+      //                           width: 46.w,
+      //                           color: Colors.black38,
+      //                           child: Text(
+      //                             'Out_of_Stock'.tr,
+      //                             style: TextStyle(
+      //                               fontSize: 15.sp,
+      //                               color: Colors.white,
+      //                               fontFamily: 'poppins_semibold',
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ]
+      //                   ],
+      //                   if (is_login == "1") ...[
+      //                     Positioned(
+      //                       top: 5.0,
+      //                       right: 5.0,
+      //                       child: GestureDetector(
+      //                         onTap: () {
+      //                           if (userid == "") {
+      //                             Navigator.of(context).pushAndRemoveUntil(
+      //                                 MaterialPageRoute(builder: (c) => Login()),
+      //                                 (r) => false);
+      //                           } else if (homedata!
+      //                                   .trendingitems![index].isFavorite ==
+      //                               "0") {
+      //                             managefavarite(
+      //                                 homedata!.trendingitems![index].id,
+      //                                 "favorite",
+      //                                 index,
+      //                                 "trending");
+      //                           } else if (homedata!
+      //                                   .trendingitems![index].isFavorite ==
+      //                               "1") {
+      //                             managefavarite(
+      //                                 homedata!.trendingitems![index].id,
+      //                                 "unfavorite",
+      //                                 index,
+      //                                 "trending");
+      //                           }
+      //                         },
+      //                         child: Container(
+      //                           height: 6.h,
+      //                           width: 12.w,
+      //                           decoration: BoxDecoration(
+      //                             // shape: BoxShape.values,
+      //                             borderRadius: BorderRadius.circular(12),
+      //                             color: Colors.black26,
+      //                           ),
+      //                           child: Center(
+      //                             child: homedata!
+      //                                         .trendingitems![index].isFavorite ==
+      //                                     "0"
+      //                                 ? SvgPicture.asset(
+      //                                     'Assets/Icons/Favorite.svg',
+      //                                     color: Colors.white,
+      //                                   )
+      //                                 : SvgPicture.asset(
+      //                                     'Assets/Icons/Favoritedark.svg',
+      //                                     color: Colors.white,
+      //                                   ),
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ]
+      //                 ],
+      //               ),
+      //               Column(
+      //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                 children: [
+      //                   Padding(
+      //                     padding: EdgeInsets.only(
+      //                       left: 2.w,
+      //                       right: 2.w,
+      //                       top: 0.9.h,
+      //                     ),
+      //                     child: Row(
+      //                       children: [
+      //                         Text(
+      //                           homedata!.trendingitems![index].categoryInfo!
+      //                               .categoryName
+      //                               .toString(),
+      //                           style: TextStyle(
+      //                             fontSize: 8.sp,
+      //                             fontFamily: 'Poppins',
+      //                             color: color.green,
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                   Padding(
+      //                     padding: EdgeInsets.only(
+      //                       left: 2.w,
+      //                       right: 2.w,
+      //                       top: 0.5.h,
+      //                     ),
+      //                     child: Row(
+      //                       children: [
+      //                         Expanded(
+      //                           child: Text(
+      //                             homedata!.trendingitems![index].itemName
+      //                                 .toString(),
+      //                             overflow: TextOverflow.ellipsis,
+      //                             style: TextStyle(
+      //                               fontSize: 10.sp,
+      //                               fontFamily: 'Poppins_semibold',
+      //                             ),
+      //                           ),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                   Padding(
+      //                     padding:
+      //                         EdgeInsets.only(left: 2.w, right: 2.w, top: 1.h),
+      //                     child: Row(
+      //                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                       children: [
+      //                         if (homedata!.trendingitems![index].hasVariation ==
+      //                             "1") ...[
+      //                           SizedBox(
+      //                             height: 3.h,
+      //                             width: 18.w,
+      //                             child: Text(
+      //                               currency_position == "1"
+      //                                   ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}"
+      //                                   : "${numberFormat.format(double.parse(homedata!.trendingitems![index].variation![0].productPrice.toString()))}$currency",
+      //                               style: TextStyle(
+      //                                 fontSize: 10.sp,
+      //                                 fontFamily: 'Poppins_bold',
+      //                               ),
+      //                               overflow: TextOverflow.ellipsis,
+      //                               maxLines: 1,
+      //                             ),
+      //                           ),
+      //                         ] else ...[
+      //                           SizedBox(
+      //                             height: 3.h,
+      //                             width: 18.w,
+      //                             child: Text(
+      //                               currency_position == "1"
+      //                                   ? "$currency${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}"
+      //                                   : "${numberFormat.format(double.parse(homedata!.trendingitems![index].price.toString()))}$currency",
+      //                               style: TextStyle(
+      //                                 fontSize: 10.sp,
+      //                                 fontFamily: 'Poppins_bold',
+      //                               ),
+      //                               overflow: TextOverflow.ellipsis,
+      //                               maxLines: 1,
+      //                             ),
+      //                           ),
+      //                         ],
+      //                         //////
+      //                         if (homedata!.trendingitems![index].isCart ==
+      //                             "0") ...[
+      //                           GestureDetector(
+      //                             onTap: () async {
+      //                               if (homedata!.trendingitems![index]
+      //                                           .hasVariation ==
+      //                                       "1" ||
+      //                                   homedata!.trendingitems![index].addons!
+      //                                       .isNotEmpty) {
+      //                                 cart = await Get.to(() => showvariation(
+      //                                     homedata!.trendingitems![index]));
+      //                                 if (cart == 1) {
+      //                                   setState(() {
+      //                                     homedata!.trendingitems![index].isCart =
+      //                                         "1";
+      //                                     homedata!.trendingitems![index]
+      //                                         .itemQty = int.parse(homedata!
+      //                                             .trendingitems![index].itemQty!
+      //                                             .toString()) +
+      //                                         1;
+      //                                   });
+      //                                 }
+      //                               } else {
+      //                                 // if (userid == "") {
+      //                                 //   Navigator.of(
+      //                                 //           context)
+      //                                 //       .pushAndRemoveUntil(
+      //                                 //           MaterialPageRoute(
+      //                                 //               builder: (c) =>
+      //                                 //                   Login()),
+      //                                 //           (r) =>
+      //                                 //               false);
+      //                                 // } else {
+      //                                 addtocart(
+      //                                     homedata!.trendingitems![index].id,
+      //                                     homedata!
+      //                                         .trendingitems![index].itemName,
+      //                                     homedata!
+      //                                         .trendingitems![index].imageName,
+      //                                     homedata!
+      //                                         .trendingitems![index].itemType,
+      //                                     homedata!.trendingitems![index].tax,
+      //                                     homedata!.trendingitems![index].price);
+      //                                 //   }
+      //                               }
+      //                             },
+      //                             child: Container(
+      //                                 decoration: BoxDecoration(
+      //                                     borderRadius: BorderRadius.circular(4),
+      //                                     border: Border.all(color: Colors.grey)),
+      //                                 height: 3.5.h,
+      //                                 width: 17.w,
+      //                                 child: Center(
+      //                                   child: Text(
+      //                                     'ADD'.tr,
+      //                                     style: TextStyle(
+      //                                         fontFamily: 'Poppins_medium',
+      //                                         fontSize: 9.5.sp,
+      //                                         color: color.green),
+      //                                   ),
+      //                                 )),
+      //                           ),
+      //                         ] else if (homedata!.trendingitems![index].isCart ==
+      //                             "1") ...[
+      //                           Container(
+      //                             height: 3.6.h,
+      //                             width: 22.w,
+      //                             decoration: BoxDecoration(
+      //                               border: Border.all(color: Colors.grey),
+      //                               borderRadius: BorderRadius.circular(5),
+      //                             ),
+      //                             child: Row(
+      //                               mainAxisAlignment:
+      //                                   MainAxisAlignment.spaceAround,
+      //                               children: [
+      //                                 GestureDetector(
+      //                                     onTap: () {
+      //                                       loader.showErroDialog(
+      //                                         description:
+      //                                             'The_item_has_multtiple_customizations_added_Go_to_cart__to_remove_item'
+      //                                                 .tr,
+      //                                       );
+      //                                     },
+      //                                     child: Icon(
+      //                                       Icons.remove,
+      //                                       color: color.green,
+      //                                       size: 16,
+      //                                     )),
+      //                                 Container(
+      //                                   decoration: BoxDecoration(
+      //                                     borderRadius: BorderRadius.circular(3),
+      //                                   ),
+      //                                   child: Text(
+      //                                     homedata!.trendingitems![index].itemQty!
+      //                                         .toString(),
+      //                                     style: TextStyle(fontSize: 10.sp),
+      //                                   ),
+      //                                 ),
+      //                                 InkWell(
+      //                                     onTap: () async {
+      //                                       if (homedata!.trendingitems![index]
+      //                                                   .hasVariation ==
+      //                                               "1" ||
+      //                                           homedata!.trendingitems![index]
+      //                                                   .addons!.length >
+      //                                               0) {
+      //                                         cart = await Navigator.of(context)
+      //                                             .push(MaterialPageRoute(
+      //                                           builder: (context) =>
+      //                                               showvariation(homedata!
+      //                                                   .trendingitems![index]),
+      //                                         ));
+
+      //                                         if (cart == 1) {
+      //                                           setState(() {
+      //                                             homedata!.trendingitems![index]
+      //                                                 .itemQty = int.parse(
+      //                                                     homedata!
+      //                                                         .trendingitems![
+      //                                                             index]
+      //                                                         .itemQty) +
+      //                                                 1;
+      //                                           });
+      //                                         }
+      //                                       } else {
+      //                                         addtocart(
+      //                                             homedata!
+      //                                                 .trendingitems![index].id,
+      //                                             homedata!.trendingitems![index]
+      //                                                 .itemName,
+      //                                             homedata!.trendingitems![index]
+      //                                                 .imageName,
+      //                                             homedata!.trendingitems![index]
+      //                                                 .itemType,
+      //                                             homedata!
+      //                                                 .trendingitems![index].tax,
+      //                                             homedata!.trendingitems![index]
+      //                                                 .price);
+      //                                       }
+      //                                     },
+      //                                     child: Icon(
+      //                                       Icons.add,
+      //                                       color: color.green,
+      //                                       size: 16,
+      //                                     )),
+      //                               ],
+      //                             ),
+      //                           ),
+      //                         ],
+      //                       ],
+      //                     ),
+      //                   ),
+      //                   SizedBox(
+      //                     height: 0.2.h,
+      //                   )
+      //                 ],
+      //               )
+      //             ])),
+      //       ),
+      //     ),
+      //   ),
+      // ];
     ];
   }
 }
