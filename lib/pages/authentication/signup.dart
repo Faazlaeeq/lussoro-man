@@ -270,11 +270,11 @@ class _SignupState extends State<Signup> {
                             TextStyle(fontFamily: 'Poppins', fontSize: 10.sp,color: Colors.black),
                       ),
 
-                      initialCountryCode: 'PK',
-                      onCountryChanged: (value) {
-                        countrycode = value.dialCode;
-                        print(countrycode);
-                      },
+                      // initialCountryCode: 'PK',
+                      // onCountryChanged: (value) {
+                      //   countrycode = value.dialCode;
+                      //   print(countrycode);
+                      // },
 
                     ),
                   ),
