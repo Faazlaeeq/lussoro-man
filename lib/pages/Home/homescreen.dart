@@ -441,6 +441,7 @@ class _HomescreenState extends State<Homescreen> {
           height: 23.h,
           width: double.infinity,
           child: ListView.builder(
+            shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: homedata!.banners!.topbanners!.length,
             itemBuilder: (context, index) {
@@ -524,6 +525,7 @@ class _HomescreenState extends State<Homescreen> {
         padding: const EdgeInsets.symmetric(horizontal: padding3),
         height: 170,
         child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.categories!.length,
           itemBuilder: (context, index) => Container(
@@ -753,6 +755,7 @@ class _HomescreenState extends State<Homescreen> {
         margin: EdgeInsets.only(bottom: 2.h),
         height: 13.h,
         child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.banners!.bannersection3!.length,
           itemBuilder: (context, index) {
@@ -1266,6 +1269,7 @@ class _HomescreenState extends State<Homescreen> {
       SizedBox(
         height: 25.h,
         child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.banners!.bannersection2!.length,
           itemBuilder: (context, index) {
@@ -1343,6 +1347,7 @@ class _HomescreenState extends State<Homescreen> {
       SizedBox(
         height: 270,
         child: ListView.builder(
+          shrinkWrap: true,
           padding: EdgeInsets.only(
             left: 3.w,
           ),
@@ -1769,6 +1774,7 @@ class _HomescreenState extends State<Homescreen> {
         margin: EdgeInsets.only(top: 2.h),
         height: 13.h,
         child: ListView.builder(
+          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: homedata!.banners!.bannersection1!.length,
           itemBuilder: (context, index) {
@@ -1845,6 +1851,7 @@ class _HomescreenState extends State<Homescreen> {
       SizedBox(
         height: 270,
         child: ListView.builder(
+          shrinkWrap: true,
           padding: EdgeInsets.only(
             left: 3.w,
           ),

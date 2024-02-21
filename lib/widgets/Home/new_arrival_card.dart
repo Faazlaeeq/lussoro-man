@@ -45,10 +45,7 @@ Widget productCard(BuildContext context, String image, String title,
                   //       spreadRadius: 3)
                   // ]
                 ),
-                child: CachedNetworkImage(
-                  imageUrl: image,
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                )),
+                ),
             Positioned(
               top: 5,
               right: 5,
