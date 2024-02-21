@@ -318,8 +318,9 @@ class _LoginState extends State<Login> {
                   Container(
                     alignment: Alignment.topLeft,
                     margin:
-                        EdgeInsets.only(left: 4.5.w, top: 3.5.h, bottom: 1.h),
-                    child: Column(
+                        EdgeInsets.only(left: 4.5.w, top: 4.5.h, bottom: 1.h),
+                    child:
+                     Column(
                       children: [
                         Container(
                           padding: EdgeInsets.all(30),
@@ -395,7 +396,7 @@ class _LoginState extends State<Login> {
                   ] else ...[
                     Container(
                       margin:
-                          EdgeInsets.only(top: 2.5.h, left: 4.w, right: 4.w),
+                          EdgeInsets.only(top: 3.5.h, left: 4.w, right: 4.w),
                       child: Center(
                         child: TextFormField(
                           validator: (value) => Logintype == "email"
@@ -418,7 +419,7 @@ class _LoginState extends State<Login> {
                     ),
                     Container(
                       margin:
-                          EdgeInsets.only(top: 2.5.h, left: 4.w, right: 4.w),
+                          EdgeInsets.only(top: 3.5.h, left: 4.w, right: 4.w),
                       child: Center(
                         child: TextFormField(
                           validator: (value) =>
@@ -454,7 +455,7 @@ class _LoginState extends State<Login> {
                     ),
                     Container(
                       alignment: Alignment.topRight,
-                      margin: EdgeInsets.only(right: 4.w, top: 1.5.h),
+                      margin: EdgeInsets.only(right: 4.w, top: 2.5.h),
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
@@ -516,7 +517,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 1.h),
+                    padding: EdgeInsets.only(top: 2.h),
                     child: Text('OR'.tr,
                         style: TextStyle(
                           fontFamily: 'Poppins_semiBold',
