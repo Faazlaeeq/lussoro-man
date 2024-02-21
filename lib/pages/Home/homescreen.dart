@@ -262,173 +262,170 @@ class _HomescreenState extends State<Homescreen> {
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             body: FutureBuilder(
-              future: homescreenAPI(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: color.primarycolor,
+                future: homescreenAPI(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: color.primarycolor,
+                      ),
+                    );
+                  }
+                  if (homedata!.appdata!.maintenanceMode == 1) {
+                    return Text("hiiii");
+                  }
+                  return Scaffold(
+                    // appBar: AppBar(
+                    //   leadingWidth: 40,
+                    //   automaticallyImplyLeading: false,
+                    //   title: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     children: [
+                    //       Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.start,
+                    //         children: [
+                    //           if (username == "") ...[
+                    //             Text(
+                    //               'Welcome_to'.tr,
+                    //               style: TextStyle(
+                    //                   fontFamily: "Poppins", fontSize: 11.sp),
+                    //             ),
+                    //             Text(
+                    //               'ecommerce_User'.tr,
+                    //               style: TextStyle(
+                    //                   fontFamily: "Poppins_bold",
+                    //                   fontSize: 14.sp),
+                    //             ),
+                    //           ] else ...[
+                    //             Text(
+                    //               'hello'.tr,
+                    //               style: TextStyle(
+                    //                   fontFamily: "Poppins", fontSize: 11.sp),
+                    //             ),
+                    //             Text(
+                    //               username,
+                    //               style: TextStyle(
+                    //                   fontFamily: "Poppins_bold",
+                    //                   fontSize: 14.sp),
+                    //             ),
+                    //           ]
+                    //         ],
+                    //       ),
+                    //       if (username != "") ...[
+                    //         SizedBox(
+                    //             height: 50,
+                    //             width: 50,
+                    //             child: ClipRRect(
+                    //                 borderRadius: BorderRadius.circular(50),
+                    //                 child: Image.network(
+                    //                   profileimage.toString(),
+                    //                   fit: BoxFit.cover,
+                    //                 )))
+                    //       ]
+                    //     ],
+                    //   ),
+                    // ),
+                    appBar: MyAppbar(
+                      scaffoldKey: _scaffoldKey,
+                      showTrailingIcon: true,
+                      padding: padding2,
+                      actionIcon: avatar,
+                      showleading: false,
                     ),
-                  );
-                }
-                if (homedata!.appdata!.maintenanceMode == 1) {
-                  return Text("hiiii");
-                }
-                return Scaffold(
-                  // appBar: AppBar(
-                  //   leadingWidth: 40,
-                  //   automaticallyImplyLeading: false,
-                  //   title: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Column(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           if (username == "") ...[
-                  //             Text(
-                  //               'Welcome_to'.tr,
-                  //               style: TextStyle(
-                  //                   fontFamily: "Poppins", fontSize: 11.sp),
-                  //             ),
-                  //             Text(
-                  //               'ecommerce_User'.tr,
-                  //               style: TextStyle(
-                  //                   fontFamily: "Poppins_bold",
-                  //                   fontSize: 14.sp),
-                  //             ),
-                  //           ] else ...[
-                  //             Text(
-                  //               'hello'.tr,
-                  //               style: TextStyle(
-                  //                   fontFamily: "Poppins", fontSize: 11.sp),
-                  //             ),
-                  //             Text(
-                  //               username,
-                  //               style: TextStyle(
-                  //                   fontFamily: "Poppins_bold",
-                  //                   fontSize: 14.sp),
-                  //             ),
-                  //           ]
-                  //         ],
-                  //       ),
-                  //       if (username != "") ...[
-                  //         SizedBox(
-                  //             height: 50,
-                  //             width: 50,
-                  //             child: ClipRRect(
-                  //                 borderRadius: BorderRadius.circular(50),
-                  //                 child: Image.network(
-                  //                   profileimage.toString(),
-                  //                   fit: BoxFit.cover,
-                  //                 )))
-                  //       ]
-                  //     ],
-                  //   ),
-                  // ),
-                  appBar: MyAppbar(
-                    scaffoldKey: _scaffoldKey,
-                    showTrailingIcon: true,
-                    padding: padding2,
-                    actionIcon: avatar,
-                  ),
-                  key: _scaffoldKey,
-                  body: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: padding4),
-                          child: Text(
-                            'Welcome_to'.tr,
-                            style: Theme.of(context).textTheme.headlineMedium,
+                    key: _scaffoldKey,
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: padding4),
+                            child: Text(
+                              'Welcome_to'.tr,
+                              style: Theme.of(context).textTheme.headlineMedium,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: padding4,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: padding4,
+                            ),
+                            child: Text("Our Lussore Man",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(
+                                        color: MyColors.subtitleColor,
+                                        fontWeight: FontWeight.bold)),
                           ),
-                          child: Text("Our Lussore Man",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                      color: MyColors.subtitleColor,
-                                      fontWeight: FontWeight.bold)),
-                        ),
-                        Padding(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: padding3),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Search()),
-                              );
-                            },
-
-                            child: CommonWidgets.searchBarWithIconButton(
-                              context: context,
-                              onPressed: () => {
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: padding3),
+                            child: InkWell(
+                              onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => Search()),
-                                )
+                                );
                               },
+
+                              child: CommonWidgets.searchBarWithIconButton(
+                                context: context,
+                                onPressed: () => {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Search()),
+                                  )
+                                },
+                              ),
+                              // child: Row(
+                              //   children: [
+                              //     SizedBox(
+                              //       width: 3.w,
+                              //     ),
+                              //     Icon(
+                              //       Icons.search,
+                              //       size: 18.sp,
+                              //     ),
+                              //     SizedBox(
+                              //       width: 2.w,
+                              //     ),
+                              //     Text(
+                              //       'Search_Here'.tr,
+                              //       style: TextStyle(
+                              //           fontSize: 11.sp,
+                              //           fontFamily: "Poppins"),
+                              //     )
+                              //   ],
+                              // )
                             ),
-                            // child: Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 3.w,
-                            //     ),
-                            //     Icon(
-                            //       Icons.search,
-                            //       size: 18.sp,
-                            //     ),
-                            //     SizedBox(
-                            //       width: 2.w,
-                            //     ),
-                            //     Text(
-                            //       'Search_Here'.tr,
-                            //       style: TextStyle(
-                            //           fontSize: 11.sp,
-                            //           fontFamily: "Poppins"),
-                            //     )
-                            //   ],
-                            // )
                           ),
-                        ),
-                        if (homedata!.banners!.topbanners!.isNotEmpty)
-                          ...topBannerWidgets,
-                        if (homedata!.categories!.isNotEmpty)
-                          ...categoryWidgets(context),
-                        if (homedata!.trendingitems!.isNotEmpty)
-                          ...trendingWidgetList(context),
-                        if (homedata!.banners!.bannersection1!.isNotEmpty)
-                          ...bannerSectionWidgetList,
-                        if (homedata!.todayspecial!.isNotEmpty)
-                          ...todaySpecialWidgetList(context),
-                        if (homedata!.banners!.bannersection2!.isNotEmpty)
-                          ...bannerSection2WidgetList,
-                        if (homedata!.recommendeditems!.isNotEmpty)
-                          ...recommededItemWidgetList(context),
-                        if (homedata!.banners!.bannersection3!.isNotEmpty)
-                          ...bannerSection3Widgets,
-                        if (homedata!.testimonials!.isNotEmpty)
-                          ...testinomialsWidgets(context),
-                        // if (homedata!.appdata!.isAppBottomImage.toString() ==
-                        //     "1")
-                        //   ...appbottomImageWidgets(context),
-                      ],
+                          if (homedata!.banners!.topbanners!.isNotEmpty)
+                            ...topBannerWidgets,
+                          if (homedata!.categories!.isNotEmpty)
+                            ...categoryWidgets(context),
+                          if (homedata!.trendingitems!.isNotEmpty)
+                            ...trendingWidgetList(context),
+                          if (homedata!.banners!.bannersection1!.isNotEmpty)
+                            ...bannerSectionWidgetList,
+                          if (homedata!.todayspecial!.isNotEmpty)
+                            ...todaySpecialWidgetList(context),
+                          if (homedata!.banners!.bannersection2!.isNotEmpty)
+                            ...bannerSection2WidgetList,
+                          if (homedata!.recommendeditems!.isNotEmpty)
+                            ...recommededItemWidgetList(context),
+                          if (homedata!.banners!.bannersection3!.isNotEmpty)
+                            ...bannerSection3Widgets,
+                          if (homedata!.testimonials!.isNotEmpty)
+                            ...testinomialsWidgets(context),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                }),
           ),
         );
       },

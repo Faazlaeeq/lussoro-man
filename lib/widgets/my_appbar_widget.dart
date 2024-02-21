@@ -18,6 +18,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.bgColor = MyColors.secondaryColor,
     this.surfaceTintColor = MyColors.secondaryColor,
     this.shadowColor = MyColors.shadowColor,
+    this.showleading = true,
   });
 
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -33,6 +34,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Color bgColor;
   final Color surfaceTintColor;
   final Color shadowColor;
+  final bool showleading;
 
   @override
   Widget build(BuildContext context) {
@@ -43,21 +45,30 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: bgColor,
       scrolledUnderElevation: 10,
       leadingWidth: 90,
-      leading: IconButton(
-        icon: ImageIcon(
-          AssetImage(leadingIcon),
-          color: MyColors.secondaryColor,
-          size: 17,
-        ),
-        style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
-        onPressed: onpressed ??
-            () => {
-                  if (scaffoldKey.currentState!.isDrawerOpen)
-                    {scaffoldKey.currentState!.closeDrawer()}
-                  else
-                    {scaffoldKey.currentState!.openDrawer()}
-                },
+      centerTitle: true,
+      title: Image.asset(
+        "Assets/images/logo-black.png",
+        height: 40,
+        width: 40,
       ),
+      automaticallyImplyLeading: false,
+      leading: showleading
+          ? IconButton(
+              icon: ImageIcon(
+                AssetImage(leadingIcon),
+                color: MyColors.secondaryColor,
+                size: 17,
+              ),
+              style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+              onPressed: onpressed ??
+                  () => {
+                        if (scaffoldKey.currentState!.isDrawerOpen)
+                          {scaffoldKey.currentState!.closeDrawer()}
+                        else
+                          {scaffoldKey.currentState!.openDrawer()}
+                      },
+            )
+          : null,
       actions: showTrailingIcon
           ? [
               Stack(
