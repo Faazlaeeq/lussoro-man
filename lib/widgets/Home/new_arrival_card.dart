@@ -3,12 +3,12 @@ import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/theme/sizes.dart';
 import 'package:flutter_palette/flutter_palette.dart';
 import 'package:palette_generator/palette_generator.dart';
+import 'package:http/http.dart' as http;
 
 Future<Color?> getImagePalette(ImageProvider provider) async {
   final PaletteGenerator paletteGenerator =
-      await PaletteGenerator.fromImageProvider(
-    provider,
-  );
+      await PaletteGenerator.fromImageProvider(provider,
+          region: const Rect.fromLTWH(0, 0, 10, 10), size: const Size(10, 10));
 
   return paletteGenerator.lightMutedColor?.color;
 }
