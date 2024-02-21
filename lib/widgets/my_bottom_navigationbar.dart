@@ -7,10 +7,17 @@ import 'package:single_ecommerce/theme/sizes.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   const MyBottomNavigationBar(
-      {super.key, this.currentIndex = 0, this.onPressed, this.cartCount});
+      {super.key,
+      this.currentIndex = 0,
+      this.onPressed,
+      this.cartCount,
+      this.islogin,
+      this.userid});
   final int currentIndex;
   final Function(int i)? onPressed;
   final int? cartCount;
+  final String? islogin;
+  final String? userid;
   @override
   State<MyBottomNavigationBar> createState() =>
       _MyBottomNavigationBarState(currentIndex);
@@ -83,6 +90,48 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             ),
             selectedColor: MyColors.primaryColor,
           ),
+          if (widget.islogin == "1" && widget.userid != "") ...[
+            SalomonBottomBarItem(
+              icon: SizedBox(
+                height: 30,
+                width: 30,
+                child: OverflowBox(
+                  maxHeight: 40,
+                  maxWidth: 40,
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: _currentIndex == 1
+                            ? MyColors.primaryColor
+                            : Colors.transparent),
+                    child: Padding(
+                      padding: const EdgeInsets.all(padding2),
+                      child: Image.asset(
+                        _currentIndex == 1
+                            ? "Assets/Icons/favorite-white-outline.png"
+                            : "Assets/Icons/favorite-filled-black.png",
+                        alignment: Alignment.center,
+                        height: 16,
+                        width: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              title: SizedBox(
+                width: 50,
+                child: Text("Favorites",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(fontSize: 11)),
+              ),
+              selectedColor: MyColors.primaryColor,
+            )
+          ],
           SalomonBottomBarItem(
             icon: SizedBox(
               height: 30,
@@ -95,7 +144,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: _currentIndex == 1
+                      color: _currentIndex == (widget.userid != "" ? 2 : 1)
                           ? MyColors.primaryColor
                           : Colors.transparent),
                   child: Stack(
@@ -103,7 +152,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                       Padding(
                         padding: const EdgeInsets.all(padding2),
                         child: Image.asset(
-                          _currentIndex == 1
+                          _currentIndex == (widget.userid != "" ? 2 : 1)
                               ? "Assets/Icons/cart-white.png"
                               : "Assets/Icons/cart.png",
                           alignment: Alignment.center,
@@ -116,14 +165,17 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                             top: 0,
                             right: 0,
                             child: Badge(
-                              label: Text("${widget.cartCount}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                      )),
+                              label: Padding(
+                                padding: const EdgeInsets.all(2),
+                                child: Text("${widget.cartCount}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall!
+                                        .copyWith(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                        )),
+                              ),
                             ))
                     ],
                   ),
@@ -141,6 +193,48 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             ),
             selectedColor: MyColors.primaryColor,
           ),
+          if (widget.islogin == "1" && widget.userid != "") ...[
+            SalomonBottomBarItem(
+              icon: SizedBox(
+                height: 30,
+                width: 30,
+                child: OverflowBox(
+                  maxHeight: 40,
+                  maxWidth: 40,
+                  child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: _currentIndex == 3
+                            ? MyColors.primaryColor
+                            : Colors.transparent),
+                    child: Padding(
+                      padding: const EdgeInsets.all(padding2),
+                      child: Image.asset(
+                        _currentIndex == 3
+                            ? "Assets/Icons/bag.png"
+                            : "Assets/Icons/bag-filled.png",
+                        alignment: Alignment.center,
+                        height: 16,
+                        width: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              title: SizedBox(
+                width: 50,
+                child: Text("Orders",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(fontSize: 11)),
+              ),
+              selectedColor: MyColors.primaryColor,
+            ),
+          ],
           SalomonBottomBarItem(
             icon: SizedBox(
               height: 30,
@@ -153,13 +247,13 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: _currentIndex == 2
+                      color: _currentIndex == (widget.userid != "" ? 4 : 2)
                           ? MyColors.primaryColor
                           : Colors.transparent),
                   child: Padding(
                     padding: const EdgeInsets.all(padding2),
                     child: Image.asset(
-                      _currentIndex == 2
+                      _currentIndex == (widget.userid != "" ? 4 : 2)
                           ? "Assets/Icons/profile-white.png"
                           : "Assets/Icons/profile.png",
                       alignment: Alignment.center,

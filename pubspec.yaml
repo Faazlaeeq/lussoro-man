@@ -48,7 +48,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1 
   intl:
   image_picker: ^0.8.5+3
-  http: ^0.13.4
+  http: ^0.13.6
   photo_view: ^0.14.0
   flutter_phone_direct_caller: ^2.1.1
   location: 

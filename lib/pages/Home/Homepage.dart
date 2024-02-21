@@ -336,6 +336,8 @@ class _HomepageState extends State<Homepage> {
             bottomNavigationBar: Obx(() => MyBottomNavigationBar(
                   cartCount: count.cartcountnumber.value,
                   onPressed: onTapped,
+                  islogin: islogin,
+                  userid: userid,
                 )),
           ),
         ),
