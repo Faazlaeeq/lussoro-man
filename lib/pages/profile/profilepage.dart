@@ -101,7 +101,7 @@ class _ProfilepageState extends State<Profilepage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const Changepass()));
-            }, "Assets/Icons/password.png"),
+            }, "Assets/Icons/password2.png"),
         ]
       ],
       ...[
@@ -112,7 +112,9 @@ class _ProfilepageState extends State<Profilepage> {
                 ? Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (c) => Login()), (r) => false)
                 : Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Wallet()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Manage_Addresses()));
           }, "Assets/Icons/address2.png")
         ]
       ],
@@ -1088,6 +1090,7 @@ class _ProfilepageState extends State<Profilepage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Size.padding2),
               child: CommonWidgets.customListTile(
+                  haveShadow: false,
                   context: context,
                   name: 'Guest',
                   nameTheme: Theme.of(context)
@@ -1110,6 +1113,8 @@ class _ProfilepageState extends State<Profilepage> {
               child: CommonWidgets.customListTile(
                   context: context,
                   name: username,
+                  haveShadow: false,
+                  tileColor: MyColors.forgroundWhiteColor,
                   nameTheme: Theme.of(context)
                       .textTheme
                       .bodyLarge!

@@ -550,17 +550,19 @@ class _HomescreenState extends State<Homescreen> {
                       ),
                     )),
                 child: Container(
-                    height: 30,
+                    height: 40,
                     width: double.infinity,
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: MyColors.accentColor),
-                    child: Column(children: [
-                      Text(
-                        homedata!.categories![index].categoryName,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ])),
+                        color: MyColors.accentColorDark),
+                    child: Text(
+                      homedata!.categories![index].categoryName,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(color: MyColors.secondaryColor),
+                    )),
               ),
               // child: SizedBox(
               //   width: 22.5.w,
@@ -830,6 +832,7 @@ class _HomescreenState extends State<Homescreen> {
             left: 3.w,
           ),
           scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
           itemCount: homedata!.recommendeditems!.length,
           itemBuilder: (BuildContext context, int index) {
             return InkWell(

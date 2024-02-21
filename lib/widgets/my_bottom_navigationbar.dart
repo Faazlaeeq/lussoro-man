@@ -90,7 +90,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             ),
             selectedColor: MyColors.primaryColor,
           ),
-          if (widget.islogin == "1" && widget.userid != "") ...[
+          if (widget.islogin == "1" &&
+              (widget.userid != "" && widget.islogin == "1")) ...[
             SalomonBottomBarItem(
               icon: SizedBox(
                 height: 30,
@@ -144,7 +145,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: _currentIndex == (widget.userid != "" ? 2 : 1)
+                      color: _currentIndex ==
+                              ((widget.userid != "" && widget.islogin == "1")
+                                  ? 2
+                                  : 1)
                           ? MyColors.primaryColor
                           : Colors.transparent),
                   child: Stack(
@@ -152,11 +156,15 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                       Padding(
                         padding: const EdgeInsets.all(padding2),
                         child: Image.asset(
-                          _currentIndex == (widget.userid != "" ? 2 : 1)
+                          _currentIndex ==
+                                  ((widget.userid != "" &&
+                                          widget.islogin == "1")
+                                      ? 2
+                                      : 1)
                               ? "Assets/Icons/cart-white.png"
                               : "Assets/Icons/cart.png",
                           alignment: Alignment.center,
-                          height: 16,
+                          height: 18,
                           width: 18,
                         ),
                       ),
@@ -247,13 +255,19 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: _currentIndex == (widget.userid != "" ? 4 : 2)
+                      color: _currentIndex ==
+                              ((widget.userid != "" && widget.islogin == "1")
+                                  ? 4
+                                  : 2)
                           ? MyColors.primaryColor
                           : Colors.transparent),
                   child: Padding(
                     padding: const EdgeInsets.all(padding2),
                     child: Image.asset(
-                      _currentIndex == (widget.userid != "" ? 4 : 2)
+                      _currentIndex ==
+                              ((widget.userid != "" && widget.islogin == "1")
+                                  ? 4
+                                  : 2)
                           ? "Assets/Icons/profile-white.png"
                           : "Assets/Icons/profile.png",
                       alignment: Alignment.center,

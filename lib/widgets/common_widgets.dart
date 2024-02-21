@@ -75,6 +75,8 @@ class CommonWidgets {
     BoxFit? fit,
     Alignment imageAlignment = Alignment.center,
     Widget? discriptionWidget,
+    bool haveShadow = true,
+    Color tileColor = Colors.transparent,
   }) {
     return Container(
         margin: const EdgeInsets.symmetric(
@@ -83,9 +85,9 @@ class CommonWidgets {
             horizontal: horizontalPadding, vertical: verticalPadding),
         decoration: isDecoratedCard
             ? BoxDecoration(
-                color: MyColors.secondaryColor,
+                color: tileColor,
                 borderRadius: BorderRadius.circular(13),
-                boxShadow: const [MyColors.spreadedShadow],
+                boxShadow: haveShadow ? const [MyColors.spreadedShadow] : [],
               )
             : const BoxDecoration(),
         child: Row(

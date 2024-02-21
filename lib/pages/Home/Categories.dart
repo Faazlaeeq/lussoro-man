@@ -83,7 +83,6 @@ class _CategoriespageState extends State<Categoriespage> {
           ],
         ),
       ),
-      bottomNavigationBar: MyBottomNavigationBar(key: scaffoldKey),
     ));
   }
 }

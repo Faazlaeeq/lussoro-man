@@ -30,23 +30,23 @@ Widget productCard(BuildContext context, String image, String title,
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(bottom: 5),
                 decoration: BoxDecoration(
-                    color: MyColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        image,
-                      ),
+                  color: MyColors.secondaryColor,
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      image,
                     ),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: MyColors.shadowColor,
-                          blurRadius: 5,
-                          spreadRadius: 3)
-                    ]),
+                  ),
+                  // boxShadow: const [
+                  //   BoxShadow(
+                  //       color: MyColors.shadowColor,
+                  //       blurRadius: 5,
+                  //       spreadRadius: 3)
+                  // ]
+                ),
                 child: CachedNetworkImage(
                   imageUrl: image,
-                  placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 )),
             Positioned(
