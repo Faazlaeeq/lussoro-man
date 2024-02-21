@@ -395,7 +395,7 @@ class _ProductState extends State<Product> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(fontSize: 18),
+                      .copyWith(fontSize: 18,fontWeight: FontWeight.bold,fontFamily:"Poppins_medium" ),
                 )
               : Text(
                   currency_position == "1"
@@ -404,7 +404,7 @@ class _ProductState extends State<Product> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
-                      .copyWith(fontSize: 18),
+                      .copyWith(fontSize: 18,fontWeight: FontWeight.bold,fontFamily:"Poppins_medium"),
                 );
 
           return Scaffold(
@@ -1368,7 +1368,7 @@ class _ProductState extends State<Product> {
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
-                        .copyWith(fontSize: 9)),
+                        .copyWith(fontSize: 9,fontWeight: FontWeight.bold)),
                 subtitle: priceWidget,
                 trailing: ElevatedButton(
                   child: SizedBox(
@@ -1389,7 +1389,8 @@ class _ProductState extends State<Product> {
                           style: Theme.of(context)
                               .textTheme
                               .titleSmall!
-                              .copyWith(color: MyColors.secondaryColor),
+                              .copyWith(color: MyColors.secondaryColor,)
+                              
                         )
                       ],
                     ),
