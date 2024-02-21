@@ -14,6 +14,8 @@ import 'package:single_ecommerce/model/settings/changepasswordmodel.dart';
 import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
+import 'package:single_ecommerce/widgets/counter_widget.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -220,86 +222,55 @@ class _ViewcartState extends State<Viewcart> {
                   child: ListView.builder(
                     itemCount: cartdata!.data!.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(
-                          top: 1.h,
-                          left: 1.5.h,
-                          right: 1.5.h,
-                          bottom: 1.h,
-                        ),
-                        height: 15.5.h,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                              color: Colors.grey,
-                              width: 0.8.sp,
-                            )),
-                        child: Row(children: [
-                          SizedBox(
-                            width: 28.w,
-                            height: 15.5.h,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(7),
-                              child: Image.network(
-                                cartdata!.data![index].itemImage.toString(),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                right: 2.w,
-                                left: 2.w,
-                                bottom: 0.8.h,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Row(
-                                      children: [
-                                        if (cartdata!.data![index].itemType ==
-                                            "1") ...[
-                                          SizedBox(
-                                            height: 2.h,
-                                            // color: Colors.black,
-                                            child: Image.asset(
-                                              Defaulticon.vegicon,
-                                            ),
-                                          ),
-                                        ] else if (cartdata!
-                                                .data![index].itemType ==
-                                            "2") ...[
-                                          SizedBox(
-                                            height: 2.h,
-                                            // color: Colors.black,
-                                            child: Image.asset(
-                                              Defaulticon.nonvegicon,
-                                            ),
-                                          ),
-                                        ],
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                        SizedBox(
-                                          width: 42.w,
-                                          child: Text(
-                                            cartdata!.data![index].itemName
+                      return SizedBox(
+            child: Container(color:MyColors.forgroundWhiteColor,margin:EdgeInsets.symmetric(horizontal: 10,vertical:5),child:Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image:  DecorationImage(
+                          image: NetworkImage(cartdata!.data![index].itemImage.toString()),
+                          fit: BoxFit.cover)),
+                  height: 100,
+                  width: 80,
+                  // child: ClipRRect(
+                  //   borderRadius: BorderRadius.circular(20),
+                  //   child: Image.asset("assets/images/shirt-1.png",
+                  //       fit: BoxFit.fitHeight),
+                  // ),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: ListTile(
+                    isThreeLine: true,
+                    title: Text(
+                      cartdata!.data![index].itemName
                                                 .toString(),
                                             maxLines: 1,
                                             softWrap: true,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontSize: 11.sp,
-                                              fontFamily: 'Poppins_semibold',
-                                            ),
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        InkWell(
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    subtitle: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(cartdata!.data![index].variation
+                                            .toString(),
+                          maxLines: 2,
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "\$ 150",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            const Spacer(),
+                            Container(
+                              width: 80,
+                              alignment: Alignment.centerRight,
+                              child: InkWell(
                                           onTap: () {
                                             deleteitem(
                                                 cartdata!.data![index].id
@@ -313,167 +284,272 @@ class _ViewcartState extends State<Viewcart> {
                                                 : null,
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  if (cartdata!.data![index].variation ==
-                                      "") ...[
-                                    Expanded(
-                                      child: Text(
-                                        "-",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          // color: Colors.grey,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ] else ...[
-                                    Expanded(
-                                      child: Text(
-                                        cartdata!.data![index].variation
-                                            .toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          color: Colors.grey,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                  if (cartdata!.data![index].addonsName ==
-                                      "") ...[
-                                    Expanded(
-                                      child: Text(
-                                        "-",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ] else ...[
-                                    Expanded(
-                                      child: InkWell(
-                                        onTap: () {
-                                          modelsheet(
-                                              context,
-                                              cartdata!.data![index].addonsName,
-                                              cartdata!
-                                                  .data![index].addonsPrice,
-                                              currency,
-                                              currency_position);
-                                        },
-                                        child: Text(
-                                          "${'Add_ons'.tr}>>",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                            color: Colors.grey,
-                                            fontFamily: 'Poppins',
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 0),
-                                    child: Row(children: [
-                                      SizedBox(
-                                        child: Text(
-                                          currency_position == "1"
-                                              ? "$currency${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}"
-                                              : "${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}$currency",
-                                          style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontFamily: 'Poppins_semibold',
-                                          ),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Container(
-                                        height: 3.6.h,
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                4,
-                                        decoration: BoxDecoration(
-                                          border:
-                                              Border.all(color: Colors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          // color: Theme.of(context).accentColor
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            InkWell(
-                                                onTap: () {
-                                                  if (cartdata!
-                                                          .data![index].qty ==
-                                                      "1") {
-                                                    deleteitem(
-                                                      cartdata!.data![index].id,
-                                                      index,
-                                                    );
-                                                  } else {
-                                                    changeQTYAPI(
-                                                      cartdata!.data![index].id,
-                                                      "minus",
-                                                      int.parse(cartdata!
-                                                              .data![index].qty
-                                                              .toString()) -
-                                                          1,
-                                                    );
-                                                  }
-                                                },
-                                                child: Icon(
-                                                  Icons.remove,
-                                                  color: color.green,
-                                                  size: 16,
-                                                )),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(3),
-                                              ),
-                                              child: Text(
-                                                cartdata!.data![index].qty
-                                                    .toString(),
-                                                style:
-                                                    TextStyle(fontSize: 10.sp),
-                                              ),
-                                            ),
-                                            InkWell(
-                                                onTap: () {
-                                                  changeQTYAPI(
-                                                    cartdata!.data![index].id,
-                                                    "plus",
-                                                    int.parse(cartdata!
-                                                            .data![index].qty
-                                                            .toString()) +
-                                                        1,
-                                                  );
-                                                },
-                                                child: Icon(
-                                                  Icons.add,
-                                                  color: color.green,
-                                                  size: 16,
-                                                )),
-                                          ],
-                                        ),
-                                      ),
-                                    ]),
-                                  )
-                                ],
-                              ),
                             ),
-                          )
-                        ]),
-                      );
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),),
+          );
+          
+                      // Container(
+                      //   margin: EdgeInsets.only(
+                      //     top: 1.h,
+                      //     left: 1.5.h,
+                      //     right: 1.5.h,
+                      //     bottom: 1.h,
+                      //   ),
+                      //   height: 15.5.h,
+                      //   decoration: BoxDecoration(
+                      //       borderRadius: BorderRadius.circular(7),
+                      //       border: Border.all(
+                      //         color: Colors.grey,
+                      //         width: 0.8.sp,
+                      //       )),
+                      //   child: Row(children: [
+                      //     SizedBox(
+                      //       width: 28.w,
+                      //       height: 15.5.h,
+                      //       child: ClipRRect(
+                      //         borderRadius: BorderRadius.circular(7),
+                      //         child: Image.network(
+                      //           cartdata!.data![index].itemImage.toString(),
+                      //           fit: BoxFit.contain,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //       child: Padding(
+                      //         padding: EdgeInsets.only(
+                      //           right: 2.w,
+                      //           left: 2.w,
+                      //           bottom: 0.8.h,
+                      //         ),
+                      //         child: Column(
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           mainAxisAlignment:
+                      //               MainAxisAlignment.spaceBetween,
+                      //           children: [
+                      //             Expanded(
+                      //               child: Row(
+                      //                 children: [
+                      //                   if (cartdata!.data![index].itemType ==
+                      //                       "1") ...[
+                      //                     SizedBox(
+                      //                       height: 2.h,
+                      //                       // color: Colors.black,
+                      //                       child: Image.asset(
+                      //                         Defaulticon.vegicon,
+                      //                       ),
+                      //                     ),
+                      //                   ] else if (cartdata!
+                      //                           .data![index].itemType ==
+                      //                       "2") ...[
+                      //                     SizedBox(
+                      //                       height: 2.h,
+                      //                       // color: Colors.black,
+                      //                       child: Image.asset(
+                      //                         Defaulticon.nonvegicon,
+                      //                       ),
+                      //                     ),
+                      //                   ],
+                      //                   SizedBox(
+                      //                     width: 2.w,
+                      //                   ),
+                      //                   SizedBox(
+                      //                     width: 42.w,
+                      //                     child: Text(
+                      //                       cartdata!.data![index].itemName
+                      //                           .toString(),
+                      //                       maxLines: 1,
+                      //                       softWrap: true,
+                      //                       overflow: TextOverflow.ellipsis,
+                      //                       style: TextStyle(
+                      //                         fontSize: 11.sp,
+                      //                         fontFamily: 'Poppins_semibold',
+                      //                       ),
+                      //                     ),
+                      //                   ),
+                      //                   Spacer(),
+                      //                   InkWell(
+                      //                     onTap: () {
+                      //                       deleteitem(
+                      //                           cartdata!.data![index].id
+                      //                               .toString(),
+                      //                           index);
+                      //                     },
+                      //                     child: SvgPicture.asset(
+                      //                       'Assets/svgicon/delete.svg',
+                      //                       color: themenofier.isdark
+                      //                           ? Colors.white
+                      //                           : null,
+                      //                     ),
+                      //                   ),
+                      //                 ],
+                      //               ),
+                      //             ),
+                      //             if (cartdata!.data![index].variation ==
+                      //                 "") ...[
+                      //               Expanded(
+                      //                 child: Text(
+                      //                   "-",
+                      //                   overflow: TextOverflow.ellipsis,
+                      //                   style: TextStyle(
+                      //                     fontSize: 9.sp,
+                      //                     // color: Colors.grey,
+                      //                     fontFamily: 'Poppins',
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ] else ...[
+                      //               Expanded(
+                      //                 child: Text(
+                      //                   cartdata!.data![index].variation
+                      //                       .toString(),
+                      //                   overflow: TextOverflow.ellipsis,
+                      //                   style: TextStyle(
+                      //                     fontSize: 9.sp,
+                      //                     color: Colors.grey,
+                      //                     fontFamily: 'Poppins',
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //             if (cartdata!.data![index].addonsName ==
+                      //                 "") ...[
+                      //               Expanded(
+                      //                 child: Text(
+                      //                   "-",
+                      //                   overflow: TextOverflow.ellipsis,
+                      //                   style: TextStyle(
+                      //                     fontSize: 9.sp,
+                      //                     fontFamily: 'Poppins',
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ] else ...[
+                      //               Expanded(
+                      //                 child: InkWell(
+                      //                   onTap: () {
+                      //                     modelsheet(
+                      //                         context,
+                      //                         cartdata!.data![index].addonsName,
+                      //                         cartdata!
+                      //                             .data![index].addonsPrice,
+                      //                         currency,
+                      //                         currency_position);
+                      //                   },
+                      //                   child: Text(
+                      //                     "${'Add_ons'.tr}>>",
+                      //                     overflow: TextOverflow.ellipsis,
+                      //                     style: TextStyle(
+                      //                       fontSize: 9.sp,
+                      //                       color: Colors.grey,
+                      //                       fontFamily: 'Poppins',
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //             Padding(
+                      //               padding: EdgeInsets.only(top: 0),
+                      //               child: Row(children: [
+                      //                 SizedBox(
+                      //                   child: Text(
+                      //                     currency_position == "1"
+                      //                         ? "$currency${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}"
+                      //                         : "${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}$currency",
+                      //                     style: TextStyle(
+                      //                       fontSize: 12.sp,
+                      //                       fontFamily: 'Poppins_semibold',
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //                 Spacer(),
+                      //                 Container(
+                      //                   height: 3.6.h,
+                      //                   width:
+                      //                       MediaQuery.of(context).size.width /
+                      //                           4,
+                      //                   decoration: BoxDecoration(
+                      //                     border:
+                      //                         Border.all(color: Colors.grey),
+                      //                     borderRadius:
+                      //                         BorderRadius.circular(5),
+                      //                     // color: Theme.of(context).accentColor
+                      //                   ),
+                      //                   child: Row(
+                      //                     mainAxisAlignment:
+                      //                         MainAxisAlignment.spaceAround,
+                      //                     children: [
+                      //                       InkWell(
+                      //                           onTap: () {
+                      //                             if (cartdata!
+                      //                                     .data![index].qty ==
+                      //                                 "1") {
+                      //                               deleteitem(
+                      //                                 cartdata!.data![index].id,
+                      //                                 index,
+                      //                               );
+                      //                             } else {
+                      //                               changeQTYAPI(
+                      //                                 cartdata!.data![index].id,
+                      //                                 "minus",
+                      //                                 int.parse(cartdata!
+                      //                                         .data![index].qty
+                      //                                         .toString()) -
+                      //                                     1,
+                      //                               );
+                      //                             }
+                      //                           },
+                      //                           child: Icon(
+                      //                             Icons.remove,
+                      //                             color: color.green,
+                      //                             size: 16,
+                      //                           )),
+                      //                       Container(
+                      //                         decoration: BoxDecoration(
+                      //                           borderRadius:
+                      //                               BorderRadius.circular(3),
+                      //                         ),
+                      //                         child: Text(
+                      //                           cartdata!.data![index].qty
+                      //                               .toString(),
+                      //                           style:
+                      //                               TextStyle(fontSize: 10.sp),
+                      //                         ),
+                      //                       ),
+                      //                       InkWell(
+                      //                           onTap: () {
+                      //                             changeQTYAPI(
+                      //                               cartdata!.data![index].id,
+                      //                               "plus",
+                      //                               int.parse(cartdata!
+                      //                                       .data![index].qty
+                      //                                       .toString()) +
+                      //                                   1,
+                      //                             );
+                      //                           },
+                      //                           child: Icon(
+                      //                             Icons.add,
+                      //                             color: color.green,
+                      //                             size: 16,
+                      //                           )),
+                      //                     ],
+                      //                   ),
+                      //                 ),
+                      //               ]),
+                      //             )
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ]),
+                      // );
+                    
                     },
                   ),
                 ),

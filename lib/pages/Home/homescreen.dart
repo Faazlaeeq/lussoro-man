@@ -1787,20 +1787,20 @@ class _HomescreenState extends State<Homescreen> {
                       ));
                 }
               },
-              child: Container(
-                  padding: EdgeInsets.only(
-                    left: 2.w,
-                    right: 2.w,
-                  ),
-                  width: 100.w,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(7),
-                    child: Image.network(
-                      homedata!.banners!.bannersection1![index].image
-                          .toString(),
-                      fit: BoxFit.fill,
-                    ),
-                  )),
+              // child: Container(
+              //     padding: EdgeInsets.only(
+              //       left: 2.w,
+              //       right: 2.w,
+              //     ),
+              //     width: 100.w,
+              //     child: ClipRRect(
+              //       borderRadius: BorderRadius.circular(7),
+              //       child: Image.network(
+              //         homedata!.banners!.bannersection1![index].image
+              //             .toString(),
+              //         fit: BoxFit.fill,
+              //       ),
+              //     )),
             );
           },
         ),
