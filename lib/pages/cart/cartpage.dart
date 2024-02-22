@@ -15,6 +15,7 @@ import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/theme/my_colors.dart';
+import 'package:single_ecommerce/theme/sizes.dart';
 import 'package:single_ecommerce/widgets/counter_widget.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
@@ -218,17 +219,19 @@ class _ViewcartState extends State<Viewcart> {
                   automaticallyImplyLeading: false,
                 ),
                 body: Padding(
-                  padding: EdgeInsets.only(bottom: 6.5.h),
+                  padding: EdgeInsets.all(8),
                   child: ListView.builder(
                     itemCount: cartdata!.data!.length,
                     itemBuilder: (context, index) {
                       return SizedBox(
-            child: Container(color:MyColors.forgroundWhiteColor,margin:EdgeInsets.symmetric(horizontal: 10,vertical:5),child:Row(
+            child: Container(color:Color.fromARGB(255, 248, 248, 248),margin:EdgeInsets.symmetric(horizontal: 10,vertical:5),child:Row(
               children: [
                 Container(
+                  margin:EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(8),
                       image:  DecorationImage(
+
                           image: NetworkImage(cartdata!.data![index].itemImage.toString()),
                           fit: BoxFit.cover)),
                   height: 100,

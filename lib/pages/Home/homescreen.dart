@@ -457,14 +457,14 @@ class _HomescreenState extends State<Homescreen> {
                 child: GestureDetector(
                   onTap: () {
                     if (homedata!.banners!.topbanners![index].type == "2") {
-                      print(homedata!.banners!.topbanners![index].itemId);
+                      // print(homedata!.banners!.topbanners![index].itemId);
                       Get.to(() => Product(int.parse(homedata!
                           .banners!.topbanners![index].itemId
-                          .toString())));
+                          )));
                     } else if (homedata!.banners!.topbanners![index].type ==
                         "1") {
-                      Get.to(() => categories_items(
-                            homedata!.banners!.topbanners![index].catId,
+                      Get.to(() => categories_items(int.parse(
+                            homedata!.banners!.topbanners![index].catId),
                             homedata!.banners!.topbanners![index].categoryInfo!
                                 .categoryName,
                           ));
