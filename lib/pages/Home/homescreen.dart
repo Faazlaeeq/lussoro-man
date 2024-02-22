@@ -57,7 +57,7 @@ class _HomescreenState extends State<Homescreen> {
   String? profileimage;
   cartcount count = Get.put(cartcount());
   int? cart;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   homescreenmodel? homedata;
   addtocartmodel? addtocartdata;
@@ -275,65 +275,6 @@ class _HomescreenState extends State<Homescreen> {
                     return Text("hiiii");
                   }
                   return Scaffold(
-                    // appBar: AppBar(
-                    //   leadingWidth: 40,
-                    //   automaticallyImplyLeading: false,
-                    //   title: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     children: [
-                    //       Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [
-                    //           if (username == "") ...[
-                    //             Text(
-                    //               'Welcome_to'.tr,
-                    //               style: TextStyle(
-                    //                   fontFamily: "Poppins", fontSize: 11.sp),
-                    //             ),
-                    //             Text(
-                    //               'ecommerce_User'.tr,
-                    //               style: TextStyle(
-                    //                   fontFamily: "Poppins_bold",
-                    //                   fontSize: 14.sp),
-                    //             ),
-                    //           ] else ...[
-                    //             Text(
-                    //               'hello'.tr,
-                    //               style: TextStyle(
-                    //                   fontFamily: "Poppins", fontSize: 11.sp),
-                    //             ),
-                    //             Text(
-                    //               username,
-                    //               style: TextStyle(
-                    //                   fontFamily: "Poppins_bold",
-                    //                   fontSize: 14.sp),
-                    //             ),
-                    //           ]
-                    //         ],
-                    //       ),
-                    //       if (username != "") ...[
-                    //         SizedBox(
-                    //             height: 50,
-                    //             width: 50,
-                    //             child: ClipRRect(
-                    //                 borderRadius: BorderRadius.circular(50),
-                    //                 child: Image.network(
-                    //                   profileimage.toString(),
-                    //                   fit: BoxFit.cover,
-                    //                 )))
-                    //       ]
-                    //     ],
-                    //   ),
-                    // ),
-                    // appBar: MyAppbar(
-                    //   scaffoldKey: _scaffoldKey,
-                    //   showTrailingIcon: true,
-                    //   padding: padding2,
-                    //   actionIcon: avatar,
-                    //   showleading: false,
-                    // ),
-                    
-                    key: _scaffoldKey,
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
@@ -342,11 +283,10 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4,vertical: padding2),
+                                horizontal: padding4, vertical: padding2),
                             child: Text(
                               'Welcome'.tr,
-                              style:Theme.of(context).textTheme.headlineMedium,
-                              
+                              style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
                           Padding(
@@ -372,7 +312,6 @@ class _HomescreenState extends State<Homescreen> {
                                       builder: (context) => Search()),
                                 );
                               },
-
                               child: CommonWidgets.searchBarWithIconButton(
                                 context: context,
                                 onPressed: () => {
@@ -383,26 +322,6 @@ class _HomescreenState extends State<Homescreen> {
                                   )
                                 },
                               ),
-                              // child: Row(
-                              //   children: [
-                              //     SizedBox(
-                              //       width: 3.w,
-                              //     ),
-                              //     Icon(
-                              //       Icons.search,
-                              //       size: 18.sp,
-                              //     ),
-                              //     SizedBox(
-                              //       width: 2.w,
-                              //     ),
-                              //     Text(
-                              //       'Search_Here'.tr,
-                              //       style: TextStyle(
-                              //           fontSize: 11.sp,
-                              //           fontFamily: "Poppins"),
-                              //     )
-                              //   ],
-                              // )
                             ),
                           ),
                           if (homedata!.banners!.topbanners!.isNotEmpty)
@@ -458,13 +377,13 @@ class _HomescreenState extends State<Homescreen> {
                   onTap: () {
                     if (homedata!.banners!.topbanners![index].type == "2") {
                       // print(homedata!.banners!.topbanners![index].itemId);
-                      Get.to(() => Product(int.parse(homedata!
-                          .banners!.topbanners![index].itemId
-                          )));
+                      Get.to(() => Product(int.parse(
+                          homedata!.banners!.topbanners![index].itemId)));
                     } else if (homedata!.banners!.topbanners![index].type ==
                         "1") {
-                      Get.to(() => categories_items(int.parse(
-                            homedata!.banners!.topbanners![index].catId),
+                      Get.to(() => categories_items(
+                            int.parse(
+                                homedata!.banners!.topbanners![index].catId),
                             homedata!.banners!.topbanners![index].categoryInfo!
                                 .categoryName,
                           ));

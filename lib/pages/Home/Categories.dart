@@ -6,8 +6,7 @@ import 'package:single_ecommerce/model/home/homescreenmodel.dart';
 import 'package:single_ecommerce/pages/Home/categoriesinfo.dart';
 import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/theme/sizes.dart';
-import 'package:single_ecommerce/translation/locale_keys.g.dart';
-import 'package:single_ecommerce/widgets/my_bottom_navigationbar.dart';
+
 import 'package:sizer/sizer.dart';
 
 class Categoriespage extends StatefulWidget {
