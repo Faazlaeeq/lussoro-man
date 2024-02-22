@@ -268,11 +268,11 @@ class _HomepageState extends State<Homepage> {
                   title: Text(
                     'ecommerce_User'.tr,
                     style: TextStyle(
-                        fontSize: 14.sp, fontFamily: 'Poppins_semibold'),
+                        fontSize: 14.sp, fontFamily: 'Poppins_semibold',fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'Are_you_sure_to_exit_from_this_app'.tr,
-                    style: TextStyle(fontSize: 12.sp, fontFamily: 'Poppins'),
+                    style: TextStyle(fontSize: 12.sp, fontFamily: 'Poppins',fontWeight: FontWeight.bold),
                   ),
                   actions: [
                     ElevatedButton(

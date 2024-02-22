@@ -176,7 +176,7 @@ class _SignupState extends State<Signup> {
                       EdgeInsets.only(top: 50, left: 30, right: 30, bottom: 30),
                   child: Center(
                             child: Image.asset('Assets/images/logo-black.png',
-                            height: 185,)
+                            height: 120,)
                             
                           ),
                 ),
