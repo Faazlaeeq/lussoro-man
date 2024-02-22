@@ -610,6 +610,9 @@ class _ProductState extends State<Product> {
                                               .titleLarge,
                                         ),
                                       ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
