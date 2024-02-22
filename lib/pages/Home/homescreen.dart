@@ -500,6 +500,7 @@ class _HomescreenState extends State<Homescreen> {
             'Categories'.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 15.sp,
+                  fontWeight: FontWeight.bold
                 ),
           ),
           Spacer(),

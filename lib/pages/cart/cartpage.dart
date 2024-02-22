@@ -224,9 +224,9 @@ class _ViewcartState extends State<Viewcart> {
                     itemCount: cartdata!.data!.length,
                     itemBuilder: (context, index) {
                       return SizedBox(
-            child: Container(color:Color.fromARGB(255, 248, 248, 248),margin:EdgeInsets.symmetric(horizontal: 10,vertical:5),child:Row(
-              children: [
-                Container(
+               child: Container(color:Color.fromARGB(255, 248, 248, 248),margin:EdgeInsets.symmetric(horizontal: 10,vertical:5),child:Row(
+                    children: [    
+                     Container(
                   margin:EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -242,7 +242,7 @@ class _ViewcartState extends State<Viewcart> {
                   //       fit: BoxFit.fitHeight),
                   // ),
                 ),
-                Flexible(
+                    Flexible(
                   flex: 2,
                   child: ListTile(
                     isThreeLine: true,
@@ -257,72 +257,156 @@ class _ViewcartState extends State<Viewcart> {
                     subtitle: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [ if (cartdata!.data![index].variation ==
-                                      "") ...[
-                                    Expanded(
-                                      child: Text(
-                                        "",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          // color: Colors.grey,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ] else ...[
-                                    Expanded(
-                                      child: Text(
-                                        cartdata!.data![index].variation
-                                            .toString(),
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          color: Colors.grey,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                          if (cartdata!.data![index].addonsName ==
-                                      "") ...[
-                                    Expanded(
-                                      child: Text(
-                                        "",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 9.sp,
-                                          fontFamily: 'Poppins',
-                                        ),
-                                      ),
-                                    ),
-                                  ] else ...[
-                                    Expanded(
-                                      child: InkWell(
-                                        onTap: () {
-                                          modelsheet(
-                                              context,
-                                              cartdata!.data![index].addonsName,
-                                              cartdata!
-                                                  .data![index].addonsPrice,
-                                              currency,
-                                              currency_position);
-                                        },
-                                        child: Text(
-                                          "${'Add_ons'.tr}>>",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 9.sp,
-                                            color: Colors.grey,
-                                            fontFamily: 'Poppins',
+                      children: [  
+
+                        Column(
+                          children: [
+                            Row( 
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                              children: [Container(
+                                // margin: EdgeInsets.only(bottom: 3),
+                                            height: 2.6.h,
+                                            width:
+                                                MediaQuery.of(context).size.width /
+                                                    5,
+                                            decoration: BoxDecoration(
+                                              border:
+                                                  Border.all(color: Colors.white),
+                                              borderRadius:
+                                                  BorderRadius.circular(2),
+                                              // color: Theme.of(context).accentColor
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                InkWell(
+                                                    onTap: () {
+                                                      if (cartdata!
+                                                              .data![index].qty ==
+                                                          "1") {
+                                                        deleteitem(
+                                                          cartdata!.data![index].id,
+                                                          index,
+                                                        );
+                                                      } else {
+                                                        changeQTYAPI(
+                                                          cartdata!.data![index].id,
+                                                          "minus",
+                                                          int.parse(cartdata!
+                                                                  .data![index].qty
+                                                                  .toString()) -
+                                                              1,
+                                                        );
+                                                      }
+                                                    },
+                                                    child: Icon(
+                                                      Icons.remove,
+                                                      color: color.green,
+                                                      size: 16,
+                                                    )),
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(3),
+                                                  ),
+                                                  child: Text(
+                                                    cartdata!.data![index].qty
+                                                        .toString(),
+                                                    style:
+                                                        TextStyle(fontSize: 10.sp),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                    onTap: () {
+                                                      changeQTYAPI(
+                                                        cartdata!.data![index].id,
+                                                        "plus",
+                                                        int.parse(cartdata!
+                                                                .data![index].qty
+                                                                .toString()) +
+                                                            1,
+                                                      );
+                                                    },
+                                                    child: Icon(
+                                                      Icons.add,
+                                                      color: color.green,
+                                                      size: 16,
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+                               ],),
+                             
+                            Row(children: [ if (cartdata!.data![index].variation ==
+                                          "") ...[
+                                        Expanded(
+                                          child: Text(
+                                            "",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 9.sp,
+                                              // color: Colors.grey,
+                                              fontFamily: 'Poppins',
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),],],),
-                     
+                                      ] else ...[
+                                        Expanded(
+                                          child: Text(
+                                            cartdata!.data![index].variation
+                                                .toString(),
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 9.sp,
+                                              color: Colors.black,
+                                              fontFamily: 'Poppins',
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                              if (cartdata!.data![index].addonsName ==
+                                          "") ...[
+                                        Expanded(
+                                          child: Text(
+                                            "",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 9.sp,
+                                              fontFamily: 'Poppins',
+                                            ),
+                                          ),
+                                        ),
+                                      ] else ...[
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              modelsheet(
+                                                  context,
+                                                  cartdata!.data![index].addonsName,
+                                                  cartdata!
+                                                      .data![index].addonsPrice,
+                                                  currency,
+                                                  currency_position);
+                                            },
+                                            child: Text(
+                                              "${'Add_ons'.tr}>>",
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontSize: 9.sp,
+                                                color: Colors.grey,
+                                                fontFamily: 'Poppins',
+                                              ),
+                                            ),
+                                          ),
+                                        ),],],),
+                          ],
+                        ),
+                        
                         Row(
                           children: [
+                            //currency
                             SizedBox(
                               child: Text(
                                 currency_position == "1"
@@ -335,8 +419,7 @@ class _ViewcartState extends State<Viewcart> {
                               ),
                             ),
                             Spacer(),
-                            
-                           
+                            //delete
                             Container(
                               width: 80,
                               alignment: Alignment.centerRight,
@@ -355,17 +438,20 @@ class _ViewcartState extends State<Viewcart> {
                                           ),
                                         ),
                             ),
-                        
-                        
+
+                              Spacer(),
+                            
+                           ]),          
                         ],
-                        ),
-                      ],
-                    ),
+                       ),
+                      
+                    
                   ),
                 ),
               ],
-            ),),
-          );
+            ),
+          ),
+        );
           
                       // Container(
                       //   margin: EdgeInsets.only(

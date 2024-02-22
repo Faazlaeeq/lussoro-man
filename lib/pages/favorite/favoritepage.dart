@@ -183,7 +183,14 @@ class _FavoriteState extends State<Favorite> {
                       ),
                     );
                   }
-                  return StatefulBuilder(
+                  return 
+                  
+                  
+                  
+                  
+                  
+                  
+                  StatefulBuilder(
                       builder: (context, setState) => ListView.builder(
                             itemCount: favoritedata!.data!.length,
                             itemBuilder: (context, index) => Container(
