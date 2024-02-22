@@ -258,18 +258,85 @@ class _ViewcartState extends State<Viewcart> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(cartdata!.data![index].variation
+                        Row(children: [ if (cartdata!.data![index].variation ==
+                                      "") ...[
+                                    Expanded(
+                                      child: Text(
+                                        "",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 9.sp,
+                                          // color: Colors.grey,
+                                          fontFamily: 'Poppins',
+                                        ),
+                                      ),
+                                    ),
+                                  ] else ...[
+                                    Expanded(
+                                      child: Text(
+                                        cartdata!.data![index].variation
                                             .toString(),
-                          maxLines: 2,
-                          style: Theme.of(context).textTheme.labelSmall,
-                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 9.sp,
+                                          color: Colors.grey,
+                                          fontFamily: 'Poppins',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                          if (cartdata!.data![index].addonsName ==
+                                      "") ...[
+                                    Expanded(
+                                      child: Text(
+                                        "",
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 9.sp,
+                                          fontFamily: 'Poppins',
+                                        ),
+                                      ),
+                                    ),
+                                  ] else ...[
+                                    Expanded(
+                                      child: InkWell(
+                                        onTap: () {
+                                          modelsheet(
+                                              context,
+                                              cartdata!.data![index].addonsName,
+                                              cartdata!
+                                                  .data![index].addonsPrice,
+                                              currency,
+                                              currency_position);
+                                        },
+                                        child: Text(
+                                          "${'Add_ons'.tr}>>",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 9.sp,
+                                            color: Colors.grey,
+                                            fontFamily: 'Poppins',
+                                          ),
+                                        ),
+                                      ),
+                                    ),],],),
+                     
                         Row(
                           children: [
-                            Text(
-                              "\$ 150",
-                              style: Theme.of(context).textTheme.bodyMedium,
+                            SizedBox(
+                              child: Text(
+                                currency_position == "1"
+                                    ? "$currency${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}"
+                                    : "${(numberFormat.format(double.parse(cartdata!.data![index].totalPrice!.toString())))}$currency",
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontFamily: 'Poppins_semibold',
+                                ),
+                              ),
                             ),
-                            const Spacer(),
+                            Spacer(),
+                            
+                           
                             Container(
                               width: 80,
                               alignment: Alignment.centerRight,
@@ -283,12 +350,14 @@ class _ViewcartState extends State<Viewcart> {
                                           child: SvgPicture.asset(
                                             'Assets/svgicon/delete.svg',
                                             color: themenofier.isdark
-                                                ? Colors.white
+                                                ? Colors.black
                                                 : null,
                                           ),
                                         ),
                             ),
-                          ],
+                        
+                        
+                        ],
                         ),
                       ],
                     ),
