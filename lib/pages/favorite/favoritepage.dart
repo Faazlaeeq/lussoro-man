@@ -183,14 +183,7 @@ class _FavoriteState extends State<Favorite> {
                       ),
                     );
                   }
-                  return 
-                  
-                  
-                  
-                  
-                  
-                  
-                  StatefulBuilder(
+                  return StatefulBuilder(
                       builder: (context, setState) => ListView.builder(
                             itemCount: favoritedata!.data!.length,
                             itemBuilder: (context, index) => Container(
@@ -204,7 +197,7 @@ class _FavoriteState extends State<Favorite> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 border: Border.all(
-                                  color: Colors.grey,
+                                  color: Colors.transparent,
                                   width: 0.8.sp,
                                 ),
                               ),
@@ -264,7 +257,8 @@ class _FavoriteState extends State<Favorite> {
                                               favoritedata!.data![index].id);
                                         },
                                         child: Container(
-                                            height: 5.h,
+                                          alignment: Alignment.topRight,
+                                            height: 4.h,
                                             width: 8.w,
                                             padding: EdgeInsets.all(2.5.sp),
                                             margin: EdgeInsets.only(
@@ -276,6 +270,7 @@ class _FavoriteState extends State<Favorite> {
                                                   BorderRadius.circular(6),
                                               color: Colors.black26,
                                             ),
+                                            transformAlignment: Alignment.topRight,
                                             child: SvgPicture.asset(
                                               'Assets/Icons/Favoritedark.svg',
                                               color: Colors.white,
