@@ -69,7 +69,7 @@ class payloads {
 }
 
 class Homepage extends StatefulWidget {
-  int? count;
+  int count = 3;
   Homepage(this.count, {super.key});
   // const Homepage({Key? key}) : super(key: key);
 
@@ -78,8 +78,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  // GlobalKey<FormState> homekey = GlobalKey<FormState>();
-
   late StreamSubscription subscription;
   int? _selectedindex;
   bool isDeviceConnected = false;
@@ -96,14 +94,15 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  PageController pageController = PageController();
+  late PageController pageController;
 
   @override
   void initState() {
-    _selectedindex = widget.count;
-
     // getConnectivity();
     super.initState();
+    pageController = PageController(initialPage: widget.count);
+    _selectedindex = widget.count;
+
     getdata();
     FirebaseMessaging.instance;
 
@@ -177,11 +176,11 @@ class _HomepageState extends State<Homepage> {
     islogin = prefs.getString(UD_user_is_login_required);
     setState(() {
       if (islogin == "1") {
-        _selectedindex = widget.count!;
+        _selectedindex = widget.count;
         userid = (prefs.getString(UD_user_id) ?? "");
         if (widget.count == 2 || widget.count == 3 || widget.count == 0) {
           pageController.animateToPage(
-            widget.count!,
+            widget.count,
             duration: const Duration(milliseconds: 1),
             curve: Curves.ease,
           );
@@ -194,46 +193,16 @@ class _HomepageState extends State<Homepage> {
     if (userid != "") {
       setState(() {
         _selectedindex = index;
-        widget.count = index;
+        // widget.count = index;
         pageController.animateToPage(
           index,
           duration: const Duration(milliseconds: 1),
           curve: Curves.ease,
         );
       });
-    }
-    // else if (index == 1) {
-    //   print(0);
-    //   if(is_login == "1"){
-    //     if (userid == "") {
-    //       print(1);
-    //       Navigator.of(context).pushAndRemoveUntil(
-    //           MaterialPageRoute(builder: (c) => Login()), (r) => false);
-    //     }
-    //   }
-    //   else{
-    //     Navigator.of(context).pushAndRemoveUntil(
-    //         MaterialPageRoute(builder: (c) => Homepage(1)), (r) => false);
-    //   }
-    // }
-    // else if (index == 2) {
-    //   print(2);
-    //   if (userid == "") {
-    //     Navigator.of(context).pushAndRemoveUntil(
-    //         MaterialPageRoute(builder: (c) => Login()), (r) => false);
-    //   }
-    // }
-    // else if (index == 3) {
-    //   print(3);
-    //   if (userid == "") {
-    //     Navigator.of(context).pushAndRemoveUntil(
-    //         MaterialPageRoute(builder: (c) => Login()), (r) => false);
-    //   }
-    // }
-    else {
+    } else {
       setState(() {
         _selectedindex = index;
-        widget.count = index;
         pageController.animateToPage(
           index,
           duration: const Duration(milliseconds: 1),
@@ -243,22 +212,16 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  List pages = [
-    Homescreen(),
-    Favorite(),
-    Viewcart(),
-    Orderhistory(),
-    Profilepage()
-  ];
-
   @override
   Widget build(BuildContext context) {
     // connections().conect();
+
     debugPrint(
         "faaz:login state: ${islogin == "1"} userId: ${(userid != " ")}");
     debugPrint("faaz:selected index: $_selectedindex, count: ${widget.count}");
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return OverlaySupport(
+        // ignore: deprecated_member_use
         child: WillPopScope(
           onWillPop: () async {
             final value = await showDialog(
@@ -268,11 +231,16 @@ class _HomepageState extends State<Homepage> {
                   title: Text(
                     'ecommerce_User'.tr,
                     style: TextStyle(
-                        fontSize: 14.sp, fontFamily: 'Poppins_semibold',fontWeight: FontWeight.bold),
+                        fontSize: 14.sp,
+                        fontFamily: 'Poppins_semibold',
+                        fontWeight: FontWeight.bold),
                   ),
                   content: Text(
                     'Are_you_sure_to_exit_from_this_app'.tr,
-                    style: TextStyle(fontSize: 12.sp, fontFamily: 'Poppins',fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 12.sp,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold),
                   ),
                   actions: [
                     ElevatedButton(
@@ -320,6 +288,7 @@ class _HomepageState extends State<Homepage> {
           child: Scaffold(
             body: PageView(
               controller: pageController,
+              pageSnapping: true,
               physics: NeverScrollableScrollPhysics(),
               children: [
                 Homescreen(),
@@ -338,6 +307,7 @@ class _HomepageState extends State<Homepage> {
                   onPressed: onTapped,
                   islogin: islogin,
                   userid: userid,
+                  currentIndex: widget.count,
                 )),
           ),
         ),
@@ -345,129 +315,14 @@ class _HomepageState extends State<Homepage> {
     });
   }
 
-  BottomNavigationBar bottomNavigationbar(ThemeModel themenofier) {
-    return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            'Assets/Icons/Home.svg',
-            height: height.bottombaricon,
-            color: themenofier.isdark ? Colors.white : Colors.black,
-          ),
-          label: "",
-          activeIcon: SvgPicture.asset(
-            'Assets/Icons/Homedark.svg',
-            height: height.bottombaricon,
-            color: themenofier.isdark ? Colors.white : Colors.black,
-          ),
-        ),
-        if (islogin == "1" && userid != "" && userid != "") ...[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'Assets/Icons/Favorite.svg',
-              height: height.bottombaricon,
-              color: themenofier.isdark ? Colors.white : Colors.black,
-            ),
-            label: "",
-            activeIcon: SvgPicture.asset(
-              'Assets/Icons/Favoritedark.svg',
-              height: height.bottombaricon,
-              color: themenofier.isdark ? Colors.white : Colors.black,
-            ),
-          ),
-        ],
-        BottomNavigationBarItem(
-            icon: Obx(
-              () => count.cartcountnumber.value == 0
-                  ? SvgPicture.asset(
-                      'Assets/Icons/Cart.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    )
-                  : badges.Badge(
-                      // alignment: Alignment.topCenter,
-                      padding: EdgeInsets.all(5),
-                      toAnimate: false,
-                      elevation: 0,
-                      badgeColor: color.red,
-                      badgeContent: Text(
-                        count.cartcountnumber.value.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                      child: SvgPicture.asset(
-                        'Assets/Icons/Cart.svg',
-                        height: height.bottombaricon,
-                        color: themenofier.isdark ? Colors.white : Colors.black,
-                      ),
-                    ),
-            ),
-            label: "",
-            activeIcon: Obx(
-              () => count.cartcountnumber.value == 0
-                  ? SvgPicture.asset(
-                      'Assets/Icons/Cartdark.svg',
-                      height: height.bottombaricon,
-                      color: themenofier.isdark ? Colors.white : Colors.black,
-                    )
-                  : badges.Badge(
-                      padding: const EdgeInsets.all(5),
-                      toAnimate: false,
-                      elevation: 0,
-                      badgeColor: color.red,
-                      badgeContent: Text(
-                        count.cartcountnumber.value.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                      child: SvgPicture.asset(
-                        'Assets/Icons/Cartdark.svg',
-                        height: height.bottombaricon,
-                        color: themenofier.isdark ? Colors.white : Colors.black,
-                      ),
-                    ),
-            )),
-        if (islogin == "1" && userid != "" && userid != "") ...[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'Assets/Icons/Order.svg',
-              height: height.bottombaricon,
-              color: themenofier.isdark ? Colors.white : Colors.black,
-            ),
-            label: "",
-            activeIcon: SvgPicture.asset(
-              'Assets/Icons/Orderdark.svg',
-              height: height.bottombaricon,
-              color: themenofier.isdark ? Colors.white : Colors.black,
-            ),
-          ),
-        ],
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            'Assets/Icons/Profile.svg',
-            height: height.bottombaricon,
-            color: themenofier.isdark ? Colors.white : Colors.black,
-          ),
-          label: "",
-          activeIcon: SvgPicture.asset(
-            'Assets/Icons/Profiledark.svg',
-            height: height.bottombaricon,
-            color: themenofier.isdark ? Colors.white : Colors.black,
-          ),
-        ),
-      ],
-      currentIndex: _selectedindex!,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: themenofier.isdark ? Colors.black : Colors.white,
-      onTap: onTapped,
-      selectedFontSize: 1,
-      unselectedFontSize: 1,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-    );
+  @override
+  void dispose() {
+    // Dispose of the PageController to free up resources.
+    pageController.dispose();
+
+    // Cancel the StreamSubscription to free up resources.
+    subscription.cancel();
+
+    super.dispose();
   }
 }

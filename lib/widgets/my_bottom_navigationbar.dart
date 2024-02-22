@@ -8,7 +8,7 @@ import 'package:single_ecommerce/theme/sizes.dart';
 class MyBottomNavigationBar extends StatefulWidget {
   const MyBottomNavigationBar(
       {super.key,
-      this.currentIndex = 0,
+      required this.currentIndex,
       this.onPressed,
       this.cartCount,
       this.islogin,
@@ -19,16 +19,23 @@ class MyBottomNavigationBar extends StatefulWidget {
   final String? islogin;
   final String? userid;
   @override
-  State<MyBottomNavigationBar> createState() =>
-      _MyBottomNavigationBarState(currentIndex);
+  State<MyBottomNavigationBar> createState() => _MyBottomNavigationBarState();
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-  var _currentIndex = 0;
-  _MyBottomNavigationBarState(this._currentIndex);
+  late int _currentIndex;
+  _MyBottomNavigationBarState();
+
+  @override
+  void initState() {
+    _currentIndex = widget.currentIndex;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    print("faaz current index: ${widget.currentIndex} ci: $_currentIndex");
+
     return Container(
       decoration: const BoxDecoration(
           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
