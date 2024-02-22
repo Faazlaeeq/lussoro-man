@@ -1393,13 +1393,13 @@ class _ProductState extends State<Product> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Homepage(4)),
+                                  builder: (context) => Homepage(2)),
                             );
                           } else {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Homepage(3)),
+                                  builder: (context) => Homepage(1)),
                             );
                           }
                         },
