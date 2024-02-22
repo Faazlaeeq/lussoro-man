@@ -325,13 +325,14 @@ class _HomescreenState extends State<Homescreen> {
                     //     ],
                     //   ),
                     // ),
-                    appBar: MyAppbar(
-                      scaffoldKey: _scaffoldKey,
-                      showTrailingIcon: true,
-                      padding: padding2,
-                      actionIcon: avatar,
-                      showleading: false,
-                    ),
+                    // appBar: MyAppbar(
+                    //   scaffoldKey: _scaffoldKey,
+                    //   showTrailingIcon: true,
+                    //   padding: padding2,
+                    //   actionIcon: avatar,
+                    //   showleading: false,
+                    // ),
+                    
                     key: _scaffoldKey,
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -341,17 +342,18 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4),
+                                horizontal: padding4,vertical: padding2),
                             child: Text(
-                              'Welcome_to'.tr,
-                              style: Theme.of(context).textTheme.headlineMedium,
+                              'Welcome'.tr,
+                              style:Theme.of(context).textTheme.headlineMedium,
+                              
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: padding4,
                             ),
-                            child: Text("Our Lussore Man",
+                            child: Text("Our Lussoro Man",
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge!

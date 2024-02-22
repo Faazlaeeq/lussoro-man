@@ -472,7 +472,7 @@ class _ProductState extends State<Product> {
                                       },
                                       child: itemdata!.data!.isFavorite == "0"
                                           ? Image.asset(
-                                              'Assets/Icons/favorite.png',
+                                              'Assets/Icons/favorite-white-outline.png',color: Colors.black,
                                               // color: Colors.white,
                                             )
                                           : Image.asset(
@@ -780,100 +780,100 @@ class _ProductState extends State<Product> {
                                           ),
                                         ),
                                       ],
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      if (itemdata!
-                                          .relateditems!.isNotEmpty) ...[
-                                        Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Related_roducts'.tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge,
-                                          ),
-                                        ),
+                                      // SizedBox(
+                                      //   height: 2.h,
+                                      // ),
+                                      // if (itemdata!
+                                      //     .relateditems!.isNotEmpty) ...[
+                                      //   Container(
+                                      //     alignment: Alignment.centerLeft,
+                                      //     child: Text(
+                                      //       'Related_roducts'.tr,
+                                      //       style: Theme.of(context)
+                                      //           .textTheme
+                                      //           .titleLarge,
+                                      //     ),
+                                      //   ),
 
-                      SizedBox(
-        height: 270,
-        child: ListView.builder(
-          padding: EdgeInsets.only(
-            left: 3.w,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemCount: itemdata!.relateditems!.length,
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-                onTap: () {
-                  Navigator.of(context).pushNamed(RoutesManager.productDisplay,
-                      arguments: itemdata!.relateditems![index].id);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: productCard(
-                    context,
-                    itemdata!.relateditems![index].imageUrl.toString(),
-                    itemdata!.relateditems![index].itemName.toString(),
-                    itemdata!
-                        .relateditems![index].categoryInfo!.categoryName
-                        .toString(),
-                    itemdata!.relateditems![index].price.toString(),
-                    () {
+      //                                        SizedBox(
+      //                                                 height: 270,
+      //                                                 child: ListView.builder(
+      //                                                   padding: EdgeInsets.only(
+      //                                                     left: 3.w,
+      //                                                   ),
+      //                                                   scrollDirection: Axis.horizontal,
+      //                                                   itemCount: itemdata!.relateditems!.length,
+      //                                                   itemBuilder: (BuildContext context, int index) {
+      //                                                     return InkWell(
+      //                                                         onTap: () {
+      //                                                           Navigator.of(context).pushNamed(RoutesManager.productDisplay,
+      //                                                               arguments: itemdata!.relateditems![index].id);
+      //                                                         },
+      //                                                         child: Padding(
+      //                                                           padding: const EdgeInsets.all(8.0),
+      //                                                           child: productCard(
+      //                                                             context,
+      //                                                             itemdata!.relateditems![index].imageUrl.toString(),
+      //                                                             itemdata!.relateditems![index].itemName.toString(),
+      //                                                             itemdata!
+      //                                                                 .relateditems![index].categoryInfo!.categoryName
+      //                                                                 .toString(),
+      //                                                             itemdata!.relateditems![index].price.toString(),
+      //                                                             () {
             
-                                                                if (userid ==
-                                                                    "") {
-                                                                  Navigator.of(context).pushAndRemoveUntil(
-                                                                      MaterialPageRoute(
-                                                                          builder: (c) =>
-                                                                              Login()),
-                                                                      (r) =>
-                                                                          false);
-                                                                } else if (itemdata!
-                                                                        .relateditems![
-                                                                            index]
-                                                                        .isFavorite ==
-                                                                    "0") {
-                                                                  removefavarite(
-                                                                      "favorite",
-                                                                      itemdata!
-                                                                          .relateditems![
-                                                                              index]
-                                                                          .id
-                                                                          .toString());
-                                                                } else {
-                                                                  removefavarite(
-                                                                      "unfavorite",
-                                                                      itemdata!
-                                                                          .relateditems![
-                                                                              index]
-                                                                          .id
-                                                                          .toString());
-                                                                }
+      //                                                           if (userid ==
+      //                                                               "") {
+      //                                                             Navigator.of(context).pushAndRemoveUntil(
+      //                                                                 MaterialPageRoute(
+      //                                                                     builder: (c) =>
+      //                                                                         Login()),
+      //                                                                 (r) =>
+      //                                                                     false);
+      //                                                           } else if (itemdata!
+      //                                                                   .relateditems![
+      //                                                                       index]
+      //                                                                   .isFavorite ==
+      //                                                               "0") {
+      //                                                             removefavarite(
+      //                                                                 "favorite",
+      //                                                                 itemdata!
+      //                                                                     .relateditems![
+      //                                                                         index]
+      //                                                                     .id
+      //                                                                     .toString());
+      //                                                           } else {
+      //                                                             removefavarite(
+      //                                                                 "unfavorite",
+      //                                                                 itemdata!
+      //                                                                     .relateditems![
+      //                                                                         index]
+      //                                                                     .id
+      //                                                                     .toString());
+      //                                                           }
                                                               
-                      // if (userid == "") {
-                      //   Navigator.of(context).pushAndRemoveUntil(
-                      //       MaterialPageRoute(builder: (c) => Login()),
-                      //       (r) => false);
-                      // } else if (itemdata!
-                      //         .relateditems![index].isFavorite ==
-                      //     "0") {
+      //                 // if (userid == "") {
+      //                 //   Navigator.of(context).pushAndRemoveUntil(
+      //                 //       MaterialPageRoute(builder: (c) => Login()),
+      //                 //       (r) => false);
+      //                 // } else if (itemdata!
+      //                 //         .relateditems![index].isFavorite ==
+      //                 //     "0") {
 
                             
-                      //   managefavarite(itemdata!.relateditems![index].id,
-                      //       "favorite", index, "recommended");
-                      // } else if (itemdata!
-                      //         .relateditems![index].isFavorite ==
-                      //     "1") {
-                      //   managefavarite(itemdata!.relateditems![index].id,
-                      //       "unfavorite", index, "recommended");
-                      // }
-                    },
-                  ),
-                ));
-          },
-        ),
-      ),
+      //                 //   managefavarite(itemdata!.relateditems![index].id,
+      //                 //       "favorite", index, "recommended");
+      //                 // } else if (itemdata!
+      //                 //         .relateditems![index].isFavorite ==
+      //                 //     "1") {
+      //                 //   managefavarite(itemdata!.relateditems![index].id,
+      //                 //       "unfavorite", index, "recommended");
+      //                 // }
+      //               },
+      //             ),
+      //           ));
+      //     },
+      //   ),
+      // ),
 
 
                                         // SizedBox(
@@ -1351,10 +1351,10 @@ class _ProductState extends State<Product> {
                                         //     ),
                                         //   ),
                                         // ),
-                                      ],
-                                      SizedBox(
-                                        height: 80,
-                                      )
+                                      // ],
+                                      // SizedBox(
+                                      //   height: 80,
+                                      // )
                                     ],
                                   ),
                                 ],
