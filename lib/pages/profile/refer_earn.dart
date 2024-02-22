@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -51,21 +52,25 @@ class _Refer_earnState extends State<Refer_earn> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        leadingWidth: 70,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Refer_Earn'.tr,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
         ),
         centerTitle: true,
-        leadingWidth: 40,
       ),
       body: Container(
         child: Column(

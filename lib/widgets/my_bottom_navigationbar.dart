@@ -80,14 +80,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               ),
             ),
             title: SizedBox(
-              width: 50,
-              child: Text("Home",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 11)),
-            ),
+                //   width: 50,
+                //   child: Text("Home",
+                //       textAlign: TextAlign.center,
+                //       style: Theme.of(context)
+                //           .textTheme
+                //           .titleSmall!
+                //           .copyWith(fontSize: 11)),
+                ),
             selectedColor: MyColors.primaryColor,
           ),
           if (widget.islogin == "1" &&
@@ -122,14 +122,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                 ),
               ),
               title: SizedBox(
-                width: 50,
-                child: Text("Favorites",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(fontSize: 11)),
-              ),
+                  // width: 50,
+                  // // child: Text("Favorites",
+                  // //     textAlign: TextAlign.center,
+                  // //     style: Theme.of(context)
+                  // //         .textTheme
+                  // //         .titleSmall!
+                  // //         .copyWith(fontSize: 11)),
+                  ),
               selectedColor: MyColors.primaryColor,
             )
           ],
@@ -191,14 +191,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               ),
             ),
             title: SizedBox(
-              width: 50,
-              child: Text("Cart",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 11)),
-            ),
+                // width: 50,
+                // child: Text("Cart",
+                //     textAlign: TextAlign.center,
+                //     style: Theme.of(context)
+                //         .textTheme
+                //         .titleSmall!
+                //         .copyWith(fontSize: 11)),
+                ),
             selectedColor: MyColors.primaryColor,
           ),
           if (widget.islogin == "1" && widget.userid != "") ...[
@@ -232,14 +232,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                 ),
               ),
               title: SizedBox(
-                width: 50,
-                child: Text("Orders",
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(fontSize: 11)),
-              ),
+                  // width: 50,
+                  // child: Text("Orders",
+                  //     textAlign: TextAlign.center,
+                  //     style: Theme.of(context)
+                  //         .textTheme
+                  //         .titleSmall!
+                  //         .copyWith(fontSize: 11)),
+                  ),
               selectedColor: MyColors.primaryColor,
             ),
           ],
@@ -279,14 +279,14 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
               ),
             ),
             title: SizedBox(
-              width: 50,
-              child: Text("Profile",
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(fontSize: 11)),
-            ),
+                // width: 50,
+                // child: Text("Profile",
+                //     textAlign: TextAlign.center,
+                //     style: Theme.of(context)
+                //         .textTheme
+                //         .titleSmall!
+                //         .copyWith(fontSize: 11)),
+                ),
             selectedColor: MyColors.primaryColor,
           ),
         ],

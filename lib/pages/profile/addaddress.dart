@@ -13,6 +13,7 @@ import 'package:location/location.dart';
 import 'package:single_ecommerce/common%20class/engString.dart';
 import 'package:single_ecommerce/pages/Home/search.dart';
 import 'package:single_ecommerce/pages/profile/confirm%20location.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 
 import 'package:sizer/sizer.dart';
@@ -75,53 +76,57 @@ class _Add_addressState extends State<Add_address> {
 
   Future<void> getaddress(double latitude, double longitude) async {
     List<Placemark> placemark =
-    await placemarkFromCoordinates(latitude, longitude);
+        await placemarkFromCoordinates(latitude, longitude);
 
     Placemark place = placemark[0];
 
     setState(() {
       Area = place.subLocality;
       Address =
-      "${place.street}, ${place.postalCode} ${place.administrativeArea} ${place.country}";
+          "${place.street}, ${place.postalCode} ${place.administrativeArea} ${place.country}";
     });
   }
 
   static final LatLng _kMapCenter =
-  LatLng(Engstring.latitude, Engstring.longitude);
+      LatLng(Engstring.latitude, Engstring.longitude);
 
   static final CameraPosition _kInitialPosition =
-  CameraPosition(target: _kMapCenter, zoom: 16.0, tilt: 0, bearing: 0);
+      CameraPosition(target: _kMapCenter, zoom: 16.0, tilt: 0, bearing: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
+        leadingWidth: 70,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-                MaterialPageRoute(builder: (context) => Manage_Addresses()),
-              );
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
-        leadingWidth: 40,
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => Manage_Addresses()),
+            );
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: widget.isedit == "1"
             ? Text(
-          'Edit_Address'.tr,
-          textAlign: TextAlign.center,
-          style:
-          TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
-        )
+                'Edit_Address'.tr,
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
+              )
             : Text(
-          'Add_Address'.tr,
-          textAlign: TextAlign.center,
-          style:
-          TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
-        ),
+                'Add_Address'.tr,
+                textAlign: TextAlign.center,
+                style:
+                    TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
+              ),
         centerTitle: true,
       ),
       body: Column(
@@ -183,7 +188,7 @@ class _Add_addressState extends State<Add_address> {
                   showModalBottomSheet(
                     shape: RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(25.0))),
+                            BorderRadius.vertical(top: Radius.circular(25.0))),
                     isScrollControlled: true,
                     context: context,
                     builder: (context) {
@@ -313,17 +318,17 @@ class _Add_addressState extends State<Add_address> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => Confirm_location(
-                        Area.toString(),
-                        Address.toString(),
-                        Engstring.latitude,
-                        Engstring.longitude,
-                        widget.addressid,
-                        widget.area,
-                        widget.houseno.toString(),
-                        widget.address,
-                        widget.addresstype.toString(),
-                        widget.isedit,
-                      )),
+                            Area.toString(),
+                            Address.toString(),
+                            Engstring.latitude,
+                            Engstring.longitude,
+                            widget.addressid,
+                            widget.area,
+                            widget.houseno.toString(),
+                            widget.address,
+                            widget.addresstype.toString(),
+                            widget.isedit,
+                          )),
                 );
               },
               style: TextButton.styleFrom(
@@ -331,19 +336,19 @@ class _Add_addressState extends State<Add_address> {
               ),
               child: widget.isedit == "1"
                   ? Text(
-                'Edit_Address'.tr,
-                style: TextStyle(
-                    fontFamily: 'Poppins_Bold',
-                    color: Colors.white,
-                    fontSize: 12.sp),
-              )
+                      'Edit_Address'.tr,
+                      style: TextStyle(
+                          fontFamily: 'Poppins_Bold',
+                          color: Colors.white,
+                          fontSize: 12.sp),
+                    )
                   : Text(
-                'Confirmlocation'.tr,
-                style: TextStyle(
-                    fontFamily: 'Poppins_Bold',
-                    color: Colors.white,
-                    fontSize: 12.sp),
-              ),
+                      'Confirmlocation'.tr,
+                      style: TextStyle(
+                          fontFamily: 'Poppins_Bold',
+                          color: Colors.white,
+                          fontSize: 12.sp),
+                    ),
             ),
           ),
         ],
@@ -351,6 +356,3 @@ class _Add_addressState extends State<Add_address> {
     );
   }
 }
-
-
-

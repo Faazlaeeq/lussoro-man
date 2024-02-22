@@ -25,17 +25,21 @@ class _CategoriespageState extends State<Categoriespage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        leadingWidth: 40,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        leadingWidth: 70,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Categories'.tr,
           textAlign: TextAlign.center,

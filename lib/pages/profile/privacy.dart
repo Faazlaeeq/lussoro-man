@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:single_ecommerce/model/settings/privacymodel.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/config/api/api.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -35,19 +36,23 @@ class _PrivacypolicyState extends State<Privacypolicy> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        leadingWidth: 40,
+        leadingWidth: 70,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          onPressed: () {
+            Navigator.pop(
+              context,
+            );
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Privacy_Policy'.tr,
           textAlign: TextAlign.center,

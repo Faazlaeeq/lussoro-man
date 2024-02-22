@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:single_ecommerce/model/settings/changepasswordmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/height.dart';
@@ -74,14 +75,19 @@ class _ChangepassState extends State<Changepass> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        leadingWidth: 70,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Change_Password'.tr,
           textAlign: TextAlign.center,
@@ -91,7 +97,6 @@ class _ChangepassState extends State<Changepass> {
           ),
         ),
         centerTitle: true,
-        leadingWidth: 40,
       ),
       body: Form(
         child: Column(
@@ -233,22 +238,18 @@ class _ChangepassState extends State<Changepass> {
                   if (DefaultApi.environment == "sendbox") {
                     loader.showErroDialog(
                       description: LocaleKeys
-                              .This_operation_was_not_performed_due_to_demo_mode
-                          .tr,
+                          .This_operation_was_not_performed_due_to_demo_mode.tr,
                     );
                   } else {
                     if (oldpass.text.isEmpty) {
                       loader.showErroDialog(
-                          description:
-                              'Please_enter_all_details'.tr);
+                          description: 'Please_enter_all_details'.tr);
                     } else if (newpass.text.isEmpty) {
                       loader.showErroDialog(
-                          description:
-                              'Please_enter_all_details'.tr);
+                          description: 'Please_enter_all_details'.tr);
                     } else if (confirmpass.text.isEmpty) {
                       loader.showErroDialog(
-                          description:
-                              'Please_enter_all_details'.tr);
+                          description: 'Please_enter_all_details'.tr);
                     } else if (newpass.text == confirmpass.text) {
                       _Changepassword();
                     } else {

@@ -9,6 +9,7 @@ import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:single_ecommerce/utils/validator.dart/validator.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../theme/my_colors.dart';
 import 'payment.dart';
 
 class Addmoney extends StatefulWidget {
@@ -27,20 +28,24 @@ class _AddmoneyState extends State<Addmoney> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
+        leadingWidth: 70,
+        toolbarHeight: 70,
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Add_Money'.tr,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
         ),
-        leadingWidth: 40,
         centerTitle: true,
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -189,7 +194,7 @@ class _AddmoneyState extends State<Addmoney> {
                 ),
                 Text(
                   LocaleKeys
-                          .Wallet_Money_cannot_be_transferred_to_your_bank_account
+                      .Wallet_Money_cannot_be_transferred_to_your_bank_account
                       .tr,
                   style: TextStyle(
                     fontFamily: 'Poppins',

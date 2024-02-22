@@ -144,14 +144,14 @@ flutter:
   fonts:
     - family: Mont
       fonts:
-        - asset: Assets/font/Mont-ExtraLight.otf
+        - asset: Assets/font/Montserrat-Medium.ttf
         - asset: Assets/font/Mont-Heavy.otf
           weight: 700
         
     - family: Poppins
       fonts:
-        - asset: Assets/font/Mont-ExtraLight.otf
-        #  - asset: Assets/font/Poppins-Regular.ttf
+        # - asset: Assets/font/Mont-ExtraLight.otf
+        - asset: Assets/font/Poppins-Regular.ttf
         
     - family: Poppins-regular
       fonts:

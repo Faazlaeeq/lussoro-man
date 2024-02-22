@@ -32,9 +32,7 @@ class _splash_screenState extends State<splash_screen> {
     await Future.delayed(const Duration(seconds: 1));
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
-        return initscreen == 0 || initscreen == null
-            ? OnBoarding()
-            : Homepage(0);
+        return Homepage(0);
       },
     ));
   }
