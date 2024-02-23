@@ -14,6 +14,7 @@ import 'package:single_ecommerce/model/settings/getaddressmodel.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
 import 'package:single_ecommerce/pages/profile/addaddress.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/utils/validator.dart/validator.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
@@ -261,8 +262,9 @@ class _OrdersummaryState extends State<Ordersummary> {
                                   height: 14.5.h,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7),
+                                      color:Color.fromARGB(255, 248, 248, 248),
                                       border: Border.all(
-                                        color: Colors.grey,
+                                        color: Colors.transparent,
                                         width: 0.8.sp,
                                       )),
                                   child: Row(children: [
@@ -281,6 +283,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsets.only(
+                                          top: 0.5.w,
                                           right: 2.w,
                                           left: 2.w,
                                           bottom: 0.8.h,
@@ -330,7 +333,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       style: TextStyle(
-                                                        fontSize: 11.sp,
+                                                        fontSize: 12.sp,
                                                         fontFamily:
                                                             'Poppins_semibold',
                                                       ),
@@ -345,7 +348,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                                 "") ...[
                                               Expanded(
                                                 child: Text(
-                                                  "-",
+                                                  "",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
@@ -376,7 +379,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                                 "") ...[
                                               Expanded(
                                                 child: Text(
-                                                  "-",
+                                                  "",
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
@@ -448,6 +451,9 @@ class _OrdersummaryState extends State<Ordersummary> {
                                 );
                               },
                               itemCount: summarydata!.data!.length)),
+                          Divider(
+                                color: MyColors.dividerColor,
+                          ),
                       Container(
                           margin: EdgeInsets.only(top: 1.2.h),
                           padding: EdgeInsets.only(
@@ -459,9 +465,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                           height: 14.5.h,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: themenofier.isdark
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: Colors.transparent
                               ),
                               borderRadius: BorderRadius.circular(8)),
                           child: Column(children: [
@@ -592,6 +596,9 @@ class _OrdersummaryState extends State<Ordersummary> {
                               ],
                             )
                           ])),
+                          Divider(
+                                color: MyColors.dividerColor,
+                          ),
                       Container(
                         margin: EdgeInsets.only(
                           top: 2.h,
@@ -725,7 +732,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                             Container(
                               margin: EdgeInsets.only(left: 2.w, right: 2.w),
                               height: 0.8.sp,
-                              color: Colors.grey,
+                              color: MyColors.dividerColor,
                             ),
                             SizedBox(
                               height: 1.h,
@@ -737,7 +744,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                   'Total_pay'.tr,
                                   style: TextStyle(
                                       fontFamily: 'Poppins_semibold',
-                                      color: color.green,
+                                      color: color.grey,
                                       fontSize: 12.5.sp),
                                 ),
                                 Text(
@@ -746,7 +753,7 @@ class _OrdersummaryState extends State<Ordersummary> {
                                       : "${numberFormat.format(double.parse(ordertotal))}$currency",
                                   style: TextStyle(
                                       fontFamily: 'Poppins_semiBold',
-                                      color: color.green,
+                                      color: color.grey,
                                       fontSize: 12.5.sp),
                                 ),
                               ],
@@ -769,8 +776,8 @@ class _OrdersummaryState extends State<Ordersummary> {
                                         fontFamily: 'Poppins_semibold',
                                         fontSize: 13.sp),
                                   ),
-                                  InkWell(
-                                      onTap: () async {
+                                  TextButton(
+                                      onPressed: () async {
                                         if (userid == null || userid == "") {
                                           await Navigator.push(context,
                                               MaterialPageRoute(
@@ -859,23 +866,26 @@ class _OrdersummaryState extends State<Ordersummary> {
                                                     discountoffer.toString()))
                                             .toString();
                                       },
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        height: 3.5.h,
-                                        width: 18.w,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(3),
-                                            border: Border.all(
-                                                width: 1, color: Colors.grey)),
-                                        child: Text(
-                                          'Select'.tr,
-                                          style: TextStyle(
-                                              fontFamily: 'Poppins',
-                                              color: color.green,
-                                              fontSize: 10.5.sp),
-                                        ),
-                                      ))
+                                      // child: Container(
+                                      //   alignment: Alignment.center,
+                                      //   height: 3.5.h,
+                                      //   width: 18.w,
+                                      //   decoration: BoxDecoration(
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(3),
+                                      //       border: Border.all(
+                                      //           width: 1, color:MyColors.dividerColor)),
+                                        style: TextButton.styleFrom(
+                                        backgroundColor: color.primarycolor,
+                                      ),
+                                      child: Text(
+                                        'Select'.tr,
+                                        style: TextStyle(
+                                            fontFamily: 'Poppins_semibold',
+                                            color: Colors.white,
+                                            fontSize: 10.5.sp),
+                                      ),
+                                      )
                                 ],
                               ),
                             ),

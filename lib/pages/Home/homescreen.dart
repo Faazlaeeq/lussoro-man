@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
@@ -21,11 +20,9 @@ import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
 import 'package:single_ecommerce/config/api/api.dart';
-import 'package:single_ecommerce/pages/favorite/showvariation.dart';
 import 'package:single_ecommerce/pages/Home/Homepage.dart';
 import 'package:single_ecommerce/pages/Home/categoriesinfo.dart';
 import 'package:single_ecommerce/pages/Home/product.dart';
-import 'package:single_ecommerce/widgets/my_appbar_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
@@ -34,7 +31,6 @@ import 'package:get/get.dart';
 import 'Categories.dart';
 import 'search.dart';
 import 'trendingfood.dart';
-import 'package:get/get.dart' hide Trans;
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -58,7 +54,7 @@ class _HomescreenState extends State<Homescreen> {
   String? profileimage;
   cartcount count = Get.put(cartcount());
   int? cart;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   homescreenmodel? homedata;
   addtocartmodel? addtocartdata;
@@ -334,7 +330,6 @@ class _HomescreenState extends State<Homescreen> {
                     //   showleading: false,
                     // ),
 
-                    key: _scaffoldKey,
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
@@ -372,7 +367,6 @@ class _HomescreenState extends State<Homescreen> {
                                       builder: (context) => Search()),
                                 );
                               },
-
                               child: CommonWidgets.searchBarWithIconButton(
                                 context: context,
                                 onPressed: () => {
@@ -383,26 +377,6 @@ class _HomescreenState extends State<Homescreen> {
                                   )
                                 },
                               ),
-                              // child: Row(
-                              //   children: [
-                              //     SizedBox(
-                              //       width: 3.w,
-                              //     ),
-                              //     Icon(
-                              //       Icons.search,
-                              //       size: 18.sp,
-                              //     ),
-                              //     SizedBox(
-                              //       width: 2.w,
-                              //     ),
-                              //     Text(
-                              //       'Search_Here'.tr,
-                              //       style: TextStyle(
-                              //           fontSize: 11.sp,
-                              //           fontFamily: "Poppins"),
-                              //     )
-                              //   ],
-                              // )
                             ),
                           ),
                           if (homedata!.banners!.topbanners!.isNotEmpty)
@@ -458,6 +432,8 @@ class _HomescreenState extends State<Homescreen> {
                   onTap: () {
                     if (homedata!.banners!.topbanners![index].type == "2") {
                       // print(homedata!.banners!.topbanners![index].itemId);
+                      Get.to(() => Product(int.parse(
+                          homedata!.banners!.topbanners![index].itemId)));
                       Get.to(() => Product(int.parse(
                           homedata!.banners!.topbanners![index].itemId)));
                     } else if (homedata!.banners!.topbanners![index].type ==
@@ -518,9 +494,10 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Categories'.tr,
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  fontSize: 15.sp,
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(fontSize: 15.sp, fontWeight: FontWeight.bold),
           ),
           Spacer(),
           IconButton(
@@ -1828,6 +1805,7 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   List<Widget> get bannerSectionWidgetList {
+    print("faaz: bannerlenght:${homedata!.banners!.bannersection1!.length}");
     return [
       Container(
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: padding3),

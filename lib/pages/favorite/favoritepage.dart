@@ -130,7 +130,7 @@ class _FavoriteState extends State<Favorite> {
     }
   }
 
-  removefavarite(itemid) async {
+  removefavorite(itemid) async {
     try {
       loader.showLoading();
       var map = {"user_id": userid, "item_id": itemid, "type": "unfavorite"};
@@ -197,7 +197,7 @@ class _FavoriteState extends State<Favorite> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 border: Border.all(
-                                  color: Colors.grey,
+                                  color: Colors.transparent,
                                   width: 0.8.sp,
                                 ),
                               ),
@@ -250,14 +250,18 @@ class _FavoriteState extends State<Favorite> {
                                           ),
                                         ],
                                       ],
+//removefavoraite
                                       Positioned(
+                                        top: 0,
+                                        right: 0,
                                           child: InkWell(
                                         onTap: () {
-                                          removefavarite(
+                                          removefavorite(
                                               favoritedata!.data![index].id);
                                         },
                                         child: Container(
-                                            height: 5.h,
+                                          alignment: Alignment.topRight,
+                                            height: 4.h,
                                             width: 8.w,
                                             padding: EdgeInsets.all(2.5.sp),
                                             margin: EdgeInsets.only(
@@ -267,11 +271,13 @@ class _FavoriteState extends State<Favorite> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(6),
-                                              color: Colors.black26,
+                                              color: Colors.transparent,
                                             ),
-                                            child: SvgPicture.asset(
-                                              'Assets/Icons/Favoritedark.svg',
-                                              color: Colors.white,
+                                            transformAlignment: Alignment.topRight,
+                                            child: Image.asset(
+                                              'Assets/Icons/love.png',
+                                              // height: 100.5,
+                                              // color: Colors.red,
                                             )),
                                       )),
                                     ],
@@ -285,7 +291,7 @@ class _FavoriteState extends State<Favorite> {
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.only(
-                                            top: 1.h,
+                                            top: 0.5.h,
                                             left: 2.2.w,
                                             right: 2.2.w,
                                           ),
@@ -298,7 +304,7 @@ class _FavoriteState extends State<Favorite> {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                    fontSize: 11.5.sp,
+                                                    fontSize: 12.5.sp,
                                                     fontFamily:
                                                         'Poppins_semibold',
                                                   ),
@@ -307,6 +313,8 @@ class _FavoriteState extends State<Favorite> {
                                             ],
                                           ),
                                         ),
+           //category info                           
+                                       
                                         Container(
                                           margin: EdgeInsets.only(
                                             left: 2.2.w,
@@ -322,6 +330,7 @@ class _FavoriteState extends State<Favorite> {
                                             ),
                                           ),
                                         ),
+           //currency info                             
                                         Padding(
                                           padding: EdgeInsets.only(
                                               left: 2.2.w,
@@ -488,7 +497,7 @@ class _FavoriteState extends State<Favorite> {
                                                                   'Poppins',
                                                               fontSize: 9.5.sp,
                                                               color:
-                                                                  color.green),
+                                                                  color.black),
                                                         ),
                                                       )),
                                                 ),

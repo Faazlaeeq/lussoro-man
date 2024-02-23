@@ -220,67 +220,71 @@ class CommonWidgets {
   }) {
     return SizedBox(
       width: double.maxFinite,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.symmetric(vertical: padding3),
-              padding: const EdgeInsets.symmetric(horizontal: padding3),
-              height: 50,
-              decoration: BoxDecoration(
-                color: MyColors.secondaryColor,
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(
-                  color: MyColors.outlineColorOnLight,
-                  width: 1,
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ImageIcon(
-                    AssetImage(imageUrl),
-                    color: MyColors.primaryColor,
-                    size: 17,
+      child: InkWell(
+        onTap: onPressed,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: padding3),
+                padding: const EdgeInsets.symmetric(horizontal: padding3),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: MyColors.secondaryColor,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(
+                    color: MyColors.outlineColorOnLight,
+                    width: 1,
                   ),
-                  const SizedBox(width: padding3),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        hintText: text,
-                        hintStyle: Theme.of(context).textTheme.labelLarge,
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide.none,
+                ),
+                child: Row(                  
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // ImageIcon(
+                    //   AssetImage(imageUrl),
+                    //   color: MyColors.primaryColor,
+                    //   size: 17,
+                    // ),
+                    const SizedBox(width: padding3),
+                    Expanded(
+                      child: TextFormField(                 
+                        decoration: InputDecoration(
+                          hintText: text,
+                          hintStyle: Theme.of(context).textTheme.labelLarge,
+                          enabled: false,
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: onPressed,
-            icon: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: MyColors.primaryColor,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(padding3),
-                child: ImageIcon(
-                  AssetImage("Assets/Icons/search.png"),
-                  size: 18,
-                  color: MyColors.secondaryColor,
+                  ],
                 ),
               ),
             ),
-          ),
-        ],
+            IconButton(
+              onPressed: onPressed,
+              icon: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: MyColors.primaryColor,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(padding3),
+                  child: ImageIcon(
+                    AssetImage("Assets/Icons/search.png"),
+                    size: 18,
+                    color: MyColors.secondaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

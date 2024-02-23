@@ -196,7 +196,7 @@ class _SearchState extends State<Search> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(7),
                                         border: Border.all(
-                                            width: 1, color: Colors.grey),
+                                            width: 1, color: Colors.transparent),
                                       ),
                                       margin: EdgeInsets.only(
                                         top:
