@@ -728,7 +728,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Recommended'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
           Spacer(),
           IconButton(
@@ -1690,9 +1692,10 @@ class _HomescreenState extends State<Homescreen> {
   }
 
   List<Widget> get bannerSectionWidgetList {
+    print("faaz: bannerlenght:${homedata!.banners!.bannersection1!.length}");
     return [
       Container(
-        margin: EdgeInsets.only(top: 2.h),
+        margin: EdgeInsets.only(top: 2.h, bottom: 2.h, left: 2.w, right: 2.w),
         height: 13.h,
         child: ListView.builder(
           shrinkWrap: true,
@@ -1714,20 +1717,20 @@ class _HomescreenState extends State<Homescreen> {
                       ));
                 }
               },
-              // child: Container(
-              //     padding: EdgeInsets.only(
-              //       left: 2.w,
-              //       right: 2.w,
-              //     ),
-              //     width: 100.w,
-              //     child: ClipRRect(
-              //       borderRadius: BorderRadius.circular(7),
-              //       child: Image.network(
-              //         homedata!.banners!.bannersection1![index].image
-              //             .toString(),
-              //         fit: BoxFit.fill,
-              //       ),
-              //     )),
+              child: Container(
+                  padding: EdgeInsets.only(
+                    left: 2.w,
+                    right: 2.w,
+                  ),
+                  width: 100.w,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: Image.network(
+                      homedata!.banners!.bannersection1![index].image
+                          .toString(),
+                      fit: BoxFit.fill,
+                    ),
+                  )),
             );
           },
         ),
@@ -1747,7 +1750,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Trending'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
           Spacer(),
           IconButton(
