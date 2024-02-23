@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print, unused_element
 
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -332,7 +333,7 @@ class _HomescreenState extends State<Homescreen> {
                     //   actionIcon: avatar,
                     //   showleading: false,
                     // ),
-                    
+
                     key: _scaffoldKey,
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -342,11 +343,10 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4,vertical: padding2),
+                                horizontal: padding4, vertical: padding2),
                             child: Text(
                               'Welcome'.tr,
-                              style:Theme.of(context).textTheme.headlineMedium,
-                              
+                              style: Theme.of(context).textTheme.headlineMedium,
                             ),
                           ),
                           Padding(
@@ -458,13 +458,13 @@ class _HomescreenState extends State<Homescreen> {
                   onTap: () {
                     if (homedata!.banners!.topbanners![index].type == "2") {
                       // print(homedata!.banners!.topbanners![index].itemId);
-                      Get.to(() => Product(int.parse(homedata!
-                          .banners!.topbanners![index].itemId
-                          )));
+                      Get.to(() => Product(int.parse(
+                          homedata!.banners!.topbanners![index].itemId)));
                     } else if (homedata!.banners!.topbanners![index].type ==
                         "1") {
-                      Get.to(() => categories_items(int.parse(
-                            homedata!.banners!.topbanners![index].catId),
+                      Get.to(() => categories_items(
+                            int.parse(
+                                homedata!.banners!.topbanners![index].catId),
                             homedata!.banners!.topbanners![index].categoryInfo!
                                 .categoryName,
                           ));
@@ -472,9 +472,29 @@ class _HomescreenState extends State<Homescreen> {
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(7),
-                    child: Image.network(
-                      homedata!.banners!.topbanners![index].image.toString(),
-                      fit: BoxFit.fill,
+                    child: CachedNetworkImage(
+                      imageUrl: homedata!.banners!.topbanners![index].image
+                          .toString(),
+                      useOldImageOnUrlChange: true,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) => SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: Center(
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.accentColorDark,
+                              ),
+                            ),
+                          )),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                 ),
@@ -498,7 +518,7 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Categories'.tr,
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontSize: 15.sp,
                 ),
           ),
@@ -525,7 +545,7 @@ class _HomescreenState extends State<Homescreen> {
           right: 2.w,
         ),
         padding: const EdgeInsets.symmetric(horizontal: padding3),
-        height: 170,
+        height: 100,
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -541,73 +561,65 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                 );
               },
-              child: Container(
-                height: 170,
-                width: width(context) * 0.4,
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(
-                        homedata!.categories![index].image.toString(),
-                      ),
-                    )),
-                child: Container(
-                    height: 40,
-                    width: double.infinity,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: MyColors.accentColorDark),
-                    child: Text(
-                      homedata!.categories![index].categoryName,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(color: MyColors.secondaryColor),
-                    )),
-              ),
-              // child: SizedBox(
-              //   width: 22.5.w,
-              //   child: Column(
-              //     mainAxisAlignment:
-              //         MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Container(
-              //         margin: EdgeInsets.only(bottom: 1.h),
-              //         height: 10.5.h,
-              //         child: ClipRRect(
-              //           borderRadius:
-              //               BorderRadius.circular(50),
-              //           child: Image.network(
-              //             homedata!.categories![index].image
-              //                 .toString(),
-              //             fit: BoxFit.fill,
-              //           ),
+              // child: Container(
+              //   height: 170,
+              //   width: width(context) * 0.4,
+              //   alignment: Alignment.bottomCenter,
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(15),
+              //       image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: NetworkImage(
+              //           homedata!.categories![index].image.toString(),
               //         ),
-              //       ),
-              //       Expanded(
-              //         child: Text(
-              //           homedata!
-              //               .categories![index].categoryName
-              //               .toString(),
-              //           overflow: TextOverflow.ellipsis,
-              //           style: TextStyle(
-              //             fontFamily: "Poppins_medium",
-              //             fontSize: 9.5.sp,
-              //           ),
-              //         ),
-              //       )
-              //     ],
-              //   ),
+              //       )),
+              //   child: Container(
+              //       height: 40,
+              //       width: double.infinity,
+              //       alignment: Alignment.center,
+              //       decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(15),
+              //           color: MyColors.accentColorDark),
+              //       child: Text(
+              //         homedata!.categories![index].categoryName,
+              //         style: Theme.of(context)
+              //             .textTheme
+              //             .titleSmall!
+              //             .copyWith(color: MyColors.secondaryColor),
+              //       )),
               // ),
+              child: SizedBox(
+                width: 22.5.w,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: 1.h),
+                      height: 10.5.h,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network(
+                          homedata!.categories![index].image.toString(),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        homedata!.categories![index].categoryName.toString(),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: "Poppins_medium",
+                          fontSize: 9.5.sp,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ),
-      ),
-      SizedBox(
-        height: 2.h,
       ),
     ];
   }
@@ -634,7 +646,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Testimonials'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
         ],
       ),
@@ -755,6 +769,9 @@ class _HomescreenState extends State<Homescreen> {
     return [
       Container(
         margin: EdgeInsets.only(bottom: 2.h),
+        padding: EdgeInsets.only(
+          left: 3.w,
+        ),
         height: 13.h,
         child: ListView.builder(
           shrinkWrap: true,
@@ -784,10 +801,25 @@ class _HomescreenState extends State<Homescreen> {
                   width: 100.w,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(7),
-                    child: Image.network(
-                      homedata!.banners!.bannersection3![index].image
+                    child: CachedNetworkImage(
+                      imageUrl: homedata!.banners!.bannersection3![index].image
                           .toString(),
-                      fit: BoxFit.fill,
+                      useOldImageOnUrlChange: true,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      placeholder: (context, url) => SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: MyColors.accentColorDark,
+                          )),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   )),
             );
@@ -809,7 +841,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Recommended'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
           Spacer(),
           IconButton(
@@ -1268,45 +1302,66 @@ class _HomescreenState extends State<Homescreen> {
 
   List<Widget> get bannerSection2WidgetList {
     return [
-      SizedBox(
-        height: 25.h,
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: homedata!.banners!.bannersection2!.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                if (homedata!.banners!.bannersection2![index].type == "2") {
-                  print(homedata!.banners!.bannersection2![index].itemId);
-                  Get.to(() => Product(int.parse(
-                      homedata!.banners!.bannersection2![index].itemId)));
-                } else if (homedata!.banners!.bannersection2![index].type ==
-                    "1") {
-                  Get.to(() => categories_items(
-                        homedata!.banners!.bannersection2![index].catId,
-                        homedata!.banners!.bannersection2![index].categoryInfo!
-                            .categoryName,
-                      ));
-                }
-              },
-              child: Container(
-                  padding: EdgeInsets.only(
-                    left: 2.w,
-                    right: 2.w,
-                  ),
-                  width: 60.w,
-                  height: 60.w,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(7),
-                    child: Image.network(
-                      homedata!.banners!.bannersection2![index].image
-                          .toString(),
-                      fit: BoxFit.fill,
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: padding5),
+        child: SizedBox(
+          height: 25.h,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: homedata!.banners!.bannersection2!.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  if (homedata!.banners!.bannersection2![index].type == "2") {
+                    print(homedata!.banners!.bannersection2![index].itemId);
+                    Get.to(() => Product(int.parse(
+                        homedata!.banners!.bannersection2![index].itemId)));
+                  } else if (homedata!.banners!.bannersection2![index].type ==
+                      "1") {
+                    Get.to(() => categories_items(
+                          homedata!.banners!.bannersection2![index].catId,
+                          homedata!.banners!.bannersection2![index]
+                              .categoryInfo!.categoryName,
+                        ));
+                  }
+                },
+                child: Container(
+                    padding: EdgeInsets.only(
+                      left: 2.w,
+                      right: 2.w,
                     ),
-                  )),
-            );
-          },
+                    width: 60.w,
+                    height: 60.w,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: CachedNetworkImage(
+                        imageUrl: homedata!
+                            .banners!.bannersection2![index].image
+                            .toString(),
+                        useOldImageOnUrlChange: true,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) => SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.accentColorDark,
+                              ),
+                            )),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    )),
+              );
+            },
+          ),
         ),
       ),
     ];
@@ -1324,7 +1379,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Todays_special'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
           Spacer(),
           IconButton(
@@ -1773,6 +1830,7 @@ class _HomescreenState extends State<Homescreen> {
   List<Widget> get bannerSectionWidgetList {
     return [
       Container(
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: padding3),
         margin: EdgeInsets.only(top: 2.h),
         height: 13.h,
         child: ListView.builder(
@@ -1795,20 +1853,37 @@ class _HomescreenState extends State<Homescreen> {
                       ));
                 }
               },
-              // child: Container(
-              //     padding: EdgeInsets.only(
-              //       left: 2.w,
-              //       right: 2.w,
-              //     ),
-              //     width: 100.w,
-              //     child: ClipRRect(
-              //       borderRadius: BorderRadius.circular(7),
-              //       child: Image.network(
-              //         homedata!.banners!.bannersection1![index].image
-              //             .toString(),
-              //         fit: BoxFit.fill,
-              //       ),
-              //     )),
+              child: Container(
+                  padding: EdgeInsets.only(
+                    left: 4.w,
+                    right: 4.w,
+                  ),
+                  width: 100.w,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: CachedNetworkImage(
+                        imageUrl: homedata!
+                            .banners!.bannersection1![index].image
+                            .toString(),
+                        useOldImageOnUrlChange: true,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        placeholder: (context, url) => SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color: MyColors.accentColorDark,
+                              ),
+                            )),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ))),
             );
           },
         ),
@@ -1828,7 +1903,9 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Trending'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontSize: 15.sp,
+                ),
           ),
           Spacer(),
           IconButton(
