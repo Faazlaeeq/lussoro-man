@@ -556,8 +556,10 @@ class _HomescreenState extends State<Homescreen> {
           ),
           Text(
             'Testimonials'.tr,
-            style: TextStyle(fontFamily: "Poppins_bold", fontSize: 15.sp),
-          ),
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold)
+            ),
         ],
       ),
       Container(
@@ -733,6 +735,7 @@ class _HomescreenState extends State<Homescreen> {
             'Recommended'.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 15.sp,
+                  fontWeight: FontWeight.bold
                 ),
           ),
           Spacer(),
@@ -1755,7 +1758,7 @@ class _HomescreenState extends State<Homescreen> {
             'Trending'.tr,
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 15.sp,
-                ),
+                  fontWeight: FontWeight.bold),
           ),
           Spacer(),
           IconButton(
