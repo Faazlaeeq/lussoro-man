@@ -112,7 +112,7 @@ class CategoryTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: padding3),
       decoration: BoxDecoration(
           color: MyColors.primaryColor,
-          borderRadius: BorderRadius.circular(50)),
+          borderRadius: BorderRadius.circular(50),),
       child: InkWell(
         onTap: onTap,
         child: Row(

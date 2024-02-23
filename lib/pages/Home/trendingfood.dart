@@ -358,7 +358,7 @@ class _TrendingfoodState extends State<Trendingfood> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
                                 border:
-                                    Border.all(width: 1, color: Colors.grey)),
+                                    Border.all(width: 1, color: Colors.transparent)),
                             margin: EdgeInsets.only(
                               top: MediaQuery.of(context).size.height / 70,
                             ),
