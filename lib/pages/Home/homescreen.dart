@@ -283,7 +283,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4, vertical: padding1),
+                                horizontal: padding4, ),
                             child: Text(
                               'Welcome'.tr,
                               style: Theme.of(context).textTheme.headlineMedium!
