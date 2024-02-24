@@ -471,12 +471,12 @@ class _ProductState extends State<Product> {
                                     },
                                     child: itemdata!.data!.isFavorite == "0"
                                         ? Image.asset(
-                                            'Assets/Icons/favorite-white-outline.png',
+                                            'Assets/Icons/Star.png',
                                             color: Colors.black,
                                             // color: Colors.white,
                                           )
                                         : Image.asset(
-                                            'Assets/Icons/favorite-filled.png',
+                                            'Assets/Icons/Star-filled.png',
                                             // color: Colors.white,
                                           ),
                                   ),
