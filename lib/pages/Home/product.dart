@@ -394,20 +394,20 @@ class _ProductState extends State<Product> {
                       ? "$currency${numberFormat.format(double.parse(itemdata!.data!.variation![0].productPrice.toString()))}"
                       : "${numberFormat.format(double.parse(itemdata!.data!.variation![0].productPrice.toString()))}$currency",
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: MyColors.secondaryColor,
+                      color: MyColors.primaryColor,
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Poppins_medium"),
+                      // fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins-Regular"),
                 )
               : Text(
                   currency_position == "1"
                       ? "$currency${numberFormat.format(double.parse(itemdata!.data!.price.toString()))}"
                       : "${numberFormat.format(double.parse(itemdata!.data!.price.toString()))}$currency",
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: MyColors.secondaryColor,
+                      color: MyColors.primaryColor,
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Poppins_medium"),
+                      // fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins-Regular"),
                 );
 
           return Scaffold(
@@ -422,8 +422,8 @@ class _ProductState extends State<Product> {
                           Stack(
                             children: [
                               SizedBox(
-                                height: 50.h,
-                                width: 100.w,
+                                // height: 50.h,
+                                 width: 100.w,
                                 child: Image.network(
                                   itemdata!.data!.itemImages![0].imageUrl
                                       .toString(),
@@ -431,57 +431,58 @@ class _ProductState extends State<Product> {
                                 ),
                               ),
                               // if (is_login == "1") ...[
-                              Positioned(
-                                right: 3.w,
-                                bottom: 3.h,
-                                child: Container(
-                                  height: 30,
-                                  width: 30,
-                                  padding: EdgeInsets.all(padding1),
-                                  // margin: EdgeInsets.only(left: 86.w, top: 1.5.h),
+                              // Positioned(
+                              //   right: 3.w,
+                              //   bottom: 3.h,
+                              //   child: Container(
+                              //     height: 30,
+                              //     width: 30,
+                              //     padding: EdgeInsets.all(padding1),
+                              //     // margin: EdgeInsets.only(left: 86.w, top: 1.5.h),
 
-                                  decoration: BoxDecoration(
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: MyColors.shadowColor,
-                                        blurRadius: 7,
-                                        spreadRadius: 1,
-                                      )
-                                    ],
-                                    // shape: BoxShape.values,
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: MyColors.secondaryColor,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      if (userid == "") {
-                                        Navigator.of(context)
-                                            .pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (c) => Login()),
-                                                (r) => false);
-                                      } else if (itemdata!.data!.isFavorite ==
-                                          "0") {
-                                        removefavarite("favorite",
-                                            widget.itemid.toString());
-                                      } else {
-                                        removefavarite("unfavorite",
-                                            widget.itemid.toString());
-                                      }
-                                    },
-                                    child: itemdata!.data!.isFavorite == "0"
-                                        ? Image.asset(
-                                            'Assets/Icons/Star.png',
-                                            color: Colors.black,
-                                            // color: Colors.white,
-                                          )
-                                        : Image.asset(
-                                            'Assets/Icons/Star-filled.png',
-                                            // color: Colors.white,
-                                          ),
-                                  ),
-                                ),
-                              ),
+                              //     decoration: BoxDecoration(
+                              //       boxShadow: const [
+                              //         BoxShadow(
+                              //           color: MyColors.shadowColor,
+                              //           blurRadius: 7,
+                              //           spreadRadius: 1,
+                              //         )
+                              //       ],
+                              //       // shape: BoxShape.values,
+                              //       borderRadius: BorderRadius.circular(15),
+                              //       color: MyColors.secondaryColor,
+                              //     ),
+                              //     child: InkWell(
+                              //       onTap: () {
+                              //         if (userid == "") {
+                              //           Navigator.of(context)
+                              //               .pushAndRemoveUntil(
+                              //                   MaterialPageRoute(
+                              //                       builder: (c) => Login()),
+                              //                   (r) => false);
+                              //         } else if (itemdata!.data!.isFavorite ==
+                              //             "0") {
+                              //           removefavarite("favorite",
+                              //               widget.itemid.toString());
+                              //         } else {
+                              //           removefavarite("unfavorite",
+                              //               widget.itemid.toString());
+                              //         }
+                              //       },
+                              //       child: itemdata!.data!.isFavorite == "0"
+                              //           ? Image.asset(
+                              //               'Assets/Icons/Starr.png',
+                              //               color: Colors.black,
+                              //               // color: Colors.white,
+                              //             )
+                              //           : Image.asset(
+                              //               'Assets/Icons/Star-filled.png',
+                              //               // color: Colors.white,
+                              //             ),
+                              //     ),
+                              //   ),
+                              // ),
+                            
                             ],
                           ),
                           Container(
@@ -495,8 +496,8 @@ class _ProductState extends State<Product> {
                                       offset: Offset(0, -10))
                                 ],
                                 borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(30),
-                                    topRight: Radius.circular(30)),
+                                    topLeft: Radius.circular(0),
+                                    topRight: Radius.circular(0)),
                                 color: MyColors.secondaryColor),
                             child: Stack(
                               children: [
@@ -511,7 +512,7 @@ class _ProductState extends State<Product> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(
-                                            height: 45,
+                                            height: 80,
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               crossAxisAlignment:
@@ -524,24 +525,86 @@ class _ProductState extends State<Product> {
                                                       .textTheme
                                                       .titleLarge,
                                                 ),
-                                                Text(
-                                                    itemdata!
-                                                        .data!
-                                                        .categoryInfo!
-                                                        .categoryName,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .labelSmall),
+                                                // Text(
+                                                //     itemdata!
+                                                //         .data!
+                                                //         .categoryInfo!
+                                                //         .categoryName,
+                                                //     style: Theme.of(context)
+                                                //         .textTheme
+                                                //         .labelSmall),
+                                               
+                                                  // Text("Total Price",
+                                                  //     style: Theme.of(context)
+                                                  //         .textTheme
+                                                  //         .labelSmall!
+                                                  //         .copyWith(
+                                                  //             fontSize: 9,
+                                                  //             fontWeight: FontWeight.bold,
+                                                  //             color: MyColors.primaryColor)),
+
+                                                  
+                                                  Padding(padding:EdgeInsets.symmetric(horizontal:0,vertical:padding2),child:priceWidget),
+                               
 
                                                 //outof stock
-                                              ],
+                                              ],  
                                             ),
-                                          ),
+                                          ),                             
                                           const Spacer(),
                                           Column(
                                             children: [
+                                              //favorite
+                                              Container(
+                                                      height: 30,
+                                                      width: 30,
+                                                      padding: EdgeInsets.all(padding1),
+                                                      // margin: EdgeInsets.only(left: 86.w, top: 1.5.h),
+
+                                                      decoration: BoxDecoration(
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            color: MyColors.shadowColor,
+                                                            blurRadius: 7,
+                                                            spreadRadius: 1,
+                                                          )
+                                                        ],
+                                                        // shape: BoxShape.values,
+                                                        borderRadius: BorderRadius.circular(15),
+                                                        color: MyColors.secondaryColor,
+                                                      ),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          if (userid == "") {
+                                                            Navigator.of(context)
+                                                                .pushAndRemoveUntil(
+                                                                    MaterialPageRoute(
+                                                                        builder: (c) => Login()),
+                                                                    (r) => false);
+                                                          } else if (itemdata!.data!.isFavorite ==
+                                                              "0") {
+                                                            removefavarite("favorite",
+                                                                widget.itemid.toString());
+                                                          } else {
+                                                            removefavarite("unfavorite",
+                                                                widget.itemid.toString());
+                                                          }
+                                                        },
+                                                        child: itemdata!.data!.isFavorite == "0"
+                                                            ? Image.asset(
+                                                                'Assets/Icons/Star.png',
+                                                                color: Colors.black,
+                                                                // color: Colors.white,
+                                                              )
+                                                            : Image.asset(
+                                                                'Assets/Icons/Star-filled.png',
+                                                                // color: Colors.white,
+                                                              ),
+                                                      ),
+                                                    ),
+                                             
                                               const SizedBox(
-                                                height: 30,
+                                                height: 10,
                                               ),
                                               if (itemdata!
                                                           .data!.availableQty ==
@@ -597,7 +660,7 @@ class _ProductState extends State<Product> {
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 20,
+                                      height: 5,
                                     ),
                                     Align(
                                       alignment: Alignment.centerLeft,
@@ -629,6 +692,9 @@ class _ProductState extends State<Product> {
                                         textAlign: TextAlign.left,
                                       ),
                                     ),
+                                     SizedBox(
+                                      height: 1.h,
+                                    ),
                                     if (itemdata!.data!.hasVariation ==
                                         "1") ...[
                                       Container(
@@ -654,7 +720,7 @@ class _ProductState extends State<Product> {
                                           itemBuilder: (context, index) {
                                             return Padding(
                                               padding: EdgeInsets.only(
-                                                  left: 5.w,
+                                                  // left: 5.w,
                                                   bottom: 1.h,
                                                   right: 5.w),
                                               child: InkWell(
@@ -777,8 +843,174 @@ class _ProductState extends State<Product> {
                                       ),
                                     ],
                                     SizedBox(
-                                      height: 2.h,
+                                      height: 1.h,
                                     ),
+
+                                    if (itemdata!.data!.addons!.isNotEmpty) ...[
+                          Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.only(
+                                // left: 4.w,
+                                 bottom: 1.h, right: 4.w),
+                            child: Text(
+                              'Add_ons'.tr,
+                              style: TextStyle(
+                                  fontFamily: 'Poppins_bold', fontSize: 15.sp),
+                            ),
+                          ),
+                          SizedBox(
+                            height: itemdata!.data!.addons!.length * 6.5.h,
+                            child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: itemdata!.data!.addons!.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(
+                                       bottom: 1.h, right: 5.w),
+                                  child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        var addonobject =
+                                            itemdata!.data!.addons![index];
+
+                                        addonobject.isselected == true
+                                            ? addonobject.isselected = false
+                                            : addonobject.isselected = true;
+
+                                        itemdata!.data!.addons!.removeAt(index);
+
+                                        itemdata!.data!.addons!
+                                            .insert(index, addonobject);
+                                      });
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 3.3.h,
+                                          width: 3.3.h,
+                                          decoration: BoxDecoration(
+                                              color: itemdata!
+                                                          .data!
+                                                          .addons![index]
+                                                          .isselected ==
+                                                      false
+                                                  ? Colors.transparent
+                                                  : color.green,
+                                              borderRadius:
+                                                  BorderRadius.circular(7),
+                                              border: Border.all(
+                                                  color: Colors.grey)),
+                                          child: Icon(Icons.done,
+                                              color: itemdata!
+                                                          .data!
+                                                          .addons![index]
+                                                          .isselected ==
+                                                      false
+                                                  ? Colors.transparent
+                                                  : Colors.white,
+                                              size: 13.sp),
+                                        ),
+                                        SizedBox(
+                                          width: 4.w,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              itemdata!
+                                                  .data!.addons![index].name!,
+                                              style: TextStyle(
+                                                fontSize: 11.sp,
+                                                fontFamily: 'Poppins_semibold',
+                                              ),
+                                            ),
+                                            Text(
+                                              currency_position == "1"
+                                                  ? "$currency${numberFormat.format(double.parse(itemdata!.data!.addons![index].price.toString()))}"
+                                                  : "${numberFormat.format(double.parse(itemdata!.data!.addons![index].price.toString()))}$currency",
+                                              style: TextStyle(
+                                                  fontSize: 8.sp,
+                                                  fontFamily: 'Poppins'),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                         TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MyColors.mPrimaryColor,
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50)))),
+              child: Container(
+                alignment: Alignment.center,
+                width: width(context),
+                height: 40,
+                padding: EdgeInsets.symmetric(
+                    horizontal: padding3, vertical: padding1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ImageIcon(
+                      AssetImage("Assets/Icons/addtocart.png"),
+                      size: 17,
+                      color: MyColors.secondaryColor,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Add to Cart",
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                              color: MyColors.secondaryColor,
+                              fontSize: 17,
+                            )),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Text("Total Price",
+                    //         style: Theme.of(context)
+                    //             .textTheme
+                    //             .labelSmall!
+                    //             .copyWith(
+                    //                 fontSize: 9,
+                    //                 fontWeight: FontWeight.bold,
+                    //                 color: MyColors.secondaryColor)),
+                    //     priceWidget,
+                    //   ],
+                    // ),
+                  ],
+                ),
+              ),
+              onPressed: () {
+                arr_addonsid.clear();
+                arr_addonsname.clear();
+                arr_addonsprice.clear();
+                for (int i = 0; i < itemdata!.data!.addons!.length; i++) {
+                  if (itemdata!.data!.addons![i].isselected == true) {
+                    arr_addonsid.add(itemdata!.data!.addons![i].id.toString());
+                    arr_addonsname
+                        .add(itemdata!.data!.addons![i].name.toString());
+                    arr_addonsprice.add(numberFormat.format(double.parse(
+                        itemdata!.data!.addons![i].price.toString())));
+                  }
+                }
+                add_to_cartAPI();
+              },
+            ), 
+             SizedBox(
+              height: 10,
+             ),
                                     if (itemdata!
                                         .relateditems!.isNotEmpty) ...[
                                       Container(
@@ -795,7 +1027,7 @@ class _ProductState extends State<Product> {
                                                                                     height: 270,
                                                                                     child: ListView.builder(
                                                                                       padding: EdgeInsets.only(
-                                                                                        left: 3.w,
+                                                                                        left: 1
                                                                                       ),
                                                                                       scrollDirection: Axis.horizontal,
                                                                                       itemCount: itemdata!.relateditems!.length,
@@ -1354,6 +1586,7 @@ class _ProductState extends State<Product> {
                               ],
                             ),
                           ),
+                          
                         ])),
 
                 //appbar
@@ -1438,81 +1671,84 @@ class _ProductState extends State<Product> {
                   ),
                 ),
                 //appbar
-              ],
+
+                 ],
             ),
             //navigation button Cart
-            bottomSheet:
-                //  ListTile(
-                // contentPadding: EdgeInsets.symmetric(horizontal: padding3),
-                // tileColor: MyColors.secondaryColor,
-                // title: Text("Total Price",
-                //     style: Theme.of(context)
-                //         .textTheme
-                //         .labelSmall!
-                //         .copyWith(fontSize: 9,fontWeight: FontWeight.bold)),
-                // subtitle: priceWidget,
-                // trailing:
-                TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MyColors.mPrimaryColor,
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(0)))),
-              child: Container(
-                width: width(context),
-                height: 50,
-                padding: EdgeInsets.symmetric(
-                    horizontal: padding3, vertical: padding1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ImageIcon(
-                      AssetImage("Assets/Icons/addtocart.png"),
-                      size: 16,
-                      color: MyColors.secondaryColor,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text("Add to Cart",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: MyColors.secondaryColor,
-                            )),
-                    Spacer(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Total Price",
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall!
-                                .copyWith(
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.bold,
-                                    color: MyColors.secondaryColor)),
-                        priceWidget,
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              onPressed: () {
-                arr_addonsid.clear();
-                arr_addonsname.clear();
-                arr_addonsprice.clear();
-                for (int i = 0; i < itemdata!.data!.addons!.length; i++) {
-                  if (itemdata!.data!.addons![i].isselected == true) {
-                    arr_addonsid.add(itemdata!.data!.addons![i].id.toString());
-                    arr_addonsname
-                        .add(itemdata!.data!.addons![i].name.toString());
-                    arr_addonsprice.add(numberFormat.format(double.parse(
-                        itemdata!.data!.addons![i].price.toString())));
-                  }
-                }
-                add_to_cartAPI();
-              },
-            ),
+            // bottomSheet:
+            //     //  ListTile(
+            //     // contentPadding: EdgeInsets.symmetric(horizontal: padding3),
+            //     // tileColor: MyColors.secondaryColor,
+            //     // title: Text("Total Price",
+            //     //     style: Theme.of(context)
+            //     //         .textTheme
+            //     //         .labelSmall!
+            //     //         .copyWith(fontSize: 9,fontWeight: FontWeight.bold)),
+            //     // subtitle: priceWidget,
+            //     // trailing:
+            //     TextButton(
+            //   style: ButtonStyle(
+            //       backgroundColor: MyColors.mPrimaryColor,
+            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //           RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(0)))),
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     width: width(context),
+            //     height: 50,
+            //     padding: EdgeInsets.symmetric(
+            //         horizontal: padding3, vertical: padding1),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         ImageIcon(
+            //           AssetImage("Assets/Icons/addtocart.png"),
+            //           size: 17,
+            //           color: MyColors.secondaryColor,
+            //         ),
+            //         SizedBox(
+            //           width: 5,
+            //         ),
+            //         Text("Add to Cart",
+            //             style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            //                   color: MyColors.secondaryColor,
+            //                   fontSize: 17,
+            //                 )),
+            //         // Column(
+            //         //   mainAxisAlignment: MainAxisAlignment.start,
+            //         //   crossAxisAlignment: CrossAxisAlignment.start,
+            //         //   children: [
+            //         //     Text("Total Price",
+            //         //         style: Theme.of(context)
+            //         //             .textTheme
+            //         //             .labelSmall!
+            //         //             .copyWith(
+            //         //                 fontSize: 9,
+            //         //                 fontWeight: FontWeight.bold,
+            //         //                 color: MyColors.secondaryColor)),
+            //         //     priceWidget,
+            //         //   ],
+            //         // ),
+            //       ],
+            //     ),
+            //   ),
+            //   onPressed: () {
+            //     arr_addonsid.clear();
+            //     arr_addonsname.clear();
+            //     arr_addonsprice.clear();
+            //     for (int i = 0; i < itemdata!.data!.addons!.length; i++) {
+            //       if (itemdata!.data!.addons![i].isselected == true) {
+            //         arr_addonsid.add(itemdata!.data!.addons![i].id.toString());
+            //         arr_addonsname
+            //             .add(itemdata!.data!.addons![i].name.toString());
+            //         arr_addonsprice.add(numberFormat.format(double.parse(
+            //             itemdata!.data!.addons![i].price.toString())));
+            //       }
+            //     }
+            //     add_to_cartAPI();
+            //   },
+            // ),
             // )
           );
         },
@@ -1575,7 +1811,7 @@ class _ProductState extends State<Product> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: color.white,
+                color: color.black,
               ),
             ),
             height: 6.5.h,

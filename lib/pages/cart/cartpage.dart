@@ -438,14 +438,9 @@ class _ViewcartState extends State<Viewcart> {
                                           ),
                                         ),
                             ),
-
-                              Spacer(),
-                            
                            ]),          
                         ],
-                       ),
-                      
-                    
+                       ), 
                   ),
                 ),
               ],

@@ -522,7 +522,7 @@ class _HomescreenState extends State<Homescreen> {
           right: 2.w,
         ),
         padding: const EdgeInsets.symmetric(horizontal: padding3),
-        height: 100,
+        height: 120,
         child: ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
