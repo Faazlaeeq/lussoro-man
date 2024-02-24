@@ -206,7 +206,7 @@ class _ViewcartState extends State<Viewcart> {
             return Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
-                  leadingWidth: 40,
+                  leadingWidth: 80,
                   elevation: 0,
                   centerTitle: true,
                   title: Text(
@@ -217,7 +217,7 @@ class _ViewcartState extends State<Viewcart> {
                     ),
                   ),
                   automaticallyImplyLeading: false,
-                ),
+                   ),
                 body: Padding(
                   padding: EdgeInsets.all(8),
                   child: ListView.builder(

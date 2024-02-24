@@ -217,12 +217,13 @@ class _OrdersummaryState extends State<Ordersummary> {
                       onPressed: () {
                         Get.back();
                       },
-                      icon: const Icon(
-                        Icons.arrow_back_ios_outlined,
-                        size: 20,
-                      ))
+                      icon: ImageIcon(
+                        AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                        color: Colors.black,
+                        //] size: 17,
+                      ),)
                   : null,
-              leadingWidth: 40,
+              leadingWidth: 70,
               title: Text(
                 'Ordersummary'.tr,
                 textAlign: TextAlign.center,
