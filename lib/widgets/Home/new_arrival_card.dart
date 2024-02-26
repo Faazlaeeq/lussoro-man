@@ -12,7 +12,7 @@ import 'package:single_ecommerce/theme/sizes.dart';
 
 Widget productCard(BuildContext context, String image, String title,
     String subTitle, String price, Function()? onTap,
-    {String icon = "Assets/Icons/love.png"}) {
+    {String icon = "Assets/Icons/Star.png"}) {
   return SizedBox(
       width: width(context) * 0.4,
       child: Column(
@@ -44,12 +44,27 @@ Widget productCard(BuildContext context, String image, String title,
               top: 5,
               right: 5,
               child: IconButton(
-                icon: Image.asset(
-                  icon,
-                  alignment: Alignment.bottomCenter,
-                  fit: BoxFit.cover,
-                  height: 30,
-                  width: 30,
+                icon: Container(
+                  height: 25,
+                  width: 25,
+                 decoration: BoxDecoration(
+                    color: MyColors.secondaryColor,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: MyColors.shadowColor,
+                          blurRadius: 5,
+                          spreadRadius: 3)
+                    ]
+                  ),
+                  padding:EdgeInsets.all(5),
+                  child: Image.asset(
+                    icon,
+                    alignment: Alignment.bottomCenter,
+                    fit: BoxFit.cover,
+                    height: 15,
+                    width: 15,
+                  ),
                 ),
                 onPressed: onTap,
               ),

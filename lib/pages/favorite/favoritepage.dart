@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/favorite/favoritelistmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -34,6 +35,7 @@ class _FavoriteState extends State<Favorite> {
   int? cart;
   String? currency;
   String? currency_position;
+  String icon = "Assets/Icons/Star-filled.png";
 
   FavoriteAPI() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -196,6 +198,7 @@ class _FavoriteState extends State<Favorite> {
                               height: 14.h,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(7),
+                                color:Color.fromARGB(255, 248, 248, 248),
                                 border: Border.all(
                                   color: Colors.transparent,
                                   width: 0.8.sp,
@@ -252,33 +255,35 @@ class _FavoriteState extends State<Favorite> {
                                       ],
 //removefavoraite
                                       Positioned(
-                                        top: 0,
-                                        right: 0,
+                                        top: 3,
+                                        right: 1,
                                           child: InkWell(
                                         onTap: () {
                                           removefavorite(
                                               favoritedata!.data![index].id);
                                         },
-                                        child: Container(
-                                          alignment: Alignment.topRight,
-                                            height: 4.h,
-                                            width: 8.w,
-                                            padding: EdgeInsets.all(2.5.sp),
-                                            margin: EdgeInsets.only(
-                                                left: 1.w,
-                                                right: 1.w,
-                                                top: 0.5.h),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(6),
-                                              color: Colors.transparent,
-                                            ),
-                                            transformAlignment: Alignment.topRight,
-                                            child: Image.asset(
-                                              'Assets/Icons/love.png',
-                                              // height: 100.5,
-                                              // color: Colors.red,
-                                            )),
+                                        child:  Container(
+                  height: 25,
+                  width: 25,
+                 decoration: BoxDecoration(
+                    color: MyColors.secondaryColor,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: MyColors.shadowColor,
+                          blurRadius: 5,
+                          spreadRadius: 3)
+                    ]
+                  ),
+                  padding:EdgeInsets.all(5),
+                  child: Image.asset(
+                    icon,
+                    alignment: Alignment.bottomCenter,
+                    fit: BoxFit.cover,
+                    height: 15,
+                    width: 15,
+                  ),
+                ),
                                       )),
                                     ],
                                   ),

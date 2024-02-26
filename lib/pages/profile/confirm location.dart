@@ -132,6 +132,7 @@ class _Confirm_locationState extends State<Confirm_location> {
         loader.showErroDialog(description: addressdata!.message);
       }
     } catch (e) {
+      print("faaz: Error by Catch : $e");
       rethrow;
     }
   }
@@ -492,8 +493,9 @@ class _Confirm_locationState extends State<Confirm_location> {
                       pref.getString(Ordertype);
                       pref.getString(Delivery_charge);
                       print("ordertype : ${pref.getString(Ordertype)}");
-                      checkdeliveryzoneAPI();
+                      // checkdeliveryzoneAPI();
                     } else {
+                      print("formkey : ${_formkey.currentState!.validate()}\n widget.isedit : ${widget.isedit}");
                       if (_formkey.currentState!.validate()) {
                         if (addresstype == 0) {
                           loader.showErroDialog(
