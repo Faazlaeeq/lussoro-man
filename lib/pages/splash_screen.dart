@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +8,7 @@ import 'package:single_ecommerce/config/api/api.dart';
 import 'package:single_ecommerce/onboarding/onboarding.dart';
 import 'package:single_ecommerce/pages/Home/Homepage.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../model/authentication/loginrequiredmodel.dart';
 
 class splash_screen extends StatefulWidget {
@@ -38,6 +40,16 @@ class _splash_screenState extends State<splash_screen> {
   }
 
   login_required() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult != ConnectivityResult.mobile &&
+        connectivityResult != ConnectivityResult.wifi) {
+      loader.showErroDialog(
+          description: "No internet connection,Exiting app...",
+          onOk: () {
+            exit(0);
+          });
+      return;
+    }
     try {
       loginrequiredmodel? data;
       SharedPreferences prefs = await SharedPreferences.getInstance();

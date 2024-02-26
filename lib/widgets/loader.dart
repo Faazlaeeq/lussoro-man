@@ -9,7 +9,7 @@ class loader {
   // show error; Dialog
   static void showErroDialog(
       {String title = 'Lussoro Man',
-      String? description = 'Something went wrong'}) {
+      String? description = 'Something went wrong',Function()? onOk}) {
     Get.dialog(
       Dialog(
         child: Padding(
@@ -26,7 +26,7 @@ class loader {
                 style: TextStyle(fontSize: 16, fontFamily: "Poppins"),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed:onOk?? () {
                   if (Get.isDialogOpen!) Get.back();
                 },
                 style: ElevatedButton.styleFrom(

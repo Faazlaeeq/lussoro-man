@@ -57,7 +57,7 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
               icon: ImageIcon(
                 AssetImage(leadingIcon),
                 color: MyColors.secondaryColor,
-                size: 40,
+                size: 20,
               ),
               style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
               onPressed: onpressed ??
