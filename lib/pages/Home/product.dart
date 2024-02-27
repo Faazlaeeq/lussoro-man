@@ -1354,6 +1354,7 @@ class _ProductState extends State<Product> {
                               ],
                             ),
                           ),
+                          SizedBox(height: 10.h),
                         ])),
 
                 //appbar

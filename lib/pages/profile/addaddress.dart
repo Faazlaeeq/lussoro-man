@@ -132,44 +132,45 @@ class _Add_addressState extends State<Add_address> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Container(
-                height: 57.h,
-                color: Colors.grey,
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  mapType: MapType.normal,
-                  initialCameraPosition: CameraPosition(
-                      target: LatLng(_latitude, _longitude),
-                      zoom: 18.0,
-                      tilt: 0,
-                      bearing: 0),
-                  myLocationEnabled: true,
-                  myLocationButtonEnabled: true,
-                  zoomControlsEnabled: false,
-                  onCameraMove: (position) async {
-                    // Position position = await _determinePosition();
+          // Stack(
+          //   children: [
+          //     Container(
+          //       height: 57.h,
+          //       color: Colors.grey,
+          //       child: GoogleMap(
+          //         onMapCreated: _onMapCreated,
+          //         mapType: MapType.normal,
+          //         initialCameraPosition: CameraPosition(
+          //             target: LatLng(_latitude, _longitude),
+          //             zoom: 18.0,
+          //             tilt: 0,
+          //             bearing: 0),
+          //         myLocationEnabled: true,
+          //         myLocationButtonEnabled: true,
+          //         zoomControlsEnabled: false,
+          //         onCameraMove: (position) async {
+          //           // Position position = await _determinePosition();
 
-                    setState(() {
-                      Engstring.latitude = position.target.latitude;
-                      Engstring.longitude = position.target.longitude;
-                      getaddress(Engstring.latitude, Engstring.longitude);
-                    });
-                  },
-                ),
-              ),
-              Positioned(
-                right: Get.size.width * 0.18,
-                top: Get.size.width * 0.35,
-                bottom: Get.size.width * 0.5,
-                left: Get.size.width * 0.18,
-                child: Image.asset(
-                  "Assets/Image/ic_locationpin.png",
-                ),
-              )
-            ],
-          ),
+          //           setState(() {
+          //             Engstring.latitude = position.target.latitude;
+          //             Engstring.longitude = position.target.longitude;
+          //             getaddress(Engstring.latitude, Engstring.longitude);
+          //           });
+          //         },
+          //       ),
+          //     ),
+          //     Positioned(
+          //       right: Get.size.width * 0.18,
+          //       top: Get.size.width * 0.35,
+          //       bottom: Get.size.width * 0.5,
+          //       left: Get.size.width * 0.18,
+          //       child: Image.asset(
+          //         "Assets/Image/ic_locationpin.png",
+          //       ),
+          //     )
+          //   ],
+          // ),
+
           Row(
             children: [
               Container(
@@ -320,8 +321,8 @@ class _Add_addressState extends State<Add_address> {
                       builder: (context) => Confirm_location(
                             Area.toString(),
                             Address.toString(),
-                            Engstring.latitude,
-                            Engstring.longitude,
+                            // Engstring.latitude,
+                            // Engstring.longitude,
                             widget.addressid,
                             widget.area,
                             widget.houseno.toString(),

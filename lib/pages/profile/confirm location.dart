@@ -21,8 +21,8 @@ import 'addaddress.dart';
 class Confirm_location extends StatefulWidget {
   String? Area;
   String? Address;
-  double? latitude;
-  double? longitude;
+  double? latitude = 24.9821687;
+  double? longitude = 67.0578982;
   String? addressid;
   String? oldarea;
   String? oldhouseno;
@@ -35,8 +35,8 @@ class Confirm_location extends StatefulWidget {
   Confirm_location([
     this.Area,
     this.Address,
-    this.latitude,
-    this.longitude,
+    // this.latitude,
+    // this.longitude,
     this.addressid,
     this.oldarea,
     this.oldhouseno,
@@ -106,11 +106,11 @@ class _Confirm_locationState extends State<Confirm_location> {
       var map = {
         "user_id": userid,
         "address_type": addresstype.toString(),
-        "address": Address.text.toString(),
-        "lat": widget.latitude,
-        "lang": widget.longitude,
-        "house_no": houseno.text.toString(),
-        "area": Area.text.toString()
+        "address": "Address.text.toString()",
+        "lat": "24.9821687",
+        "lang": "67.0578982",
+        "house_no": "houseno.text.toString()",
+        "area": "Area.text.toString()"
       };
 
       print(map);
@@ -492,7 +492,7 @@ class _Confirm_locationState extends State<Confirm_location> {
                       pref.getString(Ordertype);
                       pref.getString(Delivery_charge);
                       print("ordertype : ${pref.getString(Ordertype)}");
-                      checkdeliveryzoneAPI();
+                      // checkdeliveryzoneAPI();
                     } else {
                       if (_formkey.currentState!.validate()) {
                         if (addresstype == 0) {
