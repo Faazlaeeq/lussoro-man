@@ -528,55 +528,56 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.only(
                     top: 2.h,
                   )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black26,
-                            ),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Card(
-                          elevation: 0,
-                          child: InkWell(
-                              borderRadius: BorderRadius.zero,
-                              onTap: () async {
-                                googlelogin();
-                              },
-                              child: Image.asset(
-                                'Assets/Icons/google.png',
-                                height: 5.h,
-                                width: 11.w,
-                              )),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 4.w,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black26,
-                            ),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Card(
-                          elevation: 0,
-                          child: InkWell(
-                              onTap: () async {
-                                print("object");
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Container(
+                  //       decoration: BoxDecoration(
+                  //           border: Border.all(
+                  //             color: Colors.black26,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(6)),
+                  //       child: Card(
+                  //         elevation: 0,
+                  //         child: InkWell(
+                  //             borderRadius: BorderRadius.zero,
+                  //             onTap: () async {
+                  //               googlelogin();
+                  //             },
+                  //             child: Image.asset(
+                  //               'Assets/Icons/google.png',
+                  //               height: 5.h,
+                  //               width: 11.w,
+                  //             )),
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 4.w,
+                  //     ),
+                  //     Container(
+                  //       decoration: BoxDecoration(
+                  //           border: Border.all(
+                  //             color: Colors.black26,
+                  //           ),
+                  //           borderRadius: BorderRadius.circular(6)),
+                  //       child: Card(
+                  //         elevation: 0,
+                  //         child: InkWell(
+                  //             onTap: () async {
+                  //               print("object");
 
-                                _FBlogin();
-                              },
-                              child: Image.asset(
-                                'Assets/Icons/facebook.png',
-                                height: 5.h,
-                                width: 11.w,
-                              )),
-                        ),
-                      ),
-                    ],
-                  ),
+                  //               _FBlogin();
+                  //             },
+                  //             child: Image.asset(
+                  //               'Assets/Icons/facebook.png',
+                  //               height: 5.h,
+                  //               width: 11.w,
+                  //             )),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  
                   Container(
                       alignment: Alignment.topCenter,
                       margin: EdgeInsets.only(top: 1.h),

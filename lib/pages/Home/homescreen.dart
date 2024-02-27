@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types, non_constant_identifier_names, avoid_print, unused_element
 
 import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
@@ -342,165 +343,167 @@ class _HomescreenState extends State<Homescreen> {
                     drawer: Drawer(
                       child: ListView(
                         padding: EdgeInsets.zero,
-                        children: <Widget>[
-                          DrawerHeader(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child:
-                                  Image.asset("Assets/images/logo-black.png",)),
-                          ListTile(
-                            title: Text(
-                              'MY Order',
-                              style: TextStyle(fontFamily: "Poppins_medium"),
-                            ),
-                            leading: Image.asset(
-                              "Assets/Icons/bag-filled.png",
-                              height: 23,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Orderhistory()),
-                              );
-                            },
-                          ),
-                          ListTile(
-                            title: Text(
-                              'MY CART',
-                              style: TextStyle(fontFamily: "Poppins_medium"),
-                            ),
-                            leading: Image.asset(
-                              "Assets/Icons/cart.png",
-                              height: 23,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Product()),
-                              );
-                            },
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Address',
-                              style: TextStyle(fontFamily: "Poppins_medium"),
-                            ),
-                            leading: Image.asset(
-                              "Assets/Icons/address.png",
-                              height: 25,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Add_address()),
-                              );
-                            },
-                          ),
-                          ListTile(
-                            title: Text(
-                              'Setting',
-                              style: TextStyle(fontFamily: "Poppins_medium"),
-                            ),
-                            leading: Icon(Icons.settings),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Editprofile()),
-                              );
-                            },
-                          ),
-                          ListTile(
-                              title: Text(
-                                'Logout',
-                                style: TextStyle(fontFamily: "Poppins_medium"),
-                              ),
-                              leading: Icon(Icons.logout),
-                              onTap: () {
-                                userid == ""
-                                    ? Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (c) => Login()),
-                                        (r) => false)
-                                    : showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                              'ecommerce_User'.tr,
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                                fontFamily: 'Poppins_bold',
-                                              ),
-                                            ),
-                                            content: Text(
-                                              LocaleKeys
-                                                  .Are_you_sure_to_logout_from_this_app
-                                                  .tr,
-                                              style: TextStyle(
-                                                  fontSize: 12.sp,
-                                                  fontFamily: 'Poppins'),
-                                            ),
-                                            actions: <Widget>[
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      color.primarycolor,
-                                                ),
-                                                child: Text(
-                                                  'Logout'.tr,
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                    color: Colors.white,
-                                                    fontFamily: 'Poppins',
-                                                  ),
-                                                ),
-                                                onPressed: () async {
-                                                  SharedPreferences prefs =
-                                                      await SharedPreferences
-                                                          .getInstance();
-                                                  // prefs.clear();
-                                                  prefs.remove(UD_user_id);
-                                                  prefs.remove(UD_user_name);
-                                                  prefs.remove(UD_user_email);
-                                                  _cartcount.cartcountnumber
-                                                      .value = 0;
-                                                  Navigator.of(context)
-                                                      .pushAndRemoveUntil(
-                                                          MaterialPageRoute(
-                                                              builder: (c) =>
-                                                                  Login()),
-                                                          (r) => false);
-                                                },
-                                              ),
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      color.primarycolor,
-                                                ),
-                                                child: Text(
-                                                  'Cancel'.tr,
-                                                  style: TextStyle(
-                                                    fontSize: 12.sp,
-                                                    color: Colors.white,
-                                                    fontFamily: 'Poppins',
-                                                  ),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        });
-                              }),
-                        ],
+                         children: _getDrawerItems(userid: userid)
+                        // <Widget>[
+                      //     DrawerHeader(
+                      //         decoration: BoxDecoration(
+                      //           color: Colors.white,
+                      //         ),
+                      //         child:
+                      //             Image.asset("Assets/images/logo-black.png",)),
+                      //     ListTile(
+                      //       title: Text(
+                      //         'MY Order',
+                      //         style: TextStyle(fontFamily: "Poppins_medium"),
+                      //       ),
+                      //       leading: Image.asset(
+                      //         "Assets/Icons/bag-filled.png",
+                      //         height: 23,
+                      //       ),
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => Orderhistory()),
+                      //         );
+                      //       },
+                      //     ),
+                      //     ListTile(
+                      //       title: Text(
+                      //         'MY CART',
+                      //         style: TextStyle(fontFamily: "Poppins_medium"),
+                      //       ),
+                      //       leading: Image.asset(
+                      //         "Assets/Icons/cart.png",
+                      //         height: 23,
+                      //       ),
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => Product()),
+                      //         );
+                      //       },
+                      //     ),
+                      //     ListTile(
+                      //       title: Text(
+                      //         'Address',
+                      //         style: TextStyle(fontFamily: "Poppins_medium"),
+                      //       ),
+                      //       leading: Image.asset(
+                      //         "Assets/Icons/address.png",
+                      //         height: 25,
+                      //       ),
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => Add_address()),
+                      //         );
+                      //       },
+                      //     ),
+                      //     ListTile(
+                      //       title: Text(
+                      //         'Setting',
+                      //         style: TextStyle(fontFamily: "Poppins_medium"),
+                      //       ),
+                      //       leading: Icon(Icons.settings),
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //           context,
+                      //           MaterialPageRoute(
+                      //               builder: (context) => Editprofile()),
+                      //         );
+                      //       },
+                      //     ),
+                      //     ListTile(
+                      //         title: Text(
+                      //           'Logout',
+                      //           style: TextStyle(fontFamily: "Poppins_medium"),
+                      //         ),
+                      //         leading: Icon(Icons.logout),
+                      //         onTap: () {
+                      //           userid == ""
+                      //               ? Navigator.of(context).pushAndRemoveUntil(
+                      //                   MaterialPageRoute(
+                      //                       builder: (c) => Login()),
+                      //                   (r) => false)
+                      //               : showDialog(
+                      //                   context: context,
+                      //                   builder: (BuildContext context) {
+                      //                     return AlertDialog(
+                      //                       title: Text(
+                      //                         'ecommerce_User'.tr,
+                      //                         style: TextStyle(
+                      //                           fontSize: 12.sp,
+                      //                           fontFamily: 'Poppins_bold',
+                      //                         ),
+                      //                       ),
+                      //                       content: Text(
+                      //                         LocaleKeys
+                      //                             .Are_you_sure_to_logout_from_this_app
+                      //                             .tr,
+                      //                         style: TextStyle(
+                      //                             fontSize: 12.sp,
+                      //                             fontFamily: 'Poppins'),
+                      //                       ),
+                      //                       actions: <Widget>[
+                      //                         ElevatedButton(
+                      //                           style: ElevatedButton.styleFrom(
+                      //                             backgroundColor:
+                      //                                 color.primarycolor,
+                      //                           ),
+                      //                           child: Text(
+                      //                             'Logout'.tr,
+                      //                             style: TextStyle(
+                      //                               fontSize: 12.sp,
+                      //                               color: Colors.white,
+                      //                               fontFamily: 'Poppins',
+                      //                             ),
+                      //                           ),
+                      //                           onPressed: () async {
+                      //                             SharedPreferences prefs =
+                      //                                 await SharedPreferences
+                      //                                     .getInstance();
+                      //                             // prefs.clear();
+                      //                             prefs.remove(UD_user_id);
+                      //                             prefs.remove(UD_user_name);
+                      //                             prefs.remove(UD_user_email);
+                      //                             _cartcount.cartcountnumber
+                      //                                 .value = 0;
+                      //                             Navigator.of(context)
+                      //                                 .pushAndRemoveUntil(
+                      //                                     MaterialPageRoute(
+                      //                                         builder: (c) =>
+                      //                                             Login()),
+                      //                                     (r) => false);
+                      //                           },
+                      //                         ),
+                      //                         ElevatedButton(
+                      //                           style: ElevatedButton.styleFrom(
+                      //                             backgroundColor:
+                      //                                 color.primarycolor,
+                      //                           ),
+                      //                           child: Text(
+                      //                             'Cancel'.tr,
+                      //                             style: TextStyle(
+                      //                               fontSize: 12.sp,
+                      //                               color: Colors.white,
+                      //                               fontFamily: 'Poppins',
+                      //                             ),
+                      //                           ),
+                      //                           onPressed: () {
+                      //                             Navigator.of(context).pop();
+                      //                           },
+                      //                         ),
+                      //                       ],
+                      //                     );
+                      //                   });
+                      //         }),
+                      //   ],
                       ),
                     ),
+                    
                     body: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
@@ -2510,8 +2513,164 @@ class _HomescreenState extends State<Homescreen> {
       // ];
     ];
   }
-}
 
+List<Widget> _getDrawerItems({required String userid}) {
+  // Always visible items
+  List<Widget> drawerItems = [
+    DrawerHeader(
+      decoration: BoxDecoration(color: Colors.white),
+      child: Image.asset("Assets/images/logo-black.png"),
+    ),
+  ];
+
+  // Items visible only when logged in
+  if (userid.isNotEmpty) {
+    drawerItems.addAll([
+      ListTile(
+        title: Text('MY Order', style: TextStyle(fontFamily: "Poppins_medium")),
+        leading: Image.asset("Assets/Icons/bag-filled.png", height: 23),
+        onTap: () {
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Orderhistory()));
+        },
+      ),
+      ListTile(
+        title: Text('MY CART', style: TextStyle(fontFamily: "Poppins_medium")),
+        leading: Image.asset("Assets/Icons/cart.png", height: 23),
+        onTap: () {
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Product()));
+        },
+      ),
+      ListTile(
+        title: Text('Address', style: TextStyle(fontFamily: "Poppins_medium")),
+        leading: Image.asset("Assets/Icons/address.png", height: 25),
+        onTap: () {
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Add_address()));
+        },
+      ),
+      ListTile(
+        title: Text('Setting', style: TextStyle(fontFamily: "Poppins_medium")),
+        leading: Icon(Icons.settings),
+        onTap: () {
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Editprofile()));
+        },
+      ),
+      ListTile(
+                              title: Text(
+                                'Logout',
+                                style: TextStyle(fontFamily: "Poppins_medium"),
+                              ),
+                              leading: Icon(Icons.logout),
+                              onTap: () {
+                                userid == ""
+                                    ? Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (c) => Login()),
+                                        (r) => false)
+                                    : showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              'ecommerce_User'.tr,
+                                              style: TextStyle(
+                                                fontSize: 12.sp,
+                                                fontFamily: 'Poppins_bold',
+                                              ),
+                                            ),
+                                            content: Text(
+                                              LocaleKeys
+                                                  .Are_you_sure_to_logout_from_this_app
+                                                  .tr,
+                                              style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                  fontFamily: 'Poppins'),
+                                            ),
+                                            actions: <Widget>[
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      color.primarycolor,
+                                                ),
+                                                child: Text(
+                                                  'Logout'.tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Poppins',
+                                                  ),
+                                                ),
+                                                onPressed: () async {
+                                                  SharedPreferences prefs =
+                                                      await SharedPreferences
+                                                          .getInstance();
+                                                  // prefs.clear();
+                                                  prefs.remove(UD_user_id);
+                                                  prefs.remove(UD_user_name);
+                                                  prefs.remove(UD_user_email);
+                                                  _cartcount.cartcountnumber
+                                                      .value = 0;
+                                                  Navigator.of(context)
+                                                      .pushAndRemoveUntil(
+                                                          MaterialPageRoute(
+                                                              builder: (c) =>
+                                                                  Login()),
+                                                          (r) => false);
+                                                },
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor:
+                                                      color.primarycolor,
+                                                ),
+                                                child: Text(
+                                                  'Cancel'.tr,
+                                                  style: TextStyle(
+                                                    fontSize: 12.sp,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Poppins',
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        });
+                              }),
+                       
+    ]);
+  }
+else {
+    // Add a "Login" option if the user is not logged in
+    drawerItems.add(
+      ListTile(
+        title: Text('Login', style: TextStyle(fontFamily: "Poppins_medium")),
+        leading: Icon(Icons.login),
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (c) => Login()));
+        },
+      ),
+    );
+  }
+  // Logout item, should it also depend on being logged in or always visible?
+  // drawerItems.add(
+  //   ListTile(
+  //     title: Text('Logout', style: TextStyle(fontFamily: "Poppins_medium")),
+  //     leading: Icon(Icons.logout),
+  //     onTap: () {
+  //       if (userid.isEmpty) {
+  //         Navigator.of(context as BuildContext).pushAndRemoveUntil(MaterialPageRoute(builder: (c) => Login()), (r) => false);
+  //       } else {
+  //         // Logout confirmation dialog and logic here...
+  //       }
+  //     },
+  //   ),
+  // );
+
+  return drawerItems;
+}
+}
 // final http.Response httpresponse = await http.post(
 //   Uri.parse(
 //     DefaultApi.appUrl + PostAPI.Home,
