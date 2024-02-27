@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:single_ecommerce/model/orders/orderhistory.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -64,10 +65,21 @@ class _OrderhistoryState extends State<Orderhistory> {
     return Consumer(builder: (context, ThemeModel themenofier, child) {
       return Scaffold(
         appBar: AppBar(
-            leadingWidth: 40,
+            leadingWidth: 70,
             toolbarHeight: 14.h,
             automaticallyImplyLeading: false,
             elevation: 0,
+            leading: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                          icon: ImageIcon(
+                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                            color: MyColors.secondaryColor,
+                            size: 20,
+                          ),
+                        ),
             centerTitle: true,
             backgroundColor: Colors.transparent,
             title: Text(

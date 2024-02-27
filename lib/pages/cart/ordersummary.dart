@@ -213,15 +213,17 @@ class _OrdersummaryState extends State<Ordersummary> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               leading: widget.ordertype == "1"
-                  ? IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: ImageIcon(
-                        AssetImage("Assets/Icons/arrow-smooth-left.png"),
-                        color: Colors.black,
-                        //] size: 17,
-                      ),)
+                  ?  IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                          icon: ImageIcon(
+                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                            color: MyColors.secondaryColor,
+                            size: 20,
+                          ),
+                        )
                   : null,
               leadingWidth: 70,
               title: Text(

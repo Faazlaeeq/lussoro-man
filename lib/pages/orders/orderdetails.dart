@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/common%20class/icons.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/pages/cart/addonslist.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/allformater.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
@@ -93,18 +94,21 @@ class _OrderdetailsState extends State<Orderdetails> {
               appBar: AppBar(
                 leadingWidth: 40,
                 elevation: 0,
-                backgroundColor: Colors.transparent,
                 leading: IconButton(
-                    onPressed: () {
+                          onPressed: () {
                       Navigator.pop(
                         context,
                         MaterialPageRoute(builder: (context) => Viewcart()),
                       );
                     },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_outlined,
-                      size: 20,
-                    )),
+                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                          icon: ImageIcon(
+                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                            color: MyColors.secondaryColor,
+                            size: 20,
+                          ),
+                        ),
+                backgroundColor: Colors.transparent,
                 title: Text(
                   'Order_Details'.tr,
                   textAlign: TextAlign.center,

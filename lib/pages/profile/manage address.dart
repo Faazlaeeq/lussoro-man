@@ -263,6 +263,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                                         ],
                                         const Spacer(),
                                         Container(
+                                          padding: EdgeInsets.all(5),
                                           child: Row(
                                             children: [
                                               IconButton(

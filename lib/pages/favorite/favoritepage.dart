@@ -159,7 +159,18 @@ class _FavoriteState extends State<Favorite> {
         child: Scaffold(
             key: _scaffoldKey,
             appBar: AppBar(
-              leadingWidth: 40,
+              leadingWidth: 70,
+              leading: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                          icon: ImageIcon(
+                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                            color: MyColors.secondaryColor,
+                            size: 20,
+                          ),
+                        ),
               elevation: 0,
               title: Text(
                 'Favorite_list'.tr,

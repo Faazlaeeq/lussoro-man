@@ -206,9 +206,20 @@ class _ViewcartState extends State<Viewcart> {
             return Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: AppBar(
-                  leadingWidth: 80,
+                  leadingWidth: 70,
                   elevation: 0,
                   centerTitle: true,
+                  leading: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                          icon: ImageIcon(
+                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                            color: MyColors.secondaryColor,
+                            size: 20,
+                          ),
+                        ),
                   title: Text(
                     'Mycart'.tr,
                     style: TextStyle(
