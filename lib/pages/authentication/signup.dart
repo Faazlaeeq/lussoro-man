@@ -279,40 +279,40 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                 ),
-                // Container(
-                //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                //   child: Center(
-                //     child: IntlPhoneField(
-                //       cursorColor: color.grey,
-                //       controller: Mobile,
-                //       showCountryFlag: false,
-                //       disableLengthCheck: true,
-                //       keyboardType: TextInputType.number,
-                //       textInputAction: TextInputAction.next,
-                //       decoration: InputDecoration(
-                //         hintText: 'Mobile'.tr,
-                //         hintStyle: TextStyle(
-                //           fontFamily: 'Poppins',
-                //           fontSize: 10.sp,
-                //           color: color.black,
-                //           fontWeight: FontWeight.bold
-                //         ),
-                //         border: UnderlineInputBorder(),
-                //         enabledBorder: UnderlineInputBorder(
-                //           borderSide: BorderSide(color: color.grey),
-                //         ),
-                //         focusedBorder: UnderlineInputBorder(
-                //           borderSide: BorderSide(color: color.grey),
-                //         ),
-                //       ),
-                //       initialCountryCode: 'IN',
-                //       onCountryChanged: (value) {
-                //         countrycode = value.dialCode;
-                //         print(countrycode);
-                //       },
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                  child: Center(
+                    child: IntlPhoneField(
+                      cursorColor: color.grey,
+                      controller: Mobile,
+                      showCountryFlag: false,
+                      disableLengthCheck: true,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        hintText: 'Mobile'.tr,
+                        hintStyle: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 10.sp,
+                          color: color.black,
+                          fontWeight: FontWeight.bold
+                        ),
+                        border: UnderlineInputBorder(),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: color.grey),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: color.grey),
+                        ),
+                      ),
+                      initialCountryCode: 'US',
+                      onCountryChanged: (value) {
+                        countrycode = value.dialCode;
+                        print(countrycode);
+                      },
+                    ),
+                  ),
+                ),
                 Container(
                   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
                   child: Center(
@@ -379,46 +379,46 @@ class _SignupState extends State<Signup> {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
-                    child: Center(
-                      child: TextFormField(
-                        cursorColor: color.grey,
-                        obscureText: _obscureText,
-                        validator: (value) =>
-                            Validators.validateConfirmPassword(value!),
-                        controller: Password,
-                        textInputAction: TextInputAction.done,
-                        decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                              icon: Icon(
-                                _obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Colors.black,
-                              )),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: color.grey),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: color.grey),
-                          ),
-                          border: UnderlineInputBorder(),
-                          hintText: 'ConfirmPassword'.tr,
-                          hintStyle: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 10.sp,
-                            color: Colors.black
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.only(left: 4.w, top: 2.h, right: 4.w),
+                  //   child: Center(
+                  //     child: TextFormField(
+                  //       cursorColor: color.grey,
+                  //       obscureText: _obscureText,
+                  //       validator: (value) =>
+                  //           Validators.validateConfirmPassword(value!),
+                  //       controller: Password,
+                  //       textInputAction: TextInputAction.done,
+                  //       decoration: InputDecoration(
+                  //         suffixIcon: IconButton(
+                  //             onPressed: () {
+                  //               setState(() {
+                  //                 _obscureText = !_obscureText;
+                  //               });
+                  //             },
+                  //             icon: Icon(
+                  //               _obscureText
+                  //                   ? Icons.visibility
+                  //                   : Icons.visibility_off,
+                  //               color: Colors.black,
+                  //             )),
+                  //         enabledBorder: UnderlineInputBorder(
+                  //           borderSide: BorderSide(color: color.grey),
+                  //         ),
+                  //         focusedBorder: UnderlineInputBorder(
+                  //           borderSide: BorderSide(color: color.grey),
+                  //         ),
+                  //         border: UnderlineInputBorder(),
+                  //         hintText: 'ConfirmPassword'.tr,
+                  //         hintStyle: TextStyle(
+                  //           fontFamily: 'Poppins',
+                  //           fontSize: 10.sp,
+                  //           color: Colors.black
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
                 Row(
                   children: <Widget>[
