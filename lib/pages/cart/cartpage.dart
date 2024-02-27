@@ -210,16 +210,16 @@ class _ViewcartState extends State<Viewcart> {
                   elevation: 0,
                   centerTitle: true,
                   leading: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
-                          icon: ImageIcon(
-                            AssetImage("Assets/Icons/arrow-smooth-left.png"),
-                            color: MyColors.secondaryColor,
-                            size: 20,
-                          ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                        icon: ImageIcon(
+                          AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                          color: MyColors.secondaryColor,
+                          size: 20,
                         ),
+                      ),
                   title: Text(
                     'Mycart'.tr,
                     style: TextStyle(

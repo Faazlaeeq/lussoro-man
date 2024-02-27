@@ -11,9 +11,11 @@ import 'package:single_ecommerce/pages/authentication/login.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/model/home/homescreenmodel.dart';
+import 'package:single_ecommerce/pages/cart/cartpage.dart';
 import 'package:single_ecommerce/pages/orders/orders.dart';
 import 'package:single_ecommerce/pages/profile/addaddress.dart';
 import 'package:single_ecommerce/pages/profile/editprofile.dart';
+import 'package:single_ecommerce/pages/profile/manage%20address.dart';
 import 'package:single_ecommerce/routes/route_manager.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/theme/my_colors.dart';
@@ -2537,14 +2539,14 @@ List<Widget> _getDrawerItems({required String userid}) {
         title: Text('MY CART', style: TextStyle(fontFamily: "Poppins_medium")),
         leading: Image.asset("Assets/Icons/cart.png", height: 23),
         onTap: () {
-          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Product()));
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Viewcart()));
         },
       ),
       ListTile(
         title: Text('Address', style: TextStyle(fontFamily: "Poppins_medium")),
         leading: Image.asset("Assets/Icons/address.png", height: 25),
         onTap: () {
-          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Add_address()));
+          Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context) => Manage_Addresses()));
         },
       ),
       ListTile(
