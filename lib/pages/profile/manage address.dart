@@ -9,6 +9,7 @@ import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/settings/deleteaddressmodel.dart';
 import 'package:single_ecommerce/model/settings/getaddressmodel.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/height.dart';
@@ -118,13 +119,16 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               leading: IconButton(
-                  onPressed: () {
+          onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_outlined,
-                    size: 20,
-                  )),
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
               title: Text(
                 'Myadresses'.tr,
                 textAlign: TextAlign.center,
@@ -132,7 +136,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                     TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
               ),
               centerTitle: true,
-              leadingWidth: 40,
+              leadingWidth: 70,
             ),
             body: FutureBuilder(
               future: getaddressAPI(),
@@ -150,7 +154,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                     );
                   } else {
                     return ListView.builder(
-                        padding: EdgeInsets.only(bottom: 8.h),
+                        padding: EdgeInsets.only(bottom: 8.h,top: 2.h),
                         itemCount: addressdata!.data!.length,
                         itemBuilder: (context, index) {
                           return InkWell(
@@ -167,7 +171,8 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                               }
                             },
                             child: Container(
-                                margin: EdgeInsets.only(left: 4.w, right: 4.w),
+                                margin: EdgeInsets.only(left: 4.w, right: 4.w,top: 1.h),
+                                color:Color.fromARGB(255, 248, 248, 248),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -367,7 +372,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                                         ),
                                         height: 0.8.sp,
                                         width: double.infinity,
-                                        color: Colors.grey),
+                                        color: Colors.black),
                                   ],
                                 )),
                           );
@@ -402,7 +407,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                   // }
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: color.black,
+                  backgroundColor: color.darkblack,
                 ),
                 child: Text(
                   'Add_New_Address'.tr,

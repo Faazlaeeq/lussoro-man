@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/favorite/addtocartmodel.dart';
 import 'package:single_ecommerce/pages/cart/ordersummary.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common class/color.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
@@ -175,19 +176,22 @@ class _Confirm_locationState extends State<Confirm_location> {
           child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leadingWidth: 40,
+          leadingWidth: 70,
           elevation: 0,
           leading: IconButton(
-              onPressed: () {
+          onPressed: () {
                 Navigator.pop(
                   context,
                   MaterialPageRoute(builder: (context) => Add_address()),
                 );
               },
-              icon: const Icon(
-                Icons.arrow_back_ios_outlined,
-                size: 20,
-              )),
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
           title: Text(
             'Confirmlocation'.tr,
             textAlign: TextAlign.center,
@@ -207,13 +211,12 @@ class _Confirm_locationState extends State<Confirm_location> {
                 margin: EdgeInsets.only(
                   left: 4.5.w,
                   right: 4.5.w,
-                  top: 1.2.h,
                 ),
                 child: Row(children: [
-                  const ImageIcon(
-                    AssetImage('Assets/Icons/address.png'),
-                    size: 26,
-                  ),
+                  // const ImageIcon(
+                  //   AssetImage('Assets/Icons/address.png'),
+                  //   size: 26,
+                  // ),
                   Container(
                     margin: EdgeInsets.only(
                       left: 2.w,
@@ -247,7 +250,7 @@ class _Confirm_locationState extends State<Confirm_location> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
-                      color: Colors.grey,
+                      color: Colors.black,
                     ),
                     color: Colors.black12),
                 margin: EdgeInsets.only(
@@ -286,11 +289,11 @@ class _Confirm_locationState extends State<Confirm_location> {
                             TextStyle(fontFamily: 'Poppins', fontSize: 10.sp),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         )),
                   ),
                 ),
@@ -316,11 +319,11 @@ class _Confirm_locationState extends State<Confirm_location> {
                             TextStyle(fontFamily: 'Poppins', fontSize: 10.sp),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         )),
                   ),
                 ),
@@ -340,11 +343,11 @@ class _Confirm_locationState extends State<Confirm_location> {
                             fontSize: 10.sp),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.5),
-                          borderSide: BorderSide(color: Colors.grey),
+                          borderSide: BorderSide(color: Colors.black),
                         )),
                   ),
                 ),
@@ -510,7 +513,7 @@ class _Confirm_locationState extends State<Confirm_location> {
                     }
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: color.black,
+                    backgroundColor: color.darkblack,
                   ),
                   child: Text(
                     'Saveaddressdetails'.tr,
