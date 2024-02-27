@@ -84,7 +84,7 @@ class _EditprofileState extends State<Editprofile> {
                                 child: Icon(Icons.camera_alt, size: 60),
                               ),
                               Text(
-                                "Camara",
+                                "Camera",
                                 style: TextStyle(
                                     fontSize: 18, fontFamily: 'poppins'),
                               )
@@ -251,13 +251,13 @@ class _EditprofileState extends State<Editprofile> {
                     width: 11.5.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     child: IconButton(
-                      splashColor: Colors.transparent,
+                      splashColor: Colors.black,
                       icon: Icon(
                         Icons.photo_camera,
-                        color: Colors.grey,
+                        color: Colors.white,
                       ),
                       onPressed: () {
                         imagePickerOption();
@@ -369,11 +369,15 @@ class _EditprofileState extends State<Editprofile> {
               }
             },
             child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                
+              color: color.darkblack,
+              ),
               height: 6.5.h,
               margin:
                   EdgeInsets.only(left: 4.w, right: 4.w, top: 2.h, bottom: 1.h),
               width: double.infinity,
-              color: color.black,
               child: Center(
                 child: Text(
                   'Save'.tr,

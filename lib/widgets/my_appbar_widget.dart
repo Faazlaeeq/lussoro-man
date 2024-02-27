@@ -48,8 +48,8 @@ class MyAppbar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Image.asset(
         "Assets/images/logo-black.png",
-        height: 40,
-        width: 40,
+        height: 35,
+        fit: BoxFit.fill,
       ),
       automaticallyImplyLeading: false,
       leading: showleading

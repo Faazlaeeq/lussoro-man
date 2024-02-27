@@ -509,10 +509,10 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4, vertical: padding2),
+                                horizontal: padding4, vertical: padding1),
                             child: Text(
                               'Welcome'.tr,
-                              style: Theme.of(context).textTheme.headlineMedium,
+                              style: Theme.of(context).textTheme.headlineLarge,
                             ),
                           ),
                           Padding(
@@ -816,7 +816,7 @@ class _HomescreenState extends State<Homescreen> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: color.black,
+            color: color.darkblack,
           ),
           child: CarouselSlider.builder(
               itemCount: homedata!.testimonials!.length,
