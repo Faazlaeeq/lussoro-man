@@ -132,10 +132,10 @@ class _ChangepassState extends State<Changepass> {
                           color: Colors.grey,
                           fontSize: 10.5.sp),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       )),
                 ),
               ),
@@ -171,10 +171,10 @@ class _ChangepassState extends State<Changepass> {
                           color: Colors.grey,
                           fontSize: 10.5.sp),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       )),
                 ),
               ),
@@ -216,10 +216,10 @@ class _ChangepassState extends State<Changepass> {
                           color: Colors.grey,
                           fontSize: 10.5.sp),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(color: Colors.grey),
+                        borderSide: const BorderSide(color: Colors.black),
                       )),
                 ),
               ),
@@ -260,7 +260,7 @@ class _ChangepassState extends State<Changepass> {
                   }
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: color.black,
+                  backgroundColor: color.darkblack,
                 ),
                 child: Text(
                   'Reset'.tr,

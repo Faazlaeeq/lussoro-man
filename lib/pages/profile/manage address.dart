@@ -118,17 +118,17 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
             appBar: AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
-              leading: IconButton(
-          onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
-          icon: ImageIcon(
-            AssetImage("Assets/Icons/arrow-smooth-left.png"),
-            color: MyColors.secondaryColor,
-            size: 20,
-          ),
-        ),
+                      leading: IconButton(
+                  onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                  style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+                  icon: ImageIcon(
+                    AssetImage("Assets/Icons/arrow-smooth-left.png"),
+                    color: MyColors.secondaryColor,
+                    size: 20,
+                  ),
+                ),
               title: Text(
                 'Myadresses'.tr,
                 textAlign: TextAlign.center,

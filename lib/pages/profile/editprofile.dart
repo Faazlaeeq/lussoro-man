@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' as prefix;
 import 'package:image_picker/image_picker.dart';
 import 'package:single_ecommerce/model/authentication/Loginmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/height.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
@@ -208,15 +209,18 @@ class _EditprofileState extends State<Editprofile> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leadingWidth: 40,
+        leadingWidth: 70,
         leading: IconButton(
-            onPressed: () {
+          onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: Icon(
-              Icons.arrow_back_ios_outlined,
-              size: 20,
-            )),
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
         title: Text(
           'Edit_Profile'.tr,
           textAlign: TextAlign.center,
@@ -289,11 +293,11 @@ class _EditprofileState extends State<Editprofile> {
                       border: OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7),
-                        borderSide: BorderSide(color: Colors.grey),
+                        borderSide: BorderSide(color: Colors.black),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(7),
-                        borderSide: BorderSide(color: Colors.grey),
+                        borderSide: BorderSide(color: Colors.black),
                       )),
                 ),
               ),
@@ -320,11 +324,11 @@ class _EditprofileState extends State<Editprofile> {
                     border: OutlineInputBorder(),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(7),
-                      borderSide: const BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(7),
-                      borderSide: const BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.black),
                     )),
               ),
             ),
@@ -348,11 +352,11 @@ class _EditprofileState extends State<Editprofile> {
                       fontSize: 10.5.sp),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: BorderSide(color: Colors.black),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(7),
-                    borderSide: const BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: Colors.black),
                   )),
             ),
           ),

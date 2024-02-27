@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/model/settings/isnotificationmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:provider/provider.dart';
@@ -80,19 +81,22 @@ class _NotificationpageState extends State<Notificationpage> {
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_outlined,
-                size: 20,
-              )),
+          onPressed: () {
+              Navigator.of(context).pop();
+            },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
           title: Text(
             'Notification_Settings'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
           ),
-          leadingWidth: 40,
+          leadingWidth: 70,
           centerTitle: true,
         ),
         body: Container(
@@ -109,7 +113,7 @@ class _NotificationpageState extends State<Notificationpage> {
                   Spacer(),
                   FlutterSwitch(
                     inactiveColor: Colors.grey,
-                    activeColor: color.green,
+                    activeColor: color.black,
                     width: 12.8.w,
                     height: 3.9.h,
                     value: isnotification == "1" ? false : true,
@@ -168,7 +172,7 @@ class _NotificationpageState extends State<Notificationpage> {
                   Spacer(),
                   FlutterSwitch(
                     inactiveColor: Colors.grey,
-                    activeColor: color.green,
+                    activeColor: color.black,
                     width: 12.8.w,
                     height: 3.9.h,
                     value: ismail == "1" ? false : true,

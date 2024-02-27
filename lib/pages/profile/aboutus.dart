@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:single_ecommerce/common%20class/prefs_name.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -39,20 +40,23 @@ class _AboutusState extends State<Aboutus> {
             appBar: AppBar(
               elevation: 0,
               leading: IconButton(
-                  onPressed: () {
+          onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_outlined,
-                    size: 20,
-                  )),
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
               title: Text(
                 'About_Us'.tr,
                 textAlign: TextAlign.center,
                 style:
                     TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
               ),
-              leadingWidth: 40,
+              leadingWidth: 70,
               centerTitle: true,
             ),
             body: WebView(

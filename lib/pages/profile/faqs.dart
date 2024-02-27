@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:single_ecommerce/model/settings/faqmodel.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/config/api/api.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:sizer/sizer.dart';
 
@@ -46,13 +47,16 @@ class _FaqsState extends State<Faqs> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               leading: IconButton(
-                  onPressed: () {
+          onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  icon: const Icon(
-                    Icons.arrow_back_ios_outlined,
-                    size: 20,
-                  )),
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
               title: Text(
                 'Faqs'.tr,
                 textAlign: TextAlign.center,
@@ -60,7 +64,7 @@ class _FaqsState extends State<Faqs> {
                     fontFamily: 'Poppins_semibold', fontSize: 12.5.sp),
               ),
               centerTitle: true,
-              leadingWidth: 40,
+              leadingWidth: 70,
             ),
             body: FutureBuilder(
                 future: faqsAPI(),

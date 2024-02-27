@@ -9,6 +9,7 @@ import 'package:single_ecommerce/common%20class/prefs_name.dart';
 import 'package:single_ecommerce/config/api/api.dart';
 import 'package:single_ecommerce/model/settings/addratingmodel.dart';
 import 'package:single_ecommerce/model/settings/ratereviewmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/translation/locale_keys.g.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -66,20 +67,23 @@ class _RatingreviewState extends State<Ratingreview> {
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios_outlined,
-                          size: 20,
-                        )),
+          onPressed: () {
+              Navigator.of(context).pop();
+            },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
                     title: Text(
                       'Testimonials'.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontFamily: 'Poppins_semibold', fontSize: 12.sp),
                     ),
-                    leadingWidth: 40,
+                    leadingWidth: 70,
                     centerTitle: true,
                   ),
                   floatingActionButton: finaldata!.checkReviewExist

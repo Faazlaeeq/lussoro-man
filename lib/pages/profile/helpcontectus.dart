@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:single_ecommerce/model/settings/helpmodel.dart';
+import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
 import 'package:single_ecommerce/common%20class/color.dart';
 import 'package:single_ecommerce/common%20class/height.dart';
@@ -60,20 +61,23 @@ class _HelpcontactusState extends State<Helpcontactus> {
             elevation: 0,
             backgroundColor: Colors.transparent,
             leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_outlined,
-                  size: 20,
-                )),
+          onPressed: () {
+              Navigator.of(context).pop();
+            },
+          style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
+          icon: ImageIcon(
+            AssetImage("Assets/Icons/arrow-smooth-left.png"),
+            color: MyColors.secondaryColor,
+            size: 20,
+          ),
+        ),
             title: Text(
               'Help_Contact_Us'.tr,
               textAlign: TextAlign.center,
               style: TextStyle(fontFamily: 'Poppins_semibold', fontSize: 12.sp),
             ),
             centerTitle: true,
-            leadingWidth: 40,
+            leadingWidth: 70,
           ),
           body: SingleChildScrollView(
             child: Form(
@@ -110,7 +114,7 @@ class _HelpcontactusState extends State<Helpcontactus> {
                           right: 2.w,
                         ),
                         child: Text(
-                          'No91_70164'.tr,
+                          '+92.......'.tr,
                           style: TextStyle(
                               fontFamily: 'Poppins', fontSize: 9.5.sp),
                         ),
@@ -133,7 +137,7 @@ class _HelpcontactusState extends State<Helpcontactus> {
                           right: 2.w,
                         ),
                         child: Text(
-                          'Infotechgravitygmail'.tr,
+                          'luminariontech@gmail.com'.tr,
                           style: TextStyle(
                               fontFamily: 'Poppins', fontSize: 9.5.sp),
                         ),
@@ -160,7 +164,7 @@ class _HelpcontactusState extends State<Helpcontactus> {
                             ),
                             child: Text(
                               maxLines: 3,
-                              'Company_address'.tr,
+                              'london,UK'.tr,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -206,10 +210,10 @@ class _HelpcontactusState extends State<Helpcontactus> {
                                     fontSize: 11.sp),
                                 border: const OutlineInputBorder(),
                                 enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: BorderSide(color: Colors.black),
                                 )),
                           ),
                         ),
@@ -233,10 +237,10 @@ class _HelpcontactusState extends State<Helpcontactus> {
                                     fontSize: 11.sp),
                                 border: const OutlineInputBorder(),
                                 enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: BorderSide(color: Colors.black),
                                 )),
                           ),
                         ),
@@ -260,10 +264,10 @@ class _HelpcontactusState extends State<Helpcontactus> {
                               fontSize: 11.sp),
                           border: const OutlineInputBorder(),
                           enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: BorderSide(color: Colors.black),
                           ),
                           focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: BorderSide(color: Colors.black),
                           )),
                     ),
                   ),
@@ -284,10 +288,10 @@ class _HelpcontactusState extends State<Helpcontactus> {
                               fontSize: 11.sp),
                           border: const OutlineInputBorder(),
                           enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: BorderSide(color: Colors.black),
                           ),
                           focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                            borderSide: BorderSide(color: Colors.black),
                           )),
                     ),
                   ),
@@ -310,7 +314,7 @@ class _HelpcontactusState extends State<Helpcontactus> {
                                   'Please_enter_all_details'.tr);
                         }
                       },
-                      style: TextButton.styleFrom(backgroundColor: color.green),
+                      style: TextButton.styleFrom(backgroundColor: color.darkblack),
                       child: Text(
                         'Submit'.tr,
                         style: TextStyle(
@@ -320,38 +324,38 @@ class _HelpcontactusState extends State<Helpcontactus> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        image: const AssetImage('Assets/Icons/facebook.png'),
-                        height: 4.h,
-                        width: 4.h,
-                      ),
-                      SizedBox(
-                        width: 2.5.w,
-                      ),
-                      Image(
-                        image: const AssetImage('Assets/Icons/instagram.png'),
-                        height: 4.5.h,
-                        width: 4.5.h,
-                      ),
-                      SizedBox(
-                        width: 2.5.w,
-                      ),
-                      Image(
-                        image: const AssetImage('Assets/Icons/twitter.png'),
-                        height: 4.5.h,
-                        width: 4.5.h,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  )
+                  // SizedBox(
+                  //   height: 15.h,
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Image(
+                  //       image: const AssetImage('Assets/Icons/facebook.png'),
+                  //       height: 4.h,
+                  //       width: 4.h,
+                  //     ),
+                  //     SizedBox(
+                  //       width: 2.5.w,
+                  //     ),
+                  //     Image(
+                  //       image: const AssetImage('Assets/Icons/instagram.png'),
+                  //       height: 4.5.h,
+                  //       width: 4.5.h,
+                  //     ),
+                  //     SizedBox(
+                  //       width: 2.5.w,
+                  //     ),
+                  //     Image(
+                  //       image: const AssetImage('Assets/Icons/twitter.png'),
+                  //       height: 4.5.h,
+                  //       width: 4.5.h,
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(
+                  //   height: 1.h,
+                  // )
                 ],
               ),
             ),
