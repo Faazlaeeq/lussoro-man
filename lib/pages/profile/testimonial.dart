@@ -399,7 +399,7 @@ class _TestimonioalState extends State<Testimonioal> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
                 border: Border.all(
-                  color: color.red,
+                  color: Colors.transparent,
                 ),
               ),
               height: 6.5.h,
@@ -409,7 +409,7 @@ class _TestimonioalState extends State<Testimonioal> {
                   'Cancel'.tr,
                   style: TextStyle(
                     fontFamily: 'Poppins_semibold',
-                    color: color.red,
+                    color: color.black,
                     fontSize: fontsize.Buttonfontsize,
                   ),
                 ),
@@ -435,7 +435,7 @@ class _TestimonioalState extends State<Testimonioal> {
                   }
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: color.black,
+                  backgroundColor: color.darkblack,
                 ),
                 child: Text(
                   'Submit'.tr,

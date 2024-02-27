@@ -512,7 +512,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: padding4, vertical: padding1),
+                                horizontal: padding4,),
                             child: Text(
                               'Welcome'.tr,
                               style: Theme.of(context).textTheme.headlineLarge,
@@ -520,7 +520,7 @@ class _HomescreenState extends State<Homescreen> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: padding4,
+                              horizontal: padding5,
                             ),
                             child: Text("Our Lussoro Man",
                                 style: Theme.of(context)
