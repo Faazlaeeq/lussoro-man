@@ -170,6 +170,7 @@ class _Add_addressState extends State<Add_address> {
           //     )
           //   ],
           // ),
+
           Row(
             children: [
               Container(
@@ -318,10 +319,10 @@ class _Add_addressState extends State<Add_address> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => Confirm_location(
-                            "north karachi",
-                            "Karachi",
-                            Engstring.latitude,
-                            Engstring.longitude,
+                            Area.toString(),
+                            Address.toString(),
+                            // Engstring.latitude,
+                            // Engstring.longitude,
                             widget.addressid,
                             widget.area,
                             widget.houseno.toString(),
