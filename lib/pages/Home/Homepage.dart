@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:badges/badges.dart' as badges;
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -279,11 +280,13 @@ class _HomepageState extends State<Homepage> {
                 );
               },
             );
-            if (value != null) {
-              return Future.value(value);
-            } else {
-              return Future.value(false);
-            }
+            if (value == true) {
+
+      SystemNavigator.pop();
+      return Future.value(false); 
+    } else {
+      return Future.value(false); 
+    }
           },
           child: Scaffold(
             body: PageView(
