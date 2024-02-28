@@ -118,7 +118,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
                       padding: const EdgeInsets.all(padding2),
                       child: Image.asset(
                         _currentIndex == 1
-                            ? "Assets/Icons/favorite-white-outline.png"
+                            ? "Assets/Icons/Star-filled.png"
                             : "Assets/Icons/favorite-filled-black.png",
                         alignment: Alignment.center,
                         height: 16,

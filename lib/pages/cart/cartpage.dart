@@ -204,7 +204,7 @@ class _ViewcartState extends State<Viewcart> {
               );
             }
             return Scaffold(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
                 appBar: AppBar(
                   leadingWidth: 70,
                   elevation: 0,

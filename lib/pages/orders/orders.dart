@@ -115,6 +115,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                                       ? Colors.white
                                       : Colors.black,
                                   fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 10.5.sp),
                             ),
                           ),
@@ -136,8 +137,9 @@ class _OrderhistoryState extends State<Orderhistory> {
                             child: Text(
                               'Completed'.tr,
                               style: TextStyle(
-                                  color: color.green,
+                                  color: color.darkblack,
                                   fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 10.5.sp),
                             ),
                           ),
@@ -161,6 +163,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                               style: TextStyle(
                                   color: color.red,
                                   fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 10.5.sp),
                             ),
                           ),
@@ -174,17 +177,17 @@ class _OrderhistoryState extends State<Orderhistory> {
                       Container(
                         height: 0.3.h,
                         width: 9.w,
-                        color: tabvalue == 1 ? Colors.grey : Colors.transparent,
+                        color: tabvalue == 1 ? Colors.black : Colors.transparent,
                       ),
                       Container(
                         height: 0.3.h,
                         width: 9.w,
-                        color: tabvalue == 2 ? color.green : Colors.transparent,
+                        color: tabvalue == 2 ? color.black : Colors.transparent,
                       ),
                       Container(
                         height: 0.3.h,
                         width: 9.w,
-                        color: tabvalue == 3 ? color.red : Colors.transparent,
+                        color: tabvalue == 3 ? color.black : Colors.transparent,
                       )
                     ],
                   )
@@ -208,7 +211,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 11.sp,
-                      color: Colors.grey),
+                      color: Colors.black),
                 ),
               );
             }
@@ -232,7 +235,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                         width: double.infinity,
                         height: 14.h,
                         decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
+                            border: Border.all(color: Colors.black),
                             borderRadius: BorderRadius.circular(6)),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -250,16 +253,17 @@ class _OrderhistoryState extends State<Orderhistory> {
                                       "1") ...[
                                     Container(
                                       decoration: BoxDecoration(
-                                          color: color.status1,
+                                          color: color.darkblack,
                                           borderRadius:
                                               BorderRadius.circular(5)),
-                                      padding: EdgeInsets.all(7),
+                                      padding: EdgeInsets.all(11),
                                       height: 4.5.h,
                                       child: Center(
                                         child: Text('Placed'.tr,
                                             style: TextStyle(
                                                 fontSize: 9.5.sp,
                                                 fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
                                                 color: Colors.white)),
                                       ),
                                     )
@@ -393,22 +397,22 @@ class _OrderhistoryState extends State<Orderhistory> {
                                 margin:
                                     EdgeInsets.only(top: 0.3.h, bottom: 0.2.h),
                                 height: 0.5.sp,
-                                color: Colors.grey,
+                                color: Colors.black,
                               ),
                               Row(
                                 children: [
                                   Text('Paymenttype'.tr,
                                       style: TextStyle(
                                           fontSize: 8.5.sp,
-                                          fontFamily: 'Poppins',
-                                          color: Colors.grey)),
+                                          fontFamily: 'Poppins_semibold',
+                                          color: Colors.black)),
                                   if (Ordersdata!
                                           .data![index].transactionType ==
                                       "1") ...[
                                     Text('Cash'.tr,
                                         style: TextStyle(
                                             fontSize: 8.5.sp,
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Poppins_semibold',
                                             color: Colors.grey)),
                                   ] else if (Ordersdata!
                                           .data![index].transactionType ==
@@ -416,7 +420,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                                     Text('Wallet'.tr,
                                         style: TextStyle(
                                             fontSize: 8.5.sp,
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Poppins_semibold',
                                             color: Colors.grey)),
                                   ] else if (Ordersdata!
                                           .data![index].transactionType ==
@@ -489,7 +493,7 @@ class _OrderhistoryState extends State<Orderhistory> {
                                     Text('Delivery'.tr,
                                         style: TextStyle(
                                             fontSize: 8.5.sp,
-                                            fontFamily: 'Poppins',
+                                            fontFamily: 'Poppins_semibold',
                                             color: Colors.grey)),
                                   ] else if (Ordersdata!
                                           .data![index].orderType ==
