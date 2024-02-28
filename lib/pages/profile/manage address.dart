@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:single_ecommerce/model/cart/qtyupdatemodel.dart';
 import 'package:single_ecommerce/model/settings/deleteaddressmodel.dart';
 import 'package:single_ecommerce/model/settings/getaddressmodel.dart';
+import 'package:single_ecommerce/pages/profile/confirm%20location.dart';
 import 'package:single_ecommerce/theme-old/thememodel.dart';
 import 'package:single_ecommerce/theme/my_colors.dart';
 import 'package:single_ecommerce/widgets/loader.dart';
@@ -120,7 +121,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
               backgroundColor: Colors.transparent,
                       leading: IconButton(
                   onPressed: () {
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pop(context);
                           },
                   style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
                   icon: ImageIcon(
@@ -402,7 +403,7 @@ class _Manage_AddressesState extends State<Manage_Addresses> {
                   // } else {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Add_address()),
+                    MaterialPageRoute(builder: (context) => Confirm_location()),
                   ).then((value) => setState(() {}));
                   setState(() {});
                   // }

@@ -211,7 +211,7 @@ class _ViewcartState extends State<Viewcart> {
                   centerTitle: true,
                   leading: IconButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.pop(context);
                         },
                         style: ButtonStyle(backgroundColor: MyColors.mPrimaryColor),
                         icon: ImageIcon(
