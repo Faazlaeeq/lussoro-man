@@ -118,17 +118,17 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Padding(
-                      //   padding: EdgeInsets.only(right: 16.w),
-                      //   child: Obx(() {
-                      //     return sliderController.sliderData.value.data == null
-                      //         ? const SliderSectionShimmer()
-                      //         : sliderController
-                      //                 .sliderData.value.data!.isNotEmpty
-                      //             ? const SliderWidget()
-                      //             : const SizedBox();
-                      //   }),
-                      // ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 16.w),
+                        child: Obx(() {
+                          return sliderController.sliderData.value.data == null
+                              ? const SliderSectionShimmer()
+                              : sliderController
+                                      .sliderData.value.data!.isNotEmpty
+                                  ? const SliderWidget()
+                                  : const SizedBox();
+                        }),
+                      ),
                       SizedBox(height: 24.h),
                       Obx(() {
                         return categoryController
