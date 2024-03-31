@@ -4,12 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shopperz/app/modules/auth/controller/auth_controler.dart';
+import 'package:shopperz/app/modules/auth/views/sign_in.dart';
 import 'package:shopperz/app/modules/cart/controller/cart_controller.dart';
 import 'package:shopperz/app/modules/coupon/views/apply_coupon_screen.dart';
 import 'package:shopperz/app/modules/coupon/controller/coupon_controller.dart';
 import 'package:shopperz/app/modules/payment/controller/payment_controller.dart';
+import 'package:shopperz/app/modules/profile/controller/profile_controller.dart';
 import 'package:shopperz/app/modules/profile/widgets/add_new_address.dart';
 import 'package:shopperz/app/modules/profile/widgets/address_screen.dart';
+import 'package:shopperz/app/modules/shipping/controller/address_controller.dart';
 import 'package:shopperz/app/modules/shipping/controller/show_address_controller.dart';
 import 'package:shopperz/app/modules/shipping/widgets/address_widget.dart';
 import 'package:shopperz/main.dart';
@@ -40,6 +43,8 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
   final cartController = Get.find<CartController>();
   final paymentController = Get.put(PaymentControllr());
   final authController = Get.put(AuthController());
+  final addressController = Get.put(AddressController());
+  ProfileController profile = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -119,7 +124,7 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                   //   decoration: BoxDecoration(
                   //       color: AppColor.selectDeliveyColor,
                   //       borderRadius: BorderRadius.circular(20.r)),
-          
+
                   //   child: Center(
                   //     child: Row(
                   //       children: [
@@ -150,7 +155,7 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                   //           ),
                   //         ),
                   //         GestureDetector(
-                  //           onTap: () {          
+                  //           onTap: () {
                   //             setState(() {
                   //               isDelivery = false;
                   //             });
@@ -179,286 +184,299 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                   //     ),
                   //   ),
                   // ),
-          
+
                   // SizedBox(
                   //   height: 30.h,
                   // ),
-                  isDelivery == false
-                      ? Obx(
-                          () => showAddressController.outlestModel.value.data ==
-                                  null
-                              ? const SizedBox()
-                              : GestureDetector(
-                                  onTap: () {
-                                    showAddressController.selectedPickUp.value =
-                                        !showAddressController
-                                            .selectedPickUp.value;
-                                  },
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    physics:
-                                          const NeverScrollableScrollPhysics(),
-                                    itemCount: showAddressController
-                                        .outlestModel.value.data!.length,
-                                    itemBuilder: (context, index) {
-                                      final outlet = showAddressController
-                                          .outlestModel.value.data![index];
-                                      return Padding(
-                                        padding:
-                                            EdgeInsets.symmetric(vertical: 4.h),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            showAddressController
-                                                .setoutletIndex(index);
-                                          },
-                                          child: Obx(
-                                            () => Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                color: showAddressController
-                                                            .selectedOutletIndex
-                                                            .value ==
-                                                        index
-                                                    ? AppColor.primaryColor1
-                                                    : AppColor.addressColor,
-                                                border: Border.all(
-                                                    color: showAddressController
-                                                                .selectedOutletIndex
-                                                                .value ==
-                                                            index
-                                                        ? AppColor.primaryColor
-                                                        : Colors.transparent,
-                                                    width: 1.r),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.r),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(12.r),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      showAddressController
-                                                                  .selectedOutletIndex
-                                                                  .value ==
-                                                              index
-                                                          ? SvgIcon.radioActive
-                                                          : SvgIcon.radio,
-                                                      height: 16.h,
-                                                      width: 16.w,
-                                                    ),
-                                                    SizedBox(width: 16.w),
-                                                    AddressCard(
-                                                        fullName: outlet.name ??
-                                                            "",
-                                                        phone: outlet.phone ??
-                                                            "",
-                                                        email: outlet.email ??
-                                                            "",
-                                                        streetAddress: outlet
-                                                                .address ??
-                                                            "",
-                                                        state: outlet.state ??
-                                                            ""),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                        )
-                      :
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextWidget(
-                              text: 'Shipping Address'.tr,
-                              color: AppColor.textColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
-                            Row(
-                              children: [
-                                EditButton(
-                                    text: "Edit".tr,
-                                    onTap: () {
-                                      Get.to(() => const AddressScreen());
-                                    }),
-                                SizedBox(
-                                  width: 12.w,
-                                ),
-                                AddButton(
-                                  text: "Add".tr,
-                                  onTap: () {
-                                    openAddressDialog();
-                                  },
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                  SizedBox(
-                    height: 12.h,
-                  ),
-          
-                  box.read('isLogedIn') == false
-                      ? const Center(child: SizedBox())
-                      : isDelivery == false
-                          ? const SizedBox()
-                          : Obx(
-                              () => showAddressController
-                                          .addressList.value.data ==
-                                      null
-                                  ? const SizedBox()
-                                  : ListView.builder(
-                                      physics:
-                                          const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: showAddressController
-                                          .addressList.value.data?.length,
-                                      itemBuilder: (context, index) {
-                                        final address = showAddressController
-                                            .addressList.value.data;
-                                        return GestureDetector(
-                                          onTap: () {
-                                            showAddressController
-                                                .setSelectedAddressIndex(index);
-                                            cartController.areaWiseShippingCal();
-                                          },
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 4.h),
-                                            child: Obx(
-                                              () => Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: showAddressController
-                                                              .selectedAddressIndex
-                                                              .value ==
-                                                          index
-                                                      ? AppColor.primaryColor1
-                                                      : AppColor.addressColor,
-                                                  border: Border.all(
-                                                      color: showAddressController
-                                                                  .selectedAddressIndex
-                                                                  .value ==
-                                                              index
-                                                          ? AppColor.primaryColor
-                                                          : Colors.transparent,
-                                                      width: 1.r),
-                                                  borderRadius:
-                                                      BorderRadius.circular(12.r),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.all(12.r),
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        showAddressController
-                                                                    .selectedAddressIndex
-                                                                    .value ==
-                                                                index
-                                                            ? SvgIcon.radioActive
-                                                            : SvgIcon.radio,
-                                                        height: 16.h,
-                                                        width: 16.w,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 12.w,
-                                                      ),
-                                                      Obx(
-                                                        () => showAddressController
-                                                                    .addressList
-                                                                    .value
-                                                                    .data ==
-                                                                null
-                                                            ? const Center(
-                                                                child:
-                                                                    SizedBox())
-                                                            : AddressCard(
-                                                                fullName: address![index]
-                                                                        .fullName ??
-                                                                    "",
-                                                                phone: '${address[
-                                                                            index].countryCode !+
-                                                                          address[
-                                                                            index]
-                                                                        .phone.toString()}',
-                                                                email: address[
-                                                                            index]
-                                                                        .email ??
-                                                                    "",
-                                                                streetAddress: '${address[index].city.toString() != '' ? address[index].city.toString() + ', ' : ''} ${address[index].state.toString() != '' ? address[index].state.toString() + ', ' : ''} ${address[index].country.toString() != '' ? address[index].country.toString() + ', ' : ''} ${address[index].zipCode.toString() != '' ? address[index].zipCode.toString() : ''}'
-                                                                .replaceAll(' ', ''),
-                                                                state: address[index]
-                                                                        .address ??
-                                                                    " "),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }),
-                            ),
-          
-                  isDelivery == false ? SizedBox() : SizedBox(
-                    height: 26.h,
-                  ),
-          
-                  isDelivery == false
-                      ? const SizedBox()
-                      : Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                showAddressController
-                                        .billingAddressSelected.value =
-                                    !showAddressController
-                                        .billingAddressSelected.value;
-                              },
-                              child: Obx(
-                                () => SvgPicture.asset(
-                                  showAddressController
-                                              .billingAddressSelected.value ==
-                                          true
-                                      ? SvgIcon.checkActive
-                                      : SvgIcon.check,
-                                  height: 20.h,
-                                  width: 20.w,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 8.w,
-                            ),
-                            TextWidget(
-                              text: 'Save shipping address as a billing address.'
-                                  .tr,
-                              color: AppColor.textColor,
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ],
-                        ),
-                  isDelivery == false?
-                  SizedBox(
-                    height: 24.h,
-                  ):SizedBox(),
-          
+
+                  //shipping address add edit buttons
+//                   isDelivery == false
+//                       ? Obx(
+//                           () => showAddressController.outlestModel.value.data ==
+//                                   null
+//                               ? const SizedBox()
+//                               : GestureDetector(
+//                                   onTap: () {
+//                                     showAddressController.selectedPickUp.value =
+//                                         !showAddressController
+//                                             .selectedPickUp.value;
+//                                   },
+//                                   child: ListView.builder(
+//                                     shrinkWrap: true,
+//                                     physics:
+//                                         const NeverScrollableScrollPhysics(),
+//                                     itemCount: showAddressController
+//                                         .outlestModel.value.data!.length,
+//                                     itemBuilder: (context, index) {
+//                                       final outlet = showAddressController
+//                                           .outlestModel.value.data![index];
+//                                       return Padding(
+//                                         padding:
+//                                             EdgeInsets.symmetric(vertical: 4.h),
+//                                         child: GestureDetector(
+//                                           onTap: () {
+//                                             showAddressController
+//                                                 .setoutletIndex(index);
+//                                           },
+//                                           child: Obx(
+//                                             () => Container(
+//                                               width: double.infinity,
+//                                               decoration: BoxDecoration(
+//                                                 color: showAddressController
+//                                                             .selectedOutletIndex
+//                                                             .value ==
+//                                                         index
+//                                                     ? AppColor.primaryColor1
+//                                                     : AppColor.addressColor,
+//                                                 border: Border.all(
+//                                                     color: showAddressController
+//                                                                 .selectedOutletIndex
+//                                                                 .value ==
+//                                                             index
+//                                                         ? AppColor.primaryColor
+//                                                         : Colors.transparent,
+//                                                     width: 1.r),
+//                                                 borderRadius:
+//                                                     BorderRadius.circular(12.r),
+//                                               ),
+//                                               child: Padding(
+//                                                 padding: EdgeInsets.all(12.r),
+//                                                 child: Row(
+//                                                   mainAxisAlignment:
+//                                                       MainAxisAlignment.start,
+//                                                   crossAxisAlignment:
+//                                                       CrossAxisAlignment.start,
+//                                                   children: [
+//                                                     SvgPicture.asset(
+//                                                       showAddressController
+//                                                                   .selectedOutletIndex
+//                                                                   .value ==
+//                                                               index
+//                                                           ? SvgIcon.radioActive
+//                                                           : SvgIcon.radio,
+//                                                       height: 16.h,
+//                                                       width: 16.w,
+//                                                     ),
+//                                                     SizedBox(width: 16.w),
+//                                                     AddressCard(
+//                                                         fullName:
+//                                                             outlet.name ?? "",
+//                                                         phone:
+//                                                             outlet.phone ?? "",
+//                                                         email:
+//                                                             outlet.email ?? "",
+//                                                         streetAddress:
+//                                                             outlet.address ??
+//                                                                 "",
+//                                                         state:
+//                                                             outlet.state ?? ""),
+//                                                   ],
+//                                                 ),
+//                                               ),
+//                                             ),
+//                                           ),
+//                                         ),
+//                                       );
+//                                     },
+//                                   ),
+//                                 ),
+//                         )
+//                       : Row(
+//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                           children: [
+//                             TextWidget(
+//                               text: 'Shipping Address'.tr,
+//                               color: AppColor.textColor,
+//                               fontSize: 16.sp,
+//                               fontWeight: FontWeight.w700,
+//                             ),
+//                             Row(
+//                               children: [
+//                                 EditButton(
+//                                     text: "Edit".tr,
+//                                     onTap: () {
+//                                       Get.to(() => const AddressScreen());
+//                                     }),
+//                                 SizedBox(
+//                                   width: 12.w,
+//                                 ),
+//                                 AddButton(
+//                                   text: "Add".tr,
+//                                   onTap: () {
+//                                     openAddressDialog();
+//                                   },
+//                                 ),
+//                               ],
+//                             )
+//                           ],
+//                         ),
+//                   SizedBox(
+//                     height: 12.h,
+//                   ),
+//                   //shipping address list
+//                   box.read('isLogedIn') == false
+//                       ? const Center(child: SizedBox())
+//                       : isDelivery == false
+//                           ? const SizedBox()
+//                           : Obx(
+//                               () => showAddressController
+//                                           .addressList.value.data ==
+//                                       null
+//                                   ? const SizedBox()
+//                                   : ListView.builder(
+//                                       physics:
+//                                           const NeverScrollableScrollPhysics(),
+//                                       shrinkWrap: true,
+//                                       itemCount: showAddressController
+//                                           .addressList.value.data?.length,
+//                                       itemBuilder: (context, index) {
+//                                         final address = showAddressController
+//                                             .addressList.value.data;
+//                                         return GestureDetector(
+//                                           onTap: () {
+//                                             showAddressController
+//                                                 .setSelectedAddressIndex(index);
+//                                             cartController
+//                                                 .areaWiseShippingCal();
+//                                           },
+//                                           child: Padding(
+//                                             padding: EdgeInsets.symmetric(
+//                                                 vertical: 4.h),
+//                                             child: Obx(
+//                                               () => Container(
+//                                                 width: double.infinity,
+//                                                 decoration: BoxDecoration(
+//                                                   color: showAddressController
+//                                                               .selectedAddressIndex
+//                                                               .value ==
+//                                                           index
+//                                                       ? AppColor.primaryColor1
+//                                                       : AppColor.addressColor,
+//                                                   border: Border.all(
+//                                                       color: showAddressController
+//                                                                   .selectedAddressIndex
+//                                                                   .value ==
+//                                                               index
+//                                                           ? AppColor
+//                                                               .primaryColor
+//                                                           : Colors.transparent,
+//                                                       width: 1.r),
+//                                                   borderRadius:
+//                                                       BorderRadius.circular(
+//                                                           12.r),
+//                                                 ),
+//                                                 child: Padding(
+//                                                   padding: EdgeInsets.all(12.r),
+//                                                   child: Row(
+//                                                     crossAxisAlignment:
+//                                                         CrossAxisAlignment
+//                                                             .start,
+//                                                     mainAxisAlignment:
+//                                                         MainAxisAlignment.start,
+//                                                     children: [
+//                                                       SvgPicture.asset(
+//                                                         showAddressController
+//                                                                     .selectedAddressIndex
+//                                                                     .value ==
+//                                                                 index
+//                                                             ? SvgIcon
+//                                                                 .radioActive
+//                                                             : SvgIcon.radio,
+//                                                         height: 16.h,
+//                                                         width: 16.w,
+//                                                       ),
+//                                                       SizedBox(
+//                                                         width: 12.w,
+//                                                       ),
+//                                                       Obx(
+//                                                         () => showAddressController
+//                                                                     .addressList
+//                                                                     .value
+//                                                                     .data ==
+//                                                                 null
+//                                                             ? const Center(
+//                                                                 child:
+//                                                                     SizedBox())
+//                                                             : AddressCard(
+//                                                                 fullName: address![
+//                                                                             index]
+//                                                                         .fullName ??
+//                                                                     "",
+//                                                                 phone:
+//                                                                     '${address[index].countryCode! + address[index].phone.toString()}',
+//                                                                 email: address[
+//                                                                             index]
+//                                                                         .email ??
+//                                                                     "",
+//                                                                 streetAddress:
+//                                                                     '${address[index].city.toString() != '' ? address[index].city.toString() + ', ' : ''} ${address[index].state.toString() != '' ? address[index].state.toString() + ', ' : ''} ${address[index].country.toString() != '' ? address[index].country.toString() + ', ' : ''} ${address[index].zipCode.toString() != '' ? address[index].zipCode.toString() : ''}'
+//                                                                         .replaceAll(
+//                                                                             ' ',
+//                                                                             ''),
+//                                                                 state: address[
+//                                                                             index]
+//                                                                         .address ??
+//                                                                     " "),
+//                                                       ),
+//                                                     ],
+//                                                   ),
+//                                                 ),
+//                                               ),
+//                                             ),
+//                                           ),
+//                                         );
+//                                       }),
+//                             ),
+// //extra space
+//                   isDelivery == false
+//                       ? SizedBox()
+//                       : SizedBox(
+//                           height: 26.h,
+//                         ),
+// //shipping and same billing address button
+//                   isDelivery == false
+//                       ? const SizedBox()
+//                       : Row(
+//                           children: [
+//                             InkWell(
+//                               onTap: () {
+//                                 showAddressController
+//                                         .billingAddressSelected.value =
+//                                     !showAddressController
+//                                         .billingAddressSelected.value;
+//                               },
+//                               child: Obx(
+//                                 () => SvgPicture.asset(
+//                                   showAddressController
+//                                               .billingAddressSelected.value ==
+//                                           true
+//                                       ? SvgIcon.checkActive
+//                                       : SvgIcon.check,
+//                                   height: 20.h,
+//                                   width: 20.w,
+//                                 ),
+//                               ),
+//                             ),
+//                             SizedBox(
+//                               width: 8.w,
+//                             ),
+//                             TextWidget(
+//                               text:
+//                                   'Save shipping address as a billing address.'
+//                                       .tr,
+//                               color: AppColor.textColor,
+//                               fontSize: 14.sp,
+//                               fontWeight: FontWeight.w500,
+//                             ),
+//                           ],
+//                         ),
+
+//                   isDelivery == false
+//                       ? SizedBox(
+//                           height: 24.h,
+//                         )
+//                       : SizedBox(),
+//billing address
                   isDelivery == false
                       ? const SizedBox()
                       : Obx(
@@ -482,7 +500,8 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    showAddressController.addressSelected.value =
+                                    showAddressController
+                                            .addressSelected.value =
                                         !showAddressController
                                             .addressSelected.value;
                                   },
@@ -511,7 +530,6 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                                       vertical: 4.h),
                                                   child: Obx(
                                                     () => Container(
-                                                      
                                                       width: double.infinity,
                                                       decoration: BoxDecoration(
                                                         color: showAddressController
@@ -533,12 +551,12 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                                                     .transparent,
                                                             width: 1.r),
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                12.r),
+                                                            BorderRadius
+                                                                .circular(12.r),
                                                       ),
                                                       child: Padding(
-                                                        padding:
-                                                            EdgeInsets.all(12.r),
+                                                        padding: EdgeInsets.all(
+                                                            12.r),
                                                         child: Row(
                                                           crossAxisAlignment:
                                                               CrossAxisAlignment
@@ -554,7 +572,8 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                                                       index
                                                                   ? SvgIcon
                                                                       .radioActive
-                                                                  : SvgIcon.radio,
+                                                                  : SvgIcon
+                                                                      .radio,
                                                               height: 16.h,
                                                               width: 16.w,
                                                             ),
@@ -569,23 +588,24 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                                                       null
                                                                   ? const SizedBox()
                                                                   : AddressCard(
-                                                                fullName: address![index]
-                                                                        .fullName ??
-                                                                    "",
-                                                                phone: '${address[
-                                                                            index].countryCode !+
-                                                                          address[
-                                                                            index]
-                                                                        .phone.toString()}',
-                                                                email: address[
-                                                                            index]
-                                                                        .email ??
-                                                                    "",
-                                                                streetAddress: '${address[index].city.toString() != '' ? address[index].city.toString() + ', ' : ''} ${address[index].state.toString() != '' ? address[index].state.toString() + ', ' : ''} ${address[index].country.toString() != '' ? address[index].country.toString() + ', ' : ''} ${address[index].zipCode.toString() != '' ? address[index].zipCode.toString() : ''}'
-                                                                .replaceAll(' ', ''),
-                                                                state: address[index]
-                                                                        .address ??
-                                                                    " "),
+                                                                      fullName:
+                                                                          address![index].fullName ??
+                                                                              "",
+                                                                      phone: address[index]
+                                                                              .countryCode! +
+                                                                          address[index]
+                                                                              .phone
+                                                                              .toString(),
+                                                                      email:
+                                                                          address[index].email ??
+                                                                              "",
+                                                                      streetAddress:
+                                                                          '${address[index].city.toString() != '' ? '${address[index].city}, ' : ''} ${address[index].state.toString() != '' ? '${address[index].state}, ' : ''} ${address[index].country.toString() != '' ? '${address[index].country}, ' : ''} ${address[index].zipCode.toString() != '' ? address[index].zipCode.toString() : ''}'.replaceAll(
+                                                                              ' ',
+                                                                              ''),
+                                                                      state: address[index]
+                                                                              .address ??
+                                                                          " "),
                                                             ),
                                                           ],
                                                         ),
@@ -601,12 +621,16 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                             ),
                           ),
                         ),
-          
+
                   isDelivery == false
                       ? const SizedBox()
                       : SizedBox(
                           height: 24.h,
                         ),
+
+                  isDelivery == false
+                      ? const SizedBox()
+                      : const AddNewAddressDialog(),
                   const DeviderWidget(),
                   SizedBox(
                     height: 24.h,
@@ -644,7 +668,8 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         couponController
                                                     .applyCouponStatus.value ==
@@ -672,17 +697,16 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                                     .applyCouponStatus.value ==
                                                 false
                                             ? TextWidget(
-                                                text: 'Get discount with your order'.tr,
+                                                text:
+                                                    'Get discount with your order'
+                                                        .tr,
                                                 color: AppColor.textColor,
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w400,
                                               )
-                                            :
-                                            TextWidget(
-                                                text: 'You saved'.tr +
-                                                    ' ${authController.settingModel!.data!
-                                          .siteDefaultCurrencySymbol
-                                          .toString()}${couponController.applyCouponModel.value.data?.convertDiscount!.toStringAsFixed(int.parse(authController.settingModel!.data!.siteDigitAfterDecimalPoint.toString())) ?? 0.0}',
+                                            : TextWidget(
+                                                text:
+                                                    '${'You saved'.tr} ${authController.settingModel!.data!.siteDefaultCurrencySymbol.toString()}${couponController.applyCouponModel.value.data?.convertDiscount!.toStringAsFixed(int.parse(authController.settingModel!.data!.siteDigitAfterDecimalPoint.toString())) ?? 0.0}',
                                                 color: AppColor.textColor,
                                                 fontSize: 12.sp,
                                                 fontWeight: FontWeight.w400,
@@ -691,14 +715,14 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                     ),
                                   ],
                                 ),
-                                couponController.applyCouponStatus.value == false
+                                couponController.applyCouponStatus.value ==
+                                        false
                                     ? SvgPicture.asset(
                                         SvgIcon.forwardCoupon,
                                         height: 24.h,
                                         width: 24.h,
                                       )
-                                    :
-                                    InkWell(
+                                    : InkWell(
                                         onTap: () {
                                           box.write("applyCoupon", false);
                                           couponController.applyCouponStatus
@@ -717,12 +741,12 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                       ),
                     ),
                   ),
-          
+
                   SizedBox(
                     height: 32.h,
                   ),
                   Obx(() {
-                    return OrderSummay( 
+                    return OrderSummay(
                       subTotal: cartController.totalPrice,
                       tax: cartController.totalTax,
                       shippingCharge: isDelivery == false
@@ -730,11 +754,12 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                           : (cartController.productShippingCharge +
                                   cartController.shippingAreaCost.value)
                               .toString(),
-                      discount: couponController.applyCouponStatus.value == false
-                          ? 0
-                          : couponController
-                                  .applyCouponModel.value.data?.convertDiscount ??
-                              "0",
+                      discount:
+                          couponController.applyCouponStatus.value == false
+                              ? 0
+                              : couponController.applyCouponModel.value.data
+                                      ?.convertDiscount ??
+                                  "0",
                       total: cartController.totalPrice > 0 &&
                               couponController.applyCouponStatus.value == true
                           ? ((cartController.totalPrice +
@@ -753,9 +778,24 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                                   ? 0
                                   : (cartController.productShippingCharge +
                                       cartController.shippingAreaCost.value)),
-                      onTap: () {
+                      onTap: () async {
+                        if (addressController.formkey.currentState!
+                            .validate()) {
+                          if (box.read("token") != null) {
+                            await addressController.submitAddress(
+                                shouldGetBack: false);
+                            await showAddressController.showAdresses();
+                            showAddressController.setSelectedAddressIndex(1);
+                            profile.getAddress();
+                          } else {
+                            Get.off(() => const SignInScreen());
+                          }
+                        }
+                        addressController.formkey.currentState!.reset();
+
                         if (isDelivery == true) {
-                          if (showAddressController.selectedAddressIndex.value ==
+                          if (showAddressController
+                                  .selectedAddressIndex.value ==
                               -1) {
                             customSnackbar(
                                 "ERROR".tr,
@@ -779,7 +819,7 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
                       buttonText: "Save & Pay".tr,
                     );
                   }),
-          
+
                   SizedBox(
                     height: 20.h,
                   ),

@@ -434,13 +434,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   },
                                 ),
                                 const DeviderWidget(),
-                                MenuWidget(
-                                  text: 'ADDRESSES'.tr,
-                                  icon: SvgIcon.menuLocation,
-                                  onTap: () {
-                                    Get.to(() => const AddressScreen());
-                                  },
-                                ),
+                                // MenuWidget(
+                                //   text: 'ADDRESSES'.tr,
+                                //   icon: SvgIcon.menuLocation,
+                                //   onTap: () {
+                                //     Get.to(() => const AddressScreen());
+                                //   },
+                                // ),
                                 const DeviderWidget(),
                               ],
                             )

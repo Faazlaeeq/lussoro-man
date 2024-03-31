@@ -30,9 +30,9 @@ class AddressController extends GetxController {
   final addressModel = AddressModel().obs;
   final isLoading = false.obs;
 
-  submitAddress() async {
+  submitAddress({bool shouldGetBack = true}) async {
     isLoading(true);
-    final response = await RemoteServices().submitAddress( 
+    final response = await RemoteServices().submitAddress(
       fullName: nameTextController.text,
       countryCode: countryCode,
       phone: phoneTextController.text,
@@ -45,20 +45,21 @@ class AddressController extends GetxController {
     );
 
     if (response != null && response.statusCode == 201) {
-        isLoading(false);
-        profile.getAddress();
+      isLoading(false);
+      profile.getAddress();
+      update();
+      if (shouldGetBack) Get.back();
+      customSnackbar("SUCCESS".tr, 'Address Added Successfully!'.toString().tr,
+          AppColor.success);
+    } else {
+      isLoading(false);
+      if (shouldGetBack) Get.back();
+      Future.delayed(const Duration(milliseconds: 10), () {
+        customSnackbar("ERROR".tr,
+            jsonDecode(response.body)['message'].toString(), AppColor.error);
         update();
-        Get.back();
-        customSnackbar("SUCCESS".tr, 'Address Added Successfully!'.toString().tr,
-              AppColor.success);
-      } else {
-        isLoading(false);
-        Get.back();
-        Future.delayed(const Duration(milliseconds: 10), () {
-          customSnackbar("ERROR".tr, jsonDecode(response.body)['message'].toString(), AppColor.error);
-          update();
-        });
-      }
+      });
+    }
   }
 
   updateAddress({required String id}) async {
@@ -88,11 +89,11 @@ class AddressController extends GetxController {
         profile.getAddress();
         update();
         Future.delayed(const Duration(milliseconds: 10), () {
-          customSnackbar(
-            "SUCCESS".tr, "ADDRESS_UPDATED_SUCCESSFULLY".tr, AppColor.success);
+          customSnackbar("SUCCESS".tr, "ADDRESS_UPDATED_SUCCESSFULLY".tr,
+              AppColor.success);
           update();
         });
-        
+
         Get.back();
       } else {
         isLoading(false);
@@ -118,21 +119,23 @@ class AddressController extends GetxController {
     };
     isLoading(true);
     AppServer()
-        .deleteRequest(endPoint: ApiList.deleteAddress + id,headers: headers).then((response) {
-    if (response != null && response.statusCode == 202) {
-      isLoading(false);
-      profile.getAddress();
-      update();
-      Get.back();
-      customSnackbar(
-            "SUCCESS".tr, "ADDRESS_DELETED_SUCCESSFULLY".tr, AppColor.success);
-    } else {
-      isLoading(false);
-      Get.back();
-      Future.delayed(const Duration(milliseconds: 10), () {
-        customSnackbar("ERROR".tr, "SOMETHING_WRONG".tr, AppColor.error);
+        .deleteRequest(endPoint: ApiList.deleteAddress + id, headers: headers)
+        .then((response) {
+      if (response != null && response.statusCode == 202) {
+        isLoading(false);
+        profile.getAddress();
         update();
-      });
-    }});
+        Get.back();
+        customSnackbar(
+            "SUCCESS".tr, "ADDRESS_DELETED_SUCCESSFULLY".tr, AppColor.success);
+      } else {
+        isLoading(false);
+        Get.back();
+        Future.delayed(const Duration(milliseconds: 10), () {
+          customSnackbar("ERROR".tr, "SOMETHING_WRONG".tr, AppColor.error);
+          update();
+        });
+      }
+    });
   }
 }

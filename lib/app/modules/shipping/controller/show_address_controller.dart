@@ -47,7 +47,7 @@ class ShowAddressController extends GetxController {
   }
 
   void setSelectedAddressIndex(int index) {
-    selectedAddressIndex.value = index;
+    selectedAddressIndex.value = 0;
   }
 
   void setSelectedBillingAddressIndex(int index) {

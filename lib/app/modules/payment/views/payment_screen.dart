@@ -12,7 +12,6 @@ import 'package:shopperz/app/modules/profile/controller/profile_controller.dart'
 import 'package:shopperz/app/modules/shipping/controller/show_address_controller.dart';
 import 'package:shopperz/widgets/appbar3.dart';
 import 'package:shopperz/widgets/custom_snackbar.dart';
-import 'package:shopperz/widgets/devider.dart';
 import 'package:shopperz/widgets/loader/loader.dart';
 import 'package:shopperz/widgets/textwidget.dart';
 import '../../../../config/theme/app_color.dart';
@@ -34,11 +33,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
   bool paymentSelected = false;
 
   final cartController = Get.find<CartController>();
-    final couponController = Get.put(CouponController());
-    final paymentController = Get.put(PaymentControllr());
-    final showAddressController = Get.find<ShowAddressController>();
-    final authController = Get.put(AuthController());
-    final profileController = Get.put(ProfileController());
+  final couponController = Get.put(CouponController());
+  final paymentController = Get.put(PaymentControllr());
+  final showAddressController = Get.find<ShowAddressController>();
+  final authController = Get.put(AuthController());
+  final profileController = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -48,7 +47,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
     paymentController.paymentMethodIndex.value = -1;
   }
 
-  
   openCoupon() {
     return showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -99,40 +97,46 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     Obx(
                       () => paymentController.paymentModel.value.data == null
                           ? const SizedBox()
-                          : 
-                          StaggeredGrid.count(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 16.h,
-                        crossAxisSpacing: 16.w,
-                        children: [
-                          for (int i = 0; i < paymentController.paymentModel.value.data!.length; i++)
-                          GestureDetector(
-                                  onTap: () {
-                                    paymentController.paymentMethodIndex.value = i;
-                              
-                                    paymentController.paymentMethodId.value = paymentController.paymentModel.value.data![i].id!;
-                                    
-                                  },
-                                  child: Obx(
-                                    () => PaymentWidget(
-                                      name: paymentController.paymentModel.value.data![i].name,
-                                      image: paymentController.paymentModel.value.data![i].image,
-                                      selected: paymentController
-                                                  .paymentMethodIndex.value == i
-                                          ? true
-                                          : false,
+                          : StaggeredGrid.count(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 16.h,
+                              crossAxisSpacing: 16.w,
+                              children: [
+                                for (int i = 0;
+                                    i <
+                                        paymentController
+                                            .paymentModel.value.data!.length;
+                                    i++)
+                                  GestureDetector(
+                                    onTap: () {
+                                      paymentController
+                                          .paymentMethodIndex.value = i;
+
+                                      paymentController.paymentMethodId.value =
+                                          paymentController
+                                              .paymentModel.value.data![i].id!;
+                                    },
+                                    child: Obx(
+                                      () => PaymentWidget(
+                                        name: paymentController
+                                            .paymentModel.value.data![i].name,
+                                        image: paymentController
+                                            .paymentModel.value.data![i].image,
+                                        selected: paymentController
+                                                    .paymentMethodIndex.value ==
+                                                i
+                                            ? true
+                                            : false,
+                                      ),
                                     ),
-                                  ),
-                                )
-                        ],
-                      ),
+                                  )
+                              ],
+                            ),
                     ),
                     SizedBox(
                       height: 24.h,
                     ),
-                    Container(
-                    child: Image.asset("assets/images/cardpicture.png"),
-                  ),
+                    Image.asset("assets/images/cardpicture.png"),
                     SizedBox(
                       height: 24.h,
                     ),
@@ -154,7 +158,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             padding: EdgeInsets.all(12.r),
                             child: Center(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
@@ -169,21 +174,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          couponController
-                                                      .applyCouponStatus.value ==
+                                          couponController.applyCouponStatus
+                                                      .value ==
                                                   false
                                               ? TextWidget(
                                                   text:
                                                       'Apply Promo, Coupon or Voucher'
                                                           .tr,
-                                                  color: AppColor.blueBorderColor,
+                                                  color:
+                                                      AppColor.blueBorderColor,
                                                   fontSize: 14.sp,
                                                   fontWeight: FontWeight.w600,
                                                 )
-                                              :
-                                              TextWidget(
+                                              : TextWidget(
                                                   text: 'Coupon Applied'.tr,
                                                   color: AppColor.greenColor,
                                                   fontSize: 14.sp,
@@ -192,8 +198,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                           SizedBox(
                                             height: 4.h,
                                           ),
-                                          couponController
-                                                      .applyCouponStatus.value ==
+                                          couponController.applyCouponStatus
+                                                      .value ==
                                                   false
                                               ? TextWidget(
                                                   text:
@@ -203,12 +209,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
                                                 )
-                                              :
-                                              TextWidget(
-                                                  text: 'You saved'.tr +
-                                                      ' ${authController.settingModel!.data!
-                                        .siteDefaultCurrencySymbol
-                                        .toString()}${couponController.applyCouponModel.value.data?.convertDiscount!.toStringAsFixed(int.parse(authController.settingModel!.data!.siteDigitAfterDecimalPoint.toString())) ?? 0}',
+                                              : TextWidget(
+                                                  text:
+                                                      '${'You saved'.tr} ${authController.settingModel!.data!.siteDefaultCurrencySymbol.toString()}${couponController.applyCouponModel.value.data?.convertDiscount!.toStringAsFixed(int.parse(authController.settingModel!.data!.siteDigitAfterDecimalPoint.toString())) ?? 0}',
                                                   color: AppColor.textColor,
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,
@@ -217,18 +220,19 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       ),
                                     ],
                                   ),
-                                  couponController.applyCouponStatus.value == false
+                                  couponController.applyCouponStatus.value ==
+                                          false
                                       ? SvgPicture.asset(
                                           SvgIcon.forwardCoupon,
                                           height: 24.h,
                                           width: 24.h,
                                         )
-                                      :
-                                      InkWell(
+                                      : InkWell(
                                           onTap: () {
                                             box.write("applyCoupon", false);
-                                            couponController.applyCouponStatus
-                                                .value = box.read("applyCoupon");
+                                            couponController
+                                                    .applyCouponStatus.value =
+                                                box.read("applyCoupon");
                                           },
                                           child: SvgPicture.asset(
                                             SvgIcon.remove,
@@ -255,22 +259,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
                             : (cartController.productShippingCharge +
                                     cartController.shippingAreaCost.value)
                                 .toString(),
-                        discount: couponController.applyCouponStatus.value == false
-                            ? 0
-                            : couponController
-                                    .applyCouponModel.value.data?.convertDiscount ??
-                                "0",
+                        discount:
+                            couponController.applyCouponStatus.value == false
+                                ? 0
+                                : couponController.applyCouponModel.value.data
+                                        ?.convertDiscount ??
+                                    "0",
                         total: cartController.totalPrice > 0 &&
                                 couponController.applyCouponStatus.value == true
                             ? ((cartController.totalPrice +
                                     cartController.totalTax +
                                     (widget.isDelivery == false
                                         ? 0
-                                        : (cartController.productShippingCharge +
+                                        : (cartController
+                                                .productShippingCharge +
                                             cartController
                                                 .shippingAreaCost.value))) -
-                                (double.parse(couponController
-                                    .applyCouponModel.value.data!.convertDiscount
+                                (double.parse(couponController.applyCouponModel
+                                    .value.data!.convertDiscount
                                     .toString())))
                             : (cartController.totalPrice +
                                     cartController.totalTax) +
@@ -280,162 +286,175 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                         cartController.shippingAreaCost.value)),
                         buttonText: "Confirm Order".tr,
                         onTap: () async {
-
                           if (paymentController.paymentMethodIndex.value ==
-                            -1) {
-                          customSnackbar(
-                              "ERROR".tr,
-                              "Please select payment method.".tr,
-                              AppColor.error);
-                            }
-                            else{
-                          var confirmJsonData = cartController.cartItems.map((e) {
-                            return {
-                              "name": e.product.data!.name,
-                              "product_id": e.product.data!.id!.toInt(),
-                              "image": e.product.data!.image,
-                              "variation_names": e.finalVariationString,
-                              "variation_id": e.variationId.toInt(),
-                              "sku": e.sku, 
-                              "stock": e.stock,
-                              "taxes": e.taxObject,
-                              "shipping": e.shippingObject,
-                              "quantity": e.quantity.value,
-                              "discount": e.product.data!.discount,
-                              "price": e.variationPrice,
-                              "old_price": e.variationOldPrice,
-                              "total_tax": e.totalProductTax,
-                              "subtotal":
-                                  ((double.parse(
-                                                  e.variationPrice.toString()) *
-                                              int.parse(
-                                                  e.quantity.value.toString())) +
-                                          double.parse(
-                                              e.totalProductTax.toString()) +
-                                          double.parse(e.shippingCharge)).toDouble() -
-                                      double.parse(
-                                          e.product.data!.discount.toString()),
-                              "total":
-                                  double.parse(e.variationPrice.toString()) *
-                                      double.parse(e.quantity.value.toString()),
-                              "total_price": ((double.parse(
-                                                  e.variationPrice.toString()) *
-                                              int.parse(
-                                                  e.quantity.value.toString())) +
-                                          double.parse(
-                                              e.totalProductTax.toString()) +
-                                          double.parse(e.shippingCharge)).toDouble() -
-                                      double.parse(
-                                          e.product.data!.discount.toString()),
-                              
-                            };
-                          }).toList();
-          
-                          var data = jsonEncode(confirmJsonData);
+                              -1) {
+                            customSnackbar(
+                                "ERROR".tr,
+                                "Please select payment method.".tr,
+                                AppColor.error);
+                          } else {
+                            var confirmJsonData =
+                                cartController.cartItems.map((e) {
+                              return {
+                                "name": e.product.data!.name,
+                                "product_id": e.product.data!.id!.toInt(),
+                                "image": e.product.data!.image,
+                                "variation_names": e.finalVariationString,
+                                "variation_id": e.variationId.toInt(),
+                                "sku": e.sku,
+                                "stock": e.stock,
+                                "taxes": e.taxObject,
+                                "shipping": e.shippingObject,
+                                "quantity": e.quantity.value,
+                                "discount": e.product.data!.discount,
+                                "price": e.variationPrice,
+                                "old_price": e.variationOldPrice,
+                                "total_tax": e.totalProductTax,
+                                "subtotal": ((double.parse(e.variationPrice
+                                                    .toString()) *
+                                                int.parse(e.quantity.value
+                                                    .toString())) +
+                                            double.parse(
+                                                e.totalProductTax.toString()) +
+                                            double.parse(e.shippingCharge))
+                                        .toDouble() -
+                                    double.parse(
+                                        e.product.data!.discount.toString()),
+                                "total": double.parse(
+                                        e.variationPrice.toString()) *
+                                    double.parse(e.quantity.value.toString()),
+                                "total_price": ((double.parse(e.variationPrice
+                                                    .toString()) *
+                                                int.parse(e.quantity.value
+                                                    .toString())) +
+                                            double.parse(
+                                                e.totalProductTax.toString()) +
+                                            double.parse(e.shippingCharge))
+                                        .toDouble() -
+                                    double.parse(
+                                        e.product.data!.discount.toString()),
+                              };
+                            }).toList();
 
-                          if(paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].id!.toInt() == 2)
-                          {
-                            if(profileController.accountBalance.value > (cartController.totalPrice > 0 && couponController.applyCouponStatus.value == true
-                                  ? ((cartController.totalPrice + cartController.totalTax + (widget.isDelivery == false ? 0 : (cartController.productShippingCharge + cartController.shippingAreaCost.value))).toDouble() - (double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString())))
-                                      
-                                  : ((cartController.totalPrice +
-                                              cartController.totalTax) +
+                            var data = jsonEncode(confirmJsonData);
+
+                            if (paymentController
+                                    .paymentModel
+                                    .value
+                                    .data![paymentController
+                                        .paymentMethodIndex.value]
+                                    .id!
+                                    .toInt() ==
+                                2) {
+                              if (profileController.accountBalance.value >
+                                  (cartController.totalPrice > 0 &&
+                                          couponController.applyCouponStatus.value ==
+                                              true
+                                      ? ((cartController.totalPrice +
+                                                  cartController.totalTax +
+                                                  (widget.isDelivery == false
+                                                      ? 0
+                                                      : (cartController.productShippingCharge +
+                                                          cartController
+                                                              .shippingAreaCost
+                                                              .value)))
+                                              .toDouble() -
+                                          (double.parse(couponController
+                                              .applyCouponModel
+                                              .value
+                                              .data!
+                                              .convertDiscount
+                                              .toString())))
+                                      : ((cartController.totalPrice + cartController.totalTax) +
                                           (widget.isDelivery == false
                                               ? 0
                                               : (cartController.productShippingCharge +
-                                                  cartController
-                                                      .shippingAreaCost.value)))))
-                            {
+                                                  cartController.shippingAreaCost.value))))) {
+                                paymentController.confirmOrder(
+                                    discount:
+                                        couponController.applyCouponStatus.value == false
+                                            ? 0.toDouble()
+                                            : double.parse(couponController
+                                                .applyCouponModel
+                                                .value
+                                                .data!
+                                                .convertDiscount
+                                                .toString()),
+                                    subTotal:
+                                        cartController.totalPrice.toDouble(),
+                                    shippingCharge: widget.isDelivery == false
+                                        ? 0
+                                        : (cartController.productShippingCharge + cartController.shippingAreaCost.value)
+                                            .toDouble(),
+                                    tax: cartController.totalTax,
+                                    total: cartController.totalPrice > 0 && couponController.applyCouponStatus.value == true
+                                        ? ((cartController.totalPrice +
+                                                    cartController.totalTax +
+                                                    (widget.isDelivery == false
+                                                        ? 0
+                                                        : (cartController.productShippingCharge + cartController.shippingAreaCost.value)))
+                                                .toDouble() -
+                                            (double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString())))
+                                        : ((cartController.totalPrice + cartController.totalTax) + (widget.isDelivery == false ? 0 : (cartController.productShippingCharge + cartController.shippingAreaCost.value))),
+                                    shippingId: widget.isDelivery == true ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt() : 0,
+                                    billingId: widget.isDelivery == true
+                                        ? showAddressController.billingAddressSelected.value == true
+                                            ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt()
+                                            : showAddressController.addressList.value.data![showAddressController.selectedBillingAddressIndex.value].id!.toInt()
+                                        : 0,
+                                    outletId: widget.isDelivery == false ? showAddressController.outlestModel.value.data![showAddressController.selectedOutletIndex.value].id!.toInt() : 0,
+                                    couponId: couponController.applyCouponModel.value.data?.id?.toInt() ?? 0,
+                                    orderType: widget.isDelivery == false ? 10 : 5,
+                                    source: 10.toInt(),
+                                    paymentMethod: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].id!.toInt(),
+                                    slug: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].slug.toString(),
+                                    products: data.toString());
+                              } else {
+                                customSnackbar('ERROR'.tr,
+                                    'Insufficient balance', AppColor.error);
+                              }
+                            } else {
                               paymentController.confirmOrder(
-                            discount: couponController.applyCouponStatus.value == false
-                            ? 0.toDouble()
-                            : double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString()),
-                              subTotal: cartController.totalPrice.toDouble(), 
-                              shippingCharge: widget.isDelivery == false
-                                  ? 0
-                                  : (cartController.productShippingCharge +
-                                          cartController.shippingAreaCost.value).toDouble(),
-                              tax: cartController.totalTax,
-                              total: cartController.totalPrice > 0 && couponController.applyCouponStatus.value == true
-                                  ? ((cartController.totalPrice + cartController.totalTax + (widget.isDelivery == false ? 0 : (cartController.productShippingCharge + cartController.shippingAreaCost.value))).toDouble() - (double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString())))
-                                      
-                                  : ((cartController.totalPrice +
-                                              cartController.totalTax) +
-                                          (widget.isDelivery == false
-                                              ? 0
-                                              : (cartController.productShippingCharge +
-                                                  cartController
-                                                      .shippingAreaCost.value))),
-                                      
-                              shippingId: widget.isDelivery == true
-                                  ? showAddressController
-                                      .addressList
-                                      .value
-                                      .data![showAddressController.selectedAddressIndex.value]
-                                      .id!.toInt()
-                                  : 0,
-                              billingId: widget.isDelivery == true
-                                  ? showAddressController.billingAddressSelected.value == true
-                                      ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt()
-                                      : showAddressController.addressList.value.data![showAddressController.selectedBillingAddressIndex.value].id!.toInt()
-                                  : 0,
-                              outletId: widget.isDelivery == false ? showAddressController.outlestModel.value.data![showAddressController.selectedOutletIndex.value].id!.toInt() : 0,
-                              couponId: couponController.applyCouponModel.value.data?.id?.toInt() ?? 0,
-                              orderType: widget.isDelivery == false ? 10 : 5,
-                              source: 10.toInt(),
-                              paymentMethod: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].id!.toInt(),
-                              slug: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].slug.toString(), 
-                              products: data.toString());
-                            }
-                            else
-                            {
-                              customSnackbar('ERROR'.tr, 'Insufficient balance', AppColor.error);
+                                  discount: couponController.applyCouponStatus.value == false
+                                      ? 0.toDouble()
+                                      : double.parse(couponController
+                                          .applyCouponModel
+                                          .value
+                                          .data!
+                                          .convertDiscount
+                                          .toString()),
+                                  subTotal:
+                                      cartController.totalPrice.toDouble(),
+                                  shippingCharge: widget.isDelivery == false
+                                      ? 0
+                                      : (cartController.productShippingCharge + cartController.shippingAreaCost.value)
+                                          .toDouble(),
+                                  tax: cartController.totalTax,
+                                  total: cartController.totalPrice > 0 && couponController.applyCouponStatus.value == true
+                                      ? ((cartController.totalPrice +
+                                                  cartController.totalTax +
+                                                  (widget.isDelivery == false
+                                                      ? 0
+                                                      : (cartController.productShippingCharge +
+                                                          cartController.shippingAreaCost.value)))
+                                              .toDouble() -
+                                          (double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString())))
+                                      : ((cartController.totalPrice + cartController.totalTax) + (widget.isDelivery == false ? 0 : (cartController.productShippingCharge + cartController.shippingAreaCost.value))),
+                                  shippingId: widget.isDelivery == true ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt() : 0,
+                                  billingId: widget.isDelivery == true
+                                      ? showAddressController.billingAddressSelected.value == true
+                                          ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt()
+                                          : showAddressController.addressList.value.data![showAddressController.selectedBillingAddressIndex.value].id!.toInt()
+                                      : 0,
+                                  outletId: widget.isDelivery == false ? showAddressController.outlestModel.value.data![showAddressController.selectedOutletIndex.value].id!.toInt() : 0,
+                                  couponId: couponController.applyCouponModel.value.data?.id?.toInt() ?? 0,
+                                  orderType: widget.isDelivery == false ? 10 : 5,
+                                  source: 10.toInt(),
+                                  paymentMethod: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].id!.toInt(),
+                                  slug: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].slug.toString(),
+                                  products: data.toString());
                             }
                           }
-                          else
-                          {
-                            paymentController.confirmOrder(
-                            discount: couponController.applyCouponStatus.value == false
-                            ? 0.toDouble()
-                            : double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString()),
-                              subTotal: cartController.totalPrice.toDouble(), 
-                              shippingCharge: widget.isDelivery == false
-                                  ? 0
-                                  : (cartController.productShippingCharge +
-                                          cartController.shippingAreaCost.value).toDouble(),
-                              tax: cartController.totalTax,
-                              total: cartController.totalPrice > 0 && couponController.applyCouponStatus.value == true
-                                  ? ((cartController.totalPrice + cartController.totalTax + (widget.isDelivery == false ? 0 : (cartController.productShippingCharge + cartController.shippingAreaCost.value))).toDouble() - (double.parse(couponController.applyCouponModel.value.data!.convertDiscount.toString())))
-                                      
-                                  : ((cartController.totalPrice +
-                                              cartController.totalTax) +
-                                          (widget.isDelivery == false
-                                              ? 0
-                                              : (cartController.productShippingCharge +
-                                                  cartController
-                                                      .shippingAreaCost.value))),
-                                      
-                              shippingId: widget.isDelivery == true
-                                  ? showAddressController
-                                      .addressList
-                                      .value
-                                      .data![showAddressController.selectedAddressIndex.value]
-                                      .id!.toInt()
-                                  : 0,
-                              billingId: widget.isDelivery == true
-                                  ? showAddressController.billingAddressSelected.value == true
-                                      ? showAddressController.addressList.value.data![showAddressController.selectedAddressIndex.value].id!.toInt()
-                                      : showAddressController.addressList.value.data![showAddressController.selectedBillingAddressIndex.value].id!.toInt()
-                                  : 0,
-                              outletId: widget.isDelivery == false ? showAddressController.outlestModel.value.data![showAddressController.selectedOutletIndex.value].id!.toInt() : 0,
-                              couponId: couponController.applyCouponModel.value.data?.id?.toInt() ?? 0,
-                              orderType: widget.isDelivery == false ? 10 : 5,
-                              source: 10.toInt(),
-                              paymentMethod: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].id!.toInt(),
-                              slug: paymentController.paymentModel.value.data![paymentController.paymentMethodIndex.value].slug.toString(), 
-                              products: data.toString());
-                          }
-                            }                  
                         },
                       ),
                     ),
@@ -447,8 +466,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ),
             ),
           ),
-          paymentController.isLoading.value ?
-          LoaderCircle() :SizedBox()
+          paymentController.isLoading.value ? LoaderCircle() : SizedBox()
         ],
       ),
     );
