@@ -745,7 +745,38 @@ isDelivery == false
                   SizedBox(
                       height: 24.h,
                     ),
-                    Image.asset("assets/images/cardpicture.png"),
+                    InkWell(
+                    
+                      child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                          decoration: BoxDecoration(
+                            color: AppColor.primaryBackgroundColor,
+                            border: Border.all(
+                              width: 1,
+                              color: AppColor.textColor
+                            )
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Western Union / Moneygram / Ria',
+                                  style: TextStyle(
+                                    color: AppColor.textColor, 
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Image.asset(
+                                'assets/images/westren.png', 
+                                width: 100,
+                                height: 50, 
+                                fit: BoxFit.contain,
+                              ),
+                            ],
+                          ),),
+                    ),
                     SizedBox(
                       height: 24.h,
                     ),
