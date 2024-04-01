@@ -18,6 +18,7 @@ import 'package:shopperz/app/modules/shipping/widgets/address_widget.dart';
 import 'package:shopperz/main.dart';
 import 'package:shopperz/widgets/appbar3.dart';
 import 'package:shopperz/widgets/custom_snackbar.dart';
+import 'package:shopperz/widgets/custom_text.dart';
 import 'package:shopperz/widgets/devider.dart';
 import 'package:shopperz/widgets/textwidget.dart';
 
@@ -45,6 +46,7 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
   final authController = Get.put(AuthController());
   final addressController = Get.put(AddressController());
   ProfileController profile = Get.put(ProfileController());
+  final String clientname="Endri Qoku. Albania";
 
   @override
   void initState() {
@@ -54,6 +56,7 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
     showAddressController.fetchShippingArea();
     paymentController.fetchPaymentMethods();
     showAddressController.selectedAddressIndex.value = -1;
+    clientname.toString();
   }
 
   openCoupon() {
@@ -478,9 +481,9 @@ class _ShippingInformationScreenState extends State<ShippingInformationScreen> {
 //                       : SizedBox(),
 //billing address
                   
-                  SizedBox(
-                    height: 24.h,
-                  ),
+                  // SizedBox(
+                  //   height: 24.h,
+                  // ),
                   InkWell(
                     onTap: () {
                       openCoupon();
@@ -741,12 +744,37 @@ isDelivery == false
                   isDelivery == false
                       ? const SizedBox()
                       : const AddNewAddressDialog(),
-                  const DeviderWidget(),
                   SizedBox(
                       height: 24.h,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: CustomText(text: "Pay by Western Union",
+                      size: 18,
+                      weight: FontWeight.bold,),
+                    ),
                     InkWell(
-                    
+                      onTap: (){
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context){
+                            return AlertDialog(
+                              backgroundColor: AppColor.blackColor,
+                              title: CustomText(text: "Payment ID\n"+clientname,weight: FontWeight.w500,color: AppColor.whiteColor,),
+                              content: CustomText(text: "Please note that orders paid via Western union / Moneygram / Ria will be processed upon payment confirmation.",
+                              color: AppColor.whiteColor),
+                              actions: [
+                                TextButton(onPressed: (){
+                                  Navigator.of(context).pop();
+                                },
+                                 child: CustomText(text: "okay",
+                                 size: 17,
+                                 color: AppColor.blueColor1,))
+                              ],
+                            );
+                          }                        
+                        );
+                      },
                       child: Container(
                           padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                           decoration: BoxDecoration(
@@ -754,7 +782,7 @@ isDelivery == false
                             border: Border.all(
                               width: 1,
                               color: AppColor.textColor
-                            )
+                            ),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -780,7 +808,6 @@ isDelivery == false
                     SizedBox(
                       height: 24.h,
                     ),
-                  
                   Obx(() {
                     return OrderSummay(
                       subTotal: cartController.totalPrice,
