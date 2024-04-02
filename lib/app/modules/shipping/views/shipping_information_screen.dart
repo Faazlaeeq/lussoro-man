@@ -747,67 +747,6 @@ isDelivery == false
                   SizedBox(
                       height: 24.h,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: CustomText(text: "Pay by Western Union",
-                      size: 18,
-                      weight: FontWeight.bold,),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context){
-                            return AlertDialog(
-                              backgroundColor: AppColor.blackColor,
-                              title: CustomText(text: "Payment ID\n"+clientname,weight: FontWeight.w500,color: AppColor.whiteColor,),
-                              content: CustomText(text: "Please note that orders paid via Western union / Moneygram / Ria will be processed upon payment confirmation.",
-                              color: AppColor.whiteColor),
-                              actions: [
-                                TextButton(onPressed: (){
-                                  Navigator.of(context).pop();
-                                },
-                                 child: CustomText(text: "okay",
-                                 size: 17,
-                                 color: AppColor.blueColor1,))
-                              ],
-                            );
-                          }                        
-                        );
-                      },
-                      child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                          decoration: BoxDecoration(
-                            color: AppColor.primaryBackgroundColor,
-                            border: Border.all(
-                              width: 1,
-                              color: AppColor.textColor
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Western Union / Moneygram / Ria',
-                                  style: TextStyle(
-                                    color: AppColor.textColor, 
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Image.asset(
-                                'assets/images/westren.png', 
-                                width: 100,
-                                height: 50, 
-                                fit: BoxFit.contain,
-                              ),
-                            ],
-                          ),),
-                    ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
                   Obx(() {
                     return OrderSummay(
                       subTotal: cartController.totalPrice,
