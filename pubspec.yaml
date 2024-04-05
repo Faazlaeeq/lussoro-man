@@ -46,6 +46,7 @@ dependencies:
   firebase_core: ^2.9.0
   flutter_local_notifications: ^9.5.3+1
   flutter_inappwebview: ^5.7.2+3
+  rename: ^3.0.2
 
 
 dev_dependencies:
