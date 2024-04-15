@@ -317,7 +317,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               : Column(
                                   children: [
                                     TextWidget(
-                                      text: 'SING_IN_TO_SEE_YOUR_INFO'.tr,
+                                      text: 'SIGN IN TO SEE YOUR INFO'.tr,
                                       color: AppColor.textColor,
                                       fontSize: 18.sp,
                                       fontWeight: FontWeight.w600,

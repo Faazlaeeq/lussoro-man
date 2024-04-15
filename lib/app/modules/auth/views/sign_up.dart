@@ -266,13 +266,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    authController.nameController.dispose();
-    authController.emailController.dispose();
-    // authController.passController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   authController.nameController.dispose();
+  //   authController.emailController.dispose();
+  //   authController.passController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

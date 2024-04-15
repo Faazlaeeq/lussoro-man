@@ -35,7 +35,7 @@ class AuthController extends GetxController {
   final passController = TextEditingController();
   final phoneController = TextEditingController();
 
-  String countryCode = '+880';
+  String countryCode = '+355';
   String emailVerification = '5';
   String phoneVerification = '5';
   String cashOnDelivery = '5';
