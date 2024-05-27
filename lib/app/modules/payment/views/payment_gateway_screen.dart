@@ -99,7 +99,7 @@ class _PaymentViewState extends State<PaymentView> {
         crossPlatform: InAppBrowserOptions(
           hideUrlBar: true,
           hideToolbarTop: true,
-          hidden: true,
+          hidden: false,
         ),
         inAppWebViewGroupOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
