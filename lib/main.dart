@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 800),
       builder: ((context, child) => GetMaterialApp(
-            title: 'Lussoro Man',
+            title: 'Lussoro Brand',
             debugShowCheckedModeBanner: false,
             translations: Languages(),
             locale: langValue,
