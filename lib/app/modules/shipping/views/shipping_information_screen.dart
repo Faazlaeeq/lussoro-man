@@ -11,7 +11,6 @@ import 'package:shopperz/app/modules/coupon/controller/coupon_controller.dart';
 import 'package:shopperz/app/modules/payment/controller/payment_controller.dart';
 import 'package:shopperz/app/modules/profile/controller/profile_controller.dart';
 import 'package:shopperz/app/modules/profile/widgets/add_new_address.dart';
-import 'package:shopperz/app/modules/profile/widgets/address_screen.dart';
 import 'package:shopperz/app/modules/shipping/controller/address_controller.dart';
 import 'package:shopperz/app/modules/shipping/controller/show_address_controller.dart';
 import 'package:shopperz/app/modules/shipping/widgets/address_widget.dart';
@@ -24,8 +23,6 @@ import 'package:shopperz/widgets/textwidget.dart';
 import '../../../../config/theme/app_color.dart';
 import '../../../../utils/svg_icon.dart';
 import '../../payment/views/payment_screen.dart';
-import '../widgets/add_button.dart';
-import '../widgets/edit_button.dart';
 import '../widgets/order_summary.dart';
 
 class ShippingInformationScreen extends StatefulWidget {

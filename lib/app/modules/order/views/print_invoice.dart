@@ -38,7 +38,7 @@ class _PrintInvoiceState extends State<PrintInvoice> {
     Printing.layoutPdf(onLayout: (PdfPageFormat format) async {
       final doc = pw.Document();
 
-      final image = await WidgetWraper.fromKey(
+      final image = await WidgetWrapper.fromKey(
         key: keys,
         pixelRatio: 2.0,
       );
@@ -60,7 +60,7 @@ class _PrintInvoiceState extends State<PrintInvoice> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value:const SystemUiOverlayStyle(
+      value: const SystemUiOverlayStyle(
         systemNavigationBarColor: Colors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
         statusBarIconBrightness: Brightness.dark,
@@ -75,7 +75,8 @@ class _PrintInvoiceState extends State<PrintInvoice> {
               child: RepaintBoundary(
                 key: keys,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 40.h,left: 16.w,right: 16.w,bottom: 16.h),
+                  padding: EdgeInsets.only(
+                      top: 40.h, left: 16.w, right: 16.w, bottom: 16.h),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -107,7 +108,8 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                       ),
                       Center(
                         child: Text(
-                          "Tel:".tr + " ${widget.comapnyInfo!.companyCallingCode.toString() + widget.comapnyInfo!.companyPhone.toString()}",
+                          "Tel:".tr +
+                              " ${widget.comapnyInfo!.companyCallingCode.toString() + widget.comapnyInfo!.companyPhone.toString()}",
                           textAlign: TextAlign.center,
                           style: GoogleFonts.ptSans(
                               color: AppColor.textColor,
@@ -128,7 +130,8 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                         ),
                       ),
                       Text(
-                        "Order#".tr + "${widget.orderDetails!.orderSerialNo.toString()}",
+                        "Order#".tr +
+                            "${widget.orderDetails!.orderSerialNo.toString()}",
                         textAlign: TextAlign.left,
                         style: GoogleFonts.ptSans(
                             color: AppColor.textColor,
@@ -248,7 +251,8 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                                 Expanded(
                                   flex: 11,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
@@ -259,8 +263,10 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            widget.orderDetails!
-                                                .orderProducts![index].productName
+                                            widget
+                                                .orderDetails!
+                                                .orderProducts![index]
+                                                .productName
                                                 .toString(),
                                             style: GoogleFonts.ptSans(
                                                 color: AppColor.textColor,
@@ -291,7 +297,9 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                                         width: 4.w,
                                       ),
                                       Text(
-                                        widget.orderDetails!.orderProducts![index]
+                                        widget
+                                            .orderDetails!
+                                            .orderProducts![index]
                                             .subtotalCurrencyPrice
                                             .toString(),
                                         style: GoogleFonts.ptSans(
@@ -720,7 +728,11 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                                       Row(
                                         children: [
                                           Text(
-                                            widget.orderDetails!.outletAddress == null ? 'Address'.tr : 'Outlet'.tr,
+                                            widget.orderDetails!
+                                                        .outletAddress ==
+                                                    null
+                                                ? 'Address'.tr
+                                                : 'Outlet'.tr,
                                             style: GoogleFonts.ptSans(
                                                 color: AppColor.textColor,
                                                 fontWeight: FontWeight.w400,
@@ -740,91 +752,93 @@ class _PrintInvoiceState extends State<PrintInvoice> {
                               SizedBox(
                                 width: 4.w,
                               ),
-                              widget.orderDetails!.outletAddress != null ?
-                              Expanded(
-                                  flex: 8,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        widget.orderDetails!.outletAddress!
-                                            .name
-                                            .toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text(
-                                        widget.orderDetails!.outletAddress!
-                                                .countryCode
-                                                .toString() +
-                                            widget.orderDetails!
-                                                .outletAddress!.phone
+                              widget.orderDetails!.outletAddress != null
+                                  ? Expanded(
+                                      flex: 8,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            widget.orderDetails!.outletAddress!
+                                                .name
                                                 .toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text(
-                                        widget.address.toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                    ],
-                                  )):
-                              Expanded(
-                                  flex: 8,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        widget.orderDetails!.orderAddress![0]
-                                            .fullName
-                                            .toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text(
-                                        widget.orderDetails!.orderAddress![0]
-                                                .countryCode
-                                                .toString() +
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                          SizedBox(
+                                            height: 4.h,
+                                          ),
+                                          Text(
+                                            widget.orderDetails!.outletAddress!
+                                                    .countryCode
+                                                    .toString() +
+                                                widget.orderDetails!
+                                                    .outletAddress!.phone
+                                                    .toString(),
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                          SizedBox(
+                                            height: 4.h,
+                                          ),
+                                          Text(
+                                            widget.address.toString(),
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                        ],
+                                      ))
+                                  : Expanded(
+                                      flex: 8,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
                                             widget.orderDetails!
-                                                .orderAddress![0].phone
+                                                .orderAddress![0].fullName
                                                 .toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text(
-                                        widget.address.toString(),
-                                        style: GoogleFonts.ptSans(
-                                            color: AppColor.textColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp),
-                                      ),
-                                    ],
-                                  )),
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                          SizedBox(
+                                            height: 4.h,
+                                          ),
+                                          Text(
+                                            widget
+                                                    .orderDetails!
+                                                    .orderAddress![0]
+                                                    .countryCode
+                                                    .toString() +
+                                                widget.orderDetails!
+                                                    .orderAddress![0].phone
+                                                    .toString(),
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                          SizedBox(
+                                            height: 4.h,
+                                          ),
+                                          Text(
+                                            widget.address.toString(),
+                                            style: GoogleFonts.ptSans(
+                                                color: AppColor.textColor,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 11.sp),
+                                          ),
+                                        ],
+                                      )),
                             ],
                           ),
                           Center(

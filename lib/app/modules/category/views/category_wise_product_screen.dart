@@ -192,8 +192,7 @@ class _CategoryWiseProductScreenState extends State<CategoryWiseProductScreen> {
                           child: const TrendyCollectionShimmer(),
                         )
                       : cateWiseProductController
-                                  .categoryWiseProductList.length <
-                              1
+                              .categoryWiseProductList.isEmpty
                           ? Center(
                               child: Padding(
                               padding: EdgeInsets.only(top: 120.h),

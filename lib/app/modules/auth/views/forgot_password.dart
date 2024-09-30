@@ -192,7 +192,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopperz/app/modules/auth/controller/auth_controler.dart';
-import 'package:shopperz/app/modules/auth/controller/auth_controller.dart';
 import 'package:shopperz/utils/validation_rules.dart';
 import 'package:shopperz/widgets/appbar3.dart';
 import 'package:shopperz/widgets/custom_text.dart';
@@ -209,7 +208,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final AuthController authController = Get.put(AuthController()); // Ensure this matches your actual controller
+  final AuthController authController =
+      Get.put(AuthController()); // Ensure this matches your actual controller
 
   TextEditingController emailController = TextEditingController();
 
@@ -240,7 +240,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             alignment: Alignment.center,
             children: [
               Scaffold(
-                appBar: const AppBarWidget3(text: 'Forgot Password'), 
+                appBar: const AppBarWidget3(text: 'Forgot Password'),
                 backgroundColor: AppColor.primaryBackgroundColor,
                 body: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -259,7 +259,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             ),
                             SizedBox(height: 20.h),
                             CustomText(
-                              text: "Enter your email address to receive a password reset link".tr,
+                              text:
+                                  "Enter your email address to receive a password reset link"
+                                      .tr,
                               textAlign: TextAlign.center,
                               size: 16.sp,
                             ),
@@ -270,14 +272,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                 labelText: 'Email'.tr,
                                 border: OutlineInputBorder(),
                               ),
-                              validator: (email) => ValidationRules().email(email),
+                              validator: (email) =>
+                                  ValidationRules().email(email),
                             ),
                             SizedBox(height: 30.h),
                             PrimaryButton(
                               text: "Get OTP".tr,
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  authController.forgotPasswordWithEmail(email: emailController.text);
+                                  authController.forgotPasswordWithEmail(
+                                      email: emailController.text);
                                 } else {
                                   debugPrint("Validation failed");
                                 }
@@ -302,7 +306,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                 ),
               ),
-              authController.isLoading.value ? const LoaderCircle() : const SizedBox(),
+              authController.isLoading.value
+                  ? const LoaderCircle()
+                  : const SizedBox(),
             ],
           )),
     );

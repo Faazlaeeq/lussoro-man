@@ -39,7 +39,7 @@ class NotificationHelper {
   static Future<void> initialize(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var androidInitialize =
-        AndroidInitializationSettings('@mipmap/ic_launcher'); 
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     var iOSInitialize = new IOSInitializationSettings();
     var initializationsSettings = new InitializationSettings(
         android: androidInitialize, iOS: iOSInitialize);
@@ -50,7 +50,7 @@ class NotificationHelper {
         if (payload != null && payload != '') {
           PayLoadBody payLoadBody = PayLoadBody.fromJson(jsonDecode(payload));
           if (payLoadBody.topicName == 'Order Notification') {
-            Get.to(() => OrderHistoryScreen()); 
+            Get.to(() => OrderHistoryScreen());
           }
         }
       } catch (e) {}
@@ -131,12 +131,14 @@ class NotificationHelper {
       if (_image != null && _image.isNotEmpty) {
         try {
           await showBigPictureNotificationHiddenLargeIcon(
-              _title!, _body!, playLoad, _image, fln);
+              _title ?? "", _body ?? "", playLoad, _image, fln);
         } catch (e) {
-          await showBigTextNotification(_title!, _body!, playLoad, '', fln);
+          await showBigTextNotification(
+              _title ?? "", _body ?? "", playLoad, '', fln);
         }
       } else {
-        await showBigTextNotification(_title!, _body!, playLoad, '', fln);
+        await showBigTextNotification(
+            _title ?? "", _body ?? "", playLoad, '', fln);
       }
     }
   }

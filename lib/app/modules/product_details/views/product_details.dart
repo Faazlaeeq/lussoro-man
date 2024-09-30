@@ -1976,7 +1976,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14.sp,
                                               )
-                                            : SizedBox()
+                                            : const SizedBox()
                                   ],
                                 ),
                                 SizedBox(height: 32.h),

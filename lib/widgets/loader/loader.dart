@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopperz/utils/svg_icon.dart';
 
 import '../../config/theme/app_color.dart';
 
@@ -40,7 +39,8 @@ class LoaderCircle extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   child: Padding(
                     padding: EdgeInsets.all(5.r),
-                    child: Image.asset("assets/images/LUSSOROMAN_logo.png",
+                    child: Image.asset(
+                      "assets/images/LUSSOROMAN_logo.png",
                       fit: BoxFit.contain,
                     ),
                   ),

@@ -238,7 +238,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopperz/app/modules/auth/controller/auth_controler.dart';
-import 'package:shopperz/app/modules/auth/controller/auth_controller.dart'; // Ensure correct path
+// Ensure correct path
 import 'package:shopperz/app/modules/auth/views/sign_in.dart';
 import 'package:shopperz/utils/validation_rules.dart';
 import 'package:shopperz/widgets/appbar3.dart';
@@ -257,7 +257,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final AuthController authController = Get.put(AuthController()); // Ensure correct controller
+  final AuthController authController =
+      Get.put(AuthController()); // Ensure correct controller
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -284,102 +285,102 @@ class _SignUpScreenState extends State<SignUpScreen> {
         statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.dark,
       ),
-      child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Scaffold(
-              appBar: const AppBarWidget3(text: 'Sign Up'),
-              backgroundColor: AppColor.primaryBackgroundColor,
-              body: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        CustomText(
-                          text: "Sign Up".tr,
-                          color: AppColor.primaryColor,
-                          weight: FontWeight.w700,
-                          size: 26.sp,
-                        ),
-                        SizedBox(height: 12.h),
-                        CustomText(
-                          text: "Let's create your account".tr,
-                          size: 16.sp,
-                        ),
-                        SizedBox(height: 30.h),
-                        Form(
-                          key: formKey,
-                          child: Column(
+      child: Stack(alignment: Alignment.center, children: [
+        Scaffold(
+          appBar: const AppBarWidget3(text: 'Sign Up'),
+          backgroundColor: AppColor.primaryBackgroundColor,
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CustomText(
+                      text: "Sign Up".tr,
+                      color: AppColor.primaryColor,
+                      weight: FontWeight.w700,
+                      size: 26.sp,
+                    ),
+                    SizedBox(height: 12.h),
+                    CustomText(
+                      text: "Let's create your account".tr,
+                      size: 16.sp,
+                    ),
+                    SizedBox(height: 30.h),
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          FormFieldTitle(title: "Name".tr),
+                          SizedBox(height: 4.h),
+                          CustomFormField(
+                            controller: authController.nameController,
+                            validator: (name) => ValidationRules().normal(name),
+                          ),
+                          SizedBox(height: 20.h),
+                          FormFieldTitle(title: "Email".tr),
+                          SizedBox(height: 4.h),
+                          CustomFormField(
+                            controller: authController.emailController,
+                            validator: (email) =>
+                                ValidationRules().email(email),
+                          ),
+                          SizedBox(height: 20.h),
+                          FormFieldTitle(title: "Password".tr),
+                          SizedBox(height: 4.h),
+                          CustomFormField(
+                            controller: authController.passController,
+                            obsecure: true,
+                            validator: (password) =>
+                                ValidationRules().password(password),
+                          ),
+                          SizedBox(height: 24.h),
+                          PrimaryButton(
+                            text: "Sign Up".tr,
+                            onTap: () {
+                              if (formKey.currentState!.validate()) {
+                                authController.registrationWithEmail(
+                                  name: authController.nameController.text,
+                                  email: authController.emailController.text,
+                                  password: authController.passController.text,
+                                );
+                              }
+                            },
+                          ),
+                          SizedBox(height: 20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              FormFieldTitle(title: "Name".tr),
-                              SizedBox(height: 4.h),
-                              CustomFormField(
-                                controller: authController.nameController,
-                                validator: (name) => ValidationRules().normal(name),
+                              CustomText(
+                                text: "Already have an account?".tr,
+                                color: const Color(0xFF6E7191),
+                                size: 16.sp,
+                                weight: FontWeight.w500,
                               ),
-                              SizedBox(height: 20.h),
-                              FormFieldTitle(title: "Email".tr),
-                              SizedBox(height: 4.h),
-                              CustomFormField(
-                                controller: authController.emailController,
-                                validator: (email) => ValidationRules().email(email),
-                              ),
-                              SizedBox(height: 20.h),
-                              FormFieldTitle(title: "Password".tr),
-                              SizedBox(height: 4.h),
-                              CustomFormField(
-                                controller: authController.passController,
-                                obsecure: true,
-                                validator: (password) => ValidationRules().password(password),
-                              ),
-                              SizedBox(height: 24.h),
-                              PrimaryButton(
-                                text: "Sign Up".tr,
+                              SizedBox(width: 4.w),
+                              GestureDetector(
                                 onTap: () {
-                                  if (formKey.currentState!.validate()) {
-                                    authController.registrationWithEmail(
-                                      name: authController.nameController.text,
-                                      email: authController.emailController.text,
-                                      password: authController.passController.text,
-                                    );
-                                  }
+                                  Get.to(() => const SignInScreen());
                                 },
-                              ),
-                              SizedBox(height: 20.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomText(
-                                    text: "Already have an account?".tr,
-                                    color: const Color(0xFF6E7191),
-                                    size: 16.sp,
-                                    weight: FontWeight.w500,
-                                  ),
-                                  SizedBox(width: 4.w),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.to(() => const SignInScreen());
-                                    },
-                                    child: CustomText(
-                                      text: "Sign In".tr,
-                                      size: 16.sp,
-                                      color: AppColor.primaryColor,
-                                      weight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
+                                child: CustomText(
+                                  text: "Sign In".tr,
+                                  size: 16.sp,
+                                  color: AppColor.primaryColor,
+                                  weight: FontWeight.w600,
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
-          ]
-      ),);
+          ),
+        ),
+      ]),
+    );
   }
 }

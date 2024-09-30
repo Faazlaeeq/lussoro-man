@@ -174,6 +174,7 @@ class RemoteServices {
     variations,
     int? page,
   }) async {
+    print("faaz category $category");
     final response = await server.postRequest(
         endPoint: ApiList.categoryWiseProduct,
         headers: box.read('isLogedIn') == false

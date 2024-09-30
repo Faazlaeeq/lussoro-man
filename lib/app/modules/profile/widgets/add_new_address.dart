@@ -5,11 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopperz/app/modules/auth/controller/auth_controler.dart';
-import 'package:shopperz/app/modules/auth/views/sign_in.dart';
 import 'package:shopperz/app/modules/profile/controller/profile_controller.dart';
 import 'package:shopperz/app/modules/shipping/controller/address_controller.dart';
 import 'package:shopperz/app/modules/shipping/controller/show_address_controller.dart';
-import 'package:shopperz/main.dart';
 import 'package:shopperz/utils/constant.dart';
 import 'package:shopperz/utils/svg_icon.dart';
 import 'package:shopperz/utils/validation_rules.dart';
@@ -19,7 +17,6 @@ import '../../../../widgets/custom_form_field.dart';
 import '../../../../widgets/custom_phone_form_field.dart';
 import '../../../../widgets/custom_text.dart';
 import '../../../../widgets/form_field_title.dart';
-import '../../../../widgets/secondary_button2.dart';
 
 class AddNewAddressDialog extends StatefulWidget {
   const AddNewAddressDialog({super.key});

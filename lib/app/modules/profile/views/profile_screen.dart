@@ -13,7 +13,6 @@ import 'package:shopperz/app/modules/order/controller/order_controller.dart';
 import 'package:shopperz/app/modules/order/controller/return_controller.dart';
 import 'package:shopperz/app/modules/profile/controller/profile_controller.dart';
 import 'package:shopperz/app/modules/profile/views/pages_screen.dart';
-import 'package:shopperz/app/modules/profile/widgets/address_screen.dart';
 import 'package:shopperz/app/modules/profile/widgets/change_password.dart';
 import 'package:shopperz/app/modules/profile/widgets/delete_account_widget.dart';
 import 'package:shopperz/app/modules/profile/widgets/edit_profile.dart';
