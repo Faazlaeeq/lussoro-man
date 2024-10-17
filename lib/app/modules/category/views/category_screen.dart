@@ -39,8 +39,8 @@ class CategoryScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
                   child: Obx(() {
                     return categoryTreeController.categoryTreeList.isEmpty
-                        ? SizedBox()
-                        : categoryTreeController.categoryTreeList.length < 1
+                        ? const SizedBox()
+                        : categoryTreeController.categoryTreeList.isEmpty
                             ? Center(
                                 child: Padding(
                                 padding: EdgeInsets.only(top: 120.h),
@@ -80,7 +80,7 @@ class CategoryScreen extends StatelessWidget {
               ),
               categoryTreeController.isLoading.value
                   ? const Center(child: LoaderCircle())
-                  : SizedBox()
+                  : const SizedBox()
             ],
           ),
         ),

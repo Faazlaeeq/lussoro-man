@@ -204,9 +204,8 @@ class RemoteServices {
   Future<Either<String, ProductModel>> fetchProductDetails(
       {required String slug, required int reviewLimit}) async {
     final response = await server.getRequest(
-        endPoint: ApiList.productDetails +
-            slug +
-            '?slug=$slug&review_limit=$reviewLimit',
+        endPoint:
+            '${ApiList.productDetails}$slug?slug=$slug&review_limit=$reviewLimit',
         headers: box.read('isLogedIn') == false
             ? AppServer.getAuthHeaders()
             : AppServer.getHttpHeadersWithToken());

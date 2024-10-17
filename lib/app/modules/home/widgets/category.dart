@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,9 +24,14 @@ class CategoryWidget extends StatelessWidget {
         return ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: categoryController.categoryModel.value.data!.length,
+          itemCount: categoryController.categoryModel.value.data!
+              .where((e) => e.parentCategory != null)
+              .toList()
+              .length,
           itemBuilder: (context, index) {
-            final category = categoryController.categoryModel.value.data!;
+            final category = categoryController.categoryModel.value.data!
+                .where((e) => e.parentCategory != null)
+                .toList();
             return Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 12.w),

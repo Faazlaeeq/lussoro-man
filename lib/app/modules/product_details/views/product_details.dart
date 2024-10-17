@@ -143,8 +143,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               if (productDetailsController.initialVariationModel.value.data !=
                       null &&
                   productDetailsController
-                          .initialVariationModel.value.data!.length >
-                      0) {
+                          .initialVariationModel.value.data!.isNotEmpty) {
                 productDetailsController.variationProductId.value = '';
                 productDetailsController.variationProductPrice.value = '';
                 productDetailsController.variationProductCurrencyPrice.value =
@@ -210,7 +209,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         BoxShadow(
                             color: AppColor.primaryColor.withOpacity(0.34),
                             blurRadius: 10.r,
-                            offset: Offset(0, 6))
+                            offset: const Offset(0, 6))
                       ]),
                   child: Stack(
                     children: [
@@ -285,9 +284,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   productDetailsController.variationsStock.value = -1;
                 },
                 child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
+                  physics: const AlwaysScrollableScrollPhysics(),
                   child: Obx(
-                    () => productDetailsController.isLaoding.value == 1
+                    () { 
+                      print("faaz:${productDetailsController
+                                              .productModel.value.data?.image}");
+                      return productDetailsController.isLaoding.value == 1
                         ? const ProductDetailsShimmer()
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -522,9 +524,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                   productDetailsController
                                                           .initialVariationModel
                                                           .value
-                                                          .data!
-                                                          .length >
-                                                      0
+                                                          .data!.isNotEmpty
                                               ? Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -537,9 +537,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .initialVariationModel
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.initialVariationModel.value.data?[0].productAttributeName.toString().tr}:',
@@ -547,7 +545,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .initialVariationModel
                                                                     .value
@@ -556,11 +554,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .initialVariationModel
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .initialVariationModel
                                                                     .value
@@ -569,9 +565,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .initialVariationModel
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -710,7 +704,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .initialVariationModel
                                                                     .value
@@ -719,14 +713,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .initialVariationModel
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 )
-                                              : SizedBox(),
+                                              : const SizedBox(),
                                           productDetailsController
                                                           .selectedIndex1
                                                           .value ==
@@ -749,9 +741,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel1.value.data?[0].productAttributeName.toString().tr}:',
@@ -759,7 +749,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
@@ -768,11 +758,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
@@ -781,9 +769,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -915,7 +901,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
@@ -924,11 +910,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel1
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                           productDetailsController
@@ -953,9 +937,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel2.value.data?[0].productAttributeName.toString().tr ?? ''}:',
@@ -963,7 +945,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
@@ -972,11 +954,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
@@ -985,9 +965,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -1111,7 +1089,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
@@ -1120,11 +1098,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel2
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                           productDetailsController
@@ -1149,9 +1125,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel3.value.data?[0].productAttributeName.toString().tr ?? ''}:',
@@ -1159,7 +1133,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
@@ -1168,11 +1142,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
@@ -1181,9 +1153,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -1299,7 +1269,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
@@ -1308,11 +1278,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel3
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                           productDetailsController
@@ -1337,9 +1305,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel4.value.data?[0].productAttributeName.toString().tr ?? ''}:',
@@ -1347,7 +1313,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
@@ -1356,11 +1322,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
@@ -1369,9 +1333,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -1479,7 +1441,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
@@ -1488,11 +1450,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel4
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                           productDetailsController
@@ -1517,9 +1477,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel5.value.data?[0].productAttributeName.toString().tr ?? ''}:',
@@ -1527,7 +1485,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
@@ -1536,11 +1494,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
@@ -1549,9 +1505,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -1651,7 +1605,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
@@ -1660,11 +1614,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                           productDetailsController
@@ -1689,9 +1641,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel6
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? CustomText(
                                                             text:
                                                                 '${productDetailsController.childrenVariationModel6.value.data?[0].productAttributeName.toString().tr ?? ''}:',
@@ -1699,7 +1649,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             weight:
                                                                 FontWeight.w600,
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel6
                                                                     .value
@@ -1708,11 +1658,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel6
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 8.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel6
                                                                     .value
@@ -1721,9 +1669,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel6
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(
                                                             height: 32.h,
                                                             child: ListView
@@ -1809,7 +1755,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                                       );
                                                                     }),
                                                           )
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                     productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
@@ -1818,11 +1764,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                             productDetailsController
                                                                     .childrenVariationModel5
                                                                     .value
-                                                                    .data!
-                                                                    .length >
-                                                                0
+                                                                    .data!.isNotEmpty
                                                         ? SizedBox(height: 24.h)
-                                                        : SizedBox(),
+                                                        : const SizedBox(),
                                                   ],
                                                 ),
                                         ],
@@ -2003,9 +1947,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               productDetailsController
                                                       .initialVariationModel
                                                       .value
-                                                      .data!
-                                                      .length >
-                                                  0) {
+                                                      .data!.isNotEmpty) {
                                             if (productDetailsController
                                                     .variationsStock.value >
                                                 0) {
@@ -2503,8 +2445,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ],
                                         ),
                                 ),
-                              ]),
-                  ),
+                              ]);
+        }),
                 ),
               ),
             ),
