@@ -32,6 +32,7 @@ class CategoryWidget extends StatelessWidget {
             final category = categoryController.categoryModel.value.data!
                 .where((e) => e.parentCategory != null)
                 .toList();
+            double cardWidth = 148.w;
             return Center(
               child: Padding(
                 padding: EdgeInsets.only(right: 12.w),
@@ -44,7 +45,7 @@ class CategoryWidget extends StatelessWidget {
                   },
                   child: Container(
                     height: 170.h,
-                    width: 240.w,
+                    width: cardWidth,
                     decoration: BoxDecoration(
                       color: AppColor.whiteColor,
                       borderRadius: BorderRadius.circular(8.r),
@@ -56,17 +57,21 @@ class CategoryWidget extends StatelessWidget {
                             spreadRadius: 0)
                       ],
                     ),
-                    child: Column(
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      fit: StackFit.expand,
                       children: [
                         CachedNetworkImage(
                           imageUrl: category[index].thumb.toString(),
                           imageBuilder: (context, imageProvider) => Container(
-                            height: 100.h,
                             width: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8.r),
-                                  topRight: Radius.circular(8.r)),
+                                topLeft: Radius.circular(8.r),
+                                topRight: Radius.circular(8.r),
+                                bottomLeft: Radius.circular(8.r),
+                                bottomRight: Radius.circular(8.r),
+                              ),
                               image: DecorationImage(
                                 image: imageProvider,
                                 fit: BoxFit.cover,
@@ -74,12 +79,13 @@ class CategoryWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Expanded(
+                        Positioned(
+                          bottom: 0,
                           child: Container(
-                            height: 22.h,
-                            width: double.infinity,
+                            height: 50.h,
+                            width: cardWidth,
                             decoration: BoxDecoration(
-                              color: AppColor.whiteColor,
+                              color: AppColor.blackColor.withOpacity(0.5),
                               borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(8.r),
                                 bottomRight: Radius.circular(8.r),
@@ -89,7 +95,7 @@ class CategoryWidget extends StatelessWidget {
                               child: TextWidget(
                                 text: category[index].name,
                                 textAlign: TextAlign.center,
-                                color: AppColor.titleTextColor,
+                                color: AppColor.whiteColor,
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                               ),
